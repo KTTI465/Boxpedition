@@ -15,7 +15,7 @@ public class Grab_Area_Script : MonoBehaviour
     Rigidbody rigidbody;
 
     //投げる力
-    public float power = 1f;
+    public float power = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +39,16 @@ public class Grab_Area_Script : MonoBehaviour
             grabFlg = false;
         }
 
+        //右クリックで投げる
         if (Input.GetMouseButtonDown(1) && grabFlg)
         {
-            var vec = (transform.parent.position - transform.position) + new Vector3(0f, 1f, 0f);
-
-            Debug.Log(vec.normalized);
-
-            rigidbody.AddForce(vec.normalized * power);
-
+            //投げる方向計算
+            var vec = (transform.position - transform.parent.position) + new Vector3(0f, 2f, 0f);
+            //物理演算を有効に
+            rigidbody.isKinematic = false;
+            //投げる方向にaddforce
+            rigidbody.AddForce(vec.normalized * power, ForceMode.VelocityChange);
+            //フラグリセット
             grabFlg = false;
 
             firstFlg = true;
@@ -81,8 +83,9 @@ public class Grab_Area_Script : MonoBehaviour
                 }
                 else
                 {
+                    //物理演算有効
                     rigidbody.isKinematic = false;
-
+                    //親オブジェクトの解除
                     collision.gameObject.transform.parent = null;
                 }
             }
