@@ -9,7 +9,7 @@ public class CharacterController : MonoBehaviour
     public GameObject cam;
     private Quaternion cameraRot, characterRot;
     private float sensitivity = 1f;
-    // Start is called before the first frame update
+
     void Start()
     {
         cameraRot = cam.transform.localRotation;
@@ -17,11 +17,10 @@ public class CharacterController : MonoBehaviour
         cameraRot = Quaternion.Euler(0, 0, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         CharacterMovement();
-        ViewController();
+        CharacterRotate();
     }
 
     private void CharacterMovement()
@@ -32,31 +31,10 @@ public class CharacterController : MonoBehaviour
         transform.Translate(xMovement, 0, zMovement);
     }
 
-    private void ViewController()
+    private void CharacterRotate()
     {
         float xRot = Input.GetAxis("Mouse X") * sensitivity;
-        float yRot = Input.GetAxis("Mouse Y") * sensitivity;
-
-        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
         characterRot *= Quaternion.Euler(0, xRot, 0);
-
-        cameraRot = ClampRotation(cameraRot);
-
-        cam.transform.localRotation = cameraRot;
         transform.localRotation = characterRot;
-    }
-
-    private Quaternion ClampRotation(Quaternion q)
-    {
-        q.x /= q.w;
-        q.y /= q.w;
-        q.z /= q.w;
-        q.w = 1f;
-
-        float angleX = Mathf.Atan(q.x) * Mathf.Rad2Deg * 2f;
-        angleX = Mathf.Clamp(angleX, -90f, 90f);
-        q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);
-
-        return q;
     }
 }
