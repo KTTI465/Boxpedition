@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7360257184366815456}
+  jumpPower: 8
 --- !u!114 &7360257184114803506
 MonoBehaviour:
   m_ObjectHideFlags: 0
