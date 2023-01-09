@@ -23,7 +23,7 @@ public class union : MonoBehaviour
         if(arie < 3.0f && Input.GetKey(KeyCode.R))
         {
             main.transform.position = new Vector3(cube.x, cube.y + 1, cube.z);
-            this.gameObject.transform.parent = GameObject.Find("Capsule").transform;
+            this.gameObject.transform.parent = main.transform;
         }
         if(Input.GetKey(KeyCode.T))
         {
