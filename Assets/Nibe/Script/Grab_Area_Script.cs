@@ -12,7 +12,7 @@ public class Grab_Area_Script : MonoBehaviour
     bool firstFlg = false;
 
     //掴んだオブジェクトのrigidbody格納用変数
-    Rigidbody rigidbody;
+    new Rigidbody rigidbody;
 
     //投げる力
     public float power = 10f;
