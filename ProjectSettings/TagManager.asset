@@ -6,11 +6,12 @@ TagManager:
   tags:
   - P_Object
   - main
+  - H_Object
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Box
   - Water
   - UI
   - 
