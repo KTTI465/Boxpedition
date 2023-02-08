@@ -52,7 +52,7 @@ public class Pachinko : MonoBehaviour
         {
             Action();
         }
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
+        //transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
         now = transform.position;
 
         if (flg)
@@ -80,6 +80,11 @@ public class Pachinko : MonoBehaviour
                 }
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed);
     }
 
     public void Action()
