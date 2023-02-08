@@ -6,6 +6,8 @@ TagManager:
   tags:
   - P_Object
   - H_Object
+  - Train
+  - TrainTarget
   layers:
   - Default
   - TransparentFX
