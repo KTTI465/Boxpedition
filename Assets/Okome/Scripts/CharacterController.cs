@@ -18,8 +18,11 @@ public class CharacterController : MonoBehaviour
     //Playerの子オブジェクトになっているboxを格納するための変数
     private GameObject connectingBox;
 
-    //ジャンプするときの力を指定するための変数
-    public float jumpPower;
+    //1回目のジャンプするときの力を指定するための変数
+    public float firstJumpPower;
+    
+    //2回目のジャンプするときの力を指定するための変数
+    public float secondJumpPower;
 
     //Raycastの長さを格納するための変数
     private float jumpDistance;
@@ -112,13 +115,12 @@ public class CharacterController : MonoBehaviour
             //地面についていた時
             if (isGround == true)
             {
-                rb.velocity = Vector3.up * jumpPower;
+                rb.velocity = Vector3.up * firstJumpPower;
             }
             //空中にいるときかつ二段ジャンプをしていない時
             else if (isGround == false && doubleJumped == false)
             {
-                //１段目のジャンプよりも高いジャンプをする
-                rb.velocity = Vector3.up * jumpPower * 1.5f;
+                rb.velocity = Vector3.up * secondJumpPower;
 
                 //boxについているスクリプトのコルーチンを使い、１秒後に箱が消えるようにする
                 IEnumerator destroyTimer = connectingBox.GetComponent<Box>().DestroyBox();
