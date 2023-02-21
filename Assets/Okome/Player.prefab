@@ -132,7 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 7360257184366815456}
   box: {fileID: 3683858499259781039, guid: 79ecc24bfe4e2d04a96767680b6fddc8, type: 3}
-  jumpPower: 10
+  firstJumpPower: 10
+  secondJumpPower: 15
   doubleJumped: 0
 --- !u!114 &7360257184114803506
 MonoBehaviour:
