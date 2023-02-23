@@ -41,18 +41,6 @@ public class Train : MonoBehaviour
         {
             speed = 0f;
         }
-        /*
-        if (targets.Length == 0)
-            return;
-        
-        agent.destination = targets[point].position;
-
-        point++;
-
-        if (point == targets.Length)
-        {
-            point = 0;
-        }*/
     }
 
     void Update()
