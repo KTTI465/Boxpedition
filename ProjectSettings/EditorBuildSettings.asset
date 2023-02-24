@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Nibe/Scenes/titleScene.unity
+    guid: d67bda8da133e2642b625c3e654cd9c5
+  - enabled: 1
+    path: Assets/Nibe/Scenes/optionScene.unity
+    guid: 4934c5a8ff541684f98628dcc9e4246f
+  - enabled: 1
+    path: Assets/Scenes/Stage1_Image.unity
+    guid: 13ae87b8303cffa4c9842a9a59dc3251
   m_configObjects: {}

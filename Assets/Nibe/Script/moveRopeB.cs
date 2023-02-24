@@ -22,13 +22,12 @@ public class moveRopeB : MonoBehaviour
     {
         //ÉvÉåÉCÉÑÅ[Çå©Ç¬ÇØÇÈ
         player = GameObject.FindGameObjectWithTag("Player");
+        rigidbody = player.gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rigidbody = player.gameObject.GetComponent<Rigidbody>();
-
         if (moveOn == true && Input.GetKey(KeyCode.Space))  //ìoÇÈ
         {
             player.transform.position = Vector3.MoveTowards(player.transform.position, this.transform.position, speed * Time.deltaTime);
