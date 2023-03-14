@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage1_Image.unity
     guid: 13ae87b8303cffa4c9842a9a59dc3251
+  - enabled: 1
+    path: Assets/Okome/Scene/optionScreen.unity
+    guid: eb93ea1afe76e8944b16b31f91c93a1b
+  - enabled: 1
+    path: Assets/Okome/Scene/optionScreen1.unity
+    guid: 7dd60ee393d63aa4bbc7d629ff9a9930
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
