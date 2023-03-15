@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Nibe/Scenes/optionScene.unity
     guid: 4934c5a8ff541684f98628dcc9e4246f
   - enabled: 1
+    path: Assets/Nibe/Scenes/stageSelect.unity
+    guid: 52246454c146c3346afb09a3d38c44a5
+  - enabled: 1
     path: Assets/Scenes/Stage1_Image.unity
     guid: 13ae87b8303cffa4c9842a9a59dc3251
   m_configObjects: {}

@@ -53,7 +53,7 @@ public class titleSystem : MonoBehaviour
     public void StartGame()
     {
         audioSource.PlayOneShot(titleSE);
-        SceneManager.LoadScene("Stage1_Image");
+        SceneManager.LoadScene("stageSelect");
     }
 
     //オプションボタンを押したら実行する
