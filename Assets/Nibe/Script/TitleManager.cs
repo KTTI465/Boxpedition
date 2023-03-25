@@ -248,9 +248,7 @@ public class TitleManager : MonoBehaviour
                 }
                 
                 left = false;
-            }
-
-            HideStage();
+            }           
 
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
@@ -311,19 +309,6 @@ public class TitleManager : MonoBehaviour
             exitOptionText.color = new Color(r2, g2, b2, a2);
         }
 
-        if (stageNum == 0)
-        {
-            stageSelectText.text = "Stage1";       
-        }
-        else if (stageNum == 1)
-        {
-            stageSelectText.text = "Stage2";
-        }
-        else if (stageNum == 2)
-        {
-            stageSelectText.text = "Stage3";
-        }
-
         if (selectNum == 0)
         {
             stageSelectText.color = new Color(r2, g2, b2, a2);
@@ -378,6 +363,8 @@ public class TitleManager : MonoBehaviour
             stageNum++;
             musicManager.PlaySE1();
         }
+
+        HideStage();
     }
 
     public void StageLeftButton()
@@ -387,6 +374,8 @@ public class TitleManager : MonoBehaviour
             stageNum--;
             musicManager.PlaySE1();
         }
+
+        HideStage();
     }
 
     public void StartStageButton()
@@ -411,6 +400,8 @@ public class TitleManager : MonoBehaviour
     {
         if (stageNum == 0)
         {
+            stageSelectText.text = "Stage1";
+
             stage1Image.SetActive(true);
             stage2Image.SetActive(false);
 
@@ -418,6 +409,8 @@ public class TitleManager : MonoBehaviour
         }
         else if (stageNum == 1)
         {
+            stageSelectText.text = "Stage2";
+
             stage2Image.SetActive(true);
             stage1Image.SetActive(false);
             stage3Image.SetActive(false);
@@ -427,6 +420,8 @@ public class TitleManager : MonoBehaviour
         }
         else if (stageNum == 2)
         {
+            stageSelectText.text = "Stage3";
+
             stage3Image.SetActive(true);
             stage2Image.SetActive(false);
 
