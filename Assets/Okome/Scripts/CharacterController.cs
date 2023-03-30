@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
     private Rigidbody rb;
     private float xMovement, zMovement;
     private float movementSpeed = 0.1f;
+    [SerializeField] private Camera playerCam;
     public GameObject cam;
     private Quaternion cameraRot, characterRot;
     private float sensitivity = 1f;
@@ -20,7 +21,7 @@ public class CharacterController : MonoBehaviour
 
     //1回目のジャンプするときの力を指定するための変数
     public float firstJumpPower;
-    
+
     //2回目のジャンプするときの力を指定するための変数
     public float secondJumpPower;
 
@@ -33,6 +34,9 @@ public class CharacterController : MonoBehaviour
     //connectingBoxの上にPlayerがくるよう位置を調整するための変数
     //connectingBoxとPlayerの大きさで次第で調整が必要
     private float enterBoxMove = 1f;
+
+    public RaycastHit rayHitObject;
+
 
     void Start()
     {
@@ -58,6 +62,7 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         CharacterJump();
+        ray();
     }
 
     private void FixedUpdate()
@@ -156,8 +161,10 @@ public class CharacterController : MonoBehaviour
                 connectingBox.transform.parent = gameObject.transform;
             }
         }
-        Debug.Log(isGround);
-        Debug.Log(doubleJumped);
-        Debug.Log(connectingBox);
+    }
+
+    public void ray()
+    {
+        Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 30f);
     }
 }
