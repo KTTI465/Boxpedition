@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5b5fe7154f848408de4c068bfd81ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCam: {fileID: 7360257184366815458}
   cam: {fileID: 7360257184366815456}
   box: {fileID: 3683858499259781039, guid: 79ecc24bfe4e2d04a96767680b6fddc8, type: 3}
   firstJumpPower: 10
@@ -176,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7360257184366815456}
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 3.55, z: -14.14}
+  m_LocalPosition: {x: 0, y: 6, z: -13.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
