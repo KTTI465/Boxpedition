@@ -13,17 +13,11 @@ public class ballOfWool : MonoBehaviour
     private GameObject Player;
 
     GameObject _rayHitObject;
-    // Start is called before the first frame update
+
     void Start()
     {
         animator = GetComponent<Animator>();
         enabledAnimation = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void OnTriggerStay(Collider other)
@@ -46,12 +40,12 @@ public class ballOfWool : MonoBehaviour
         }
     }
 
-    void StartAnimation()
+    public void StartAnimation()
     {
         Player.GetComponent<CharacterController>().enabled = false;
         animationCamara.GetComponent<Camera>().depth = 1;
     }
-    void EndAnimation()
+    public void EndAnimation()
     {
         Player.GetComponent<CharacterController>().enabled = true;
         Destroy(animationCamara);
