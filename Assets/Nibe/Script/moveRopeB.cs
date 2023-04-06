@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEditor.PlayerSettings;
 
 public class moveRopeB : MonoBehaviour
 {
     private float xMovement, zMovement;
-    private float movementSpeed = 0.05f;  //‘ŠE—p
+    private float movementSpeed = 0.1f;  //‘ŠE—p
 
     //ÚG‚µ‚½‚©‚Ç‚¤‚©‚Ì”»’è
     private bool moveOn = false;
@@ -16,6 +20,9 @@ public class moveRopeB : MonoBehaviour
     GameObject player;
 
     private float speed = 5.0f;
+
+    // ~ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+    bool ps4X = false;
 
 
     void Start()
@@ -28,10 +35,12 @@ public class moveRopeB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moveOn == true && Input.GetKey(KeyCode.Space))  //“o‚é
+        GetPS4X();
+
+        if (moveOn == true && (Input.GetKey(KeyCode.Space) || ps4X))  //“o‚é
         {
             player.transform.position = Vector3.MoveTowards(player.transform.position, this.transform.position, speed * Time.deltaTime);
-            CharacterMovement();  //‘ŠE
+            //CharacterMovement();  //‘ŠE
         }
         else
         {
@@ -71,5 +80,20 @@ public class moveRopeB : MonoBehaviour
         zMovement = Input.GetAxisRaw("Vertical") * movementSpeed;
 
         player.transform.Translate(-xMovement, 0, -zMovement);  //‘ŠE‚·‚é‚½‚ß‚É‹tŒü‚«‚É—Í‰Á‚¦‚é
+    }
+
+    void GetPS4X()
+    {
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonSouth.isPressed)
+            {
+                ps4X = true;
+            }
+            else
+            {
+                ps4X = false;
+            }
+        }
     }
 }
