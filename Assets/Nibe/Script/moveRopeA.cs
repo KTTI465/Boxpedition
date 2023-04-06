@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEditor.PlayerSettings;
 
 public class moveRopeA : MonoBehaviour
 {
     private float xMovement, zMovement;
-    private float movementSpeed = 0.05f;  //‘ŠE—p
+    private float movementSpeed = 0.1f;  //‘ŠE—p
 
     //@²‚ÌŠp“x
     private float angle = 0f;
@@ -37,6 +41,9 @@ public class moveRopeA : MonoBehaviour
     [SerializeField] Transform target;
     private float speed = 5.0f;
 
+    // ~ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+    bool ps4X = false;
+
 
     void Start()
     {
@@ -44,15 +51,15 @@ public class moveRopeA : MonoBehaviour
 
         //ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚é
         player = GameObject.FindGameObjectWithTag("Player");
+        rigidbody = player.gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rigidbody = player.gameObject.GetComponent<Rigidbody>();
+        GetPS4X();
 
-
-        if (moveOn == true && (Input.GetKey(KeyCode.Space)))  //“®‚­
+        if (moveOn == true && (Input.GetKey(KeyCode.Space) || ps4X))  //“®‚­
         {
             //@Œo‰ßŠÔ‚É‡‚í‚¹‚½Š„‡‚ğŒvZ
             float t = (Time.time - startTime) / duration;
@@ -63,7 +70,7 @@ public class moveRopeA : MonoBehaviour
             //ƒ[ƒv‚Ì‰º‚Ì‚Ù‚¤‚ÉˆÚ“®‚·‚é
             player.transform.position = Vector3.MoveTowards(player.transform.position, target.position, speed * Time.deltaTime);
 
-            CharacterMovement();  //‘ŠE
+            //CharacterMovement();  //‘ŠE
         }
         else  //~‚Ü‚é
         {
@@ -112,7 +119,9 @@ public class moveRopeA : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            if (Input.GetKey(KeyCode.Space))
+            GetPS4X();
+
+            if (Input.GetKey(KeyCode.Space) || ps4X)
             {
                 moveOn = true;
 
@@ -136,5 +145,20 @@ public class moveRopeA : MonoBehaviour
         zMovement = Input.GetAxisRaw("Vertical") * movementSpeed;
 
         player.transform.Translate(-xMovement, 0, -zMovement);  //‘ŠE‚·‚é‚½‚ß‚É‹tŒü‚«‚É—Í‰Á‚¦‚é
+    }
+
+    void GetPS4X()
+    {
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonSouth.isPressed)
+            {
+                ps4X = true;
+            }
+            else
+            {
+                ps4X = false;
+            }
+        }
     }
 }

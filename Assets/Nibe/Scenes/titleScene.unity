@@ -2442,7 +2442,7 @@ MonoBehaviour:
   bgmAudioSource: {fileID: 2116890545098648978}
   seAudioSource: {fileID: 2116890544748425288}
   bgm1: {fileID: 8300000, guid: 089ee2aba75734a4cbf7a8e39e353363, type: 3}
-  se1: {fileID: 8300000, guid: 68bd329e729c40144bebc353355839e1, type: 3}
+  se1: {fileID: 8300000, guid: 1727e89028b24db4d9392622fb33c824, type: 3}
 --- !u!224 &2653137659220021952
 RectTransform:
   m_ObjectHideFlags: 0

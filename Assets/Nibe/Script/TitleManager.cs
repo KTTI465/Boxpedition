@@ -70,6 +70,8 @@ public class TitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        musicManager.SetBGM();
+        musicManager.SetSE();
         musicManager.PlayBGM1();
     }
 
@@ -384,7 +386,8 @@ public class TitleManager : MonoBehaviour
 
         if (stageNum == 0)
         {
-            SceneManager.LoadScene("Stage1_Image");
+            //SceneManager.LoadScene("Stage1_Image");
+            SceneManager.LoadScene("ropeScene");
         }
         else if (stageNum == 1)
         {

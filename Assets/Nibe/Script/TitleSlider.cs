@@ -29,6 +29,11 @@ public class TitleSlider : MonoBehaviour
 
         //感度スライダーを動かした時の処理を登録
         sensiSlider.onValueChanged.AddListener(SetSensi);
+
+
+        bgmSlider.value = (PlayerPrefs.GetFloat("BGM") + 20f) / 20f;
+        seSlider.value = (PlayerPrefs.GetFloat("SE") + 20f) / 20f;
+        sensiSlider.value = PlayerPrefs.GetFloat("Sensi");
     }
 
 

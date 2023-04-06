@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class CharacterController : MonoBehaviour
 {
@@ -81,9 +84,31 @@ public class CharacterController : MonoBehaviour
 
     private void CharacterRotate()
     {
+        float cal = PlayerPrefs.GetFloat("Sensi");
+
         //マウスの横方向の動き× sensitivityで横方向の回転をさせている。
         float xRot = Input.GetAxis("Mouse X") * sensitivity;
-        characterRot *= Quaternion.Euler(0, xRot, 0);
+
+        // ゲームパッドが接続されていないとき
+        if (Gamepad.current == null)
+        {
+            characterRot *= Quaternion.Euler(0, xRot * 2.0f * cal, 0);
+        }
+        else
+        {
+            // 右スティックの入力を受け取る
+            var v = Gamepad.current.rightStick.ReadValue();
+
+            if (xRot == 0)
+            {
+                characterRot *= Quaternion.Euler(0, v.x * 2.0f * cal, 0);
+            }
+            else
+            {
+                characterRot *= Quaternion.Euler(0, xRot * 2.0f * cal, 0);
+            }
+        }
+
         transform.localRotation = characterRot;
     }
 
@@ -114,8 +139,19 @@ public class CharacterController : MonoBehaviour
             isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance);
         }
 
-        //スペースキーを押したときにジャンプする
-        if (Input.GetKeyDown(KeyCode.Space))
+        // ×ボタンが押されているかどうかを取得する
+        var ps4X = false;
+
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                ps4X = true;
+            }
+        }
+
+        //スペースキー（×ボタン）を押したときにジャンプする
+        if (Input.GetKeyDown(KeyCode.Space) || ps4X)
         {
             //地面についていた時
             if (isGround == true)

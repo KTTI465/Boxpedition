@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Okome/Scene/optionScreen1.unity
     guid: 7dd60ee393d63aa4bbc7d629ff9a9930
+  - enabled: 1
+    path: Assets/Nibe/Scenes/ropeScene.unity
+    guid: 8db438b0b41ad7c4f8f559fe05f4b866
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
