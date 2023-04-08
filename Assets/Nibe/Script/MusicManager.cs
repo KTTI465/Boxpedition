@@ -15,6 +15,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] AudioSource seAudioSource;
 
     [SerializeField] AudioClip bgm1;
+    [SerializeField] AudioClip bgm2;
 
     [SerializeField] AudioClip se1;
 
@@ -42,6 +43,11 @@ public class MusicManager : MonoBehaviour
     public void PlayBGM1()
     {
         bgmAudioSource.PlayOneShot(bgm1);
+    }
+
+    public void PlayBGM2()
+    {
+        bgmAudioSource.PlayOneShot(bgm2);
     }
 
     public void PlaySE1()
