@@ -27,8 +27,6 @@ public class drawer : MonoBehaviour
     {
         if(isGrab&&Player!=null)
         {
-            //引き出しの取っ手のほうを見るようにする。
-            Player.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y+270f, 0);
             float zMovement = Input.GetAxisRaw("Vertical");
             topDrawer.transform.Translate(zMovement, 0, 0);
             Player.transform.Translate(0, 0, zMovement);
@@ -56,6 +54,8 @@ public class drawer : MonoBehaviour
                     Player = other.gameObject;
                     //プレイヤーの移動スクリプトを無効にする
                     Player.GetComponent<CharacterController>().enabled = false;
+                    //引き出しの取っ手のほうを見るようにする。
+                    Player.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 270f, 0);
                     isGrab = true;
                 }
                 else
