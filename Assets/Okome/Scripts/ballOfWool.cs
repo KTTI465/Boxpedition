@@ -21,7 +21,7 @@ public class ballOfWool : MonoBehaviour
 
     private GameObject Player;
 
-    GameObject _rayHitObject;
+    private GameObject _rayHitObject;
 
     // Zƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
     bool ps4O = false;
