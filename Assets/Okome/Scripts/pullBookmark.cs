@@ -29,7 +29,7 @@ public class pullBookmark : MonoBehaviour
             rigidbody = other.gameObject.GetComponent<Rigidbody>();
 
             // 左ボタンが押されていたら物体を親子関係にする
-            if (Input.GetMouseButton(0) && grabFlg == true)
+            if (Input.GetMouseButton(1) && grabFlg == true)
             {
                 //Rigidbodyを停止
                 rigidbody.velocity = Vector3.zero;

@@ -85,8 +85,8 @@ public class CharacterController : MonoBehaviour
 
     private void CharacterRotate()
     {
-        float cal = PlayerPrefs.GetFloat("Sensi");
-        //float cal = 1f;
+        //float cal = PlayerPrefs.GetFloat("Sensi");
+        float cal = 1f;
 
         //マウスの横方向の動き× sensitivityで横方向の回転をさせている。
         float xRot = Input.GetAxis("Mouse X") * sensitivity;

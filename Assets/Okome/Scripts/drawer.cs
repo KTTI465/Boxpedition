@@ -25,7 +25,7 @@ public class drawer : MonoBehaviour
     }
     private void Update()
     {
-        if (isGrab && Player != null)
+        if (isGrab == true && Player != null)
         {
             float zMovement = Input.GetAxisRaw("Vertical") / 80;
 
@@ -40,9 +40,11 @@ public class drawer : MonoBehaviour
             }
             topDrawer.transform.Translate(-zMovement, 0, 0);
             Player.transform.Translate(0, 0, zMovement);
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(1))
             {
                 isGrab = false;
+                //プレイヤーの移動スクリプトを有効にする
+                Player.GetComponent<CharacterController>().enabled = true;
             }
         }
         else if (Player != null)
@@ -57,25 +59,6 @@ public class drawer : MonoBehaviour
         //一定の範囲にプレイヤーが入った時
         if (other.gameObject.CompareTag("Player"))
         {
-            //マウスの左クリックをしたとき
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (other.transform.eulerAngles.y <= transform.eulerAngles.y - 75f ||
-                    other.transform.eulerAngles.y >= transform.eulerAngles.y - 115f)
-                {
-                    //プレイヤーに格納
-                    Player = other.gameObject;
-                    //プレイヤーの移動スクリプトを無効にする
-                    Player.GetComponent<CharacterController>().enabled = false;
-                    //引き出しの取っ手のほうを見るようにする。
-                    Player.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y - 90f, 0);
-
-                    //引き出しの取ってに触るような位置に移動　1.5fはキャラクターモデルによって調整必要
-                    Player.transform.position = new Vector3(transform.position.x + 1.5f, Player.transform.position.y, Player.transform.position.z);
-
-                    isGrab = true;
-                }
-            }
             //マウスの左クリックをしたとき
             if (Input.GetMouseButtonDown(1))
             {
@@ -94,8 +77,8 @@ public class drawer : MonoBehaviour
                     //引き出しの取っ手のほうを見るようにする。
                     Player.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y - 90f, 0);
 
-                    //引き出しの取ってに触るような位置に移動　1.5fはキャラクターモデルによって調整必要
-                    Player.transform.position = new Vector3(transform.position.x + 1.5f, Player.transform.position.y, Player.transform.position.z);
+                    //引き出しの取ってに触るような位置に移動　キャラクターモデルによって調整必要
+                    Player.transform.position = transform.right * -0.1f + Player.transform.position;
 
                     isGrab = true;
                 }
