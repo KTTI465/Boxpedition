@@ -19,7 +19,9 @@ public class stageManager : MonoBehaviour
     [SerializeField] Text seText;
     [SerializeField] Text sensiText;
 
-    private bool openOption = false;
+    [SerializeField] UnityEngine.UI.Slider sensiSlider;
+
+    public bool openOption = false;
     private int optionNum = 0;
     private int ps4Count = 200;
 
@@ -150,11 +152,17 @@ public class stageManager : MonoBehaviour
         {
             optionPanel.SetActive(false);
             openOption = false;
+            Time.timeScale = 1;
+
+            titleSlider.SetSensi(sensiSlider.value);
         }
         else
         {
+            titleSlider.SetSensi(0);
+
             optionPanel.SetActive(true);
             openOption = true;
+            Time.timeScale = 0;         
         }
 
         musicManager.PlaySE1();

@@ -1758,6 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9214e52f4f1390428a46387065f0233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 5269576454012068204}
   musicManager: {fileID: 8685491298772361693}
   bgmSlider: {fileID: 1885493671803268210}
   seSlider: {fileID: 4342732441241973691}
@@ -2855,6 +2856,8 @@ MonoBehaviour:
   bgmText: {fileID: 4342732443115544838}
   seText: {fileID: 4342732441642722210}
   sensiText: {fileID: 4460495066504763327}
+  sensiSlider: {fileID: 4460495065405931892}
+  openOption: 0
 --- !u!222 &5269576454151155687
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3845,6 +3848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9214e52f4f1390428a46387065f0233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 0}
   musicManager: {fileID: 8685491298772361693}
   bgmSlider: {fileID: 6303674679655854094}
   seSlider: {fileID: 8148634732722958279}
