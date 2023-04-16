@@ -5,12 +5,8 @@ using UnityEngine;
 public class drawer : MonoBehaviour
 {
     [SerializeField]
-    //棚を格納
+    //引き出しを格納
     public GameObject Drawer;
-
-    [SerializeField]
-    //上の棚を格納
-    public GameObject topDrawer;
 
     //プレイヤーを格納
     private GameObject Player;
@@ -30,17 +26,17 @@ public class drawer : MonoBehaviour
             float zMovement = Input.GetAxisRaw("Vertical") / 80;
 
             //引き出しが移動しすぎないように
-            if (topDrawer.transform.localPosition.x <= 0.27 && zMovement > 0)
+            if (Drawer.transform.localPosition.x <= 0.41 && zMovement > 0)
             {
                 zMovement = 0;
             }
-            else if (topDrawer.transform.localPosition.x >= 0.7 && zMovement < 0)
+            else if (Drawer.transform.localPosition.x >= 1 && zMovement < 0)
             {
                 zMovement = 0;
             }
-            topDrawer.transform.Translate(-zMovement, 0, 0);
+            Drawer.transform.Translate(-zMovement, 0, 0);
             Player.transform.Translate(0, 0, zMovement);
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(0))
             {
                 isGrab = false;
                 //プレイヤーの移動スクリプトを有効にする
@@ -60,7 +56,7 @@ public class drawer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             //マウスの左クリックをしたとき
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
                 //プレイヤーが見ているものを取得
                 _rayHitObject = other.GetComponent<CharacterController>().rayHitObject.collider.gameObject;

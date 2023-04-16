@@ -47,7 +47,7 @@ public class ballOfWool : MonoBehaviour
 
                     GetPS4O();
 
-                    if (Input.GetMouseButton(1) || ps4O)
+                    if (Input.GetMouseButton(0) || ps4O)
                     {
                         Player = other.gameObject;
                         animator.SetTrigger("rollBallOfWool");
