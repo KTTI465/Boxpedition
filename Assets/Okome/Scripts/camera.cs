@@ -17,7 +17,8 @@ public class camera : MonoBehaviour
 
     void Rotate()
     {
-        float cal = PlayerPrefs.GetFloat("Sensi");
+        //float cal = PlayerPrefs.GetFloat("Sensi");
+        float cal = 1f;
 
         float rotY = Input.GetAxis("Mouse Y") * rotationSpeed.y;
 

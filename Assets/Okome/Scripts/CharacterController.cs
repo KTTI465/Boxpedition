@@ -59,6 +59,7 @@ public class CharacterController : MonoBehaviour
 
             //このオブジェクトをconnectingBox の親オブジェクトにする
             connectingBox.transform.parent = gameObject.transform;
+
         }
     }
 
@@ -84,7 +85,8 @@ public class CharacterController : MonoBehaviour
 
     private void CharacterRotate()
     {
-        float cal = PlayerPrefs.GetFloat("Sensi");
+        //float cal = PlayerPrefs.GetFloat("Sensi");
+        float cal = 1f;
 
         //マウスの横方向の動き× sensitivityで横方向の回転をさせている。
         float xRot = Input.GetAxis("Mouse X") * sensitivity;
@@ -173,6 +175,9 @@ public class CharacterController : MonoBehaviour
                 //connectingBoxが下に落ちるようにこのオブジェクトの子からはずす
                 connectingBox.transform.parent = null;
 
+                //格納されているconnectingBoxをはずす
+                connectingBox = null;
+
                 //二段ジャンプした判定をtrueにする
                 doubleJumped = true;
             }
@@ -195,12 +200,15 @@ public class CharacterController : MonoBehaviour
 
                 //connectingBoxの親オブジェクトにこのオブジェクトを指定
                 connectingBox.transform.parent = gameObject.transform;
+
             }
         }
     }
 
     public void ray()
     {
-        Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 30f);
+        int layerMask = ~gameObject.layer;
+        Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 100f,layerMask);
+        Debug.Log(rayHitObject.collider.gameObject.name);
     }
 }
