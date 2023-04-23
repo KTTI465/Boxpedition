@@ -30,10 +30,5 @@ public class Rope : MonoBehaviour
         vertices = objects;
 
         line.positionCount = vertices.Count;
-
-        foreach (GameObject v in vertices)
-        {
-            //v.GetComponent<MeshRenderer>().enabled = false;
-        }
     }
 }
