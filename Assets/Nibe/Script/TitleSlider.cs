@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 
 public class TitleSlider : MonoBehaviour
 {
+    [SerializeField] stageManager stageManager;
     [SerializeField] MusicManager musicManager;
 
     [SerializeField] UnityEngine.UI.Slider bgmSlider;
@@ -31,8 +32,8 @@ public class TitleSlider : MonoBehaviour
         sensiSlider.onValueChanged.AddListener(SetSensi);
 
 
-        bgmSlider.value = (PlayerPrefs.GetFloat("BGM") + 20f) / 20f;
-        seSlider.value = (PlayerPrefs.GetFloat("SE") + 20f) / 20f;
+        bgmSlider.value = (PlayerPrefs.GetFloat("BGM") + 80f) / 80f;
+        seSlider.value = (PlayerPrefs.GetFloat("SE") + 80f) / 80f;
         sensiSlider.value = PlayerPrefs.GetFloat("Sensi");
     }
 
@@ -69,8 +70,8 @@ public class TitleSlider : MonoBehaviour
 
     public void SetBGM(float value)
     {
-        //-20Å`0Ç…ïœä∑
-        bgmValue = -20f + (value * 20f);
+        //-80Å`0Ç…ïœä∑
+        bgmValue = -80f + (value * 80f);
 
         // ï€ë∂
         PlayerPrefs.SetFloat("BGM", bgmValue);
@@ -82,7 +83,7 @@ public class TitleSlider : MonoBehaviour
     public void SetSE(float value)
     {
         //-20Å`0Ç…ïœä∑
-        seValue = -20f + (value * 20f);
+        seValue = -80f + (value * 80f);
 
         // ï€ë∂
         PlayerPrefs.SetFloat("SE", seValue);
@@ -93,10 +94,13 @@ public class TitleSlider : MonoBehaviour
 
     public void SetSensi(float value)
     {
-        sensiValue = value;
+        if (stageManager.openOption == false)
+        {
+            sensiValue = value;
 
-        // ï€ë∂
-        PlayerPrefs.SetFloat("Sensi", sensiValue);
-        PlayerPrefs.Save();
+            // ï€ë∂
+            PlayerPrefs.SetFloat("Sensi", sensiValue);
+            PlayerPrefs.Save();
+        }
     }
 }

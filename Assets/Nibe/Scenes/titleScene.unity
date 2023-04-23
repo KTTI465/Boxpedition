@@ -563,7 +563,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 117833032697476558}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -978,7 +978,7 @@ RectTransform:
   - {fileID: 771772893}
   - {fileID: 115247153}
   m_Father: {fileID: 117833032697476558}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1220,6 +1220,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065664439}
   m_CullTransparentMesh: 1
+--- !u!1 &2084071275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2084071276}
+  - component: {fileID: 2084071277}
+  m_Layer: 0
+  m_Name: StageEmpty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2084071276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084071275}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -476.29263, y: -256.68982, z: 22.44857}
+  m_LocalScale: {x: 0.9304896, y: 0.9304896, z: 0.9304896}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 117833032697476558}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2084071277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084071275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d366c888de2fc44c8dac516c2178556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicManager: {fileID: 0}
+  titleSlider: {fileID: 0}
+  optionPanel: {fileID: 0}
+  bgmText: {fileID: 0}
+  seText: {fileID: 0}
+  sensiText: {fileID: 0}
+  sensiSlider: {fileID: 0}
+  openOption: 0
 --- !u!1 &117833031295494928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1340,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 117833032697476558}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1350,7 +1402,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 117833032697476558}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1692,6 +1744,7 @@ RectTransform:
   m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2084071276}
   - {fileID: 117833031632444560}
   - {fileID: 117833031588968214}
   - {fileID: 117833033329964466}
@@ -1758,6 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9214e52f4f1390428a46387065f0233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageManager: {fileID: 2084071277}
   musicManager: {fileID: 2116890545741607521}
   bgmSlider: {fileID: 2867739769323469411}
   seSlider: {fileID: 117833032921474474}
@@ -1798,7 +1852,7 @@ RectTransform:
   - {fileID: 117833031295494929}
   - {fileID: 117833033300139904}
   m_Father: {fileID: 117833032697476558}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1936,7 +1990,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 117833032697476558}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2001,7 +2055,7 @@ RectTransform:
   - {fileID: 7503236085282842146}
   - {fileID: 6553716476768165079}
   m_Father: {fileID: 117833032697476558}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3256,7 +3310,7 @@ RectTransform:
   m_Children:
   - {fileID: 4149556079064966548}
   m_Father: {fileID: 117833032697476558}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
