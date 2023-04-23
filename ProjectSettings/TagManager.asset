@@ -9,6 +9,7 @@ TagManager:
   - H_Object
   - Train
   - TrainTarget
+  - joint
   layers:
   - Default
   - TransparentFX
@@ -16,6 +17,7 @@ TagManager:
   - Box
   - Water
   - UI
+  - joint
   - Player
   - 
   - 
