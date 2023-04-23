@@ -25,13 +25,15 @@ public class Rope : MonoBehaviour
         }
     }
 
-    void SetLine(List<GameObject> objects)
+    public void SetLine(List<GameObject> objects)
     {
-        line.positionCount = objects.Count;
+        vertices = objects;
 
-        foreach (GameObject v in objects)
+        line.positionCount = vertices.Count;
+
+        foreach (GameObject v in vertices)
         {
-            v.GetComponent<MeshRenderer>().enabled = false;
+            //v.GetComponent<MeshRenderer>().enabled = false;
         }
     }
 }
