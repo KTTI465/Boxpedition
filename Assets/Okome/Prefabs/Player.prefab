@@ -136,6 +136,9 @@ MonoBehaviour:
   firstJumpPower: 10
   secondJumpPower: 15
   doubleJumped: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!1 &7360257184366815456
 GameObject:
   m_ObjectHideFlags: 0
