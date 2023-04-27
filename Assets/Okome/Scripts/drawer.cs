@@ -14,6 +14,8 @@ public class drawer : MonoBehaviour
     //プレイヤーが見ているものを格納
     private GameObject _rayHitObject;
 
+    public float DrawerMoveSpeed;
+
     private bool isGrab;
     private void Start()
     {
@@ -23,7 +25,7 @@ public class drawer : MonoBehaviour
     {
         if (isGrab == true && Player != null)
         {
-            float zMovement = Input.GetAxisRaw("Vertical") / 80;
+            float zMovement = Input.GetAxisRaw("Vertical") / 80* DrawerMoveSpeed;
 
             //引き出しが移動しすぎないように
             if (Drawer.transform.localPosition.x <= 0.41 && zMovement > 0)
