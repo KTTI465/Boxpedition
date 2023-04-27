@@ -207,8 +207,8 @@ public class CharacterController : MonoBehaviour
 
     public void ray()
     {
+        Debug.Log(rayHitObject.collider.gameObject.name);
         int layerMask = ~gameObject.layer;
         Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 100f,layerMask);
-        Debug.Log(rayHitObject.collider.gameObject.name);
     }
 }
