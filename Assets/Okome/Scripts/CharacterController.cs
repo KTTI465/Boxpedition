@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using CharacterState;
 
 public class CharacterController : MonoBehaviour
 {
@@ -42,12 +43,26 @@ public class CharacterController : MonoBehaviour
 
     public LayerMask layerMask;
 
+    private string _preStateName;
+
+    public CharacterStateProcessor StateProcessor { get; set; } = new CharacterStateProcessor();
+    public CharacterStateIdle StateIdle { get; set; } = new CharacterStateIdle();
+    public CharacterStateMove StateMove { get; set; } = new CharacterStateMove();
+    public CharacterStateJump1 StateJump1 { get; set; } = new CharacterStateJump1();
+    public CharacterStateJump2 StateJump2 { get; set; } = new CharacterStateJump2();
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cameraRot = cam.transform.localRotation;
         characterRot = transform.localRotation;
         cameraRot = Quaternion.Euler(0, 0, 0);
+
+        StateProcessor.State = StateIdle;
+        StateIdle.ExecAction = Idle;
+        StateMove.ExecAction = Move;
+        StateJump1.ExecAction = Jump1;
+        StateJump2.ExecAction = Jump2;
 
         //connectingBoxが無かったときに呼び出す
         if (connectingBox == null)
@@ -68,6 +83,14 @@ public class CharacterController : MonoBehaviour
     {
         CharacterJump();
         ray();
+        //ステートの値が変更されたら実行処理を行う
+        if (StateProcessor.State.GetStateName() != _preStateName)
+        {
+            Debug.Log(" Now State:" + StateProcessor.State.GetStateName());
+            _preStateName = StateProcessor.State.GetStateName();
+            StateProcessor.Execute();
+        }
+
     }
 
     private void FixedUpdate()
@@ -212,5 +235,21 @@ public class CharacterController : MonoBehaviour
         //int layerMask = ~gameObject.layer;
         Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 100f,layerMask);
         Debug.Log(rayHitObject.collider.gameObject.name);
+    }
+    public void   Idle()
+    {
+        Debug.Log("StateがIdleに状態遷移しました。");
+    }
+    public void Move()
+    {
+        Debug.Log("StateがMoveに状態遷移しました。");
+    }
+    public void Jump1()
+    {
+        Debug.Log("StateがJump1に状態遷移しました。");
+    }
+    public void Jump2()
+    {
+        Debug.Log("StateがJump2に状態遷移しました。");
     }
 }
