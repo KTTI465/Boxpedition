@@ -54,7 +54,9 @@ public class Keito : MonoBehaviour
 
         lastJoint.GetComponent<HingeJoint>().connectedBody = t_Rigidbody;
         joints[joints.Count - 1].GetComponent<HingeJoint>().connectedBody = lastJoint.GetComponent<Rigidbody>();
-        
+
+        //joints[joints.Count - 1].GetComponent<Rigidbody>().isKinematic = true;
+
         joints.Add(lastJoint);
 
         ropeBody.SetLine(joints);
@@ -70,8 +72,11 @@ public class Keito : MonoBehaviour
 
     public void EndAnimation()
     {
+
         KeitoKinematic();
     }
+
+
 }
 
 #if UNITY_EDITOR
