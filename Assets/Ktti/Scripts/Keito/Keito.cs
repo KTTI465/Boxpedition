@@ -73,7 +73,7 @@ public class Keito : MonoBehaviour
     public void EndAnimation()
     {
 
-        KeitoKinematic();
+        //KeitoKinematic();
     }
 
 
