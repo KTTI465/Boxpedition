@@ -19,6 +19,8 @@ public class Keito : MonoBehaviour
 
     Rigidbody t_Rigidbody;
 
+    Transform ropeTrans;
+
     void Start()
     {
         joints = new List<GameObject>
@@ -29,6 +31,7 @@ public class Keito : MonoBehaviour
         t_Rigidbody = GetComponent<Rigidbody>();
 
         joints[0].GetComponent<HingeJoint>().connectedBody = t_Rigidbody;
+        ropeTrans = ropeBody.transform;
 
         tmpTransform = transform.position;
     }
@@ -47,6 +50,8 @@ public class Keito : MonoBehaviour
     {
         GameObject lastJoint = Instantiate(jointBody, transform.position, Quaternion.identity);
 
+        lastJoint.GetComponent<Transform>().parent = ropeTrans;
+
         lastJoint.GetComponent<HingeJoint>().connectedBody = t_Rigidbody;
         joints[joints.Count - 1].GetComponent<HingeJoint>().connectedBody = lastJoint.GetComponent<Rigidbody>();
         
@@ -61,6 +66,11 @@ public class Keito : MonoBehaviour
         {
             j.GetComponent<Rigidbody>().isKinematic = true;
         }
+    }
+
+    public void EndAnimation()
+    {
+        KeitoKinematic();
     }
 }
 

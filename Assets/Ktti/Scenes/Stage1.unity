@@ -775,7 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7360257184114803507, guid: 925cff006b2fb1f4ba6164fb7b6f6aa4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.19
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 7360257184114803507, guid: 925cff006b2fb1f4ba6164fb7b6f6aa4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -783,7 +783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7360257184114803507, guid: 925cff006b2fb1f4ba6164fb7b6f6aa4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -116.67
+      value: -109.57
       objectReference: {fileID: 0}
     - target: {fileID: 7360257184114803507, guid: 925cff006b2fb1f4ba6164fb7b6f6aa4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2795,9 +2795,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1645e275b79d943a3b85394c3abfa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointBody: {fileID: 1419163534}
+  jointBody: {fileID: 5365210728582919977, guid: aef6a2fe85003ec48b8469af15c3f96a, type: 3}
   startJoint: {fileID: 1619156847}
-  interval: 0
+  interval: 0.2
   ropeBody: {fileID: 1619156848}
 --- !u!1 &1430278418
 GameObject:
