@@ -7,9 +7,7 @@ using System;
 
 namespace BoxState
 {
-    /// <summary>
-    /// ステートの実行を管理するクラス
-    /// </summary>
+    //ステートの実行を管理するクラス
     public class BoxStateProcessor
     {
         //ステート本体
@@ -24,9 +22,8 @@ namespace BoxState
         public void Execute() => State.Execute();
     }
 
-    /// <summary>
-    /// ステートのクラス
-    /// </summary>
+
+    //ステートのクラス
     public abstract class BoxState
     {
         //デリゲート

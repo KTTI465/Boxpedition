@@ -86,11 +86,9 @@ public class CharacterController : MonoBehaviour
         //ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
         {
-            Debug.Log(" Now State:" + StateProcessor.State.GetStateName());
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }
-
     }
 
     private void FixedUpdate()
@@ -236,20 +234,16 @@ public class CharacterController : MonoBehaviour
         Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 100f,layerMask);
         Debug.Log(rayHitObject.collider.gameObject.name);
     }
-    public void   Idle()
+    public void Idle()
     {
-        Debug.Log("StateがIdleに状態遷移しました。");
     }
     public void Move()
     {
-        Debug.Log("StateがMoveに状態遷移しました。");
     }
     public void Jump1()
     {
-        Debug.Log("StateがJump1に状態遷移しました。");
     }
     public void Jump2()
     {
-        Debug.Log("StateがJump2に状態遷移しました。");
     }
 }

@@ -24,7 +24,6 @@ public class Box : MonoBehaviour
         //ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
         {
-            Debug.Log(" Now State:" + StateProcessor.State.GetStateName());
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }

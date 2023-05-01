@@ -24,9 +24,7 @@ namespace ballOfWoolState
         public void Execute() => State.Execute();
     }
 
-    /// <summary>
-    /// ステートのクラス
-    /// </summary>
+    //ステートのクラス
     public abstract class ballOfWoolState
     {
         //デリゲート

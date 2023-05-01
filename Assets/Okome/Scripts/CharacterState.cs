@@ -24,9 +24,7 @@ namespace CharacterState
         public void Execute() => State.Execute();
     }
 
-    /// <summary>
-    /// ステートのクラス
-    /// </summary>
+    //ステートのクラス
     public abstract class CharacterState
     {
         //デリゲート
@@ -77,7 +75,4 @@ namespace CharacterState
             return "State:Jump2";
         }
     }
-
-
-
 }

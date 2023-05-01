@@ -46,7 +46,6 @@ public class ballOfWool : MonoBehaviour
         //ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
         {
-            Debug.Log(" Now State:" + StateProcessor.State.GetStateName());
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }
@@ -121,10 +120,8 @@ public class ballOfWool : MonoBehaviour
 
     public void Idle()
     {
-        Debug.Log("StateがIdleに状態遷移しました。");
     }
     public void Animation()
     {
-        Debug.Log("StateがAnimationに状態遷移しました。");
     }
 }
