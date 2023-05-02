@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3423911168479577335}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_String_CtrlBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1172355493821766879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_String_ClusterTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6617663997785302450}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Spine1_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4664439355085626250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Ctrlgp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3662609489560398632}
   - component: {fileID: 3822431720609930875}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Circle_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 962837360464942223}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Hips_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4047194395504540793}
   - component: {fileID: 7521942653704711976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Hair2_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4953965445062461941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_MSgp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8879945998320113866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Spine_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6822380093894600288}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftFinger2_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 947665870043319900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_String_Curve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4174296477158338897}
   - component: {fileID: 8930092917308403468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Eye_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5613786824577545859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightTumb3_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9151787361749728467}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftArm_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5002435853810926245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftFinger4_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1120145077674705338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_tMain_Curuve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 832686160807817826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftTumb2_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7461045596856137790}
   - component: {fileID: 2017127633157133807}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Arm_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7952877315487089989}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Hat1_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,7 +891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860654947695189921}
   - component: {fileID: 3652544653371336447}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Face_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -991,7 +991,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 832588568609216470}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Bell4_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1022,7 +1022,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7333535776697217353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Curvegp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1060,7 +1060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6937013667687653601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftFinger1_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1092,7 +1092,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1728959266513014509}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightFinger2_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1125,7 +1125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7752741454590177213}
   - component: {fileID: 7681690518505319971}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Bells2_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1760867259088678811}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightFinger3_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1248,7 +1248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5398390524845913242}
   - component: {fileID: 5106980174573146527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_nose_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1340,7 +1340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4632298146886081526}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightFinger1_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8466336041979104481}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_HeadTop_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1404,7 +1404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3859101912635213376}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_String_CtrlTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3116390935522425844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Hat2_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1467,7 +1467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5659501535783349069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightTumb1_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1499,7 +1499,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6769884260832600158}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightHand_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1532,7 +1532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7211230551689666240}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftFinger3_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1565,7 +1565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8406466705501338742}
   - component: {fileID: 4594055443061475411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Bells1_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1655,7 +1655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 973042024890709104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Head_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1687,7 +1687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806383324656488661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftTumb1_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1720,7 +1720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7413937449751024492}
   - component: {fileID: 3344657820617888716}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Hair_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1819,7 +1819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1483229473114686459}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightTumb4_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1850,7 +1850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971240924860601639}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightTumb2_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1883,7 +1883,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5285479692001714768}
   - component: {fileID: 4643025372491807784}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Hat_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1978,7 +1978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7594067977154408790}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftForeArm_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2010,7 +2010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7431695767318793417}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightArm_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2042,7 +2042,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 293526568778700138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_BaseCtrl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2073,7 +2073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6914379701620404004}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_BS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2104,7 +2104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8591911513888221468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Bells_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2137,7 +2137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8301780662091433599}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightFinger4_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2169,7 +2169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3298990630003786707}
   - component: {fileID: 3006561956286658119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_eyebrow_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2266,7 +2266,7 @@ GameObject:
   - component: {fileID: 6627430542038179010}
   - component: {fileID: 6627430542038179015}
   - component: {fileID: 6627430542038179013}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2358,7 +2358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 6627430540651955436}
   cam: {fileID: 6627430540651955424}
-  charaAnimator: {fileID: 6627430542038179015}
   box: {fileID: 3683858499259781039, guid: 79ecc24bfe4e2d04a96767680b6fddc8, type: 3}
   firstJumpPower: 10
   secondJumpPower: 12
@@ -2366,6 +2365,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 55
+  charaAnimator: {fileID: 6627430542038179015}
 --- !u!1 &6310833048193436092
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6348536171343834466}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightShoulder_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2407,7 +2407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4945068865669811753}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_String_CurveBaseWire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2441,7 +2441,7 @@ GameObject:
   - component: {fileID: 6627430540651955436}
   - component: {fileID: 6627430540651955438}
   - component: {fileID: 6627430540651955425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2540,7 +2540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6583217404734297446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_bn_gp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2572,7 +2572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 764770953356053384}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Hat3_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2604,7 +2604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5576744733385887350}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_String_ClusterMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2635,7 +2635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4259745568733474940}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftTumb3_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2667,7 +2667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8000776774628553905}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_String_ClusterBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2698,7 +2698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4559749668867430450}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftShoulder_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2730,7 +2730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6659700696657664235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_RightForeArm_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2762,7 +2762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6204141414828115027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_String_CtrlMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2794,7 +2794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4712812759540828904}
   - component: {fileID: 7869382274874380294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Ribbon_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2886,7 +2886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7751147464922960343}
   - component: {fileID: 2362441569984069568}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Eyelashes_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2980,7 +2980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4805134232593372489}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Bell2_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3011,7 +3011,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3363276667365370917}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_BaseCtrl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3045,7 +3045,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5881443874673060271}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Bell1_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3078,7 +3078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3056073019050834343}
   - component: {fileID: 6047386752210347824}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Eyelight_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3170,7 +3170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5722965566995717950}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftHand_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3203,7 +3203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7450820761950527230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_LeftTumb4_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3235,7 +3235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4670070486180253598}
   - component: {fileID: 4717162193228788705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Body_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3341,7 +3341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2512315977814362138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Bell3_bn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3374,7 +3374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9111869960482510159}
   - component: {fileID: 2667832582044584633}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_Mouth_MS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3466,7 +3466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7377886182002473191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pierrot_tMain_CuruveBaseWire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3502,6 +3502,10 @@ PrefabInstance:
     - target: {fileID: 5031039056807478343, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
       propertyPath: m_Name
       value: pullBookmark
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031039056807478343, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8100922253860456806, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
       propertyPath: m_RootOrder

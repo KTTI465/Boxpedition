@@ -51,6 +51,9 @@ public class CharacterController : MonoBehaviour
     public CharacterStateJump1 StateJump1 { get; set; } = new CharacterStateJump1();
     public CharacterStateJump2 StateJump2 { get; set; } = new CharacterStateJump2();
 
+    public Animator charaAnimator;
+    bool jumpAnim = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -107,8 +110,8 @@ public class CharacterController : MonoBehaviour
 
     private void CharacterRotate()
     {
-        //float cal = PlayerPrefs.GetFloat("Sensi");
-        float cal = 1f;
+        float cal = PlayerPrefs.GetFloat("Sensi");  //マウス感度を取得してる（重要）
+        //float cal = 1f;
 
         //マウスの横方向の動き× sensitivityで横方向の回転をさせている。
         float xRot = Input.GetAxis("Mouse X") * sensitivity;
@@ -163,6 +166,22 @@ public class CharacterController : MonoBehaviour
             isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance);
         }
 
+        //地面から離れたとき
+        if (isGround == false && jumpAnim == false)
+        {
+            jumpAnim = true;
+            charaAnimator.SetBool("jump", true); // アニメーション切り替え
+        }
+
+        //地面についたとき
+        if (isGround == true && jumpAnim == true)
+        {
+            jumpAnim = false;
+            charaAnimator.SetBool("jump", false); // アニメーション切り替え
+        }
+
+        charaAnimator.SetBool("jump2", false); // アニメーション切り替え
+
         // ×ボタンが押されているかどうかを取得する
         var ps4X = false;
 
@@ -202,6 +221,8 @@ public class CharacterController : MonoBehaviour
 
                 //二段ジャンプした判定をtrueにする
                 doubleJumped = true;
+
+                charaAnimator.SetBool("jump2", true); // アニメーション切り替え
             }
         }
 
@@ -228,11 +249,10 @@ public class CharacterController : MonoBehaviour
     }
 
     public void ray()
-    {
-       
+    { 
         //int layerMask = ~gameObject.layer;
         Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 100f,layerMask);
-        Debug.Log(rayHitObject.collider.gameObject.name);
+        //Debug.Log(rayHitObject.collider.gameObject.name);
     }
     public void Idle()
     {
