@@ -34,7 +34,7 @@ public class TitleSlider : MonoBehaviour
 
         bgmSlider.value = (PlayerPrefs.GetFloat("BGM") + 80f) / 80f;
         seSlider.value = (PlayerPrefs.GetFloat("SE") + 80f) / 80f;
-        sensiSlider.value = PlayerPrefs.GetFloat("Sensi");
+        sensiSlider.value = 1.0f;
     }
 
 
