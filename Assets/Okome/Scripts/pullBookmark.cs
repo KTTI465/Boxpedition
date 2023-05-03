@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class pullBookmark : MonoBehaviour
 {
+    public Animator charaAnimator;
+
     //掴んでいるかの判定フラグ
     public bool grabFlg;
 
@@ -47,6 +49,8 @@ public class pullBookmark : MonoBehaviour
                     localPos.y = -0.3f;
                 }
                 other.gameObject.transform.localPosition = localPos;
+
+                charaAnimator.SetBool("grab", true); // アニメーション切り替え
             }
             else
             {
@@ -60,6 +64,8 @@ public class pullBookmark : MonoBehaviour
 
                 //掴む判定をfalseにする
                 grabFlg = false;
+
+                charaAnimator.SetBool("grab", false); // アニメーション切り替え
             }
         }
     }
@@ -70,6 +76,8 @@ public class pullBookmark : MonoBehaviour
             //栞と手の距離が遠くなったら離すようにする         
             grabFlg = false;
             other.gameObject.transform.parent = null;
+
+            charaAnimator.SetBool("grab", false); // アニメーション切り替え
         }
     }
 }
