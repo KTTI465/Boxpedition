@@ -23,6 +23,9 @@ public class CharacterController : MonoBehaviour
     //Playerの子オブジェクトになっているboxを格納するための変数
     private GameObject connectingBox;
 
+    //地面にRayが付いているかの判定
+    bool isGround;
+
     //1回目のジャンプするときの力を指定するための変数
     public float firstJumpPower;
 
@@ -58,11 +61,12 @@ public class CharacterController : MonoBehaviour
         characterRot = transform.localRotation;
         cameraRot = Quaternion.Euler(0, 0, 0);
 
-        StateProcessor.State = StateIdle;
+
         StateIdle.ExecAction = Idle;
         StateMove.ExecAction = Move;
         StateJump1.ExecAction = Jump1;
         StateJump2.ExecAction = Jump2;
+        StateProcessor.State = StateIdle;
 
         //connectingBoxが無かったときに呼び出す
         if (connectingBox == null)
@@ -83,9 +87,18 @@ public class CharacterController : MonoBehaviour
     {
         CharacterJump();
         ray();
+        if (xMovement != 0 || zMovement != 0)
+        {
+            StateProcessor.State = StateMove;
+        }
+        else if (xMovement == 0 && zMovement == 0)
+        {
+            StateProcessor.State = StateIdle;
+        }
+
         //ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
-        {
+        {      
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }
@@ -138,9 +151,6 @@ public class CharacterController : MonoBehaviour
 
     private void CharacterJump()
     {
-        //地面にRayが付いているかの判定
-        bool isGround;
-
         //connectingBoxがあるとき
         if (connectingBox)
         {
@@ -229,21 +239,29 @@ public class CharacterController : MonoBehaviour
 
     public void ray()
     {
-       
         //int layerMask = ~gameObject.layer;
-        Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 100f,layerMask);
-        Debug.Log(rayHitObject.collider.gameObject.name);
+        Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 100f, layerMask);
     }
+
+    public void StateTransition()
+    {
+       
+    }
+
     public void Idle()
     {
+        Debug.Log("CharacterStateがIdleに状態遷移しました。");
     }
     public void Move()
     {
+        Debug.Log("CharacterStateがMoveに状態遷移しました。");
     }
     public void Jump1()
     {
+        Debug.Log("CharacterStateがJump1に状態遷移しました。");
     }
     public void Jump2()
     {
+        Debug.Log("CharacterStateがJump2に状態遷移しました。");
     }
 }

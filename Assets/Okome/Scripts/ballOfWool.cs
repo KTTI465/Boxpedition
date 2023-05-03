@@ -94,11 +94,13 @@ public class ballOfWool : MonoBehaviour
 
     public void StartAnimation()
     {
+        StateProcessor.State = StateAnimation;
         Player.GetComponent<CharacterController>().enabled = false;
         animationCamara.GetComponent<Camera>().depth = 1;
     }
     public void EndAnimation()
     {
+        StateProcessor.State = StateIdle;
         Player.GetComponent<CharacterController>().enabled = true;
         Destroy(animationCamara);
     }
@@ -120,8 +122,10 @@ public class ballOfWool : MonoBehaviour
 
     public void Idle()
     {
+        Debug.Log("ballOfWoolState‚ªIdle‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
     }
     public void Animation()
     {
+        Debug.Log("ballOfWoolState‚ªAnimation‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
     }
 }
