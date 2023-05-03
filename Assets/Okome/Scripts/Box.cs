@@ -13,10 +13,10 @@ public class Box : MonoBehaviour
     public BoxStateCrash StateCrash { get; set; } = new BoxStateCrash();
     void Start()
     {
-        StateProcessor.State = StateIdle;
         StateIdle.ExecAction = Idle;
         StateRepop.ExecAction = Repop;
         StateCrash.ExecAction = Crash;
+        StateProcessor.State = StateRepop;
 
     }
     void Update()
@@ -27,23 +27,29 @@ public class Box : MonoBehaviour
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }
+
+        if (StateProcessor.State == StateRepop)
+        {
+            StateProcessor.State = StateIdle;
+        }
     }
     public IEnumerator DestroyBox()
     {
+        StateProcessor.State = StateCrash;
         yield return new WaitForSeconds(1);
 
         Destroy(gameObject);
     }
     public void Idle()
     {
-        Debug.Log("State‚ªIdle‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
+        Debug.Log("BoxState‚ªIdle‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
     }
     public void Repop()
     {
-        Debug.Log("State‚ªRepop‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
+        Debug.Log("BoxState‚ªRepop‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
     }
     public void Crash()
     {
-        Debug.Log("State‚ªCrash‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
+        Debug.Log("BoxState‚ªCrash‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
     }
 }

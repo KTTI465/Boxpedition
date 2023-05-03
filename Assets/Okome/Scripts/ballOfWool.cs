@@ -97,11 +97,13 @@ public class ballOfWool : MonoBehaviour
 
     public void StartAnimation()
     {
+        StateProcessor.State = StateAnimation;
         Player.GetComponent<CharacterController>().enabled = false;
         animationCamara.GetComponent<Camera>().depth = 1;
     }
     public void EndAnimation()
     {
+        StateProcessor.State = StateIdle;
         Player.GetComponent<CharacterController>().enabled = true;
         Destroy(animationCamara);
         charaAnimator.SetBool("grab", false); // アニメーション切り替え
@@ -124,8 +126,10 @@ public class ballOfWool : MonoBehaviour
 
     public void Idle()
     {
+        Debug.Log("ballOfWoolStateがIdleに状態遷移しました。");
     }
     public void Animation()
     {
+        Debug.Log("ballOfWoolStateがAnimationに状態遷移しました。");
     }
 }
