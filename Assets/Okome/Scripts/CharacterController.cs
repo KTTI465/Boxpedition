@@ -16,30 +16,30 @@ public class CharacterController : MonoBehaviour
     private Quaternion cameraRot, characterRot;
     private float sensitivity = 1f;
 
-    //¶¬‚·‚é‚½‚ß‚Ìbox‚ÌPrefab‚ğŠi”[‚·‚é‚½‚ß‚Ì•Ï”
+    //ç”Ÿæˆã™ã‚‹ãŸã‚ã®boxã®Prefabã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®å¤‰æ•°
     [SerializeField]
     private GameObject box;
 
-    //Player‚ÌqƒIƒuƒWƒFƒNƒg‚É‚È‚Á‚Ä‚¢‚ébox‚ğŠi”[‚·‚é‚½‚ß‚Ì•Ï”
+    //Playerã®å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãªã£ã¦ã„ã‚‹boxã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®å¤‰æ•°
     private GameObject connectingBox;
 
-    //’n–Ê‚ÉRay‚ª•t‚¢‚Ä‚¢‚é‚©‚Ì”»’è
+    //åœ°é¢ã«RayãŒä»˜ã„ã¦ã„ã‚‹ã‹ã®åˆ¤å®š
     bool isGround;
 
-    //1‰ñ–Ú‚ÌƒWƒƒƒ“ƒv‚·‚é‚Æ‚«‚Ì—Í‚ğw’è‚·‚é‚½‚ß‚Ì•Ï”
+    //1å›ç›®ã®ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ã¨ãã®åŠ›ã‚’æŒ‡å®šã™ã‚‹ãŸã‚ã®å¤‰æ•°
     public float firstJumpPower;
 
-    //2‰ñ–Ú‚ÌƒWƒƒƒ“ƒv‚·‚é‚Æ‚«‚Ì—Í‚ğw’è‚·‚é‚½‚ß‚Ì•Ï”
+    //2å›ç›®ã®ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ã¨ãã®åŠ›ã‚’æŒ‡å®šã™ã‚‹ãŸã‚ã®å¤‰æ•°
     public float secondJumpPower;
 
-    //Raycast‚Ì’·‚³‚ğŠi”[‚·‚é‚½‚ß‚Ì•Ï”
+    //Raycastã®é•·ã•ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®å¤‰æ•°
     private float jumpDistance;
 
-    //“ñ’iƒWƒƒƒ“ƒv‚ğ‚µ‚½‚©‚ğ”»’è‚·‚é
+    //äºŒæ®µã‚¸ãƒ£ãƒ³ãƒ—ã‚’ã—ãŸã‹ã‚’åˆ¤å®šã™ã‚‹
     public bool doubleJumped = false;
 
-    //connectingBox‚Ìã‚ÉPlayer‚ª‚­‚é‚æ‚¤ˆÊ’u‚ğ’²®‚·‚é‚½‚ß‚Ì•Ï”
-    //connectingBox‚ÆPlayer‚Ì‘å‚«‚³‚ÅŸ‘æ‚Å’²®‚ª•K—v
+    //connectingBoxã®ä¸Šã«PlayerãŒãã‚‹ã‚ˆã†ä½ç½®ã‚’èª¿æ•´ã™ã‚‹ãŸã‚ã®å¤‰æ•°
+    //connectingBoxã¨Playerã®å¤§ãã•ã§æ¬¡ç¬¬ã§èª¿æ•´ãŒå¿…è¦
     private float enterBoxMove = 1f;
 
     public RaycastHit rayHitObject;
@@ -53,6 +53,9 @@ public class CharacterController : MonoBehaviour
     public CharacterStateMove StateMove { get; set; } = new CharacterStateMove();
     public CharacterStateJump1 StateJump1 { get; set; } = new CharacterStateJump1();
     public CharacterStateJump2 StateJump2 { get; set; } = new CharacterStateJump2();
+
+    public Animator charaAnimator;
+    bool jumpAnim = false;
 
     void Start()
     {
@@ -68,16 +71,16 @@ public class CharacterController : MonoBehaviour
         StateJump2.ExecAction = Jump2;
         StateProcessor.State = StateIdle;
 
-        //connectingBox‚ª–³‚©‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚·
+        //connectingBoxãŒç„¡ã‹ã£ãŸã¨ãã«å‘¼ã³å‡ºã™
         if (connectingBox == null)
         {
-            //connectingBox ‚Æ‚µ‚Äbox‚ğPlayer‚Æ“¯‚¶ˆÊ’u‚ÆŒü‚«‚Å¶¬
+            //connectingBox ã¨ã—ã¦boxã‚’Playerã¨åŒã˜ä½ç½®ã¨å‘ãã§ç”Ÿæˆ
             connectingBox = Instantiate(box, transform.position, transform.rotation);
 
-            //Player‚ªconnectingBox ‚Ìã‚É—ˆ‚é‚æ‚¤‚ÉˆÚ“®
+            //PlayerãŒconnectingBox ã®ä¸Šã«æ¥ã‚‹ã‚ˆã†ã«ç§»å‹•
             transform.position = new Vector3(transform.position.x, transform.position.y + enterBoxMove, transform.position.z);
 
-            //‚±‚ÌƒIƒuƒWƒFƒNƒg‚ğconnectingBox ‚ÌeƒIƒuƒWƒFƒNƒg‚É‚·‚é
+            //ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’connectingBox ã®è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã™ã‚‹
             connectingBox.transform.parent = gameObject.transform;
 
         }
@@ -96,7 +99,7 @@ public class CharacterController : MonoBehaviour
             StateProcessor.State = StateIdle;
         }
 
-        //ƒXƒe[ƒg‚Ì’l‚ª•ÏX‚³‚ê‚½‚çÀsˆ—‚ğs‚¤
+        //ã‚¹ãƒ†ãƒ¼ãƒˆã®å€¤ãŒå¤‰æ›´ã•ã‚ŒãŸã‚‰å®Ÿè¡Œå‡¦ç†ã‚’è¡Œã†
         if (StateProcessor.State.GetStateName() != _preStateName)
         {      
             _preStateName = StateProcessor.State.GetStateName();
@@ -120,20 +123,20 @@ public class CharacterController : MonoBehaviour
 
     private void CharacterRotate()
     {
-        //float cal = PlayerPrefs.GetFloat("Sensi");
-        float cal = 1f;
+        float cal = PlayerPrefs.GetFloat("Sensi");  //ãƒã‚¦ã‚¹æ„Ÿåº¦ã‚’å–å¾—ã—ã¦ã‚‹ï¼ˆé‡è¦ï¼‰
+        //float cal = 1f;
 
-        //ƒ}ƒEƒX‚Ì‰¡•ûŒü‚Ì“®‚«~ sensitivity‚Å‰¡•ûŒü‚Ì‰ñ“]‚ğ‚³‚¹‚Ä‚¢‚éB
+        //ãƒã‚¦ã‚¹ã®æ¨ªæ–¹å‘ã®å‹•ãÃ— sensitivityã§æ¨ªæ–¹å‘ã®å›è»¢ã‚’ã•ã›ã¦ã„ã‚‹ã€‚
         float xRot = Input.GetAxis("Mouse X") * sensitivity;
 
-        // ƒQ[ƒ€ƒpƒbƒh‚ªÚ‘±‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«
+        // ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ãŒæ¥ç¶šã•ã‚Œã¦ã„ãªã„ã¨ã
         if (Gamepad.current == null)
         {
             characterRot *= Quaternion.Euler(0, xRot * 2.0f * cal, 0);
         }
         else
         {
-            // ‰EƒXƒeƒBƒbƒN‚Ì“ü—Í‚ğó‚¯æ‚é
+            // å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®å…¥åŠ›ã‚’å—ã‘å–ã‚‹
             var v = Gamepad.current.rightStick.ReadValue();
 
             if (xRot == 0)
@@ -151,29 +154,45 @@ public class CharacterController : MonoBehaviour
 
     private void CharacterJump()
     {
-        //connectingBox‚ª‚ ‚é‚Æ‚«
+        //connectingBoxãŒã‚ã‚‹ã¨ã
         if (connectingBox)
         {
-            //connectingBox‚ª‚ ‚é‚±‚Æ‚à‰Á–¡‚µ‚Ä‚ÌPlayer‚ª’n–Ê‚É‚Â‚¢‚Ä‚¢‚é‚©‚ğ”»’è‚·‚éRay‚Ì’·‚³@
-            //’l‚Í•ÏX‚·‚é•K—v‚ ‚èi¡‚Í–„‚ß‚İ‚ÅÀ‘•‚Å‚«‚Ä‚¢‚È‚¢‚Ì‚Å‚±‚Ì’lj
-            //” ‚ÆPlayer‚Ì‘å‚«‚³Ÿ‘æ‚Å‚à’²®‚ª•K—v
+            //connectingBoxãŒã‚ã‚‹ã“ã¨ã‚‚åŠ å‘³ã—ã¦ã®PlayerãŒåœ°é¢ã«ã¤ã„ã¦ã„ã‚‹ã‹ã‚’åˆ¤å®šã™ã‚‹Rayã®é•·ã•ã€€
+            //å€¤ã¯å¤‰æ›´ã™ã‚‹å¿…è¦ã‚ã‚Šï¼ˆä»Šã¯åŸ‹ã‚è¾¼ã¿ã§å®Ÿè£…ã§ãã¦ã„ãªã„ã®ã§ã“ã®å€¤ï¼‰
+            //ç®±ã¨Playerã®å¤§ãã•æ¬¡ç¬¬ã§ã‚‚èª¿æ•´ãŒå¿…è¦
             jumpDistance = 2.1f;
 
-            //Player‚©‚ço‚Ä‚¢‚éRay‚ªconnectingBox‚ğ”ğ‚¯‚é‚æ‚¤‚Élayer‚ğw’è(box‚Ìlayer)
+            //Playerã‹ã‚‰å‡ºã¦ã„ã‚‹RayãŒconnectingBoxã‚’é¿ã‘ã‚‹ã‚ˆã†ã«layerã‚’æŒ‡å®š(boxã®layer)
             int layerMask = connectingBox.layer;
 
             isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
         }
         else
         {
-            //connectingBox‚ª–³‚¢‚Æ‚«‚ÉPlayer‚ª’n–Ê‚É‚Â‚¢‚Ä‚¢‚é‚©‚ğ”»’è‚·‚éRay‚Ì’·‚³
-            //Player‚Ì‘å‚«‚³Ÿ‘æ‚Å’²®‚ª•K—v
+            //connectingBoxãŒç„¡ã„ã¨ãã«PlayerãŒåœ°é¢ã«ã¤ã„ã¦ã„ã‚‹ã‹ã‚’åˆ¤å®šã™ã‚‹Rayã®é•·ã•
+            //Playerã®å¤§ãã•æ¬¡ç¬¬ã§èª¿æ•´ãŒå¿…è¦
             jumpDistance = 1.1f;
 
             isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance);
         }
 
-        // ~ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+        //åœ°é¢ã‹ã‚‰é›¢ã‚ŒãŸã¨ã
+        if (isGround == false && jumpAnim == false)
+        {
+            jumpAnim = true;
+            charaAnimator.SetBool("jump", true); // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ‡ã‚Šæ›¿ãˆ
+        }
+
+        //åœ°é¢ã«ã¤ã„ãŸã¨ã
+        if (isGround == true && jumpAnim == true)
+        {
+            jumpAnim = false;
+            charaAnimator.SetBool("jump", false); // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ‡ã‚Šæ›¿ãˆ
+        }
+
+        charaAnimator.SetBool("jump2", false); // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ‡ã‚Šæ›¿ãˆ
+
+        // Ã—ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
         var ps4X = false;
 
         if (Gamepad.current != null)
@@ -184,53 +203,55 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        //ƒXƒy[ƒXƒL[i~ƒ{ƒ^ƒ“j‚ğ‰Ÿ‚µ‚½‚Æ‚«‚ÉƒWƒƒƒ“ƒv‚·‚é
+        //ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ï¼ˆÃ—ãƒœã‚¿ãƒ³ï¼‰ã‚’æŠ¼ã—ãŸã¨ãã«ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹
         if (Input.GetKeyDown(KeyCode.Space) || ps4X)
         {
-            //’n–Ê‚É‚Â‚¢‚Ä‚¢‚½
+            //åœ°é¢ã«ã¤ã„ã¦ã„ãŸæ™‚
             if (isGround == true)
             {
                 rb.velocity = Vector3.up * firstJumpPower;
             }
-            //‹ó’†‚É‚¢‚é‚Æ‚«‚©‚Â“ñ’iƒWƒƒƒ“ƒv‚ğ‚µ‚Ä‚¢‚È‚¢
+            //ç©ºä¸­ã«ã„ã‚‹ã¨ãã‹ã¤äºŒæ®µã‚¸ãƒ£ãƒ³ãƒ—ã‚’ã—ã¦ã„ãªã„æ™‚
             else if (isGround == false && doubleJumped == false)
             {
                 rb.velocity = Vector3.up * secondJumpPower;
 
-                //box‚É‚Â‚¢‚Ä‚¢‚éƒXƒNƒŠƒvƒg‚ÌƒRƒ‹[ƒ`ƒ“‚ğg‚¢A‚P•bŒã‚É” ‚ªÁ‚¦‚é‚æ‚¤‚É‚·‚é
+                //boxã«ã¤ã„ã¦ã„ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ã‚³ãƒ«ãƒ¼ãƒãƒ³ã‚’ä½¿ã„ã€ï¼‘ç§’å¾Œã«ç®±ãŒæ¶ˆãˆã‚‹ã‚ˆã†ã«ã™ã‚‹
                 IEnumerator destroyTimer = connectingBox.GetComponent<Box>().DestroyBox();
                 StartCoroutine(destroyTimer);
 
-                //box‚É‚Íe‚É’Ç]‚³‚¹‚é‚½‚ß‚ÉRigidbody‚ª‚Â‚¢‚Ä‚¢‚È‚¢‚Ì‚Å‰º‚É—‚¿‚é‚æ‚¤‚ÉRigidbody‚ğ‚Â‚¯‚é
+                //boxã«ã¯è¦ªã«è¿½å¾“ã•ã›ã‚‹ãŸã‚ã«RigidbodyãŒã¤ã„ã¦ã„ãªã„ã®ã§ä¸‹ã«è½ã¡ã‚‹ã‚ˆã†ã«Rigidbodyã‚’ã¤ã‘ã‚‹
                 connectingBox.AddComponent<Rigidbody>();
 
-                //connectingBox‚ª‰º‚É—‚¿‚é‚æ‚¤‚É‚±‚ÌƒIƒuƒWƒFƒNƒg‚Ìq‚©‚ç‚Í‚¸‚·
+                //connectingBoxãŒä¸‹ã«è½ã¡ã‚‹ã‚ˆã†ã«ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å­ã‹ã‚‰ã¯ãšã™
                 connectingBox.transform.parent = null;
 
-                //Ši”[‚³‚ê‚Ä‚¢‚éconnectingBox‚ğ‚Í‚¸‚·
+                //æ ¼ç´ã•ã‚Œã¦ã„ã‚‹connectingBoxã‚’ã¯ãšã™
                 connectingBox = null;
 
-                //“ñ’iƒWƒƒƒ“ƒv‚µ‚½”»’è‚ğtrue‚É‚·‚é
+                //äºŒæ®µã‚¸ãƒ£ãƒ³ãƒ—ã—ãŸåˆ¤å®šã‚’trueã«ã™ã‚‹
                 doubleJumped = true;
+
+                charaAnimator.SetBool("jump2", true); // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆ‡ã‚Šæ›¿ãˆ
             }
         }
 
-        //“ñ’iƒWƒƒƒ“ƒv‚ğ‚µ‚½Œã‚Ì’n–Ê‚É‚Â‚¢‚½ê‡
+        //äºŒæ®µã‚¸ãƒ£ãƒ³ãƒ—ã‚’ã—ãŸå¾Œã®æ™‚åœ°é¢ã«ã¤ã„ãŸå ´åˆ
         if (isGround == true && doubleJumped == true)
         {
-            //“ñ’iƒWƒƒƒ“ƒv‚µ‚½”»’è‚ğfalse‚É‚·‚é
+            //äºŒæ®µã‚¸ãƒ£ãƒ³ãƒ—ã—ãŸåˆ¤å®šã‚’falseã«ã™ã‚‹
             doubleJumped = false;
 
-            //connectingBox‚ª–³‚¢‚Æ‚«
+            //connectingBoxãŒç„¡ã„ã¨ã
             if (connectingBox == null)
             {
-                //connectingBox‚Æ‚µ‚ÄV‚µ‚­box‚ğPlayer‚Æ“¯‚¶ˆÊ’u‚ÆŒü‚«‚É¶¬
+                //connectingBoxã¨ã—ã¦æ–°ã—ãboxã‚’Playerã¨åŒã˜ä½ç½®ã¨å‘ãã«ç”Ÿæˆ
                 connectingBox = Instantiate(box, transform.position, transform.rotation);
 
-                //connectingBox‚Ìã‚ÉPlayer‚ª‚­‚é‚æ‚¤‚ÉˆÊ’u‚ğ’²®
+                //connectingBoxã®ä¸Šã«PlayerãŒãã‚‹ã‚ˆã†ã«ä½ç½®ã‚’èª¿æ•´
                 transform.position = new Vector3(transform.position.x, transform.position.y + enterBoxMove, transform.position.z);
 
-                //connectingBox‚ÌeƒIƒuƒWƒFƒNƒg‚É‚±‚ÌƒIƒuƒWƒFƒNƒg‚ğw’è
+                //connectingBoxã®è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æŒ‡å®š
                 connectingBox.transform.parent = gameObject.transform;
 
             }
@@ -250,18 +271,18 @@ public class CharacterController : MonoBehaviour
 
     public void Idle()
     {
-        Debug.Log("CharacterState‚ªIdle‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
+        Debug.Log("CharacterStateãŒIdleã«çŠ¶æ…‹é·ç§»ã—ã¾ã—ãŸã€‚");
     }
     public void Move()
     {
-        Debug.Log("CharacterState‚ªMove‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
+        Debug.Log("CharacterStateãŒMoveã«çŠ¶æ…‹é·ç§»ã—ã¾ã—ãŸã€‚");
     }
     public void Jump1()
     {
-        Debug.Log("CharacterState‚ªJump1‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
+        Debug.Log("CharacterStateãŒJump1ã«çŠ¶æ…‹é·ç§»ã—ã¾ã—ãŸã€‚");
     }
     public void Jump2()
     {
-        Debug.Log("CharacterState‚ªJump2‚Éó‘Ô‘JˆÚ‚µ‚Ü‚µ‚½B");
+        Debug.Log("CharacterStateãŒJump2ã«çŠ¶æ…‹é·ç§»ã—ã¾ã—ãŸã€‚");
     }
 }

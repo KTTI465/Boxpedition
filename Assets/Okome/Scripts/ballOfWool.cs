@@ -24,6 +24,8 @@ public class ballOfWool : MonoBehaviour
 
     private GameObject _rayHitObject;
 
+    public Animator charaAnimator;
+
     // 〇ボタンが押されているかどうかを取得する
     bool ps4O = false;
 
@@ -67,6 +69,7 @@ public class ballOfWool : MonoBehaviour
 
                     if (Input.GetMouseButton(0) || ps4O)
                     {
+                        charaAnimator.SetBool("grab", true); // アニメーション切り替え
                         Player = other.gameObject;
                         animator.SetTrigger("rollBallOfWool");
                         enabledAnimation = false;
@@ -103,6 +106,7 @@ public class ballOfWool : MonoBehaviour
         StateProcessor.State = StateIdle;
         Player.GetComponent<CharacterController>().enabled = true;
         Destroy(animationCamara);
+        charaAnimator.SetBool("grab", false); // アニメーション切り替え
     }
 
     void GetPS4O()

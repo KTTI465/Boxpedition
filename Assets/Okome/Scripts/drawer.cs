@@ -16,6 +16,8 @@ public class drawer : MonoBehaviour
 
     public float DrawerMoveSpeed;
 
+    public Animator charaAnimator;
+
     private bool isGrab;
     private void Start()
     {
@@ -44,11 +46,15 @@ public class drawer : MonoBehaviour
                 //プレイヤーの移動スクリプトを有効にする
                 Player.GetComponent<CharacterController>().enabled = true;
             }
+
+            charaAnimator.SetBool("pull", true); // アニメーション切り替え
         }
         else if (Player != null)
         {
             //プレイヤーの移動スクリプトを有効にする
             Player.GetComponent<CharacterController>().enabled = true;
+
+            charaAnimator.SetBool("pull", false); // アニメーション切り替え
         }
     }
 
