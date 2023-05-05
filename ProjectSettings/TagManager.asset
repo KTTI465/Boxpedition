@@ -9,6 +9,7 @@ TagManager:
   - H_Object
   - Train
   - TrainTarget
+  - floor
   layers:
   - Default
   - TransparentFX
