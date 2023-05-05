@@ -10,6 +10,7 @@ TagManager:
   - Train
   - TrainTarget
   - joint
+  - floor
   layers:
   - Default
   - TransparentFX
