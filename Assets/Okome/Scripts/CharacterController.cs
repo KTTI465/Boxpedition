@@ -40,7 +40,7 @@ public class CharacterController : MonoBehaviour
 
     //connectingBoxの上にPlayerがくるよう位置を調整するための変数
     //connectingBoxとPlayerの大きさで次第で調整が必要
-    private float enterBoxMove = 1f;
+    private float enterBoxMove = 0.0f;
 
     public RaycastHit rayHitObject;
 
@@ -54,7 +54,9 @@ public class CharacterController : MonoBehaviour
     public CharacterStateJump1 StateJump1 { get; set; } = new CharacterStateJump1();
     public CharacterStateJump2 StateJump2 { get; set; } = new CharacterStateJump2();
 
-    public Animator charaAnimator;
+    [SerializeField]
+    private Animator charaAnimator;
+
     bool jumpAnim = false;
 
     void Start()
@@ -75,7 +77,7 @@ public class CharacterController : MonoBehaviour
         if (connectingBox == null)
         {
             //connectingBox としてboxをPlayerと同じ位置と向きで生成
-            connectingBox = Instantiate(box, transform.position, transform.rotation);
+            connectingBox = Instantiate(box, new Vector3(transform.position.x, transform.position.y + 1.15f, transform.position.z), transform.rotation);
 
             //PlayerがconnectingBox の上に来るように移動
             transform.position = new Vector3(transform.position.x, transform.position.y + enterBoxMove, transform.position.z);
@@ -119,6 +121,15 @@ public class CharacterController : MonoBehaviour
         zMovement = Input.GetAxisRaw("Vertical") * movementSpeed;
 
         transform.Translate(xMovement, 0, zMovement);
+
+        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            charaAnimator.SetBool("walk", false); // アニメーション切り替え
+        }
+        else
+        {
+            charaAnimator.SetBool("walk", true); // アニメーション切り替え
+        }
     }
 
     private void CharacterRotate()
@@ -160,7 +171,7 @@ public class CharacterController : MonoBehaviour
             //connectingBoxがあることも加味してのPlayerが地面についているかを判定するRayの長さ　
             //値は変更する必要あり（今は埋め込みで実装できていないのでこの値）
             //箱とPlayerの大きさ次第でも調整が必要
-            jumpDistance = 2.1f;
+            jumpDistance = 1.5f;
 
             //Playerから出ているRayがconnectingBoxを避けるようにlayerを指定(boxのlayer)
             int layerMask = connectingBox.layer;
@@ -171,7 +182,7 @@ public class CharacterController : MonoBehaviour
         {
             //connectingBoxが無いときにPlayerが地面についているかを判定するRayの長さ
             //Playerの大きさ次第で調整が必要
-            jumpDistance = 1.1f;
+            jumpDistance = 1.5f;
 
             isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance);
         }
@@ -246,7 +257,7 @@ public class CharacterController : MonoBehaviour
             if (connectingBox == null)
             {
                 //connectingBoxとして新しくboxをPlayerと同じ位置と向きに生成
-                connectingBox = Instantiate(box, transform.position, transform.rotation);
+                connectingBox = Instantiate(box, new Vector3(transform.position.x, transform.position.y + 1.15f, transform.position.z), transform.rotation);
 
                 //connectingBoxの上にPlayerがくるように位置を調整
                 transform.position = new Vector3(transform.position.x, transform.position.y + enterBoxMove, transform.position.z);

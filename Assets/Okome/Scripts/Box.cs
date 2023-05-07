@@ -11,6 +11,9 @@ public class Box : MonoBehaviour
     public BoxStateRepop StateRepop { get; set; } = new BoxStateRepop();
 
     public BoxStateCrash StateCrash { get; set; } = new BoxStateCrash();
+
+    private Animator boxAnimator;
+
     void Start()
     {
         StateIdle.ExecAction = Idle;
@@ -18,6 +21,7 @@ public class Box : MonoBehaviour
         StateCrash.ExecAction = Crash;
         StateProcessor.State = StateRepop;
 
+        boxAnimator = GetComponent<Animator>();
     }
     void Update()
     {
@@ -32,6 +36,8 @@ public class Box : MonoBehaviour
         {
             StateProcessor.State = StateIdle;
         }
+
+        CheckMove();
     }
     public IEnumerator DestroyBox()
     {
@@ -52,5 +58,17 @@ public class Box : MonoBehaviour
     public void Crash()
     {
         Debug.Log("BoxStateがCrashに状態遷移しました。");
+    }
+
+    private void CheckMove()
+    {
+        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            boxAnimator.SetBool("walk", false); // アニメーション切り替え
+        }
+        else
+        {
+            boxAnimator.SetBool("walk", true); // アニメーション切り替え
+        }
     }
 }
