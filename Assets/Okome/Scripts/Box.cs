@@ -35,8 +35,9 @@ public class Box : MonoBehaviour
     }
     public IEnumerator DestroyBox()
     {
-        StateProcessor.State = StateCrash;
         yield return new WaitForSeconds(1);
+        StateProcessor.State = StateCrash;
+
 
         Destroy(gameObject);
     }

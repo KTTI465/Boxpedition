@@ -46,6 +46,8 @@ public class AtomLoader : MonoBehaviour
 
         }
 
+        Debug.Log("atom");
+
         /* (6) ACF ÉfÅ[É^ÇÃìoò^ */
         acfIsRegisterd = acfAsset.Register();
 

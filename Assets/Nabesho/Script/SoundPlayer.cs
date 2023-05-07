@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using BoxState;
 using CriWare;
 using System;
+using System.Runtime.CompilerServices;
+//using System.Diagnostics;
+
+
 
 public class SoundPlayer : MonoBehaviour
 {
@@ -22,35 +26,82 @@ public class SoundPlayer : MonoBehaviour
     /* (16) キュー名 */
     private string cueName;
 
+    [SerializeField]
+    private GameObject player;
+
+    [SerializeField]
+    private Box box;
+
+    /*State変数*/
+    public BoxStateProcessor boxStateProcessor = new BoxStateProcessor();
+
+    private String BeforeStateName;
+
     /* (3) コルーチン化する */
     IEnumerator Start()
     {
+        //Debug.Log("Start");
+       
+
+
         /* (4) ライブラリの初期化済みチェック */
         while (!CriWareInitializer.IsInitialized())
         {
             yield return null;
         }
 
-        Debug.Log("iketa");
+        //Debug.Log("iketa");
 
         /* (5) プレーヤーの作成 */
         Player = new CriAtomExPlayer();
 
+     
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        //箱が壊れたとき:cueName = Crash
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (boxStateProcessor.State == null) 
         {
-            SetAcb(atomLoader.acbAssets[0].Handle);
-            SetCueName("Crash");
-            Play();
+            //Debug.Log("SoundplayerReturn:State=null");
+
+            box = player.transform.Find("Box(Clone)").gameObject.GetComponent<Box>();
+
+            boxStateProcessor = box.StateProcessor;
+
+            return;
+
         }
 
-        //箱が再出現するとき:cueName = Repop
+       
+
+        if (boxStateProcessor.State.GetStateName() != BeforeStateName) 
+        {
+            //Debug.Log("test");
+            BeforeStateName = boxStateProcessor.State.GetStateName();
+            //箱が再出現するとき:cueName = Repop
+            if (BeforeStateName == "State:BoxRepop")
+            {
+                //Debug.Log("Repop");
+                SetAcb(atomLoader.acbAssets[0].Handle);
+                SetCueName("Repop");
+                Play();
+
+            }
+            //箱が壊れたとき:cueName = Crash
+            if (BeforeStateName == "State:Crash")
+            {
+                //Debug.Log("Crash");
+                SetAcb(atomLoader.acbAssets[0].Handle);
+                SetCueName("Crash");
+                Play();
+
+            }
+        }
+
+      
+        
 
         //トランポリン小ジャンプ:cueName = Bound_Small
 
