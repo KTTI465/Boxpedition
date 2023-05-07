@@ -564,7 +564,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Drawer: {fileID: 1958718557645394192}
+  Player: {fileID: 0}
   DrawerMoveSpeed: 1
+  charaAnimator: {fileID: 0}
 --- !u!1 &1958718559116381848
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +693,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Drawer: {fileID: 1958718558369019627}
+  Player: {fileID: 0}
   DrawerMoveSpeed: 1
+  charaAnimator: {fileID: 0}
 --- !u!65 &3615620264513252793
 BoxCollider:
   m_ObjectHideFlags: 0

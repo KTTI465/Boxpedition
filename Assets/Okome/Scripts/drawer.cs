@@ -70,7 +70,7 @@ public class drawer : MonoBehaviour
                 _rayHitObject = other.GetComponent<CharacterController>().rayHitObject.collider.gameObject;
 
                 //プレイヤーが見ているものが上の棚の取っ手だった時
-                if (_rayHitObject != null && _rayHitObject == gameObject)
+                if (_rayHitObject != null && _rayHitObject == Drawer)
                 {
                     //プレイヤーに格納
                     Player = other.gameObject;
