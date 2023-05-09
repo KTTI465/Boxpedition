@@ -1,13 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class pullBookmark : MonoBehaviour
 {
+    public BookMarkBool bookMarkBool;
+
     public Animator charaAnimator;
 
     //掴んでいるかの判定フラグ
     public bool grabFlg;
+
+    //掴みモーションを開始したかの判定フラグ
+    public bool grabStart = false;
 
     //掴んだオブジェクトのrigidbody格納用変数
     new Rigidbody rigidbody;
@@ -43,14 +49,33 @@ public class pullBookmark : MonoBehaviour
                 //親子関係にする
                 other.gameObject.transform.parent = gameObject.transform;
 
+                /*
                 Vector3 localPos = other.gameObject.transform.localPosition;
                 if (other.gameObject.transform.localPosition.y < -0.3)
                 {
                     localPos.y = -0.3f;
                 }
                 other.gameObject.transform.localPosition = localPos;
+                */
+
+
+                //端を掴んでいた時
+                other.gameObject.transform.rotation = this.gameObject.transform.rotation;
+                other.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+                other.gameObject.transform.Rotate(0.0f, 90.0f, 0.0f);
+                other.gameObject.transform.localPosition = new Vector3(0, 0.35f, 4.5f);
+                
+                //真ん中を掴んでいた時
+                if (bookMarkBool.grabMiddle == true)
+                {
+                    other.gameObject.transform.rotation = this.gameObject.transform.rotation;
+                    other.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+                    other.gameObject.transform.localPosition = new Vector3(0, 0.35f, 1.5f);
+                }
+                
 
                 charaAnimator.SetBool("grab", true); // アニメーション切り替え
+                grabStart = true;
             }
             else
             {
@@ -66,6 +91,7 @@ public class pullBookmark : MonoBehaviour
                 grabFlg = false;
 
                 charaAnimator.SetBool("grab", false); // アニメーション切り替え
+                grabStart = false;
             }
         }
     }
@@ -78,6 +104,7 @@ public class pullBookmark : MonoBehaviour
             other.gameObject.transform.parent = null;
 
             charaAnimator.SetBool("grab", false); // アニメーション切り替え
+            grabStart = false;
         }
     }
 }
