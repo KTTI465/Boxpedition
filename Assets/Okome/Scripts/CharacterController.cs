@@ -42,7 +42,9 @@ public class CharacterController : MonoBehaviour
     //connectingBoxとPlayerの大きさで次第で調整が必要
     private float enterBoxMove = 0.0f;
 
-    public RaycastHit rayHitObject;
+    
+    private RaycastHit hit;
+    public GameObject rayHitObject;
 
     public LayerMask layerMask;
 
@@ -271,8 +273,13 @@ public class CharacterController : MonoBehaviour
 
     public void ray()
     {
-        //int layerMask = ~gameObject.layer;
-        Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out rayHitObject, 100f, layerMask);
+        if (Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, 100f, layerMask))
+        {
+            rayHitObject = hit.collider.gameObject;
+        }
+        else
+            rayHitObject = null;
+
     }
 
     public void StateTransition()
