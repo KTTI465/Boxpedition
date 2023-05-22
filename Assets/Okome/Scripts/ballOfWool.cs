@@ -26,6 +26,9 @@ public class ballOfWool : MonoBehaviour
 
     public Animator charaAnimator;
 
+    private Vector3 ropePos;
+
+    public GameObject rope;
     // 〇ボタンが押されているかどうかを取得する
     bool ps4O = false;
 
@@ -59,7 +62,7 @@ public class ballOfWool : MonoBehaviour
         {
             if (enabledAnimation == true)
             {
-                _rayHitObject = other.GetComponent<CharacterController>().rayHitObject.collider.gameObject;
+                _rayHitObject = other.GetComponent<CharacterController>().rayHitObject;
 
                 if (_rayHitObject != null && _rayHitObject == gameObject)
                 {
@@ -101,9 +104,15 @@ public class ballOfWool : MonoBehaviour
         Player.GetComponent<CharacterController>().enabled = false;
         animationCamara.GetComponent<Camera>().depth = 1;
     }
+    public void SetRopePos()
+    {
+        ropePos = transform.position;
+    }
+
     public void EndAnimation()
     {
         StateProcessor.State = StateIdle;
+        Instantiate(rope, ropePos, rope.transform.rotation);
         Player.GetComponent<CharacterController>().enabled = true;
         Destroy(animationCamara);
         charaAnimator.SetBool("grab", false); // アニメーション切り替え

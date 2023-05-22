@@ -67,7 +67,7 @@ public class drawer : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 //プレイヤーが見ているものを取得
-                _rayHitObject = other.GetComponent<CharacterController>().rayHitObject.collider.gameObject;
+                _rayHitObject = other.GetComponent<CharacterController>().rayHitObject;
 
                 //プレイヤーが見ているものが上の棚の取っ手だった時
                 if (_rayHitObject != null && _rayHitObject == Drawer)
