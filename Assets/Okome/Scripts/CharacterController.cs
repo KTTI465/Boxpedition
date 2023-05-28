@@ -223,14 +223,12 @@ public class CharacterController : MonoBehaviour
             //地面についていた時
             if (isGround == true && jumped == false)
             {
-                Debug.Log("1");
                 rb.velocity = Vector3.up * firstJumpPower;
                 jumped = true;
             }
             //空中にいるときかつ二段ジャンプをしていない時
             else if (isGround == false && doubleJumped == false && jumped == true)
             {
-                Debug.Log("2");
                 rb.velocity = Vector3.up * secondJumpPower;
 
                 //boxについているスクリプトのコルーチンを使い、１秒後に箱が消えるようにする
@@ -256,7 +254,6 @@ public class CharacterController : MonoBehaviour
         //二段ジャンプをした後の時地面についた場合
         if (isGround == true && doubleJumped == true)
         {
-            Debug.Log("3");
             //connectingBoxが無いとき
             if (connectingBox == null)
             {

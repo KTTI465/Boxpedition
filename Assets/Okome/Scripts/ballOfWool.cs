@@ -101,6 +101,7 @@ public class ballOfWool : MonoBehaviour
     public void StartAnimation()
     {
         StateProcessor.State = StateAnimation;
+        rope.SetActive(true);
         Player.GetComponent<CharacterController>().enabled = false;
         animationCamara.GetComponent<Camera>().depth = 1;
     }
@@ -112,7 +113,6 @@ public class ballOfWool : MonoBehaviour
     public void EndAnimation()
     {
         StateProcessor.State = StateIdle;
-        Instantiate(rope, ropePos, rope.transform.rotation);
         Player.GetComponent<CharacterController>().enabled = true;
         Destroy(animationCamara);
         charaAnimator.SetBool("grab", false); // アニメーション切り替え
