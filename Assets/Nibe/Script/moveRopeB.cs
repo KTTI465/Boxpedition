@@ -75,20 +75,22 @@ public class moveRopeB : MonoBehaviour
         characterController = player.gameObject.GetComponent<CharacterController>();
 
         //下の位置と下までの距離を設定
-        if (Physics.Raycast(transform.position, Vector3.up * -1f, out RaycastHit hit))
+        if (Physics.Raycast(transform.position, transform.up * -1f, out RaycastHit hit))
         {
             underPosition = hit.point;
+            Debug.Log("1");
         }
         else
         {
             //Rayが当たるものが無いときのunderPositionの指定
             underPosition = transform.position - (transform.up * length) + (transform.up * positionCorrection);
+            Debug.Log("2");
         }
         ropeDistance = Vector3.Distance(transform.position, underPosition);
 
         //Colliderの大きさや位置を指定
-        moveOnCollider.center = -(transform.position - new Vector3(0, transform.up.y * (ropeDistance / 2), 0));
-        grabRopeCollider.center = -(transform.position - new Vector3(0, transform.up.y * (ropeDistance / 2), 0));
+        moveOnCollider.center = - new Vector3(0, transform.up.y * (ropeDistance / 2), 0);
+        grabRopeCollider.center = - new Vector3(0, transform.up.y * (ropeDistance / 2), 0);
         moveOnCollider.height = ropeDistance + moveOnCollider.radius * 1.5f;
         grabRopeCollider.height = ropeDistance;
 
@@ -186,7 +188,7 @@ public class moveRopeB : MonoBehaviour
         }
         else
         {
-            rayStopper.transform.position = new Vector3(0.0f, transform.position.y - 0.1f, 0.0f);
+            rayStopper.transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
         }
         //CharacterMovement();  //相殺
     }
