@@ -12,7 +12,7 @@ ScriptedImporter:
     rid: 1000
   awb: {instanceID: 0}
   assetInfo:
-    awb: {fileID: -6750239444755058063, guid: b941038a5a5a9b7499c4eb2135c1aca2, type: 3}
+    awb: {instanceID: 0}
   references:
     version: 2
     RefIds:
