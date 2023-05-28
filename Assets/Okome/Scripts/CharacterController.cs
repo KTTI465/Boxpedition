@@ -35,6 +35,9 @@ public class CharacterController : MonoBehaviour
     //Raycastの長さを格納するための変数
     private float jumpDistance;
 
+    //ジャンプをしたかを判定する
+    private bool jumped = false;
+
     //二段ジャンプをしたかを判定する
     public bool doubleJumped = false;
 
@@ -175,9 +178,6 @@ public class CharacterController : MonoBehaviour
             //箱とPlayerの大きさ次第でも調整が必要
             jumpDistance = 1.5f;
 
-            //Playerから出ているRayがconnectingBoxを避けるようにlayerを指定(boxのlayer)
-            int layerMask = connectingBox.layer;
-
             isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
         }
         else
@@ -216,17 +216,21 @@ public class CharacterController : MonoBehaviour
             }
         }
 
+
         //スペースキー（×ボタン）を押したときにジャンプする
         if (Input.GetKeyDown(KeyCode.Space) || ps4X)
         {
             //地面についていた時
-            if (isGround == true)
+            if (isGround == true && jumped == false)
             {
+                Debug.Log("1");
                 rb.velocity = Vector3.up * firstJumpPower;
+                jumped = true;
             }
             //空中にいるときかつ二段ジャンプをしていない時
-            else if (isGround == false && doubleJumped == false)
+            else if (isGround == false && doubleJumped == false && jumped == true)
             {
+                Debug.Log("2");
                 rb.velocity = Vector3.up * secondJumpPower;
 
                 //boxについているスクリプトのコルーチンを使い、１秒後に箱が消えるようにする
@@ -242,19 +246,17 @@ public class CharacterController : MonoBehaviour
                 //格納されているconnectingBoxをはずす
                 connectingBox = null;
 
+                charaAnimator.SetBool("jump2", true); // アニメーション切り替え
+
                 //二段ジャンプした判定をtrueにする
                 doubleJumped = true;
-
-                charaAnimator.SetBool("jump2", true); // アニメーション切り替え
             }
         }
 
         //二段ジャンプをした後の時地面についた場合
         if (isGround == true && doubleJumped == true)
         {
-            //二段ジャンプした判定をfalseにする
-            doubleJumped = false;
-
+            Debug.Log("3");
             //connectingBoxが無いとき
             if (connectingBox == null)
             {
@@ -268,6 +270,18 @@ public class CharacterController : MonoBehaviour
                 connectingBox.transform.parent = gameObject.transform;
 
             }
+            //二段ジャンプした判定をfalseにする
+            doubleJumped = false;
+        }
+
+        if (isGround == true)
+        {
+            jumped = false;
+            doubleJumped = false;
+        }
+        else
+        {
+            jumped = true;
         }
     }
 
