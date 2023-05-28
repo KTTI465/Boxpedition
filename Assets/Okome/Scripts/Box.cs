@@ -39,12 +39,16 @@ public class Box : MonoBehaviour
 
         CheckMove();
     }
+
+    private void OnDestroy()
+    {
+        StateProcessor.State = StateCrash;
+    }
+
     public IEnumerator DestroyBox()
     {
         yield return new WaitForSeconds(1);
-        StateProcessor.State = StateCrash;
-
-
+        
         Destroy(gameObject);
     }
     public void Idle()
