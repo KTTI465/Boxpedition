@@ -75,22 +75,4 @@ namespace CharacterState
             return "State:Jump2";
         }
     }
-
-    //トランポリン小ジャンプ
-    public class CharacterStateTrampolineSmallJump : CharacterState
-    {
-        public override string GetStateName()
-        {
-            return "State:TrampolineSmallJump";
-        }
-    }
-
-    //トランポリン大ジャンプ
-    public class CharacterStateTrampolineBigJump : CharacterState
-    {
-        public override string GetStateName()
-        {
-            return "State:TrampolineBigJump";
-        }
-    }
 }

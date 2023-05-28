@@ -37,7 +37,6 @@ public class Soundplayer : MonoBehaviour
     private bool acfIsRegisterd = false;
 
     private CriAtomExPlayer player;
-
     public void Awake()
     {
         if (instance == null)
@@ -69,6 +68,8 @@ public class Soundplayer : MonoBehaviour
         }
 
         player = new CriAtomExPlayer();
+
+        player.SetCue(acbAssets[0].Handle, "crash");
     }
 
 
