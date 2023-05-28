@@ -58,6 +58,9 @@ public class CharacterController : MonoBehaviour
     public CharacterStateMove StateMove { get; set; } = new CharacterStateMove();
     public CharacterStateJump1 StateJump1 { get; set; } = new CharacterStateJump1();
     public CharacterStateJump2 StateJump2 { get; set; } = new CharacterStateJump2();
+    public CharacterStateTrampolineSmallJump StateTrampSmall { get; set; } = new CharacterStateTrampolineSmallJump();
+    public CharacterStateTrampolineBigJump StateTrampBig { get; set; } = new CharacterStateTrampolineBigJump();
+
 
     [SerializeField]
     private Animator charaAnimator;
@@ -76,6 +79,9 @@ public class CharacterController : MonoBehaviour
         StateMove.ExecAction = Move;
         StateJump1.ExecAction = Jump1;
         StateJump2.ExecAction = Jump2;
+        StateTrampSmall.ExecAction = TrampSmall;
+        StateTrampBig.ExecAction = TrampBig;
+
         StateProcessor.State = StateIdle;
 
         //connectingBoxが無かったときに呼び出す
@@ -313,5 +319,13 @@ public class CharacterController : MonoBehaviour
     public void Jump2()
     {
         Debug.Log("CharacterStateがJump2に状態遷移しました。");
+    }
+    public void TrampSmall()
+    {
+        Debug.Log("CharacterStateがTrampSmallに状態遷移しました。");
+    }
+    public void TrampBig()
+    {
+        Debug.Log("CharacterStateがTrampBigに状態遷移しました。");
     }
 }
