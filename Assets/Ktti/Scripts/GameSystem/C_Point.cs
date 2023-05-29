@@ -30,13 +30,4 @@ public class C_Point : MonoBehaviour
             }
         }
     }
-
-    public void SetCheckPoint()
-    {
-        if (CheckPointManager.Get())
-        {
-            CheckPointManager.Get().SetPoint(resPoint.GetID());
-            Debug.Log($"Check Point:{resPoint.GetID()} SET");
-        }
-    }
 }
