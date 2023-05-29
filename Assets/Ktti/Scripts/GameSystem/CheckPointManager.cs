@@ -8,8 +8,12 @@ public class CheckPointManager : MonoBehaviour
 {
     [SerializeField, NonEditable]
     public Vector3 lastCheckPoint;
+
     [SerializeField]
-    ResPoint[] _checkPoint;
+    List<ResPoint> checkPoints;
+    
+    List<int> _checkPoint;
+
     [SerializeField]
     static int _pointIndex;
     [SerializeField]
@@ -30,31 +34,39 @@ public class CheckPointManager : MonoBehaviour
         return _lastmanage;
     }
 
-    void Awake()
+    void Start()
     {
-        StartPoint(_pointIndex);
+        _checkPoint = new List<int>();
+        foreach (var point in checkPoints)
+        {
+            _checkPoint.Add(point.GetID());
+        }
+
+
+        lastCheckPoint = playerObject.transform.position;
     }
 
     public void Respawn()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        StartPoint(_pointIndex);
-        Debug.Log($"Check Point:{_pointIndex} SPAWN");
+        ChengePoint();
+        //Debug.Log($"Check Point:{_pointIndex} SPAWN");
     }
 
-    void StartPoint(int index)
+    void ChengePoint()
     {
-        if (index >= _checkPoint.Length)
-        {
-            return;
-        }
-
         ////プレイヤー位置変更箇所
+        playerObject.transform.position = lastCheckPoint;
     }
 
     public void SetPoint(int index)
     {
         _pointIndex = index;
-        lastCheckPoint = _checkPoint[index].checkPoint.position;
+        Debug.Log(GetInstanceListNum(index));
+        lastCheckPoint = checkPoints[GetInstanceListNum(index)].checkPoint.position;
+    }
+
+    int GetInstanceListNum(int id)
+    {
+        return _checkPoint.IndexOf(id);
     }
 }

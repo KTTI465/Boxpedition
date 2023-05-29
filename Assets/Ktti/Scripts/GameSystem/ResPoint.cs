@@ -7,8 +7,16 @@ public class ResPoint : MonoBehaviour
 {
     public Transform checkPoint;
 
-    private void Start()
-    {
+    [SerializeField, NonEditable]
+    int index_p;
 
+    void Awake()
+    {
+        index_p = GetInstanceID();
+    }
+
+    public int GetID()
+    {
+        return index_p;
     }
 }

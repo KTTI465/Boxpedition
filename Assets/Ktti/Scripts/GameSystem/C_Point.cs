@@ -5,16 +5,28 @@ using UnityEngine;
 public class C_Point : MonoBehaviour
 {
     [SerializeField]
-    public int index_p;
+    bool once = true;
+
+    bool isFirst = false;
+
+    public ResPoint resPoint;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            if (CheckPointManager.Get())
+            if (!isFirst)
             {
-                CheckPointManager.Get().SetPoint(index_p);
-                Debug.Log($"Check Point:{index_p} SET");
+                if (CheckPointManager.Get())
+                {
+                    CheckPointManager.Get().SetPoint(resPoint.GetID());
+                    Debug.Log($"Check Point:{resPoint.GetID()} SET");
+                }
+            }
+
+            if (once)
+            {
+                isFirst = true;
             }
         }
     }
