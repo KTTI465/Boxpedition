@@ -153,8 +153,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b268260a8ed794481f93c846842c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets: []
-  speed: 4
+  lead: 0
+  setting:
+    manager: {fileID: 0}
+    speed: 0
+    rotateSpeed: 0
+    moveActive: 0
+    train: {fileID: 0}
+  target: {fileID: 0}
+  moveActive: 1
 --- !u!114 &8738728158164438265
 MonoBehaviour:
   m_ObjectHideFlags: 0
