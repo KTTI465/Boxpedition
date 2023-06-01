@@ -43,7 +43,7 @@ public class CharacterController : MonoBehaviour
 
     //connectingBoxの上にPlayerがくるよう位置を調整するための変数
     //connectingBoxとPlayerの大きさで次第で調整が必要
-    private float enterBoxMove = 0.0f;
+    private float enterBoxMove = 0.1f;
 
     
     private RaycastHit hit;
@@ -284,13 +284,12 @@ public class CharacterController : MonoBehaviour
 
     public void ray()
     {
-        if (Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, 100f, layerMask))
+        if (Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.55f)), out hit, 100f, layerMask))
         {
             rayHitObject = hit.collider.gameObject;
         }
         else
             rayHitObject = null;
-
     }
 
     public void StateTransition()
@@ -300,18 +299,18 @@ public class CharacterController : MonoBehaviour
 
     public void Idle()
     {
-        Debug.Log("CharacterStateがIdleに状態遷移しました。");
+       //Debug.Log("CharacterStateがIdleに状態遷移しました。");
     }
     public void Move()
     {
-        Debug.Log("CharacterStateがMoveに状態遷移しました。");
+        //Debug.Log("CharacterStateがMoveに状態遷移しました。");
     }
     public void Jump1()
     {
-        Debug.Log("CharacterStateがJump1に状態遷移しました。");
+        //Debug.Log("CharacterStateがJump1に状態遷移しました。");
     }
     public void Jump2()
     {
-        Debug.Log("CharacterStateがJump2に状態遷移しました。");
+        //Debug.Log("CharacterStateがJump2に状態遷移しました。");
     }
 }

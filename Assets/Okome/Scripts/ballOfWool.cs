@@ -15,8 +15,6 @@ public class ballOfWool : MonoBehaviour
     [SerializeField]
     public GameObject animationCamara;
 
-    public GameObject interactImage;
-
     private Animator animator;
     private bool enabledAnimation;
 
@@ -31,6 +29,14 @@ public class ballOfWool : MonoBehaviour
     public GameObject rope;
     // 〇ボタンが押されているかどうかを取得する
     bool ps4O = false;
+
+    [SerializeField]//キーボードマウス操作のときのインタラクトの画像
+    private GameObject interactImageKeyboardMouse;
+
+    [SerializeField]//パッド操作のときのインタラクトの画像
+    private GameObject interactImageGamepad;
+
+    private GameObject interactImage;
 
     private string _preStateName;
     public ballOfWoolStateProcessor StateProcessor { get; set; } = new ballOfWoolStateProcessor();
@@ -54,6 +60,7 @@ public class ballOfWool : MonoBehaviour
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }
+        ImageChange();
     }
 
     private void OnTriggerStay(Collider other)
@@ -66,9 +73,8 @@ public class ballOfWool : MonoBehaviour
 
                 if (_rayHitObject != null && _rayHitObject == gameObject)
                 {
-                    interactImage.SetActive(true);
-
                     GetPS4O();
+                    interactImage.SetActive(true);
 
                     if (Input.GetMouseButton(0) || ps4O)
                     {
@@ -115,6 +121,7 @@ public class ballOfWool : MonoBehaviour
         StateProcessor.State = StateIdle;
         Player.GetComponent<CharacterController>().enabled = true;
         Destroy(animationCamara);
+        gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
         charaAnimator.SetBool("grab", false); // アニメーション切り替え
     }
 
@@ -133,12 +140,32 @@ public class ballOfWool : MonoBehaviour
         }
     }
 
+    void ImageChange()
+    {
+        if (Gamepad.current != null)
+        {
+            if (interactImage != interactImageGamepad)
+            {
+                //パッド操作のインタラクトの画像を設定
+                interactImage = interactImageGamepad;
+            }
+        }
+        else //キーボードマウス操作のとき
+        {
+            if (interactImage != interactImageKeyboardMouse)
+            {
+                //キーボードマウス操作のインタラクトの画像を設定
+                interactImage = interactImageKeyboardMouse;
+            }
+        }
+    }
+
     public void Idle()
     {
-        Debug.Log("ballOfWoolStateがIdleに状態遷移しました。");
+        //Debug.Log("ballOfWoolStateがIdleに状態遷移しました。");
     }
     public void Animation()
     {
-        Debug.Log("ballOfWoolStateがAnimationに状態遷移しました。");
+        //Debug.Log("ballOfWoolStateがAnimationに状態遷移しました。");
     }
 }

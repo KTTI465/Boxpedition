@@ -51,16 +51,24 @@ public class moveRopeB : MonoBehaviour
     //下の位置
     private Vector3 underPosition;
 
-    //ロープを掴んでいる判定をするColliderを格納
-    public CapsuleCollider grabRopeCollider;
+    [SerializeField]//ロープを掴んでいる判定をするColliderを格納
+    private CapsuleCollider grabRopeCollider;
 
-    //ロープにつかめる判定をするColliderを格納
-    public CapsuleCollider moveOnCollider;
+    [SerializeField]//ロープにつかめる判定をするColliderを格納
+    private CapsuleCollider moveOnCollider;
 
-    //Playerのジャンプ用のrayをとめるオブジェクトを格納
-    public GameObject rayStopper;
+    [SerializeField] //Playerのジャンプ用のrayをとめるオブジェクトを格納
+    private GameObject rayStopper;
 
     private GameObject _rayHitObject;
+
+    [SerializeField]//キーボードマウス操作のときのインタラクトの画像
+    private GameObject interactImageKeyboardMouse;
+
+    [SerializeField]//パッド操作のときのインタラクトの画像
+    private GameObject interactImageGamepad;
+
+    private GameObject interactImage;
 
     // ×ボタンが押されているかどうかを取得する
     bool ps4X = false;
@@ -75,16 +83,14 @@ public class moveRopeB : MonoBehaviour
         characterController = player.gameObject.GetComponent<CharacterController>();
 
         //下の位置と下までの距離を設定
-        if (Physics.Raycast(transform.position, transform.up * -1f, out RaycastHit hit))
-        {
-            underPosition = hit.point;
-            Debug.Log("1");
-        }
-        else
+        if(length > 0)
         {
             //Rayが当たるものが無いときのunderPositionの指定
             underPosition = transform.position - (transform.up * length) + (transform.up * positionCorrection);
-            Debug.Log("2");
+        }
+        else if(length == 0 && Physics.Raycast(transform.position, transform.up * -1f, out RaycastHit hit))
+        {
+            underPosition = hit.point;
         }
         ropeDistance = Vector3.Distance(transform.position, underPosition);
 
@@ -95,14 +101,14 @@ public class moveRopeB : MonoBehaviour
         grabRopeCollider.height = ropeDistance;
 
         //レイヤ―の変更
-        gameObject.layer = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetPS4X();
-        GetPS4Y();
+        GetPS4XY();
+        ImageChange();
         if (moveOn == true)  //登る
         {
             if (characterController.rayHitObject != null &&
@@ -127,14 +133,20 @@ public class moveRopeB : MonoBehaviour
 
         if (grabbingRope == true)
         {
+            if(interactImage == true)
+            {
+                interactImage.SetActive(false);
+            }
             //重力を停止させる
             rigidbody.isKinematic = true;
 
+            //ジャンプ用のレイをとめるオブジェクトの位置を設定
             rayStopper.transform.position = player.transform.position - player.transform.up * 1.3f;
 
-            //上
+            //上の制限位置より下にいるとき
             if (player.transform.position.y < transform.position.y + positionCorrection)
             {
+                //ロープで動いていないときに登るボタンを押すと登る
                 if (climbing == false && climbingDown == false &&
                     Input.GetKeyDown(KeyCode.Space) || ps4X)
                 {
@@ -142,17 +154,19 @@ public class moveRopeB : MonoBehaviour
                     climbing = true;
                 }
             }
+            //上の制限位置より上にいるとき登っていかないように
             else if (player.transform.position.y >= transform.position.y + positionCorrection &&
                 climbing == true)
-            {
+            {             
                 climbPos = player.transform.position;
                 characterController.enabled = true;
                 climbing = false;
             }
 
-            //下
+            //下の制限位置より上にいるとき
             if (player.transform.position.y > underPosition.y + positionCorrection)
             {
+                //ロープで動いていないときに降りるボタンを押すと降りる
                 if (climbing == false && climbingDown == false &&
                     Input.GetKeyDown(KeyCode.LeftShift) || ps4Y)
                 {
@@ -160,6 +174,7 @@ public class moveRopeB : MonoBehaviour
                     climbingDown = true;
                 }
             }
+            //下の制限位置より下にいるときは降りていかないように
             else if (player.transform.position.y <= underPosition.y + positionCorrection &&
                 climbingDown == true)
             {
@@ -168,9 +183,12 @@ public class moveRopeB : MonoBehaviour
                 climbingDown = false;
             }
 
+            //登っているときまたは降りているとき
             if (climbing || climbingDown)
             {
+                //キャラクターを操作できないように
                 characterController.enabled = false;
+                //移動位置と同じ位置になったら移動中のboolをfalseにする
                 if (player.transform.position == climbPos)
                 {
                     climbing = false;
@@ -178,16 +196,21 @@ public class moveRopeB : MonoBehaviour
                 }
                 else
                 {
+                    //移動先の位置と同じ位置で無いときは移動をする
                     player.transform.position = Vector3.MoveTowards(player.transform.position, climbPos, moveSpeed * Time.deltaTime);
                 }
             }
             else
             {
+                //登っていないときまたは降りていないときはロープで操作できるように
                 characterController.enabled = true;
             }
         }
         else
         {
+            //キャラクターがロープを掴んでいない時は
+            //ジャンプ用のレイをとめるオブジェクトの位置を一番上に設定
+            if(gameObject.transform.root == true)
             rayStopper.transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
         }
         //CharacterMovement();  //相殺
@@ -197,7 +220,9 @@ public class moveRopeB : MonoBehaviour
     {
         if (col.tag == "Player")
         {
+            //掴むことができるように
             moveOn = true;
+            interactImage.SetActive(true);
         }
     }
 
@@ -206,6 +231,7 @@ public class moveRopeB : MonoBehaviour
         if (col.tag == "Player")
         {
             moveOn = false;
+            interactImage.SetActive(false);
         }
     }
 
@@ -217,7 +243,7 @@ public class moveRopeB : MonoBehaviour
         player.transform.Translate(-xMovement, 0, -zMovement);  //相殺するために逆向きに力加える
     }
 
-    void GetPS4X()
+    void GetPS4XY()
     {
         if (Gamepad.current != null)
         {
@@ -229,14 +255,8 @@ public class moveRopeB : MonoBehaviour
             {
                 ps4X = false;
             }
-        }
-    }
 
-    void GetPS4Y()
-    {
-        if(Gamepad.current != null)
-        {
-            if(Gamepad.current.buttonWest.isPressed)
+            if (Gamepad.current.buttonWest.isPressed)
             {
                 ps4Y = true;
             }
@@ -244,6 +264,26 @@ public class moveRopeB : MonoBehaviour
             {
                 ps4Y = false;
             }
-        }           
+        }
+    }
+
+    void ImageChange()
+    {
+        if (Gamepad.current != null)
+        {
+            //パッド操作のインタラクトの画像を設定
+            if (interactImage != interactImageGamepad)
+            {
+                interactImage = interactImageGamepad;
+            }
+        }
+        else //キーボードマウス操作のとき
+        {
+            if (interactImage != interactImageKeyboardMouse)
+            {
+                //キーボードマウス操作のインタラクトの画像を設定
+                interactImage = interactImageKeyboardMouse;
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7867588008793596477}
   - component: {fileID: 7867588008793596449}
   m_Layer: 2
-  m_Name: threadBookmark
+  m_Name: moveRopeObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,10 +66,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   ropeMoveDistance: 15
-  length: 10
+  length: 0
   grabRopeCollider: {fileID: 7867588008793596449}
   moveOnCollider: {fileID: 7867588008793596477}
   rayStopper: {fileID: 7867588010095717737}
+  interactImageKeyboardMouse: {fileID: 0}
+  interactImageGamepad: {fileID: 0}
 --- !u!136 &7867588008793596477
 CapsuleCollider:
   m_ObjectHideFlags: 0
