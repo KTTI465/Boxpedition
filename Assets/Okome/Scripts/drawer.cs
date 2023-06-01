@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class drawer : MonoBehaviour
 {
@@ -19,15 +20,27 @@ public class drawer : MonoBehaviour
     public Animator charaAnimator;
 
     private bool isGrab;
+
+    [SerializeField]//キーボードマウス操作のときのインタラクトの画像
+    private GameObject interactImageKeyboardMouse;
+
+    [SerializeField]//パッド操作のときのインタラクトの画像
+    private GameObject interactImageGamepad;
+
+    private GameObject interactImage;
+
+    // 〇ボタンが押されているかどうかを取得する
+    bool ps4O = false;
     private void Start()
     {
         isGrab = false;
     }
     private void Update()
     {
+        ImageChange();
         if (isGrab == true && Player != null)
         {
-            float zMovement = Input.GetAxisRaw("Vertical") / 80* DrawerMoveSpeed;
+            float zMovement = Input.GetAxisRaw("Vertical") / 80 * DrawerMoveSpeed;
 
             //引き出しが移動しすぎないように
             if (Drawer.transform.localPosition.x <= 0.41 && zMovement > 0)
@@ -63,14 +76,16 @@ public class drawer : MonoBehaviour
         //一定の範囲にプレイヤーが入った時
         if (other.gameObject.CompareTag("Player"))
         {
-            //マウスの左クリックをしたとき
-            if (Input.GetMouseButtonDown(0))
-            {
-                //プレイヤーが見ているものを取得
-                _rayHitObject = other.GetComponent<CharacterController>().rayHitObject;
+            GetPS4O();
+            //プレイヤーが見ているものを取得
+            _rayHitObject = other.GetComponent<CharacterController>().rayHitObject;
 
-                //プレイヤーが見ているものが上の棚の取っ手だった時
-                if (_rayHitObject != null && _rayHitObject == Drawer)
+            //プレイヤーが見ているものが上の棚の取っ手だった時
+            if (_rayHitObject != null && _rayHitObject == gameObject)
+            {
+                interactImage.SetActive(true);
+                //マウスの左クリックをしたとき
+                if (Input.GetMouseButtonDown(0)||ps4O)
                 {
                     //プレイヤーに格納
                     Player = other.gameObject;
@@ -87,6 +102,10 @@ public class drawer : MonoBehaviour
                     isGrab = true;
                 }
             }
+            else
+            {
+                interactImage.SetActive(false);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -95,6 +114,42 @@ public class drawer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isGrab = false;
+        }
+    }
+
+    void GetPS4O()
+    {
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonEast.isPressed)
+            {
+                ps4O = true;
+            }
+            else
+            {
+                ps4O = false;
+            }
+        }
+    }
+
+    void ImageChange()
+    {
+        //パッド操作のとき
+        if (Gamepad.current != null)
+        {
+            if (interactImage != interactImageGamepad)
+            {
+                //パッド操作のインタラクトの画像を設定
+                interactImage = interactImageGamepad;
+            }
+        }
+        else //キーボードマウス操作のとき
+        {
+            if (interactImage != interactImageKeyboardMouse)
+            {
+                //キーボードマウス操作のインタラクトの画像を設定
+                interactImage = interactImageKeyboardMouse;
+            }
         }
     }
 }

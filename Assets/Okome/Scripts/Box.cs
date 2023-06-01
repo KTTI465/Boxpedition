@@ -53,15 +53,15 @@ public class Box : MonoBehaviour
     }
     public void Idle()
     {
-        Debug.Log("BoxStateがIdleに状態遷移しました。");
+        //Debug.Log("BoxStateがIdleに状態遷移しました。");
     }
     public void Repop()
     {
-        Debug.Log("BoxStateがRepopに状態遷移しました。");
+        //Debug.Log("BoxStateがRepopに状態遷移しました。");
     }
     public void Crash()
     {
-        Debug.Log("BoxStateがCrashに状態遷移しました。");
+        //Debug.Log("BoxStateがCrashに状態遷移しました。");
     }
 
     private void CheckMove()

@@ -1143,7 +1143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3548528941164848440}
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: -5, y: 6.91, z: -11.58}
+  m_LocalPosition: {x: 0, y: 6.5, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   rotationSpeed: {x: 1, y: 1}
   Mask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 311
 --- !u!1 &3712279822184732707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,9 +1660,10 @@ MonoBehaviour:
   firstJumpPower: 10
   secondJumpPower: 12
   doubleJumped: 0
+  rayHitObject: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 819
   charaAnimator: {fileID: 3548528940399394079}
 --- !u!65 &7464698115923253002
 BoxCollider:
@@ -1675,7 +1676,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.25, y: 3.5, z: 1.35}
+  m_Size: {x: 1.7, y: 3.65, z: 1.6}
   m_Center: {x: 0, y: 0.55, z: -0.050000012}
 --- !u!1 &4679455528396078592
 GameObject:

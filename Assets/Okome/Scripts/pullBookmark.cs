@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class pullBookmark : MonoBehaviour
 {
@@ -18,6 +19,17 @@ public class pullBookmark : MonoBehaviour
     //掴んだオブジェクトのrigidbody格納用変数
     new Rigidbody rigidbody;
 
+    [SerializeField]//キーボードマウス操作のときのインタラクトの画像
+    private GameObject interactImageKeyboardMouse;
+
+    [SerializeField]//パッド操作のときのインタラクトの画像
+    private GameObject interactImageGamepad;
+
+    private GameObject interactImage;
+
+    // 〇ボタンが押されているかどうかを取得する
+    bool ps4O = false;
+
     private void Start()
     {
         grabFlg = false;
@@ -25,7 +37,8 @@ public class pullBookmark : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        GetPS4O();
+        ImageChange();
     }
 
     private void OnTriggerStay(Collider other)
@@ -35,9 +48,9 @@ public class pullBookmark : MonoBehaviour
             //判定をtrueにする
             grabFlg = true;
             rigidbody = other.gameObject.GetComponent<Rigidbody>();
-
+            interactImage.SetActive(true);
             // 左ボタンが押されていたら物体を親子関係にする
-            if (Input.GetMouseButton(0) && grabFlg == true)
+            if ((Input.GetMouseButton(0) || ps4O) && grabFlg == true)
             {
                 //Rigidbodyを停止
                 rigidbody.velocity = Vector3.zero;
@@ -64,7 +77,7 @@ public class pullBookmark : MonoBehaviour
                 other.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
                 other.gameObject.transform.Rotate(0.0f, 90.0f, 0.0f);
                 other.gameObject.transform.localPosition = new Vector3(0, 0.35f, 4.5f);
-                
+
                 //真ん中を掴んでいた時
                 if (bookMarkBool.grabMiddle == true)
                 {
@@ -72,7 +85,7 @@ public class pullBookmark : MonoBehaviour
                     other.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
                     other.gameObject.transform.localPosition = new Vector3(0, 0.35f, 1.5f);
                 }
-                
+
 
                 charaAnimator.SetBool("grab", true); // アニメーション切り替え
                 grabStart = true;
@@ -94,6 +107,10 @@ public class pullBookmark : MonoBehaviour
                 grabStart = false;
             }
         }
+        else
+        {
+            interactImage.SetActive(false);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -105,6 +122,41 @@ public class pullBookmark : MonoBehaviour
 
             charaAnimator.SetBool("grab", false); // アニメーション切り替え
             grabStart = false;
+        }
+    }
+
+    void GetPS4O()
+    {
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonEast.isPressed)
+            {
+                ps4O = true;
+            }
+            else
+            {
+                ps4O = false;
+            }
+        }
+    }
+
+    void ImageChange()
+    {
+        if (Gamepad.current != null)
+        {
+            if (interactImage != interactImageGamepad)
+            {
+                //パッド操作のインタラクトの画像を設定
+                interactImage = interactImageGamepad;
+            }
+        }
+        else //キーボードマウス操作のとき
+        {
+            if (interactImage != interactImageKeyboardMouse)
+            {
+                //キーボードマウス操作のインタラクトの画像を設定
+                interactImage = interactImageKeyboardMouse;
+            }
         }
     }
 }
