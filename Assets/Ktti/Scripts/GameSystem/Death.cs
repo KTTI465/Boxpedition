@@ -11,8 +11,8 @@ public class Death : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            CheckPointManager.Get().Respawn();
             fadeinout.fadeout = true;  //‰æ–Ê‚ªˆÃ“]‚·‚é
+            CheckPointManager.Get().Respawn();
         }
     }
 }

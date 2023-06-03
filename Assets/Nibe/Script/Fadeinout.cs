@@ -39,7 +39,7 @@ public class Fadeinout : MonoBehaviour
 
     void FadeOut()
     {
-        alpha += 0.1f;
+        alpha += 0.5f;
         fadealpha.color = new Color(0, 0, 0, alpha);
 
         if (alpha >= 1)
@@ -51,7 +51,7 @@ public class Fadeinout : MonoBehaviour
 
     void FadeIn()
     {
-        alpha -= 0.01f;
+        alpha -= 0.02f;
         fadealpha.color = new Color(0, 0, 0, alpha);
 
         if (alpha <= 0)

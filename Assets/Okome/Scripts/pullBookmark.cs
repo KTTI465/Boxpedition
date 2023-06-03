@@ -49,9 +49,11 @@ public class pullBookmark : MonoBehaviour
             grabFlg = true;
             rigidbody = other.gameObject.GetComponent<Rigidbody>();
             interactImage.SetActive(true);
+            Debug.Log("a");
             // 左ボタンが押されていたら物体を親子関係にする
             if ((Input.GetMouseButton(0) || ps4O) && grabFlg == true)
             {
+                interactImage.SetActive(false);
                 //Rigidbodyを停止
                 rigidbody.velocity = Vector3.zero;
 
@@ -107,10 +109,6 @@ public class pullBookmark : MonoBehaviour
                 grabStart = false;
             }
         }
-        else
-        {
-            interactImage.SetActive(false);
-        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -122,6 +120,7 @@ public class pullBookmark : MonoBehaviour
 
             charaAnimator.SetBool("grab", false); // アニメーション切り替え
             grabStart = false;
+            interactImage.SetActive(false);
         }
     }
 
