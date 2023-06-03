@@ -186,7 +186,7 @@ public class CharacterController : MonoBehaviour
             //Playerの大きさ次第で調整が必要
             jumpDistance = 1.5f;
 
-            isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance);
+            isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
         }
 
         //地面から離れたとき
