@@ -386,8 +386,7 @@ public class TitleManager : MonoBehaviour
 
         if (stageNum == 0)
         {
-            //SceneManager.LoadScene("Stage1_Image");
-            SceneManager.LoadScene("ropeScene");
+            SceneManager.LoadScene("Stage1");
         }
         else if (stageNum == 1)
         {
