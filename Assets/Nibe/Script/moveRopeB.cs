@@ -75,6 +75,9 @@ public class moveRopeB : MonoBehaviour
     // yボタンが押されているかどうかを取得する
     bool ps4Y = false;
 
+    [SerializeField]
+    private Animator charaAnimator;
+
     void Start()
     {
         //プレイヤーを見つける
@@ -121,6 +124,8 @@ public class moveRopeB : MonoBehaviour
 
                     //Rigidbodyを停止
                     rigidbody.velocity = Vector3.zero;
+
+                    charaAnimator.SetBool("climbStay", true); // アニメーション切り替え
                 }
             }
         }
@@ -129,6 +134,8 @@ public class moveRopeB : MonoBehaviour
             //重力を復活させる
             rigidbody.isKinematic = false;
             grabbingRope = false;
+
+            charaAnimator.SetBool("climbStay", false); // アニメーション切り替え
         }
 
         if (grabbingRope == true)
@@ -142,6 +149,8 @@ public class moveRopeB : MonoBehaviour
 
             //ジャンプ用のレイをとめるオブジェクトの位置を設定
             rayStopper.transform.position = player.transform.position - player.transform.up * 1.3f;
+
+            charaAnimator.SetBool("climb", false); // アニメーション切り替え
 
             //上の制限位置より下にいるとき
             if (player.transform.position.y < transform.position.y + positionCorrection)
@@ -198,6 +207,11 @@ public class moveRopeB : MonoBehaviour
                 {
                     //移動先の位置と同じ位置で無いときは移動をする
                     player.transform.position = Vector3.MoveTowards(player.transform.position, climbPos, moveSpeed * Time.deltaTime);
+
+                    if (climbing)
+                    {
+                        charaAnimator.SetBool("climb", true); // アニメーション切り替え
+                    }
                 }
             }
             else
