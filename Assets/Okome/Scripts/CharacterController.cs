@@ -24,7 +24,7 @@ public class CharacterController : MonoBehaviour
     private GameObject connectingBox;
 
     //地面にRayが付いているかの判定
-    bool isGround;
+    public bool isGround;
 
     //1回目のジャンプするときの力を指定するための変数
     public float firstJumpPower;
@@ -45,7 +45,7 @@ public class CharacterController : MonoBehaviour
     //connectingBoxとPlayerの大きさで次第で調整が必要
     private float enterBoxMove = 0.1f;
 
-    
+
     private RaycastHit hit;
     public GameObject rayHitObject;
 
@@ -58,6 +58,9 @@ public class CharacterController : MonoBehaviour
     public CharacterStateMove StateMove { get; set; } = new CharacterStateMove();
     public CharacterStateJump1 StateJump1 { get; set; } = new CharacterStateJump1();
     public CharacterStateJump2 StateJump2 { get; set; } = new CharacterStateJump2();
+    public CharacterStateTrampolineSmallJump StateTrampSmall { get; set; } = new CharacterStateTrampolineSmallJump();
+    public CharacterStateTrampolineBigJump StateTrampBig { get; set; } = new CharacterStateTrampolineBigJump();
+
 
     [SerializeField]
     private Animator charaAnimator;
@@ -76,6 +79,9 @@ public class CharacterController : MonoBehaviour
         StateMove.ExecAction = Move;
         StateJump1.ExecAction = Jump1;
         StateJump2.ExecAction = Jump2;
+
+        StateTrampSmall.ExecAction = TrampSmall;
+        StateTrampBig.ExecAction = TrampBig;
         StateProcessor.State = StateIdle;
 
         //connectingBoxが無かったときに呼び出す
@@ -95,20 +101,21 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
-        CharacterJump();
-        ray();
+
         if (xMovement != 0 || zMovement != 0)
         {
-            StateProcessor.State = StateMove;
+            if (!jumped || !doubleJumped) StateProcessor.State = StateMove;
         }
         else if (xMovement == 0 && zMovement == 0)
         {
-            StateProcessor.State = StateIdle;
+            if (!jumped || !doubleJumped) StateProcessor.State = StateIdle;
         }
+        CharacterJump();
+        ray();
 
         //ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
-        {      
+        {
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }
@@ -224,6 +231,7 @@ public class CharacterController : MonoBehaviour
             if (isGround == true && jumped == false)
             {
                 rb.velocity = Vector3.up * firstJumpPower;
+                StateProcessor.State = StateJump1;
                 jumped = true;
             }
             //空中にいるときかつ二段ジャンプをしていない時
@@ -247,6 +255,7 @@ public class CharacterController : MonoBehaviour
                 charaAnimator.SetBool("jump2", true); // アニメーション切り替え
 
                 //二段ジャンプした判定をtrueにする
+                StateProcessor.State = StateJump2;
                 doubleJumped = true;
             }
         }
@@ -294,12 +303,12 @@ public class CharacterController : MonoBehaviour
 
     public void StateTransition()
     {
-       
+
     }
 
     public void Idle()
     {
-       //Debug.Log("CharacterStateがIdleに状態遷移しました。");
+        //Debug.Log("CharacterStateがIdleに状態遷移しました。");
     }
     public void Move()
     {
@@ -312,5 +321,13 @@ public class CharacterController : MonoBehaviour
     public void Jump2()
     {
         //Debug.Log("CharacterStateがJump2に状態遷移しました。");
+    }
+    public void TrampSmall()
+    {
+        UnityEngine.Debug.Log("CharacterStateがTrampSmallに状態遷移しました。");
+    }
+    public void TrampBig()
+    {
+        UnityEngine.Debug.Log("CharacterStateがTrampBigに状態遷移しました。");
     }
 }

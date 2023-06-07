@@ -5,14 +5,14 @@ using System;
 
 // キャラクターの状態（ステート）
 
-namespace BoxState
+namespace TrampolineState
 {
     //ステートの実行を管理するクラス
-    public class BoxStateProcessor
+    public class TrampolineStateProcessor
     {
         //ステート本体
-        private BoxState _State;
-        public BoxState State
+        private TrampolineState _State;
+        public TrampolineState State
         {
             set { _State = value; }
             get { return _State; }
@@ -24,7 +24,7 @@ namespace BoxState
 
 
     //ステートのクラス
-    public abstract class BoxState
+    public abstract class TrampolineState
     {
         //デリゲート
         public Action ExecAction { get; set; }
@@ -39,30 +39,30 @@ namespace BoxState
         public abstract string GetStateName();
     }
 
-    //箱の待機の状態
-    public class BoxStateIdle : BoxState
+    //トランポリンが待機状態
+    public class TrampolineStateIdle : TrampolineState
     {
         public override string GetStateName()
         {
-            return "State:BoxIdle";
+            return "State:TrampolineIdle";
         }
     }
 
-    //箱の生成の状態
-    public class BoxStateRepop : BoxState
+    //トランポリンが小ジャンプの状態
+    public class TrampolineStateSmallJump : TrampolineState
     {
         public override string GetStateName()
         {
-            return "State:BoxRepop";
+            return "State:TrampolineSmallJump";
         }
     }
 
-    //箱の爆発の状態
-    public class BoxStateCrash : BoxState
+    //トランポリンが大ジャンプの状態
+    public class TrampolineStateBigJump : TrampolineState
     {
         public override string GetStateName()
         {
-            return "State:Crash";
+            return "State:TrampolineBigJump";
         }
     }
 }
