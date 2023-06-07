@@ -40,7 +40,7 @@ namespace CharacterState
         public abstract string GetStateName();
     }
 
-//待機状態
+    //待機状態
     public class CharacterStateIdle : CharacterState
     {
         public override string GetStateName()
@@ -49,7 +49,7 @@ namespace CharacterState
         }
     }
 
-　//移動状態
+    //移動状態
     public class CharacterStateMove : CharacterState
     {
         public override string GetStateName()
@@ -73,6 +73,42 @@ namespace CharacterState
         public override string GetStateName()
         {
             return "State:Jump2";
+        }
+    }
+
+    //ミス状態
+    public class CharacterStateMiss : CharacterState
+    {
+        public override string GetStateName()
+        {
+            return "State:Miss";
+        }
+    }
+
+    //ミス状態
+    public class CharacterStateCatch : CharacterState
+    {
+        public override string GetStateName()
+        {
+            return "State:Catch";
+        }
+    }
+
+    //トランポリン小ジャンプ
+    public class CharacterStateTrampolineSmallJump : CharacterState
+    {
+        public override string GetStateName()
+        {
+            return "State:TrampolineSmallJump";
+        }
+    }
+
+    //トランポリン大ジャンプ
+    public class CharacterStateTrampolineBigJump : CharacterState
+    {
+        public override string GetStateName()
+        {
+            return "State:TrampolineBigJump";
         }
     }
 }
