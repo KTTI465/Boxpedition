@@ -73,6 +73,16 @@ public class trampolineC : MonoBehaviour
                 StateProcessor.State = StateSmallJump;
                 playerRigidBody.AddForce(Vector3.up * smallJumpPower, ForceMode.Impulse);  //小ジャンプ
             }
+
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        //　衝突したゲームオブジェクトのタグがPlayerのとき処理を行う
+        if (other.gameObject.tag == "Player")
+        {
+                StateProcessor.State = StateIdle;   
         }
     }
 

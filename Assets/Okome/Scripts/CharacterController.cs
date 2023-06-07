@@ -45,7 +45,7 @@ public class CharacterController : MonoBehaviour
     //connectingBoxとPlayerの大きさで次第で調整が必要
     private float enterBoxMove = 0.1f;
 
-    
+
     private RaycastHit hit;
     public GameObject rayHitObject;
 
@@ -101,20 +101,21 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
-        CharacterJump();
-        ray();
+
         if (xMovement != 0 || zMovement != 0)
         {
-            StateProcessor.State = StateMove;
+            if (!jumped || !doubleJumped) StateProcessor.State = StateMove;
         }
         else if (xMovement == 0 && zMovement == 0)
         {
-            StateProcessor.State = StateIdle;
+            if (!jumped || !doubleJumped) StateProcessor.State = StateIdle;
         }
+        CharacterJump();
+        ray();
 
         //ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
-        {      
+        {
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }
@@ -230,6 +231,7 @@ public class CharacterController : MonoBehaviour
             if (isGround == true && jumped == false)
             {
                 rb.velocity = Vector3.up * firstJumpPower;
+                StateProcessor.State = StateJump1;
                 jumped = true;
             }
             //空中にいるときかつ二段ジャンプをしていない時
@@ -253,6 +255,7 @@ public class CharacterController : MonoBehaviour
                 charaAnimator.SetBool("jump2", true); // アニメーション切り替え
 
                 //二段ジャンプした判定をtrueにする
+                StateProcessor.State = StateJump2;
                 doubleJumped = true;
             }
         }
@@ -300,12 +303,12 @@ public class CharacterController : MonoBehaviour
 
     public void StateTransition()
     {
-       
+
     }
 
     public void Idle()
     {
-       //Debug.Log("CharacterStateがIdleに状態遷移しました。");
+        //Debug.Log("CharacterStateがIdleに状態遷移しました。");
     }
     public void Move()
     {
