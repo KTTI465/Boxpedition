@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 
+#if UNITY_EDITOR
 /// <summary>
 /// Prefabを差し替えるウィンドウ
 /// </summary>
@@ -125,3 +126,4 @@ public class ReplacingPrefabWindow : EditorWindow
     }
 
 }
+#endif
