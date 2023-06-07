@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using static UnityEditor.Progress;
 using UnityEngine.UI;
 
 public class optionBGM : MonoBehaviour
