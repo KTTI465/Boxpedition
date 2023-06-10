@@ -3856,15 +3856,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.52
+      value: -2.4
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.92
+      value: -6.7
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 37.69
+      value: 32.2
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4229,6 +4229,14 @@ PrefabInstance:
     - target: {fileID: 8272248402774755878, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292793099281874553, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292793099281874553, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 114.9
       objectReference: {fileID: 0}
     - target: {fileID: 8310753922191852785, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7648,17 +7656,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: charaAnimator
       value: 
       objectReference: {fileID: 479407274}
-    - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
-      propertyPath: ropeMoveDistance
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: interactImageGamepad
       value: 
@@ -10457,7 +10457,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: length
-      value: 36
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: charaAnimator
@@ -10493,7 +10493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867588008793596451, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.599997
+      value: 28.4
       objectReference: {fileID: 0}
     - target: {fileID: 7867588008793596451, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: m_LocalPosition.z
