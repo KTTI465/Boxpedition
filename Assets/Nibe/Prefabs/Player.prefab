@@ -1657,6 +1657,7 @@ MonoBehaviour:
   playerCam: {fileID: 3548528941164848436}
   cam: {fileID: 3548528941164848440}
   box: {fileID: 6526258260094210699, guid: b6697444dbf92624dbee6c0d80a67829, type: 3}
+  isGround: 0
   firstJumpPower: 10
   secondJumpPower: 12
   doubleJumped: 0
@@ -3514,8 +3515,16 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7288602474942657084, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288602474942657084, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
       propertyPath: m_Size.z
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288602474942657084, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
+      propertyPath: m_Center.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7288602474942657084, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
       propertyPath: m_Center.z

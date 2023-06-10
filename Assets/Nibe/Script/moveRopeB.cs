@@ -28,10 +28,10 @@ public class moveRopeB : MonoBehaviour
     GameObject player;
 
     //プレイヤーがロープを上るスピード
-    public float moveSpeed = 5.0f;
+    public float moveSpeed;
 
     //プレイヤーがロープを移動する距離
-    public float ropeMoveDistance = 10f;
+    public float ropeMoveDistance;
 
     //PlayerのCharacterControllerを格納
     private CharacterController characterController;
