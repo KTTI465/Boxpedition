@@ -14,5 +14,11 @@ public class Death : MonoBehaviour
             fadeinout.fadeout = true;  //‰æ–Ê‚ªˆÃ“]‚·‚é
             CheckPointManager.Get().Respawn();
         }
+
+        if (other.CompareTag("ResTarget"))
+        {
+            var ID = other.transform.GetInstanceID();
+            CheckPointManager.Get().ObRespawn(ID);
+        }
     }
 }

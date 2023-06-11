@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class CheckPointManager : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class CheckPointManager : MonoBehaviour
 
     [SerializeField]
     List<ResPoint> checkPoints;
-    
-    List<int> _checkPoint;
 
     [SerializeField]
-    static int _pointIndex;
+    List<Transform> objectTransforms;
+    
+    List<int> _checkPoint;
+    List<int> _objects;
+    List<TransformPR> _objectTransforms;
+
     [SerializeField]
     GameObject playerObject;
 
@@ -42,25 +46,33 @@ public class CheckPointManager : MonoBehaviour
             _checkPoint.Add(point.GetID());
         }
 
+        _objects = new List<int>();
+        _objectTransforms = new List<TransformPR>();
+        foreach (var obTransform in objectTransforms)
+        {
+            _objects.Add(obTransform.GetInstanceID());
+            _objectTransforms.Add(new TransformPR(obTransform.position, obTransform.rotation));
+        }
 
         lastCheckPoint = playerObject.transform.position;
     }
 
     public void Respawn()
     {
-        ChengePoint();
-        //Debug.Log($"Check Point:{_pointIndex} SPAWN");
-    }
-
-    void ChengePoint()
-    {
         ////プレイヤー位置変更箇所
         playerObject.transform.position = lastCheckPoint;
     }
 
+    public void ObRespawn(int id)
+    {
+        var target = GetObjectInstansID(id);
+        objectTransforms[target].GetComponent<Rigidbody>().velocity = Vector3.zero;
+        objectTransforms[target].position = _objectTransforms[target].Tposition;
+        objectTransforms[target].rotation = _objectTransforms[target].Trotation;
+    }
+
     public void SetPoint(int index)
     {
-        _pointIndex = index;
         Debug.Log(GetInstanceListNum(index));
         lastCheckPoint = checkPoints[GetInstanceListNum(index)].checkPoint.position;
     }
@@ -68,5 +80,22 @@ public class CheckPointManager : MonoBehaviour
     int GetInstanceListNum(int id)
     {
         return _checkPoint.IndexOf(id);
+    }
+
+    int GetObjectInstansID(int id)
+    {
+        return _objects.IndexOf(id);
+    }
+}
+
+class TransformPR
+{
+    public Vector3 Tposition;
+    public Quaternion Trotation;
+
+    public TransformPR(Vector3 position, Quaternion rotation)
+    {
+        Tposition = position;
+        Trotation = rotation;
     }
 }
