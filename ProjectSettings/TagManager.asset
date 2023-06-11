@@ -11,6 +11,7 @@ TagManager:
   - TrainTarget
   - joint
   - floor
+  - ResTarget
   layers:
   - Default
   - TransparentFX
