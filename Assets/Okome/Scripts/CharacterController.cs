@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using CharacterState;
+using Palmmedia.ReportGenerator.Core.Parser.Filtering;
+using UnityEngine.UIElements;
 
 public class CharacterController : MonoBehaviour
 {
@@ -67,6 +69,7 @@ public class CharacterController : MonoBehaviour
 
     bool jumpAnim = false;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -124,15 +127,17 @@ public class CharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         CharacterMovement();
-        CharacterRotate();
+        //CharacterRotate();
     }
 
     private void CharacterMovement()
     {
-        xMovement = Input.GetAxisRaw("Horizontal") * movementSpeed;
-        zMovement = Input.GetAxisRaw("Vertical") * movementSpeed;
+        //xMovement = Input.GetAxisRaw("Horizontal") * movementSpeed;
+        //zMovement = Input.GetAxisRaw("Vertical") * movementSpeed;
+        //transform.Translate(xMovement, 0, zMovement);
 
-        transform.Translate(xMovement, 0, zMovement);
+        xMovement = Input.GetAxisRaw("Horizontal");
+        zMovement = Input.GetAxisRaw("Vertical");
 
         if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
@@ -140,6 +145,16 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
+            Vector3 position = new Vector3(transform.position.x + xMovement, transform.position.y, transform.position.z + zMovement);
+            Vector3 diff = position - transform.position;
+
+            //ベクトルの大きさが0.01以上の時に向きを変える処理をする
+            if (diff.magnitude > 0.01f)
+            {
+                transform.rotation = Quaternion.LookRotation(diff); //向きを変更する
+            }
+
+            transform.Translate(0, 0, movementSpeed);
             charaAnimator.SetBool("walk", true); // アニメーション切り替え
         }
     }
