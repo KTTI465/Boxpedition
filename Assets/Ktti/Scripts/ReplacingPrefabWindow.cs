@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
 
 /// <summary>
@@ -125,3 +126,5 @@ public class ReplacingPrefabWindow : EditorWindow
     }
 
 }
+
+#endif

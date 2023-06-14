@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 using ballOfWoolState;
 
 public class ballOfWool : MonoBehaviour
