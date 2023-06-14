@@ -39,7 +39,7 @@ public class camera : MonoBehaviour
     }
     void Update()
     { 
-        Rotate();
+        //Rotate();
         AvoidWall();
     }
 
