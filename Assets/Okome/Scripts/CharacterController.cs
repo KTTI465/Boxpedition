@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using CharacterState;
-using Palmmedia.ReportGenerator.Core.Parser.Filtering;
 using UnityEngine.UIElements;
 
 public class CharacterController : MonoBehaviour

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEditor.PlayerSettings;
 
 public class moveRopeB : MonoBehaviour
 {

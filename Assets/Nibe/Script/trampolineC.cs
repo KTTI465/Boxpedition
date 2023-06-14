@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using CharacterState;
-using static UnityEditor.PlayerSettings;
 using TrampolineState;
 
 public class trampolineC : MonoBehaviour
