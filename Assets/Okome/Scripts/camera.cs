@@ -56,7 +56,8 @@ public class camera : MonoBehaviour
         currentPosition = Parent.transform.position;
         transform.position = transform.position + (currentPosition - prePosition);
 
-        if(Input.GetKey(KeyCode.H))
+        bool stickPressed = Gamepad.current.rightStickButton.isPressed;
+        if (Input.GetKey(KeyCode.H) || (stickPressed == true))
         {
             Vector3 bhindAngle = currentPosition + (Parent.transform.up * firstPosition.y) + (Parent.transform.forward * firstPosition.z);
             transform.position = bhindAngle;
