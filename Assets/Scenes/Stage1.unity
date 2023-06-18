@@ -7745,7 +7745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7867588008793596476, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7867588008793596476, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10575,14 +10575,6 @@ PrefabInstance:
       propertyPath: charaAnimator
       value: 
       objectReference: {fileID: 479407274}
-    - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
-      propertyPath: sideMoveSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
-      propertyPath: forwardMoveSpeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7867588008793596448, guid: fc987f4aeac3d7c498f7efd811e6c59e, type: 3}
       propertyPath: climbUpImageGamepad
       value: 
