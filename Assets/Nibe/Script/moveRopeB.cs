@@ -136,6 +136,46 @@ public class moveRopeB : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
     }
 
+    void ImageChange()
+    {
+        if (Gamepad.current != null) //パッド操作のとき
+        {
+            //パッド操作のインタラクトの画像を設定
+            if (interactImage == null || interactImage != interactImageGamepad)
+            {
+                interactImage = interactImageGamepad;
+            }
+            //パッド操作のロープを上るの画像を設定
+            if (climbUpImage == null || climbUpImage != interactImageGamepad)
+            {
+                climbUpImage = climbUpImageGamepad;
+            }
+            //パッド操作のロープを下りるの画像を設定
+            if (climbDownImage == null || climbDownImage != interactImageGamepad)
+            {
+                climbDownImage = climbDownImageGamepad;
+            }
+        }
+        else //キーボードマウス操作のとき
+        {
+            //キーボードマウス操作のインタラクトの画像を設定
+            if (interactImage == null || interactImage != interactImageKeyboardMouse)
+            {
+                interactImage = interactImageKeyboardMouse;
+            }
+            //キーボードマウス操作のロープを上るの画像を設定
+            if (climbUpImage == null || climbUpImage != climbUpImageGamepad)
+            {
+                climbUpImage = climbUpImageKeyboardMouse;
+            }
+            //キーボードマウス操作のロープを下りるの画像を設定
+            if (climbDownImage == null || climbDownImage != climbDownImageKeyboardMouse)
+            {
+                climbDownImage = climbDownImageKeyboardMouse;
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -314,6 +354,31 @@ public class moveRopeB : MonoBehaviour
         //CharacterMovement();  //相殺
     }
 
+    void GetPS4XY()
+    {
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonSouth.isPressed)
+            {
+                ps4X = true;
+            }
+            else
+            {
+                ps4X = false;
+            }
+
+            if (Gamepad.current.buttonWest.isPressed)
+            {
+                ps4Y = true;
+            }
+            else
+            {
+                ps4Y = false;
+            }
+        }
+    }
+
+    
     void OnTriggerStay(Collider col)
     {
         if (!moveOn&&col.tag == "Player")
@@ -346,69 +411,5 @@ public class moveRopeB : MonoBehaviour
         zMovement = Input.GetAxisRaw("Vertical") * movementSpeed;
 
         player.transform.Translate(-xMovement, 0, -zMovement);  //相殺するために逆向きに力加える
-    }
-
-    void GetPS4XY()
-    {
-        if (Gamepad.current != null)
-        {
-            if (Gamepad.current.buttonSouth.isPressed)
-            {
-                ps4X = true;
-            }
-            else
-            {
-                ps4X = false;
-            }
-
-            if (Gamepad.current.buttonWest.isPressed)
-            {
-                ps4Y = true;
-            }
-            else
-            {
-                ps4Y = false;
-            }
-        }
-    }
-
-    void ImageChange()
-    {
-        if (Gamepad.current != null) //パッド操作のとき
-        {
-            //パッド操作のインタラクトの画像を設定
-            if (interactImage != interactImageGamepad)
-            {
-                interactImage = interactImageGamepad;
-            }
-            //パッド操作のロープを上るの画像を設定
-            if (climbUpImage != interactImageGamepad)
-            {
-                interactImage = interactImageGamepad;
-            }
-            //パッド操作のロープを下りるの画像を設定
-            if (climbDownImage != interactImageGamepad)
-            {
-                interactImage = interactImageGamepad;
-            }
-        }
-        else //キーボードマウス操作のとき
-        {
-            //キーボードマウス操作のインタラクトの画像を設定
-            if (interactImage != interactImageKeyboardMouse)
-            {
-                interactImage = interactImageKeyboardMouse;
-            }
-            //キーボードマウス操作のロープを上るの画像を設定
-            if (climbUpImage != climbUpImageGamepad)
-            {
-                climbUpImage = climbUpImageKeyboardMouse;
-            }
-            //キーボードマウス操作のロープを下りるの画像を設定
-            if (climbDownImage != climbDownImageKeyboardMouse)
-            {
-                climbDownImage = climbDownImageKeyboardMouse;
-            }
-        }
     }
 }

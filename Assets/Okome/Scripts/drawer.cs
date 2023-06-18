@@ -53,7 +53,8 @@ public class drawer : MonoBehaviour
             }
             Drawer.transform.Translate(-zMovement, 0, 0);
             Player.transform.Translate(0, 0, zMovement);
-            if (Input.GetMouseButtonUp(0))
+
+            if (Input.GetMouseButtonUp(0) || !ps4O)
             {
                 isGrab = false;
                 //プレイヤーの移動スクリプトを有効にする
@@ -85,7 +86,7 @@ public class drawer : MonoBehaviour
             {
                 interactImage.SetActive(true);
                 //マウスの左クリックをしたとき
-                if (Input.GetMouseButtonDown(0)||ps4O)
+                if (Input.GetMouseButtonDown(0) || ps4O)
                 {
                     //プレイヤーに格納
                     Player = other.gameObject;
