@@ -46,6 +46,12 @@ public class moveRopeB : MonoBehaviour
     //Rayが当たるものが無いときのロープの長さ
     public float length;
 
+    //ロープを掴んでいるときの前後移動の速さ
+    public float forwardMoveSpeed;
+
+    //ロープを掴んでいるときの左右移動の速さ
+    public float sideMoveSpeed;
+
     //下の位置
     private Vector3 underPosition;
 
@@ -54,6 +60,12 @@ public class moveRopeB : MonoBehaviour
 
     [SerializeField]//ロープにつかめる判定をするColliderを格納
     private CapsuleCollider moveOnCollider;
+
+    //ロープを掴んだ時の距離を格納する
+    private float grabDist;
+
+    //最初のColliderのサイズを格納
+    private float originMoveOnColliderRadius;
 
     [SerializeField] //Playerのジャンプ用のrayをとめるオブジェクトを格納
     private GameObject rayStopper;
@@ -100,22 +112,25 @@ public class moveRopeB : MonoBehaviour
         characterController = player.gameObject.GetComponent<CharacterController>();
 
         //下の位置と下までの距離を設定
-        if(length > 0)
+        if (length > 0)
         {
             //Rayが当たるものが無いときのunderPositionの指定
             underPosition = transform.position - (transform.up * length) + (transform.up * positionCorrection);
         }
-        else if(length == 0 && Physics.Raycast(transform.position, transform.up * -1f, out RaycastHit hit))
+        else if (length == 0 && Physics.Raycast(transform.position, transform.up * -1f, out RaycastHit hit))
         {
             underPosition = hit.point;
         }
         ropeDistance = Vector3.Distance(transform.position, underPosition);
 
         //Colliderの大きさや位置を指定
-        moveOnCollider.center = - new Vector3(0, transform.up.y * (ropeDistance / 2), 0);
-        grabRopeCollider.center = - new Vector3(0, transform.up.y * (ropeDistance / 2), 0);
+        moveOnCollider.center = -new Vector3(0, transform.up.y * (ropeDistance / 2), 0);
+        grabRopeCollider.center = -new Vector3(0, transform.up.y * (ropeDistance / 2), 0);
         moveOnCollider.height = ropeDistance + moveOnCollider.radius * 1.5f;
         grabRopeCollider.height = ropeDistance;
+
+        //Colliderの大きさを格納しておく
+        originMoveOnColliderRadius = moveOnCollider.radius;
 
         //レイヤ―の変更
         gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
@@ -129,7 +144,18 @@ public class moveRopeB : MonoBehaviour
 
         if (grabbingRope == true)
         {
-            if(interactImage == true)
+            //キャラクターを操作できないように
+            characterController.enabled = false;
+
+            if (grabDist == 0)
+            {
+                //掴んだ時点での距離を測り、それ以上離れたらロープを離すようにする
+                grabDist = Vector2.Distance(new Vector2(transform.position.x, transform.position.z),
+                    new Vector2(player.transform.position.x, player.transform.position.z));
+            }
+            moveOnCollider.radius = grabDist - 0.5f;
+
+            if (interactImage == true)
             {
                 interactImage.SetActive(false);
             }
@@ -140,6 +166,8 @@ public class moveRopeB : MonoBehaviour
             rayStopper.transform.position = player.transform.position - player.transform.up * 1.3f;
 
             charaAnimator.SetBool("climb", false); // アニメーション切り替え
+
+
 
             //上の制限位置より下にいるとき
             if (player.transform.position.y < transform.position.y + positionCorrection)
@@ -155,7 +183,7 @@ public class moveRopeB : MonoBehaviour
                     {
                         climbPos = new Vector3(player.transform.position.x, player.transform.position.y + ropeMoveDistance, player.transform.position.z);
                         climbing = true;
-                    } 
+                    }
                 }
                 else
                 {
@@ -164,12 +192,11 @@ public class moveRopeB : MonoBehaviour
                 }
             }
             //上の制限位置より上にいるとき上っていかないようにした
-            else if (player.transform.position.y >= transform.position.y + positionCorrection &&
-                climbing == true)
-            {             
+            else if (player.transform.position.y >= transform.position.y + positionCorrection)
+            {
                 climbPos = player.transform.position;
-                characterController.enabled = true;
                 climbing = false;
+                characterController.enabled = true;
             }
 
             //下の制限位置より上にいるとき
@@ -206,8 +233,6 @@ public class moveRopeB : MonoBehaviour
             //登っているときまたは降りているとき
             if (climbing || climbingDown)
             {
-                //キャラクターを操作できないように
-                characterController.enabled = false;
                 //移動位置と同じ位置になったら移動中のboolをfalseにする
                 if (player.transform.position == climbPos)
                 {
@@ -227,16 +252,32 @@ public class moveRopeB : MonoBehaviour
             }
             else
             {
-                //登っていないときまたは降りていないときはロープで操作できるように
-                characterController.enabled = true;
+                if (characterController.enabled == false)
+                {
+                    //登っていないときまたは降りていないときはロープで操作できるように
+                    float xMovement = Input.GetAxisRaw("Horizontal") * -forwardMoveSpeed;
+                    float zMovement = Input.GetAxisRaw("Vertical");
+                    if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z),
+                        new Vector2(player.transform.position.x, player.transform.position.z)) <= 1f)
+                    {
+                        zMovement = Mathf.Clamp(zMovement, -1, 0);
+                    }
+                    player.transform.position = player.transform.position + (player.transform.forward * (zMovement / (10 * sideMoveSpeed)));
+                    player.transform.LookAt(new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
+                    player.transform.RotateAround(new Vector3(transform.position.x, player.transform.position.y, transform.position.z), transform.up, xMovement);
+                }
             }
         }
         else
         {
             //キャラクターがロープを掴んでいない時は
             //ジャンプ用のレイをとめるオブジェクトの位置を一番上に設定
-            if(gameObject.transform.root == true)
-            rayStopper.transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+            if (gameObject.transform.root == true)
+                rayStopper.transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+
+            //掴むことができる範囲を元に戻す
+            moveOnCollider.radius = originMoveOnColliderRadius;
+            grabDist = 0;
         }
 
         if (moveOn == true)  //登る
@@ -262,19 +303,28 @@ public class moveRopeB : MonoBehaviour
             //重力を復活させる
             rigidbody.isKinematic = false;
             grabbingRope = false;
+            interactImage.SetActive(false);
+            climbUpImage.SetActive(false);
+            climbDownImage.SetActive(false);
+
+            characterController.enabled = true;
 
             charaAnimator.SetBool("climbStay", false); // アニメーション切り替え
         }
         //CharacterMovement();  //相殺
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
-        if (col.tag == "Player")
+        if (!moveOn&&col.tag == "Player")
         {
-            //掴むことができるように
-            moveOn = true;
-            interactImage.SetActive(true);
+            //上の制限位置より下の時
+            if (player.transform.position.y < transform.position.y)
+            {
+                //掴むことができるように
+                moveOn = true;
+                interactImage.SetActive(true);
+            }
         }
     }
 
@@ -286,6 +336,7 @@ public class moveRopeB : MonoBehaviour
             interactImage.SetActive(false);
             climbUpImage.SetActive(false);
             climbDownImage.SetActive(false);
+            characterController.enabled = true;
         }
     }
 
@@ -345,11 +396,11 @@ public class moveRopeB : MonoBehaviour
         {
             //キーボードマウス操作のインタラクトの画像を設定
             if (interactImage != interactImageKeyboardMouse)
-            { 
+            {
                 interactImage = interactImageKeyboardMouse;
             }
             //キーボードマウス操作のロープを上るの画像を設定
-            if (climbUpImage !=  climbUpImageGamepad)
+            if (climbUpImage != climbUpImageGamepad)
             {
                 climbUpImage = climbUpImageKeyboardMouse;
             }
