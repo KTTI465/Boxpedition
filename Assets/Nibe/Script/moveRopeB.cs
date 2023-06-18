@@ -307,6 +307,8 @@ public class moveRopeB : MonoBehaviour
             climbUpImage.SetActive(false);
             climbDownImage.SetActive(false);
 
+            characterController.enabled = true;
+
             charaAnimator.SetBool("climbStay", false); // アニメーション切り替え
         }
         //CharacterMovement();  //相殺
@@ -334,6 +336,7 @@ public class moveRopeB : MonoBehaviour
             interactImage.SetActive(false);
             climbUpImage.SetActive(false);
             climbDownImage.SetActive(false);
+            characterController.enabled = true;
         }
     }
 
