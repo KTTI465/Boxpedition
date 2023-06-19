@@ -14,6 +14,7 @@ public class stageManager : MonoBehaviour
     [SerializeField] TitleSlider titleSlider;
 
     [SerializeField] GameObject optionPanel;
+    [SerializeField] GameObject TitleButton;
 
     [SerializeField] Text bgmText;
     [SerializeField] Text seText;
@@ -151,6 +152,7 @@ public class stageManager : MonoBehaviour
         if (openOption)
         {
             optionPanel.SetActive(false);
+            TitleButton.SetActive(false);
             openOption = false;
             Time.timeScale = 1;
 
@@ -161,6 +163,7 @@ public class stageManager : MonoBehaviour
             titleSlider.SetSensi(0);
 
             optionPanel.SetActive(true);
+            TitleButton.SetActive(true);
             openOption = true;
             Time.timeScale = 0;         
         }
