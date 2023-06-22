@@ -38,6 +38,8 @@ public class drawer : MonoBehaviour
     private void Update()
     {
         ImageChange();
+
+        /*
         if (isGrab == true && Player != null)
         {
             float zMovement = Input.GetAxisRaw("Vertical") / 80 * DrawerMoveSpeed;
@@ -54,12 +56,14 @@ public class drawer : MonoBehaviour
             Drawer.transform.Translate(-zMovement, 0, 0);
             Player.transform.Translate(0, 0, zMovement);
 
-            if (Input.GetMouseButtonUp(0) || !ps4O)
+            
+            if (Input.GetMouseButtonDown(0) || ps4O)
             {
                 isGrab = false;
                 //プレイヤーの移動スクリプトを有効にする
                 Player.GetComponent<CharacterController>().enabled = true;
             }
+            
 
             charaAnimator.SetBool("pull", true); // アニメーション切り替え
         }
@@ -70,6 +74,7 @@ public class drawer : MonoBehaviour
 
             charaAnimator.SetBool("pull", false); // アニメーション切り替え
         }
+        */
     }
 
     private void OnTriggerStay(Collider other)
@@ -81,8 +86,37 @@ public class drawer : MonoBehaviour
             //プレイヤーが見ているものを取得
             _rayHitObject = other.GetComponent<CharacterController>().rayHitObject;
 
+
+            if (isGrab == true && Player != null)
+            {
+                float zMovement = Input.GetAxisRaw("Vertical") / 80 * DrawerMoveSpeed;
+
+                //引き出しが移動しすぎないように
+                if (Drawer.transform.localPosition.x <= 0.41 && zMovement > 0)
+                {
+                    zMovement = 0;
+                }
+                else if (Drawer.transform.localPosition.x >= 1 && zMovement < 0)
+                {
+                    zMovement = 0;
+                }
+                Drawer.transform.Translate(-zMovement, 0, 0);
+                Player.transform.Translate(0, 0, zMovement);
+
+
+                if (Input.GetMouseButtonDown(0) || ps4O)
+                {
+                    isGrab = false;
+
+                    //プレイヤーの移動スクリプトを有効にする
+                    Player.GetComponent<CharacterController>().enabled = true;
+
+                    charaAnimator.SetBool("pull", false); // アニメーション切り替え
+                }
+            }
+
             //プレイヤーが見ているものが上の棚の取っ手だった時
-            if (_rayHitObject != null && _rayHitObject == gameObject)
+            else if (_rayHitObject != null && _rayHitObject == gameObject)
             {
                 interactImage.SetActive(true);
                 //マウスの左クリックをしたとき
@@ -101,6 +135,8 @@ public class drawer : MonoBehaviour
                     Player.transform.position = transform.right * -0.1f + Player.transform.position;
 
                     isGrab = true;
+
+                    charaAnimator.SetBool("pull", true); // アニメーション切り替え
                 }
             }
             else
@@ -115,6 +151,11 @@ public class drawer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isGrab = false;
+
+            //プレイヤーの移動スクリプトを有効にする
+            Player.GetComponent<CharacterController>().enabled = true;
+
+            charaAnimator.SetBool("pull", false); // アニメーション切り替え
         }
     }
 
@@ -122,7 +163,7 @@ public class drawer : MonoBehaviour
     {
         if (Gamepad.current != null)
         {
-            if (Gamepad.current.buttonEast.isPressed)
+            if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 ps4O = true;
             }

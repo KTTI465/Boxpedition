@@ -72,7 +72,7 @@ public class camera : MonoBehaviour
 
     void Rotate()
     {
-        float cal = PlayerPrefs.GetFloat("Sensi");  //マウス感度を取得してる（重要）
+        float cal = PlayerPrefs.GetFloat("Sensi") * 2;  //マウス感度を取得してる
         transform.LookAt(Parent.transform);
         float rotX = Input.GetAxis("Mouse X") * rotationSpeed.x;
         float rotY = Input.GetAxis("Mouse Y") * rotationSpeed.y;

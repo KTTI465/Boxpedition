@@ -153,6 +153,8 @@ public class CharacterController : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(diff); //向きを変更する
             }
 
+            transform.Rotate(new Vector3(0, cam.transform.localEulerAngles.y, 0)); //カメラの角度を足す
+
             transform.Translate(0, 0, movementSpeed);
             charaAnimator.SetBool("walk", true); // アニメーション切り替え
         }
