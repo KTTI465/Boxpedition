@@ -24,11 +24,11 @@ public class Fan : MonoBehaviour
     void Update()
     {
         Vector3 FanA = fan.transform.position;
-        Vector3 capsule = main.transform.position;
+        Vector3 player = main.transform.position;
         Vector3 Off = botan.transform.position;
         Vector3 On = new Vector3(Off.x,Off.y,Off.z + 0.3f);
 
-        float arie = Vector3.Distance(FanA, capsule);
+        float arie = Vector3.Distance(FanA, player);
 
         if (arie < 10.0f && Input.GetKey(KeyCode.R))
         {
@@ -48,10 +48,10 @@ public class Fan : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("main") && FanAction == true)
+        if (other.CompareTag("Player") && FanAction == true)
         {
             Vector3 capsule = main.transform.position;
-            main.transform.position = new Vector3(capsule.x, capsule.y + 0.1f, capsule.z + 1.0f);
+            main.transform.position = new Vector3(capsule.x, capsule.y + 0.1f, capsule.z - 1.0f);
         }
     }
 
