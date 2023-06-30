@@ -534,7 +534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &836879314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,6 +916,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckPoint1
       objectReference: {fileID: 0}
+    - target: {fileID: 6619100295947604979, guid: 0d7a19745ba01444a9fda12640b22d7a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d7a19745ba01444a9fda12640b22d7a, type: 3}
 --- !u!1001 &941288326858606450
@@ -972,6 +976,10 @@ PrefabInstance:
     - target: {fileID: 6882090946955668002, guid: 7d4bcf30a39a8c34b9dba23843a88375, type: 3}
       propertyPath: m_Name
       value: Respawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882090946955668002, guid: 7d4bcf30a39a8c34b9dba23843a88375, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d4bcf30a39a8c34b9dba23843a88375, type: 3}
@@ -1038,6 +1046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rope
       objectReference: {fileID: 0}
+    - target: {fileID: 3133244856965915607, guid: 5f6dbd4306c53f049816bc9848c4d75c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f6dbd4306c53f049816bc9848c4d75c, type: 3}
 --- !u!1001 &5701332606107304777
@@ -1095,6 +1107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckPoint2
       objectReference: {fileID: 0}
+    - target: {fileID: 5590305043931691179, guid: 39b9af782e2318a4cbe543d345f233ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5729219300059150623, guid: 39b9af782e2318a4cbe543d345f233ea, type: 3}
       propertyPath: resPoint
       value: 
@@ -1111,6 +1127,10 @@ PrefabInstance:
     - target: {fileID: 4186561276380856946, guid: 8cf770d53a1ab4e4a9187d3a5077e9b4, type: 3}
       propertyPath: m_Name
       value: CheckPointManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186561276380856946, guid: 8cf770d53a1ab4e4a9187d3a5077e9b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4642937990249488418, guid: 8cf770d53a1ab4e4a9187d3a5077e9b4, type: 3}
       propertyPath: m_RootOrder

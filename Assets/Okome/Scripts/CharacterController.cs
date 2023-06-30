@@ -191,6 +191,12 @@ public class CharacterController : MonoBehaviour
         transform.localRotation = characterRot;
     }
 
+    private void OnDrawGizmos()
+    {
+        float radius = transform.lossyScale.x * 0.8f;
+        Gizmos.DrawWireSphere(transform.position + transform.up * -jumpDistance, radius);
+    }
+
     private void CharacterJump()
     {
         //connectingBoxがあるとき
@@ -199,17 +205,24 @@ public class CharacterController : MonoBehaviour
             //connectingBoxがあることも加味してのPlayerが地面についているかを判定するRayの長さ　
             //値は変更する必要あり（今は埋め込みで実装できていないのでこの値）
             //箱とPlayerの大きさ次第でも調整が必要
-            jumpDistance = 1.5f;
+            jumpDistance = 0.7f;
 
-            isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
+            float radius = transform.lossyScale.x * 0.8f;
+
+            isGround = Physics.SphereCast(transform.position, radius, Vector3.up * -1f, out var hits, jumpDistance, layerMask);
+            
+            //isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
         }
         else
         {
             //connectingBoxが無いときにPlayerが地面についているかを判定するRayの長さ
             //Playerの大きさ次第で調整が必要
-            jumpDistance = 1.5f;
+            jumpDistance = 0.7f;
 
-            isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
+            float radius = transform.lossyScale.x * 0.8f;
+
+            isGround = Physics.SphereCast(transform.position, radius, Vector3.up * -1f, out var hits, jumpDistance, layerMask);
+            //isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
         }
 
         //地面から離れたとき
