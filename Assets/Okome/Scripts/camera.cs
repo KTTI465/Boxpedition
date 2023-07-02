@@ -44,7 +44,7 @@ public class camera : MonoBehaviour
         firstPosition = transform.localPosition;
         if (transform.root.gameObject.CompareTag("Player"))
             gameObject.transform.parent = null;
-        Position = transform.position;       
+        Position = transform.position;
         Distance = Vector3.Distance(Parent.transform.position, transform.position);
         currentPosition = Parent.transform.position;
     }
@@ -124,14 +124,13 @@ public class camera : MonoBehaviour
 
     void AvoidWall()
     {
-        //壁を避けていないとき
-        if (avoidWall == false)
-        {
-            Position = transform.position;
-        }
+
+        Position = Parent.transform.position - transform.forward * Distance;
+
+
         //プレイヤーとカメラの間にオブジェクトがあるとき
-        if (Physics.SphereCast(Parent.transform.position, 0.5f, (transform.position - Parent.transform.position　).normalized, out Hit, Distance, Mask))
-        {      
+        if (Physics.SphereCast(Parent.transform.position, 0.5f, (transform.position - Parent.transform.position).normalized, out Hit, Distance, Mask))
+        {
             avoidWall = true;
             if (Hit.distance < nearestCameraPosition + 0.1f)
             {
