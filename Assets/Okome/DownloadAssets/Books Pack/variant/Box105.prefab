@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5011939155562583767}
   - component: {fileID: 5011939155561256689}
   - component: {fileID: 5011939155560158257}
+  - component: {fileID: 4457025442426643259}
   m_Layer: 0
   m_Name: Box105
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5011939155562351351}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 1.2328752, y: 0.10747913, z: -4.735816}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 35, y: 30, z: 40}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!33 &5011939155561256689
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4457025442426643259
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5011939155562351351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.025914462, y: 0.1408771, z: 0.21495827}
+  m_Center: {x: 0, y: 0.00000013783574, z: 0}
