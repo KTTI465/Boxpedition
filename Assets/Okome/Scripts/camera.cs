@@ -124,14 +124,10 @@ public class camera : MonoBehaviour
 
     void AvoidWall()
     {
-
         Position = Parent.transform.position - transform.forward * Distance;
-
-
         //プレイヤーとカメラの間にオブジェクトがあるとき
         if (Physics.SphereCast(Parent.transform.position, 0.5f, (transform.position - Parent.transform.position).normalized, out Hit, Distance, Mask))
         {
-            avoidWall = true;
             if (Hit.distance < nearestCameraPosition + 0.1f)
             {
                 //カメラとプレイヤーの距離が近いときカメラが中に埋まらないように
@@ -145,10 +141,6 @@ public class camera : MonoBehaviour
         {
             //カメラを元の位置まで移動する
             transform.localPosition = Vector3.Lerp(transform.position, Position, 2);
-            if (avoidWall == true)
-            {
-                avoidWall = false;
-            }
         }
     }
 }
