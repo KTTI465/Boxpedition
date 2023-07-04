@@ -1578,7 +1578,7 @@ GameObject:
   - component: {fileID: 3548528940399394075}
   - component: {fileID: 3548528940399394079}
   - component: {fileID: 3548528940399394077}
-  - component: {fileID: 7464698115923253002}
+  - component: {fileID: 7720121747331359545}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1667,8 +1667,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 819
   charaAnimator: {fileID: 3548528940399394079}
---- !u!65 &7464698115923253002
-BoxCollider:
+--- !u!136 &7720121747331359545
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1677,9 +1677,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7, y: 3.65, z: 1.6}
-  m_Center: {x: 0, y: 0.55, z: -0.050000012}
+  m_Radius: 0.7
+  m_Height: 3.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &4679455528396078592
 GameObject:
   m_ObjectHideFlags: 0
