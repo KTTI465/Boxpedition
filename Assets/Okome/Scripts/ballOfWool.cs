@@ -17,11 +17,14 @@ public class ballOfWool : MonoBehaviour
     private Animator animator;
     private bool enabledAnimation;
 
-    private GameObject Player;
+    private GameObject player;
 
-    private GameObject _rayHitObject;
+    private List<GameObject> _interactGameObjectsList = new List<GameObject>();
 
     public Animator charaAnimator;
+
+    [SerializeField]
+    private SphereCollider sphereCollider;
 
     private Vector3 ropePos;
 
@@ -68,9 +71,9 @@ public class ballOfWool : MonoBehaviour
         {
             if (enabledAnimation == true)
             {
-                _rayHitObject = other.GetComponent<CharacterController>().rayHitObject;
+                _interactGameObjectsList = other.GetComponent<CharacterController>().InteractGameObjectsList;
 
-                if (_rayHitObject != null && _rayHitObject == gameObject)
+                if (_interactGameObjectsList != null && _interactGameObjectsList.Contains(gameObject))
                 {
                     GetPS4O();
                     interactImage.SetActive(true);
@@ -78,7 +81,7 @@ public class ballOfWool : MonoBehaviour
                     if (Input.GetMouseButton(0) || ps4O)
                     {
                         charaAnimator.SetBool("grab", true); // アニメーション切り替え
-                        Player = other.gameObject;
+                        player = other.gameObject;
                         animator.SetTrigger("rollBallOfWool");
                         enabledAnimation = false;
                     }
@@ -107,7 +110,8 @@ public class ballOfWool : MonoBehaviour
     {
         StateProcessor.State = StateAnimation;
         rope.SetActive(true);
-        Player.GetComponent<CharacterController>().enabled = false;
+        player.GetComponent<CharacterController>().enabled = false;
+        sphereCollider.isTrigger = true;
         animationCamara.GetComponent<Camera>().depth = 1;
     }
     public void SetRopePos()
@@ -118,7 +122,8 @@ public class ballOfWool : MonoBehaviour
     public void EndAnimation()
     {
         StateProcessor.State = StateIdle;
-        Player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<CharacterController>().enabled = true;
+        sphereCollider.isTrigger = false;
         Destroy(animationCamara);
         gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
         charaAnimator.SetBool("grab", false); // アニメーション切り替え

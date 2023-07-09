@@ -70,7 +70,7 @@ public class moveRopeB : MonoBehaviour
     [SerializeField] //Playerのジャンプ用のrayをとめるオブジェクトを格納
     private GameObject rayStopper;
 
-    private GameObject _rayHitObject;
+    private List<GameObject> _interactGameObjectsList;
 
     [SerializeField]//キーボードマウス操作のときのインタラクトの画像
     private GameObject interactImageKeyboardMouse;
@@ -322,8 +322,8 @@ public class moveRopeB : MonoBehaviour
 
         if (moveOn == true)  //登る
         {
-            if (characterController.rayHitObject != null &&
-                characterController.rayHitObject == gameObject &&
+            if (characterController.InteractGameObjectsList != null &&
+                characterController.InteractGameObjectsList.Contains(gameObject) &&
                 (Input.GetKeyDown(KeyCode.Space) || ps4X))
             {
                 if (grabbingRope == false)

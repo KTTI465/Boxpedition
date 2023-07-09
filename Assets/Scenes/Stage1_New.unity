@@ -4335,15 +4335,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.7
+      value: 23.2
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 57.8
+      value: 38.8
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -234.8
+      value: -223.2
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13507,7 +13507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400377470}
   m_LocalRotation: {x: -0.02932042, y: 0.9336462, z: -0.07861111, w: -0.34823185}
-  m_LocalPosition: {x: 21.222864, y: 30.887562, z: -97.833916}
+  m_LocalPosition: {x: 37.63, y: 38.67, z: -113.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13802,6 +13802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationCamara: {fileID: 1400377470}
   charaAnimator: {fileID: 1419163539}
+  sphereCollider: {fileID: 1419163537}
   rope: {fileID: 2037031483}
   interactImageKeyboardMouse: {fileID: 273571336}
   interactImageGamepad: {fileID: 344646181}
@@ -13860,7 +13861,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9f103eb7f44b48f4f8604db6cd893df1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -15894,8 +15895,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3133244857254977649, guid: 5f6dbd4306c53f049816bc9848c4d75c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133244857254977649, guid: 5f6dbd4306c53f049816bc9848c4d75c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21
+      value: 19.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133244857254977649, guid: 5f6dbd4306c53f049816bc9848c4d75c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f6dbd4306c53f049816bc9848c4d75c, type: 3}

@@ -38,6 +38,8 @@ public class camera : MonoBehaviour
     //カメラがオブジェクトを避けているかの判定
     private bool avoidWall;
 
+    bool stickPressed;
+
     void Start()
     {
         Parent = transform.root.gameObject;
@@ -55,8 +57,11 @@ public class camera : MonoBehaviour
         prePosition = currentPosition;
         currentPosition = Parent.transform.position;
         transform.position = transform.position + (currentPosition - prePosition);
-
-        bool stickPressed = Gamepad.current.rightStickButton.isPressed;
+        if(Gamepad.current != null)
+        {
+            stickPressed = Gamepad.current.rightStickButton.isPressed;
+        }
+        
         if (Input.GetKey(KeyCode.H) || (stickPressed == true))
         {
             Vector3 bhindAngle = currentPosition + (Parent.transform.up * firstPosition.y) + (Parent.transform.forward * firstPosition.z);
