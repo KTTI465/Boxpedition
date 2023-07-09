@@ -13,7 +13,7 @@ public class drawer : MonoBehaviour
     private GameObject Player;
 
     //プレイヤーが見ているものを格納
-    private GameObject _rayHitObject;
+    private List<GameObject> _interactGameObjectsList = new List<GameObject>();
 
     public float DrawerMoveSpeed;
 
@@ -84,7 +84,7 @@ public class drawer : MonoBehaviour
         {
             GetPS4O();
             //プレイヤーが見ているものを取得
-            _rayHitObject = other.GetComponent<CharacterController>().rayHitObject;
+            _interactGameObjectsList = other.GetComponent<CharacterController>().InteractGameObjectsList;
 
 
             if (isGrab == true && Player != null)
@@ -116,7 +116,7 @@ public class drawer : MonoBehaviour
             }
 
             //プレイヤーが見ているものが上の棚の取っ手だった時
-            else if (_rayHitObject != null && _rayHitObject == gameObject)
+            else if (_interactGameObjectsList != null && _interactGameObjectsList.Contains(gameObject))
             {
                 interactImage.SetActive(true);
                 //マウスの左クリックをしたとき

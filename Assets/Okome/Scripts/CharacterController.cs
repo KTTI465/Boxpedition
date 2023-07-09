@@ -46,9 +46,7 @@ public class CharacterController : MonoBehaviour
     //connectingBoxとPlayerの大きさで次第で調整が必要
     private float enterBoxMove = 0.1f;
 
-
-    private RaycastHit hit;
-    public GameObject rayHitObject;
+    public List<GameObject> InteractGameObjectsList = new List<GameObject>();
 
     public LayerMask layerMask;
 
@@ -102,8 +100,7 @@ public class CharacterController : MonoBehaviour
     }
 
     void Update()
-    {
-
+    { 
         if (xMovement != 0 || zMovement != 0)
         {
             if (!jumped || !doubleJumped) StateProcessor.State = StateMove;
@@ -113,7 +110,6 @@ public class CharacterController : MonoBehaviour
             if (!jumped || !doubleJumped) StateProcessor.State = StateIdle;
         }
         CharacterJump();
-        ray();
 
         //ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
@@ -318,16 +314,6 @@ public class CharacterController : MonoBehaviour
         {
             jumped = true;
         }
-    }
-
-    public void ray()
-    {
-        if (Physics.Raycast(playerCam.ViewportPointToRay(new Vector2(0.5f, 0.55f)), out hit, 100f, layerMask))
-        {
-            rayHitObject = hit.collider.gameObject;
-        }
-        else
-            rayHitObject = null;
     }
 
     public void StateTransition()
