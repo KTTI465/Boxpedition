@@ -82,7 +82,7 @@ public class TitleSlider : MonoBehaviour
 
     public void SetSE(float value)
     {
-        //-20`0‚É•ÏŠ·
+        //-80`0‚É•ÏŠ·
         seValue = -80f + (value * 80f);
 
         // •Û‘¶

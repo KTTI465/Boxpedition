@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 
+
+// ã‚é—p‚Ìƒ[ƒv
+
 public class moveRopeB : MonoBehaviour
 {
     private float xMovement, zMovement;
