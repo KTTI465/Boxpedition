@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 
+
+// ターザン用のロープ
+
 public class moveRopeA : MonoBehaviour
 {
     private float xMovement, zMovement;
