@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class stageSelectSystem : MonoBehaviour
@@ -11,11 +12,9 @@ public class stageSelectSystem : MonoBehaviour
     public GameObject stage2Text;
     public GameObject stage2Image;
 
+    public GameObject rightButton;
+    public GameObject leftButton;
 
-    [SerializeField] AudioMixer audioMixer;
-
-    public AudioClip stageSelectSE;
-    AudioSource audioSource;
 
     public bool DontDestroyEnabled = true;
 
@@ -25,27 +24,19 @@ public class stageSelectSystem : MonoBehaviour
     bool moveLeft = false;
     bool moveRight = false;
 
+    private bool right = false;
+    private bool left = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        // Componentを取得
-        audioSource = GetComponent<AudioSource>();
-
-        if (DontDestroyEnabled)
-        {
-            // Sceneを遷移してもオブジェクトが消えないようにする
-            DontDestroyOnLoad(this);
-        }
+        rightButton.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //audioMixerに代入
-        audioMixer.SetFloat("SE", PlayerPrefs.GetFloat("SE"));
-
-
         if (moveLeft == true)
         {
             if (moveCount <= 100)
@@ -98,68 +89,103 @@ public class stageSelectSystem : MonoBehaviour
             }
         }
 
+        if (!moveLeft && !moveRight && stageNum == 1)
+        {
+            rightButton.SetActive(true);
+        }
+        else if (!moveLeft && !moveRight && stageNum == 2)
+        {
+            leftButton.SetActive(true);
+        }
+        else if (!moveLeft && !moveRight)
+        {
+            rightButton.SetActive(true);
+            leftButton.SetActive(true);
+        }
 
-        if (Input.GetKey(KeyCode.S))
+        /*
+        if ()
         {
             StartGame();  //ゲームスタート
         }
+        */
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (left)
         {
             StageLeft();  //左側のステージに移る
+            left = false;
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (right)
         {
             StageRight();  //右側のステージに移る
+            right = false;
         }
+
+        // ゲームパッドが接続されていないとnullになる。
+        if (Gamepad.current == null) return;
+
+        getPS4();
     }
 
 
-    //スタートボタンを押したら実行する
     public void StartGame()
     {
         if (moveLeft == false && moveRight == false)
         {
             if (stageNum == 1)
             {
-                audioSource.PlayOneShot(stageSelectSE);
-                SceneManager.LoadScene("Stage1_Image");
+                //SceneManager.LoadScene("Stage1_Image");
             }
             else if (stageNum == 2)
             {
-                audioSource.PlayOneShot(stageSelectSE);
+
             }
         }
     }
 
 
-    //左側のボタンを押したら実行する
     public void StageLeft()
     {
         if (moveLeft == false && moveRight == false)
         {
-            audioSource.PlayOneShot(stageSelectSE);
-
             if (stageNum != 1)
             {
+                rightButton.SetActive(false);
+                leftButton.SetActive(false);
+
                 moveLeft = true;
             }
         }
     }
 
 
-    //右側のボタンを押したら実行する
     public void StageRight()
     {
         if (moveLeft == false && moveRight == false)
         {
-            audioSource.PlayOneShot(stageSelectSE);
-
             if (stageNum != 2)
             {
+                rightButton.SetActive(false);
+                leftButton.SetActive(false);
+
                 moveRight = true;
             }
+        }
+    }
+
+    void getPS4()
+    {
+        // スティックの入力を受け取る
+        var v = Gamepad.current.leftStick.ReadValue();
+
+        if (v.x >= 0.75)
+        {
+            right = true;
+        }
+        else if (v.x <= -0.75)
+        {
+            left = true;
         }
     }
 }
