@@ -4661,6 +4661,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7517794401394311043, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1419163541}
     - target: {fileID: 7552289799483423559, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -13845,6 +13849,11 @@ MonoBehaviour:
   startJoint: {fileID: 1619156847}
   interval: 0.45
   ropeBody: {fileID: 1619156848}
+--- !u!4 &1419163541 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9137077693559468034, guid: 3d8c2f6ec6c0e8948b3a46aed2764583, type: 3}
+  m_PrefabInstance: {fileID: 2131609383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1430278418
 GameObject:
   m_ObjectHideFlags: 0
