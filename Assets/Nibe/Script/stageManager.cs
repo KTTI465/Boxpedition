@@ -24,7 +24,7 @@ public class stageManager : MonoBehaviour
 
     public bool openOption = false;
     private int optionNum = 0;
-    private int ps4Count = 200;
+    private int ps4Count = 25;
 
     private float r1 = 1.0f;
     private float g1 = 1.0f;
@@ -181,7 +181,7 @@ public class stageManager : MonoBehaviour
         // スティックの入力を受け取る
         var v = Gamepad.current.leftStick.ReadValue();
 
-        if (ps4Count >= 200)
+        if (ps4Count >= 25)
         {
             if (v.x >= 0.75)
             {
