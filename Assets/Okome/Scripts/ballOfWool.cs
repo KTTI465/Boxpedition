@@ -109,7 +109,6 @@ public class ballOfWool : MonoBehaviour
     public void StartAnimation()
     {
         StateProcessor.State = StateAnimation;
-        rope.SetActive(true);
         player.GetComponent<CharacterController>().enabled = false;
         sphereCollider.isTrigger = true;
         animationCamara.GetComponent<Camera>().depth = 1;
@@ -127,6 +126,8 @@ public class ballOfWool : MonoBehaviour
         Destroy(animationCamara);
         gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
         charaAnimator.SetBool("grab", false); // アニメーション切り替え
+
+        rope.SetActive(true);
     }
 
     void GetPS4O()

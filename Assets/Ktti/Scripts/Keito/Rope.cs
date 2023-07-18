@@ -10,7 +10,7 @@ public class Rope : MonoBehaviour
     void Awake()
     {
         line = GetComponent<LineRenderer>();
-        line.material = new Material(Shader.Find("Unlit/Color"));
+        //line.material = new Material(Shader.Find("Unlit/Color"));
 
         SetLine(vertices);
     }

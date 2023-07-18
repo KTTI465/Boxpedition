@@ -34,9 +34,6 @@ public class warpRope : MonoBehaviour
     // ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ðŽæ“¾‚·‚é
     bool ps4O = false;
 
-    [SerializeField, NonEditable]
-    bool isIntaractRope = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -49,32 +46,30 @@ public class warpRope : MonoBehaviour
         GetPS4O();
         ImageChange();
 
-        if (isIntaractRope)
+        if (upTrigger)
         {
-            if (upTrigger)
+            interactImage.SetActive(true);
+            if (Input.GetMouseButtonDown(0) || ps4O)
             {
-                interactImage.SetActive(true);
-                if (Input.GetMouseButtonDown(0) || ps4O)
-                {
-                    fadeinout.fadeout = true;
-                    player.position = downPosition.position;
-                }
-            }
-            else if (downTrigger)
-            {
-                interactImage.SetActive(true);
-                if (Input.GetMouseButtonDown(0) || ps4O)
-                {
-                    fadeinout.fadeout = true;
-                    player.position = upPosition.position;
-                }
-            }
-            else
-            {
-                interactImage.SetActive(false);
+                fadeinout.fadeout = true;
+                player.position = downPosition.position;
             }
         }
+        else if (downTrigger)
+        {
+            interactImage.SetActive(true);
+            if (Input.GetMouseButtonDown(0) || ps4O)
+            {
+                fadeinout.fadeout = true;
+                player.position = upPosition.position;
+            }
+        }
+        else
+        {
+            interactImage.SetActive(false);
+        }
     }
+    
 
     public void SetRopeUp(bool flg)
     {
@@ -84,11 +79,6 @@ public class warpRope : MonoBehaviour
     public void SetRopeDown(bool flg)
     {
         downTrigger = flg;
-    }
-
-    public void SetIntaractActive(bool flg)
-    {
-        isIntaractRope = flg;
     }
 
     void GetPS4O()
