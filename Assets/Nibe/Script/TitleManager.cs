@@ -64,7 +64,7 @@ public class TitleManager : MonoBehaviour
     private float b2 = 0.0f;
     private float a2 = 1.0f;
 
-    private int ps4Count = 50;
+    private int ps4Count = 25;
 
 
     // Start is called before the first frame update
@@ -386,7 +386,7 @@ public class TitleManager : MonoBehaviour
 
         if (stageNum == 0)
         {
-            SceneManager.LoadScene("Stage1");
+            SceneManager.LoadScene("Stage1_New");
         }
         else if (stageNum == 1)
         {
@@ -436,7 +436,7 @@ public class TitleManager : MonoBehaviour
         // スティックの入力を受け取る
         var v = Gamepad.current.leftStick.ReadValue();
 
-        if (ps4Count >= 50)
+        if (ps4Count >= 25)
         {
             if (v.x >= 0.75)
             {

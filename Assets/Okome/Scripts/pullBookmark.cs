@@ -27,6 +27,8 @@ public class pullBookmark : MonoBehaviour
 
     private GameObject interactImage;
 
+    private bool middleBool = false;
+
     // 〇ボタンが押されているかどうかを取得する
     bool ps4O = false;
 
@@ -37,8 +39,21 @@ public class pullBookmark : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetPS4O();
         ImageChange();
+
+        if(grabStart == false)
+        {
+            middleBool = bookMarkBool.grabMiddle;
+        }
+
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonEast.wasPressedThisFrame && ps4O == false)
+            {
+                ps4O = true;
+                Invoke("ResetPS4O", 0.1f);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -49,7 +64,6 @@ public class pullBookmark : MonoBehaviour
             grabFlg = true;
             rigidbody = other.gameObject.GetComponent<Rigidbody>();
             interactImage.SetActive(true);
-            Debug.Log("a");
 
             
             // もう一度ボタンを押したときに離す
@@ -67,11 +81,32 @@ public class pullBookmark : MonoBehaviour
 
                 charaAnimator.SetBool("grab", false); // アニメーション切り替え
                 grabStart = false;
+
+                ps4O = false;
             }           
 
             // 左ボタンが押されていたら物体を親子関係にする
             if (((Input.GetMouseButtonDown(0) || ps4O) && grabFlg == true && grabStart == false) || grabStart == true)
             {
+                //親子関係にする
+                other.gameObject.transform.parent = gameObject.transform;
+
+                if (middleBool == true)
+                {
+                    //真ん中を掴んでいた時
+                    other.gameObject.transform.rotation = this.gameObject.transform.rotation;
+                    other.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+                    other.gameObject.transform.localPosition = new Vector3(0, 0.35f, 1.5f);
+                }
+                else
+                {
+                    //端を掴んでいた時
+                    other.gameObject.transform.rotation = this.gameObject.transform.rotation;
+                    other.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+                    other.gameObject.transform.Rotate(0.0f, 90.0f, 0.0f);
+                    other.gameObject.transform.localPosition = new Vector3(0, 0.35f, 4.4f);
+                }
+
                 interactImage.SetActive(false);
                 //Rigidbodyを停止
                 rigidbody.velocity = Vector3.zero;
@@ -79,9 +114,6 @@ public class pullBookmark : MonoBehaviour
                 //持っているときに下に落ちないようにする
                 rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
                 rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-
-                //親子関係にする
-                other.gameObject.transform.parent = gameObject.transform;
 
                 /*
                 Vector3 localPos = other.gameObject.transform.localPosition;
@@ -92,22 +124,10 @@ public class pullBookmark : MonoBehaviour
                 other.gameObject.transform.localPosition = localPos;
                 */
 
-                //端を掴んでいた時
-                other.gameObject.transform.rotation = this.gameObject.transform.rotation;
-                other.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-                other.gameObject.transform.Rotate(0.0f, 90.0f, 0.0f);
-                other.gameObject.transform.localPosition = new Vector3(0, 0.35f, 4.25f);
-
-                //真ん中を掴んでいた時
-                if (bookMarkBool.grabMiddle == true)
-                {
-                    other.gameObject.transform.rotation = this.gameObject.transform.rotation;
-                    other.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
-                    other.gameObject.transform.localPosition = new Vector3(0, 0.35f, 1.25f);
-                }
-
                 charaAnimator.SetBool("grab", true); // アニメーション切り替え
                 grabStart = true;
+
+                ps4O = false;
             }
             else
             {
@@ -142,19 +162,9 @@ public class pullBookmark : MonoBehaviour
         }
     }
 
-    void GetPS4O()
+    void ResetPS4O()
     {
-        if (Gamepad.current != null)
-        {
-            if (Gamepad.current.buttonEast.wasPressedThisFrame)
-            {
-                ps4O = true;
-            }
-            else
-            {
-                ps4O = false;
-            }
-        }
+        ps4O = false;
     }
 
     void ImageChange()

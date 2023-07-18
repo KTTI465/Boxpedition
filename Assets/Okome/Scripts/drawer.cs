@@ -42,6 +42,29 @@ public class drawer : MonoBehaviour
     {
         ImageChange();
 
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonEast.wasPressedThisFrame && ps4O == false)
+            {
+                if(isGrab == false)
+                {
+                    ps4O = true;
+                    Invoke("ResetPS4O", 0.1f);
+                }
+                else
+                {
+                    isGrab = false;
+
+                    //プレイヤーの移動スクリプトを有効にする
+                    Player.GetComponent<CharacterController>().enabled = true;
+
+                    charaAnimator.SetBool("pull", false); // アニメーション切り替え
+
+                    isPressedMouseButton0 = true;
+                }
+            }
+        }
+
         /*
         if (isGrab == true && Player != null)
         {
@@ -85,7 +108,6 @@ public class drawer : MonoBehaviour
         //一定の範囲にプレイヤーが入った時
         if (other.gameObject.CompareTag("Player"))
         {
-            GetPS4O();
             //プレイヤーが見ているものを取得
             _interactGameObjectsList = other.GetComponent<CharacterController>().InteractGameObjectsList;
             if (_interactGameObjectsList != null && _interactGameObjectsList.Contains(gameObject))
@@ -112,17 +134,8 @@ public class drawer : MonoBehaviour
                         charaAnimator.SetBool("pull", true); // アニメーション切り替え
 
                         isPressedMouseButton0 = true;
-                    }
-                    else
-                    {
-                        isGrab = false;
 
-                        //プレイヤーの移動スクリプトを有効にする
-                        Player.GetComponent<CharacterController>().enabled = true;
-
-                        charaAnimator.SetBool("pull", false); // アニメーション切り替え
-
-                        isPressedMouseButton0 = true;
+                        ps4O = false;
                     }
                 }
 
@@ -172,19 +185,9 @@ public class drawer : MonoBehaviour
         }
     }
 
-    void GetPS4O()
+    void ResetPS4O()
     {
-        if (Gamepad.current != null)
-        {
-            if (Gamepad.current.buttonEast.wasPressedThisFrame)
-            {
-                ps4O = true;
-            }
-            else
-            {
-                ps4O = false;
-            }
-        }
+        ps4O = false;
     }
 
     void ImageChange()
