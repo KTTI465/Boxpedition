@@ -19,6 +19,7 @@ public class stageManager : MonoBehaviour
     [SerializeField] Text bgmText;
     [SerializeField] Text seText;
     [SerializeField] Text sensiText;
+    [SerializeField] Text titleText;
 
     [SerializeField] UnityEngine.UI.Slider sensiSlider;
 
@@ -73,7 +74,7 @@ public class stageManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (optionNum == 2)
+                if (optionNum == 3)
                 {
                     down = false;
                 }
@@ -116,8 +117,17 @@ public class stageManager : MonoBehaviour
                 {
                     titleSlider.downSensi();
                 }
-
                 left = false;
+            }
+
+            if (Gamepad.current.buttonEast.wasPressedThisFrame)
+            {
+                if (optionNum == 3)
+                {
+                    openOption = false;
+                    optionNum = 0;
+                    SceneManager.LoadScene("titleScene");
+                }
             }
         }
         else
@@ -132,18 +142,28 @@ public class stageManager : MonoBehaviour
             bgmText.color = new Color(r2, g2, b2, a2);
             seText.color = new Color(r1, g1, b1, a1);
             sensiText.color = new Color(r1, g1, b1, a1);
+            titleText.color = new Color(r1, g1, b1, a1);
         }
         else if (optionNum == 1)
         {
             bgmText.color = new Color(r1, g1, b1, a1);
             seText.color = new Color(r2, g2, b2, a2);
             sensiText.color = new Color(r1, g1, b1, a1);
+            titleText.color = new Color(r1, g1, b1, a1);
         }
         else if (optionNum == 2)
         {
             bgmText.color = new Color(r1, g1, b1, a1);
             seText.color = new Color(r1, g1, b1, a1);
             sensiText.color = new Color(r2, g2, b2, a2);
+            titleText.color = new Color(r1, g1, b1, a1);
+        }
+        else if (optionNum == 3)
+        {
+            bgmText.color = new Color(r1, g1, b1, a1);
+            seText.color = new Color(r1, g1, b1, a1);
+            sensiText.color = new Color(r1, g1, b1, a1);
+            titleText.color = new Color(r2, g2, b2, a2);
         }
     }
 

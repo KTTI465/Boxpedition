@@ -67,6 +67,20 @@ public class TitleManager : MonoBehaviour
     private int ps4Count = 25;
 
 
+    void Awake()
+    {
+        // •Û‘¶
+        PlayerPrefs.SetFloat("BGM", 1.0f);
+        PlayerPrefs.Save();
+
+        PlayerPrefs.SetFloat("SE", 1.0f);
+        PlayerPrefs.Save();
+
+        PlayerPrefs.SetFloat("Sensi", 1.0f);
+        PlayerPrefs.Save();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
