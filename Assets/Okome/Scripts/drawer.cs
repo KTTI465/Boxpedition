@@ -49,7 +49,7 @@ public class drawer : MonoBehaviour
                 if(isGrab == false)
                 {
                     ps4O = true;
-                    Invoke("ResetPS4O", 0.1f);
+                    Invoke("ResetPS4O", 0.5f);
                 }
                 else
                 {

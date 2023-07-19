@@ -51,7 +51,7 @@ public class pullBookmark : MonoBehaviour
             if (Gamepad.current.buttonEast.wasPressedThisFrame && ps4O == false)
             {
                 ps4O = true;
-                Invoke("ResetPS4O", 0.1f);
+                Invoke("ResetPS4O", 0.5f);
             }
         }
     }

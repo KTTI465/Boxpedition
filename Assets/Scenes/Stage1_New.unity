@@ -5244,6 +5244,7 @@ MonoBehaviour:
   bgmText: {fileID: 236926960}
   seText: {fileID: 871548482}
   sensiText: {fileID: 1270783477}
+  titleText: {fileID: 0}
   sensiSlider: {fileID: 1602471795}
   openOption: 0
 --- !u!222 &511846480
@@ -21036,6 +21037,7 @@ MonoBehaviour:
   bgmText: {fileID: 0}
   seText: {fileID: 0}
   sensiText: {fileID: 0}
+  titleText: {fileID: 0}
   sensiSlider: {fileID: 0}
   openOption: 0
 --- !u!1001 &2033225950
@@ -25745,7 +25747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6299051619315126799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4494273541730656342, guid: 36ef35d8ddff6244e9c01e583a7d9f63, type: 3}
