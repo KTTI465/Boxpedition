@@ -15,7 +15,9 @@ public class ballOfWool : MonoBehaviour
     public GameObject animationCamara;
 
     private Animator animator;
-    private bool enabledAnimation;
+
+    [NonSerialized]
+    public bool enabledAnimation;
 
     private GameObject player;
 
@@ -77,7 +79,6 @@ public class ballOfWool : MonoBehaviour
                 {
                     GetPS4O();
                     interactImage.SetActive(true);
-
                     if (Input.GetMouseButton(0) || ps4O)
                     {
                         charaAnimator.SetBool("grab", true); // アニメーション切り替え
@@ -88,12 +89,12 @@ public class ballOfWool : MonoBehaviour
                 }
                 else
                 {
-                    interactImage.SetActive(false);
+                    //interactImage.SetActive(false);
                 }
             }
             else
             {
-                interactImage.SetActive(false);
+               // interactImage.SetActive(false);
             }
         }
     }
