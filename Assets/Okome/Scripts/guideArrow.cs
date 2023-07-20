@@ -11,7 +11,7 @@ public class guideArrow : MonoBehaviour
     private GameObject player;
 
     //ƒvƒŒƒCƒ„[‚Æ–îˆó‚Ì‹——£
-    public float meshOnLength = 5f;
+    public float meshOnLength = 2f;
 
     //–îˆó‚Ì‚‚³
     [SerializeField]

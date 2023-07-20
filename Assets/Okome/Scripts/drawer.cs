@@ -113,6 +113,7 @@ public class drawer : MonoBehaviour
             if (_interactGameObjectsList != null && _interactGameObjectsList.Contains(gameObject))
             {
                 interactImage.SetActive(true);
+                
                 if ((Input.GetMouseButtonDown(0) || ps4O) && isPressedMouseButton0 == false)
                 {
                     if (isGrab == false)
