@@ -58,6 +58,8 @@ public class CharacterController : MonoBehaviour
     public CharacterStateProcessor StateProcessor { get; set; } = new CharacterStateProcessor();
     public CharacterStateIdle StateIdle { get; set; } = new CharacterStateIdle();
     public CharacterStateMove StateMove { get; set; } = new CharacterStateMove();
+    public CharacterStateMoveGlass StateMoveGlass { get; set; } = new CharacterStateMoveGlass();
+    public CharacterStateMoveBook StateMoveBook { get; set; } = new CharacterStateMoveBook();
     public CharacterStateJump1 StateJump1 { get; set; } = new CharacterStateJump1();
     public CharacterStateJump2 StateJump2 { get; set; } = new CharacterStateJump2();
     public CharacterStateTrampolineSmallJump StateTrampSmall { get; set; } = new CharacterStateTrampolineSmallJump();
@@ -68,7 +70,7 @@ public class CharacterController : MonoBehaviour
     private Animator charaAnimator;
 
     bool jumpAnim = false;
-
+    private string comparetarget;
 
     void Start()
     {
@@ -80,9 +82,10 @@ public class CharacterController : MonoBehaviour
 
         StateIdle.ExecAction = Idle;
         StateMove.ExecAction = Move;
+        StateMoveGlass.ExecAction = MoveGlass;
+        StateMoveBook.ExecAction = MoveBook;
         StateJump1.ExecAction = Jump1;
         StateJump2.ExecAction = Jump2;
-
         StateTrampSmall.ExecAction = TrampSmall;
         StateTrampBig.ExecAction = TrampBig;
         StateProcessor.State = StateIdle;
@@ -101,12 +104,34 @@ public class CharacterController : MonoBehaviour
 
         }
     }
+    void OnCollisionEnter(Collision col)
+    {
+        this.comparetarget = col.gameObject.tag;
+    }
 
     void Update()
-    { 
+    {
         if (xMovement != 0 || zMovement != 0)
         {
-            if (!jumped || !doubleJumped) StateProcessor.State = StateMove;
+            if (!jumped || !doubleJumped)
+            {
+                //追加 nakajima
+                if (this.comparetarget != null)
+                {
+                    if (comparetarget == "glass")
+                    {
+                        StateProcessor.State = StateMoveGlass;
+                    }
+                    else if (comparetarget == "book")
+                    {
+                        StateProcessor.State = StateMoveBook;
+                    }
+                    else if (comparetarget == "Untagged")
+                    {
+                        StateProcessor.State = StateMove;
+                    }
+                }
+            }
         }
         else if (xMovement == 0 && zMovement == 0)
         {
@@ -331,6 +356,14 @@ public class CharacterController : MonoBehaviour
     public void Move()
     {
         //Debug.Log("CharacterStateがMoveに状態遷移しました。");
+    }
+    public void MoveGlass()
+    {
+        //Debug.Log("CharacterStateがMoveGlassに状態遷移しました。");
+    }
+    public void MoveBook()
+    {
+        //Debug.Log("CharacterStateがMoveBookに状態遷移しました。");
     }
     public void Jump1()
     {

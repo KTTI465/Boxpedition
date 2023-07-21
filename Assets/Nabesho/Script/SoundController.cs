@@ -151,15 +151,32 @@ public class SoundController : MonoBehaviour
 
 
 
-        if (charactorStateProcessor.State.GetStateName() == "State:Move" && !MoveFlag)
+        if (!MoveFlag)
         {
-            UnityEngine.Debug.Log("SoundController:Move");
-            WalkPlayer.Play();
-            MoveFlag = true;
+            if (charactorStateProcessor.State.GetStateName() == "State:Move")
+            {
+                UnityEngine.Debug.Log("SoundController:Move");
+                WalkPlayer.SetCueName("Walk");
+                WalkPlayer.Play();
+                MoveFlag = true;
+            }
+            else if (charactorStateProcessor.State.GetStateName() == "State:MoveGlass")
+            {
+                UnityEngine.Debug.Log("SoundController:MoveGlass");
+                WalkPlayer.SetCueName("Walk_Glass");
+                WalkPlayer.Play();
+                MoveFlag = true;
+            }
+            else if (charactorStateProcessor.State.GetStateName() == "State:MoveBook")
+            {
+                UnityEngine.Debug.Log("SoundController:MoveBook");
+                WalkPlayer.SetCueName("Walk_Book");
+                WalkPlayer.Play();
+                MoveFlag = true;
+            }
         }
-        if (charactorStateProcessor.State.GetStateName() != "State:Move" || !chara.isGround && MoveFlag)
+        if (MoveStateCheck() == false || !chara.isGround && MoveFlag)
         {
-
             WalkPlayer.Stop();
             MoveFlag = false;
         }
@@ -171,5 +188,25 @@ public class SoundController : MonoBehaviour
         //�g�����|������W�����v:cueName = Bound_Big
 
         //BGM        
+    }
+
+    bool MoveStateCheck()
+    {
+        if (charactorStateProcessor.State.GetStateName() == "State:Move")
+        {
+            return true;
+        }
+        else if (charactorStateProcessor.State.GetStateName() == "State:MoveGlass")
+        {
+            return true;
+        }
+        else if (charactorStateProcessor.State.GetStateName() == "State:MoveBook")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

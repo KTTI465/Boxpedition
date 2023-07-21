@@ -12,6 +12,8 @@ TagManager:
   - joint
   - floor
   - ResTarget
+  - book
+  - glass
   layers:
   - Default
   - TransparentFX
