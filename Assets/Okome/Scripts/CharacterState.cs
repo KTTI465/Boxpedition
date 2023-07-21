@@ -57,6 +57,21 @@ namespace CharacterState
             return "State:Move";
         }
     }
+    public class CharacterStateMoveGlass : CharacterState
+    {
+        public override string GetStateName()
+        {
+            return "State:MoveGlass";
+        }
+    }
+
+    public class CharacterStateMoveBook : CharacterState
+    {
+        public override string GetStateName()
+        {
+            return "State:MoveBook";
+        }
+    }
 
     //ƒWƒƒƒ“ƒvó‘Ô
     public class CharacterStateJump1 : CharacterState
