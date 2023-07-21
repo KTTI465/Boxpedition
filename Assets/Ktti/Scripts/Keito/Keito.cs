@@ -21,6 +21,8 @@ public class Keito : MonoBehaviour
 
     Transform ropeTrans;
 
+    public Vector3 tensor;
+
     void Start()
     {
         joints = new List<GameObject>
@@ -48,7 +50,7 @@ public class Keito : MonoBehaviour
 
     void ConnectJoint()
     {
-        GameObject lastJoint = Instantiate(jointBody, transform.position, Quaternion.identity);
+        GameObject lastJoint = Instantiate(jointBody, transform.position, Quaternion.Euler(Vector3.zero));
 
         lastJoint.GetComponent<Transform>().parent = ropeTrans;
 
@@ -56,7 +58,10 @@ public class Keito : MonoBehaviour
         joints[joints.Count - 1].GetComponent<HingeJoint>().connectedBody = lastJoint.GetComponent<Rigidbody>();
 
         //joints[joints.Count - 1].GetComponent<Rigidbody>().isKinematic = true;
+        //lastJoint.GetComponent<Rigidbody>().isKinematic = true;
 
+
+        lastJoint.GetComponent<Rigidbody>().inertiaTensor = tensor;
         joints.Add(lastJoint);
 
         ropeBody.SetLine(joints);
@@ -67,6 +72,26 @@ public class Keito : MonoBehaviour
         foreach (var j in joints)
         {
             j.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+    public void KeitoKinematicFalse()
+    {
+        int i = 0;
+        foreach (var j in joints)
+        {
+            i++;
+            if (i >= 2 && i != joints.Count-1)
+            {
+                j.GetComponent<Rigidbody>().isKinematic = false;
+            }
+        }
+    }
+
+    public void SetTensor()
+    {
+        foreach (var j in joints)
+        {
+            j.GetComponent<Rigidbody>().inertiaTensor = tensor;
         }
     }
 
@@ -91,6 +116,14 @@ public class KeitoEditor : Editor
         if (GUILayout.Button("All is kinematic"))
         {
             t.KeitoKinematic();
+        }
+        if (GUILayout.Button("All is not kinematic"))
+        {
+            t.KeitoKinematicFalse();
+        }
+        if (GUILayout.Button("SetTensor"))
+        {
+            t.SetTensor();
         }
     }
 }

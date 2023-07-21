@@ -49,7 +49,7 @@ public class drawer : MonoBehaviour
                 if(isGrab == false)
                 {
                     ps4O = true;
-                    Invoke("ResetPS4O", 0.1f);
+                    Invoke("ResetPS4O", 0.5f);
                 }
                 else
                 {
@@ -113,6 +113,7 @@ public class drawer : MonoBehaviour
             if (_interactGameObjectsList != null && _interactGameObjectsList.Contains(gameObject))
             {
                 interactImage.SetActive(true);
+                
                 if ((Input.GetMouseButtonDown(0) || ps4O) && isPressedMouseButton0 == false)
                 {
                     if (isGrab == false)

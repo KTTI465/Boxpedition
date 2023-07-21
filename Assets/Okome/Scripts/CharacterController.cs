@@ -48,6 +48,9 @@ public class CharacterController : MonoBehaviour
 
     public List<GameObject> InteractGameObjectsList = new List<GameObject>();
 
+    [NonEditable]
+    public bool isInteracting;
+
     public LayerMask layerMask;
 
     private string _preStateName;

@@ -15,7 +15,9 @@ public class ballOfWool : MonoBehaviour
     public GameObject animationCamara;
 
     private Animator animator;
-    private bool enabledAnimation;
+
+    [NonSerialized]
+    public bool enabledAnimation;
 
     private GameObject player;
 
@@ -77,7 +79,6 @@ public class ballOfWool : MonoBehaviour
                 {
                     GetPS4O();
                     interactImage.SetActive(true);
-
                     if (Input.GetMouseButton(0) || ps4O)
                     {
                         charaAnimator.SetBool("grab", true); // アニメーション切り替え
@@ -88,12 +89,12 @@ public class ballOfWool : MonoBehaviour
                 }
                 else
                 {
-                    interactImage.SetActive(false);
+                    //interactImage.SetActive(false);
                 }
             }
             else
             {
-                interactImage.SetActive(false);
+               // interactImage.SetActive(false);
             }
         }
     }
@@ -109,7 +110,6 @@ public class ballOfWool : MonoBehaviour
     public void StartAnimation()
     {
         StateProcessor.State = StateAnimation;
-        rope.SetActive(true);
         player.GetComponent<CharacterController>().enabled = false;
         sphereCollider.isTrigger = true;
         animationCamara.GetComponent<Camera>().depth = 1;
@@ -127,6 +127,8 @@ public class ballOfWool : MonoBehaviour
         Destroy(animationCamara);
         gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
         charaAnimator.SetBool("grab", false); // アニメーション切り替え
+
+        rope.SetActive(true);
     }
 
     void GetPS4O()
