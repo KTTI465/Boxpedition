@@ -125,7 +125,9 @@ public class stageManager : MonoBehaviour
                 if (optionNum == 3)
                 {
                     openOption = false;
-                    optionNum = 0;
+                    Time.timeScale = 1;
+                    titleSlider.SetSensi(sensiSlider.value);
+
                     SceneManager.LoadScene("titleScene");
                 }
             }
@@ -137,33 +139,36 @@ public class stageManager : MonoBehaviour
 
 
         // Œ©‚½–Ú
-        if (optionNum == 0)
+        if(openOption)
         {
-            bgmText.color = new Color(r2, g2, b2, a2);
-            seText.color = new Color(r1, g1, b1, a1);
-            sensiText.color = new Color(r1, g1, b1, a1);
-            titleText.color = new Color(r1, g1, b1, a1);
-        }
-        else if (optionNum == 1)
-        {
-            bgmText.color = new Color(r1, g1, b1, a1);
-            seText.color = new Color(r2, g2, b2, a2);
-            sensiText.color = new Color(r1, g1, b1, a1);
-            titleText.color = new Color(r1, g1, b1, a1);
-        }
-        else if (optionNum == 2)
-        {
-            bgmText.color = new Color(r1, g1, b1, a1);
-            seText.color = new Color(r1, g1, b1, a1);
-            sensiText.color = new Color(r2, g2, b2, a2);
-            titleText.color = new Color(r1, g1, b1, a1);
-        }
-        else if (optionNum == 3)
-        {
-            bgmText.color = new Color(r1, g1, b1, a1);
-            seText.color = new Color(r1, g1, b1, a1);
-            sensiText.color = new Color(r1, g1, b1, a1);
-            titleText.color = new Color(r2, g2, b2, a2);
+            if (optionNum == 0)
+            {
+                bgmText.color = new Color(r2, g2, b2, a2);
+                seText.color = new Color(r1, g1, b1, a1);
+                sensiText.color = new Color(r1, g1, b1, a1);
+                titleText.color = new Color(r1, g1, b1, a1);
+            }
+            else if (optionNum == 1)
+            {
+                bgmText.color = new Color(r1, g1, b1, a1);
+                seText.color = new Color(r2, g2, b2, a2);
+                sensiText.color = new Color(r1, g1, b1, a1);
+                titleText.color = new Color(r1, g1, b1, a1);
+            }
+            else if (optionNum == 2)
+            {
+                bgmText.color = new Color(r1, g1, b1, a1);
+                seText.color = new Color(r1, g1, b1, a1);
+                sensiText.color = new Color(r2, g2, b2, a2);
+                titleText.color = new Color(r1, g1, b1, a1);
+            }
+            else if (optionNum == 3)
+            {
+                bgmText.color = new Color(r1, g1, b1, a1);
+                seText.color = new Color(r1, g1, b1, a1);
+                sensiText.color = new Color(r1, g1, b1, a1);
+                titleText.color = new Color(r2, g2, b2, a2);
+            }
         }
     }
 

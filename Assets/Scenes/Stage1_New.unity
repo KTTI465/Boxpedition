@@ -5310,7 +5310,7 @@ MonoBehaviour:
   bgmText: {fileID: 236926960}
   seText: {fileID: 871548482}
   sensiText: {fileID: 1270783477}
-  titleText: {fileID: 0}
+  titleText: {fileID: 1446461588}
   sensiSlider: {fileID: 1602471795}
   openOption: 0
 --- !u!222 &511846480

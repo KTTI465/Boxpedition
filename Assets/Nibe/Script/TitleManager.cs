@@ -131,12 +131,11 @@ public class TitleManager : MonoBehaviour
             {
                 if (titleNum == 0)
                 {
-                    titleNum = 0;
                     StartGameButton();
+                    rightImage.SetActive(true);
                 }
                 else if (titleNum == 1)
                 {
-                    titleNum = 0;
                     OpenOptionButton();
                 }
                 else if (titleNum == 2)
@@ -217,61 +216,36 @@ public class TitleManager : MonoBehaviour
                     ExitOptionButton();
                 }
             }
+            else if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                optionNum = 0;
+                ExitOptionButton();
+            }
         }
         else if (stage)
         {
-            if (up == true)
-            {
-                if (selectNum == 0)
-                {
-                    up = false;
-                }
-                else
-                {
-                    selectNum--;
-                    up = false;
-                    musicManager.PlaySE1();
-                }
-            }
-            else if (down == true)
-            {
-                if (selectNum == 1)
-                {
-                    down = false;
-                }
-                else
-                {
-                    selectNum++;
-                    down = false;
-                    musicManager.PlaySE1();
-                }
-            }
-
             if (right == true)
             {
-                if (selectNum == 0)
-                {
-                    StageRightButton();
-                }
+                StageRightButton();
 
                 right = false;
             }
             else if (left == true)
             {
-                if (selectNum == 0)
-                {
-                    StageLeftButton();
-                }
-                
+                StageLeftButton();
+
                 left = false;
             }           
 
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
-                if (selectNum == 1)
-                {
-                    StartStageButton();
-                }
+                StartStageButton();
+            }
+            else if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                stageNum = 0;
+                HideStage();
+                ExitGameButton();
             }
         }
 
@@ -338,13 +312,21 @@ public class TitleManager : MonoBehaviour
     }
 
 
-
     public void StartGameButton()
     {
         stagePanel.SetActive(true);
         titlePanel.SetActive(false);
         stage = true;
         title = false;
+        musicManager.PlaySE1();
+    }
+
+    public void ExitGameButton()
+    {
+        titlePanel.SetActive(true);
+        stagePanel.SetActive(false);
+        title = true;
+        stage = false;
         musicManager.PlaySE1();
     }
 
