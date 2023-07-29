@@ -65,6 +65,8 @@ public class CharacterController : MonoBehaviour
     public CharacterStateTrampolineSmallJump StateTrampSmall { get; set; } = new CharacterStateTrampolineSmallJump();
     public CharacterStateTrampolineBigJump StateTrampBig { get; set; } = new CharacterStateTrampolineBigJump();
 
+    [SerializeField]
+    private PhysicMaterial physicMaterial;
 
     [SerializeField]
     private Animator charaAnimator;
@@ -337,10 +339,16 @@ public class CharacterController : MonoBehaviour
         {
             jumped = false;
             doubleJumped = false;
+            physicMaterial.dynamicFriction = 0.6f;
+            physicMaterial.staticFriction = 0.6f;
+            physicMaterial.frictionCombine = PhysicMaterialCombine.Average;
         }
         else
         {
             jumped = true;
+            physicMaterial.dynamicFriction = 0f;
+            physicMaterial.staticFriction = 0f;
+            physicMaterial.frictionCombine = PhysicMaterialCombine.Minimum;
         }
     }
 
