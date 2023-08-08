@@ -48,25 +48,19 @@ public class warpRope : MonoBehaviour
 
         if (upTrigger)
         {
-            interactImage.SetActive(true);
             if (Input.GetMouseButtonDown(0) || ps4O)
             {
                 fadeinout.fadeout = true;
                 player.position = downPosition.position;
             }
         }
-        else if (downTrigger)
+        if (downTrigger)
         {
-            interactImage.SetActive(true);
             if (Input.GetMouseButtonDown(0) || ps4O)
             {
                 fadeinout.fadeout = true;
                 player.position = upPosition.position;
             }
-        }
-        else
-        {
-            interactImage.SetActive(false);
         }
     }
     
@@ -74,11 +68,13 @@ public class warpRope : MonoBehaviour
     public void SetRopeUp(bool flg)
     {
         upTrigger = flg;
+        interactImage.SetActive(flg);
     }
 
     public void SetRopeDown(bool flg)
     {
         downTrigger = flg;
+        interactImage.SetActive(flg);
     }
 
     void GetPS4O()
