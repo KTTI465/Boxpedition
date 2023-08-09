@@ -7,7 +7,7 @@ public class warpRope : MonoBehaviour
 {
     [SerializeField]
     Transform upPosition;
-    [SerializeField] 
+    [SerializeField]
     Transform downPosition;
 
     [SerializeField]
@@ -20,7 +20,7 @@ public class warpRope : MonoBehaviour
     [SerializeField, NonEditable]
     private bool downTrigger = false;
 
-    [SerializeField,NonEditable]
+    [SerializeField, NonEditable]
     Transform player;
 
     [SerializeField]//キーボードマウス操作のときのインタラクトの画像
@@ -48,37 +48,33 @@ public class warpRope : MonoBehaviour
 
         if (upTrigger)
         {
-            interactImage.SetActive(true);
             if (Input.GetMouseButtonDown(0) || ps4O)
             {
                 fadeinout.fadeout = true;
                 player.position = downPosition.position;
             }
         }
-        else if (downTrigger)
+        if (downTrigger)
         {
-            interactImage.SetActive(true);
             if (Input.GetMouseButtonDown(0) || ps4O)
             {
                 fadeinout.fadeout = true;
                 player.position = upPosition.position;
             }
         }
-        else
-        {
-            interactImage.SetActive(false);
-        }
     }
-    
+
 
     public void SetRopeUp(bool flg)
     {
         upTrigger = flg;
+        interactImage.SetActive(flg);
     }
 
     public void SetRopeDown(bool flg)
     {
         downTrigger = flg;
+        interactImage.SetActive(flg);
     }
 
     void GetPS4O()
