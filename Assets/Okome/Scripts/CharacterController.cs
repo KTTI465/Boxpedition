@@ -72,6 +72,13 @@ public class CharacterController : MonoBehaviour
     bool jumpAnim = false;
     private string comparetarget;
 
+    //パーティクル2種類を格納するための変数
+    [SerializeField] private ParticleSystem particle1;
+    [SerializeField] private ParticleSystem particle2;
+
+    //パーティクルの再生速度
+    [SerializeField] private float particlePlaySpeed = 1f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -145,6 +152,11 @@ public class CharacterController : MonoBehaviour
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
         }
+
+        var main1 = particle1.main;
+        main1.simulationSpeed = particlePlaySpeed;
+        var main2 = particle2.main;
+        main2.simulationSpeed = particlePlaySpeed;
     }
 
     private void FixedUpdate()
@@ -301,6 +313,10 @@ public class CharacterController : MonoBehaviour
 
                 //connectingBoxが下に落ちるようにこのオブジェクトの子からはずす
                 connectingBox.transform.parent = null;
+
+                //connectingBoxの座標にエフェクトを生成する
+                var part1 = Instantiate(particle1.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
+                var part2 = Instantiate(particle2.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
 
                 //格納されているconnectingBoxをはずす
                 connectingBox = null;
