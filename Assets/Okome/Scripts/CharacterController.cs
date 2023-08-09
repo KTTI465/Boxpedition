@@ -315,8 +315,8 @@ public class CharacterController : MonoBehaviour
                 connectingBox.transform.parent = null;
 
                 //connectingBoxの座標にエフェクトを生成する
-                var part1 = Instantiate(particle1.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
-                var part2 = Instantiate(particle2.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
+                Instantiate(particle1.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
+                Instantiate(particle2.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
 
                 //格納されているconnectingBoxをはずす
                 connectingBox = null;
