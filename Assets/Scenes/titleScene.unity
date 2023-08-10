@@ -876,7 +876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage1
+  m_Text: Tutorial
 --- !u!222 &106081640
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7219,7 +7219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ae74c3756758da9479c51f6e51e808e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec6d6b750ffbf6842b78920cbb3c1b6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7250,7 +7250,7 @@ GameObject:
   - component: {fileID: 4149556078305999936}
   - component: {fileID: 4149556078305999940}
   m_Layer: 5
-  m_Name: Stage2Image
+  m_Name: Stage1Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9027,7 +9027,7 @@ GameObject:
   - component: {fileID: 4149556079555719852}
   - component: {fileID: 4149556079555719856}
   m_Layer: 5
-  m_Name: Stage3Image
+  m_Name: Stage2Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9419,7 +9419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ec6d6b750ffbf6842b78920cbb3c1b6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8aa656d8da1b8848aedbfab0cd6176c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9442,7 +9442,7 @@ GameObject:
   - component: {fileID: 4364132492293153889}
   - component: {fileID: 4364132492293153895}
   m_Layer: 5
-  m_Name: Stage1Image
+  m_Name: TutoriaImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
