@@ -382,11 +382,11 @@ public class TitleManager : MonoBehaviour
 
         if (stageNum == 0)
         {
-            SceneManager.LoadScene("Stage1_New");
+            SceneManager.LoadScene("Tutorial");
         }
         else if (stageNum == 1)
         {
-            SceneManager.LoadScene("titleScene");
+            SceneManager.LoadScene("Stage1_New");
         }
         else if (stageNum == 2)
         {
@@ -398,7 +398,7 @@ public class TitleManager : MonoBehaviour
     {
         if (stageNum == 0)
         {
-            stageSelectText.text = "Stage1";
+            stageSelectText.text = "Tutorial";
 
             stage1Image.SetActive(true);
             stage2Image.SetActive(false);
@@ -407,7 +407,7 @@ public class TitleManager : MonoBehaviour
         }
         else if (stageNum == 1)
         {
-            stageSelectText.text = "Stage2";
+            stageSelectText.text = "Stage1";
 
             stage2Image.SetActive(true);
             stage1Image.SetActive(false);
@@ -418,7 +418,7 @@ public class TitleManager : MonoBehaviour
         }
         else if (stageNum == 2)
         {
-            stageSelectText.text = "Stage3";
+            stageSelectText.text = "Stage2";
 
             stage3Image.SetActive(true);
             stage2Image.SetActive(false);
