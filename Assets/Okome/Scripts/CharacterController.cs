@@ -79,6 +79,9 @@ public class CharacterController : MonoBehaviour
     //パーティクルの再生速度
     [SerializeField] private float particlePlaySpeed = 1f;
 
+    [SerializeField]
+    private PhysicMaterial physicMaterial;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -353,10 +356,14 @@ public class CharacterController : MonoBehaviour
         {
             jumped = false;
             doubleJumped = false;
+            physicMaterial.dynamicFriction = 0.6f;
+            physicMaterial.staticFriction = 0.6f;
         }
         else
         {
             jumped = true;
+            physicMaterial.dynamicFriction = 0.0f;
+            physicMaterial.staticFriction = 0.0f;
         }
     }
 
