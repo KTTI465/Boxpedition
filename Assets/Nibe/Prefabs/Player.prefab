@@ -1665,10 +1665,15 @@ MonoBehaviour:
   secondJumpPower: 12
   doubleJumped: 0
   InteractGameObjectsList: []
+  isInteracting: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 819
   charaAnimator: {fileID: 3548528940399394079}
+  particle1: {fileID: 0}
+  particle2: {fileID: 0}
+  particlePlaySpeed: 1
+  physicMaterial: {fileID: 13400000, guid: 6e4df8f36180c2e47b3a14d81a6bd37c, type: 2}
 --- !u!136 &7720121747331359545
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1676,7 +1681,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4467431830788069442}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6e4df8f36180c2e47b3a14d81a6bd37c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.7
