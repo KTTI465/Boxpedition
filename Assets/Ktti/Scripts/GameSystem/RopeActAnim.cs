@@ -54,7 +54,7 @@ public class RopeActAnim : MonoBehaviour
                 }
                 else
                 {
-                    player.transform.position = Vector3.MoveTowards(player.transform.position, down_transform.position, moveSpeed * Time.deltaTime);
+                    player.transform.position = Vector3.MoveTowards(player.transform.position, new Vector3(down_transform.position.x, player.transform.position.y, down_transform.position.z), moveSpeed * Time.deltaTime);
                 }
 
                 if (crimb)
@@ -73,13 +73,13 @@ public class RopeActAnim : MonoBehaviour
                 }
                 else
                 {
-                    player.transform.position = Vector3.MoveTowards(player.transform.position, up_transform.position, moveSpeed * Time.deltaTime);
+                    player.transform.position = Vector3.MoveTowards(player.transform.position, new Vector3(up_transform.position.x, player.transform.position.y, up_transform.position.z), moveSpeed * Time.deltaTime);
                 }
 
                 if (crimb)
                 {
                     animator.SetBool("climbStay", true);
-                    player.transform.position = Vector3.MoveTowards(player.transform.position, up_transform.position, climbSpeed * Time.deltaTime);
+                    player.transform.position = Vector3.MoveTowards(player.transform.position, down_transform.position, climbSpeed * Time.deltaTime);
                 }
             }
         }
