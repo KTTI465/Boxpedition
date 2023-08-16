@@ -10,6 +10,7 @@ public class TitleSlider : MonoBehaviour
 {
     [SerializeField] stageManager stageManager;
     [SerializeField] MusicManager musicManager;
+    [SerializeField] SoundController soundcontroller;
 
     [SerializeField] UnityEngine.UI.Slider bgmSlider;
     [SerializeField] UnityEngine.UI.Slider seSlider;
@@ -18,6 +19,9 @@ public class TitleSlider : MonoBehaviour
     public float bgmValue;
     public float seValue;
     public float sensiValue;
+
+    [SerializeField] float bgm;
+    [SerializeField] float se;
 
 
     void Start()
@@ -32,8 +36,11 @@ public class TitleSlider : MonoBehaviour
         sensiSlider.onValueChanged.AddListener(SetSensi);
 
 
-        bgmSlider.value = (PlayerPrefs.GetFloat("BGM") + 80f) / 80f;
-        seSlider.value = (PlayerPrefs.GetFloat("SE") + 80f) / 80f;
+        //bgmSlider.value = (PlayerPrefs.GetFloat("BGM") + 80f) / 80f;
+        //seSlider.value = (PlayerPrefs.GetFloat("SE") + 80f) / 80f;
+
+        bgmSlider.value = 1.0f;
+        seSlider.value = 1.0f;
         sensiSlider.value = 1.0f;
     }
 
@@ -70,6 +77,7 @@ public class TitleSlider : MonoBehaviour
 
     public void SetBGM(float value)
     {
+        /*
         //-80Å`0Ç…ïœä∑
         bgmValue = -80f + (value * 80f);
 
@@ -78,10 +86,22 @@ public class TitleSlider : MonoBehaviour
         PlayerPrefs.Save();
 
         musicManager.SetBGM();
+        */
+
+        bgmValue = value;
+
+        // ï€ë∂
+        PlayerPrefs.SetFloat("BGM", bgmValue);
+        PlayerPrefs.Save();
+
+        soundcontroller.SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
+
+        bgm = PlayerPrefs.GetFloat("BGM");
     }
 
     public void SetSE(float value)
     {
+        /*
         //-80Å`0Ç…ïœä∑
         seValue = -80f + (value * 80f);
 
@@ -90,6 +110,17 @@ public class TitleSlider : MonoBehaviour
         PlayerPrefs.Save();
 
         musicManager.SetSE();
+        */
+
+        seValue = value;
+
+        // ï€ë∂
+        PlayerPrefs.SetFloat("SE", seValue);
+        PlayerPrefs.Save();
+
+        soundcontroller.SettingSFXVolume(PlayerPrefs.GetFloat("SE"));
+
+        se = PlayerPrefs.GetFloat("SE");
     }
 
     public void SetSensi(float value)

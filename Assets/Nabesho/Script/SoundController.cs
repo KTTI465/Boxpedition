@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BoxState;
@@ -33,7 +34,7 @@ public class SoundController : MonoBehaviour
     private SoundControllerBase JumpPlayer;
 
 
-    /*State�ϐ�*/
+    /*State*/
     public BoxStateProcessor boxStateProcessor = new BoxStateProcessor();
     public CharacterStateProcessor charactorStateProcessor = new CharacterStateProcessor();
     public TrampolineStateProcessor trampolineStateProcessor = new TrampolineStateProcessor();
@@ -41,6 +42,7 @@ public class SoundController : MonoBehaviour
     private String BeforeStateName, BeforeStateName2, BeforeStateName3;
     private bool StartFlag = false;
     private bool MoveFlag = false;
+    public Slider BGMSlider, SFXSlider; //here
 
     void Start()
     {
@@ -50,6 +52,7 @@ public class SoundController : MonoBehaviour
         JumpPlayer = new SoundControllerBase();
 
         SEPlayer.SetAcb(atomLoader.acbAssets[0].Handle);
+
 
 
         BGMPlayer.SetAcb(atomLoader.acbAssets[1].Handle);
@@ -63,6 +66,18 @@ public class SoundController : MonoBehaviour
 
         tp = GameObject.Find("trampArea").GetComponent<trampolineC>();
         trampolineStateProcessor = tp.StateProcessor;
+
+        //here 
+        BGMSlider.maxValue = SFXSlider.maxValue = 1.0f;
+        BGMSlider.minValue = SFXSlider.minValue = 0.0f;
+        //BGMSlider.value = SliderValueSave.BGMvalue;
+        //SFXSlider.value = SliderValueSave.SEvalue;
+
+        if (BGMSlider != null && SFXSlider != null)
+        {
+            SettingBGMVolume(BGMSlider.value); //here
+            SettingSFXVolume(SFXSlider.value); //here  
+        }
     }
 
     void Update()
@@ -83,7 +98,7 @@ public class SoundController : MonoBehaviour
         {
             //Debug.Log("test");
             BeforeStateName = boxStateProcessor.State.GetStateName();
-            //�����ďo������Ƃ�:cueName = Repop
+            //cueName = Repop
             if (BeforeStateName == "State:BoxRepop" && StartFlag)
             {
                 UnityEngine.Debug.Log("SoundController:Repop");
@@ -91,7 +106,7 @@ public class SoundController : MonoBehaviour
                 SEPlayer.Play();
             }
 
-            //������ꂽ�Ƃ�:cueName = Crash
+            //cueName = Crash
             if (BeforeStateName == "State:Crash")
             {
                 UnityEngine.Debug.Log("SoundController:Crash");
@@ -183,9 +198,9 @@ public class SoundController : MonoBehaviour
 
 
 
-        //�g�����|�������W�����v:cueName = Bound_Small
+        //cueName = Bound_Small
 
-        //�g�����|������W�����v:cueName = Bound_Big
+        //cueName = Bound_Big
 
         //BGM        
     }
@@ -208,5 +223,18 @@ public class SoundController : MonoBehaviour
         {
             return false;
         }
+    }
+    //aaaa
+    //bbbb
+    public void SettingBGMVolume(float vol)
+    {
+        BGMPlayer.SetVolume(vol);
+    }
+
+    public void SettingSFXVolume(float vol)
+    {
+        SEPlayer.SetVolume(vol);
+        WalkPlayer.SetVolume(vol);
+        JumpPlayer.SetVolume(vol);
     }
 }
