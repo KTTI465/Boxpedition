@@ -21,7 +21,7 @@ public class warpRope : MonoBehaviour
     private bool downTrigger = false;
 
     [SerializeField, NonEditable]
-    Transform player;
+    public Transform player;
 
     [SerializeField]//キーボードマウス操作のときのインタラクトの画像
     private GameObject interactImageKeyboardMouse;
@@ -35,7 +35,7 @@ public class warpRope : MonoBehaviour
     bool ps4O = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
