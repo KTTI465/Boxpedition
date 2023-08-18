@@ -5617,7 +5617,7 @@ MonoBehaviour:
   charaAnimator: {fileID: 479407274}
   grabPosZ: 2.9
   interactImageKeyboardMouse: {fileID: 273571336}
-  interactImageGamepad: {fileID: 344646181}
+  interactImageGamepad: {fileID: 798943373}
 --- !u!65 &531771424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16309,7 +16309,7 @@ PrefabInstance:
     - target: {fileID: 6122534295358144398, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: interactImageGamepad
       value: 
-      objectReference: {fileID: 344646181}
+      objectReference: {fileID: 798943373}
     - target: {fileID: 6122534295358144398, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: interactImageKeyboardMouse
       value: 
