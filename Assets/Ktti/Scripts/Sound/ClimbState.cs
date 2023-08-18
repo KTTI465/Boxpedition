@@ -43,11 +43,20 @@ namespace ClimbState
     {
         public override string GetStateName()
         {
-            return "State:ClimbIdle";
+            return "State:Idle";
         }
     }
 
-    public class StateClimb : ClimbState
+    //ˆÚ“®ó‘Ô
+    public class ClimbStateMove : ClimbState
+    {
+        public override string GetStateName()
+        {
+            return "State:Move";
+        }
+    }
+
+    public class ClimbStateClimb : ClimbState
     {
         public override string GetStateName()
         {

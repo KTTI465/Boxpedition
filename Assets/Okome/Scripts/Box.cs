@@ -71,4 +71,9 @@ public class Box : MonoBehaviour
             boxAnimator.SetBool("walk", true); // アニメーション切り替え
         }
     }
+
+    public Animator GetAnim()
+    {
+        return boxAnimator;
+    }
 }

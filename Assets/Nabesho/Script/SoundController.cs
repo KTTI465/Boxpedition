@@ -9,6 +9,7 @@ using CriWare;
 using System;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using ClimbState;
 //using System.Media;
 
 public class SoundController : MonoBehaviour
@@ -28,20 +29,26 @@ public class SoundController : MonoBehaviour
     [SerializeField]
     private trampolineC tp;
 
+    [SerializeField]
+    private RopeActAnim ropeAct;
+
     private SoundControllerBase SEPlayer;
     private SoundControllerBase BGMPlayer;
     private SoundControllerBase WalkPlayer;
     private SoundControllerBase JumpPlayer;
+    private SoundControllerBase ClimbPlayer;
 
 
     /*State*/
     public BoxStateProcessor boxStateProcessor = new BoxStateProcessor();
     public CharacterStateProcessor charactorStateProcessor = new CharacterStateProcessor();
     public TrampolineStateProcessor trampolineStateProcessor = new TrampolineStateProcessor();
+    public ClimbStateProcessor climbStateProcessor = new ClimbStateProcessor();
 
-    private String BeforeStateName, BeforeStateName2, BeforeStateName3;
+    private String BeforeStateName, BeforeStateName2, BeforeStateName3, BeforeSateName4;
     private bool StartFlag = false;
     private bool MoveFlag = false;
+    private bool MoveFlag2 = false;
     public Slider BGMSlider, SFXSlider; //here
 
     void Start()
@@ -50,6 +57,7 @@ public class SoundController : MonoBehaviour
         BGMPlayer = new SoundControllerBase();
         WalkPlayer = new SoundControllerBase();
         JumpPlayer = new SoundControllerBase();
+        ClimbPlayer = new SoundControllerBase();
 
         SEPlayer.SetAcb(atomLoader.acbAssets[0].Handle);
 
@@ -66,6 +74,9 @@ public class SoundController : MonoBehaviour
 
         tp = GameObject.Find("trampArea").GetComponent<trampolineC>();
         trampolineStateProcessor = tp.StateProcessor;
+
+        ropeAct = GameObject.Find("warpRopeManager").GetComponent<RopeActAnim>();
+        climbStateProcessor = ropeAct.climbStateProcessor;
 
         //here 
         BGMSlider.maxValue = SFXSlider.maxValue = 1.0f;
@@ -197,6 +208,33 @@ public class SoundController : MonoBehaviour
         }
 
 
+        if (climbStateProcessor.State.GetStateName() != BeforeSateName4 &&
+            MoveFlag2)
+        {
+            MoveFlag2 = false;
+            ClimbPlayer.Stop();
+        }
+        if (!MoveFlag2)
+        {
+            if (climbStateProcessor.State.GetStateName() == "State:Move")
+            {
+                UnityEngine.Debug.Log("SoundController:Move(Climb)");
+                ClimbPlayer.SetCueName("Walk");
+                ClimbPlayer.Play();
+                WalkPlayer.Stop();
+                MoveFlag2 = true;
+            }
+            else if (climbStateProcessor.State.GetStateName() == "State:Climb")
+            {
+                UnityEngine.Debug.Log("SoundController:Climb");
+                //保留
+                ClimbPlayer.SetCueName("Walk");
+                ClimbPlayer.Play();
+                WalkPlayer.Stop();
+                MoveFlag2 = true;
+            }
+        }
+        BeforeSateName4 = climbStateProcessor.State.GetStateName();
 
         //cueName = Bound_Small
 
@@ -224,6 +262,7 @@ public class SoundController : MonoBehaviour
             return false;
         }
     }
+
     //aaaa
     //bbbb
     public void SettingBGMVolume(float vol)

@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4111076491306115138}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 5.57, y: -0.1099892, z: 0.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 65311348907523389}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!135 &4111076491306115197
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -39,6 +39,51 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4111076491306115138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5243535357972055143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4701031636931387882}
+  - component: {fileID: 3691830365864082708}
+  m_Layer: 9
+  m_Name: Up2Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4701031636931387882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243535357972055143}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.93, y: -0.1099892, z: -1.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 65311348907523389}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!135 &3691830365864082708
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243535357972055143}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -72,9 +117,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6210501997245665360}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.0945, y: 0, z: -0.2914}
+  m_LocalScale: {x: 5.1889997, y: 5, z: 6.54083}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 65311348907523389}
   m_RootOrder: 0
@@ -138,12 +183,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6448461889643012543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -3.83, y: 30.38, z: -0.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3070451342412043544}
   - {fileID: 8196441837254570248}
+  - {fileID: 4701031636931387882}
   m_Father: {fileID: 6626619079637360852}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -174,9 +220,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6626619079567966878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 3.2571, y: 0, z: 0.1881}
+  m_LocalScale: {x: 5.3545, y: 5, z: 8.69126}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6626619080417332692}
   m_RootOrder: 0
@@ -226,6 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6626619079637360852}
   - component: {fileID: 6626619079637360853}
+  - component: {fileID: 6626619079697324641}
   m_Layer: 9
   m_Name: warpRopeManager
   m_TagString: Untagged
@@ -268,9 +315,39 @@ MonoBehaviour:
   upTrigger: 0
   downTrigger: 0
   player: {fileID: 0}
-  interactImageKeyboardMouse: {fileID: 0}
-  interactImageGamepad: {fileID: 0}
-  ps4O: 0
+  interactImageUp: {fileID: 0}
+  interactImageDown: {fileID: 0}
+  anim: {fileID: 6626619079697324641}
+  enable: 1
+--- !u!114 &6626619079697324641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626619079637360858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af26203c61b2c54982bc2ed46967fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  up_transform: {fileID: 8196441837254570248}
+  up2_transform: {fileID: 4701031636931387882}
+  down_transform: {fileID: 6626619080312244059}
+  warpRope: {fileID: 6626619079637360853}
+  animator: {fileID: 0}
+  animatorBox: {fileID: 0}
+  player: {fileID: 0}
+  box: {fileID: 0}
+  grabRope: 0
+  moveSpeed: 5
+  climbSpeed: 5
+  MoveDistance: 10
+  climb1: 0
+  climb2: 0
+  climb3: 0
+  up: 0
+  down: 0
 --- !u!1 &6626619080312244056
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,14 +372,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6626619080312244056}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.3, y: -1.275421, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6626619080417332692}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!135 &6626619080312244058
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -340,7 +417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6626619080417332693}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0.67, y: -1.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

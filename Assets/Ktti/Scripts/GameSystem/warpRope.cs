@@ -14,8 +14,8 @@ public class warpRope : MonoBehaviour
     public Fadeinout fadeinout;
 
     //ê⁄êGÇµÇΩÇ©Ç«Ç§Ç©ÇÃîªíË
-    [SerializeField, NonEditable]
-    private bool upTrigger = false;
+    [SerializeField]
+    private bool upTrigger = true;
     //ê⁄êGÇµÇΩÇ©Ç«Ç§Ç©ÇÃîªíË
     [SerializeField, NonEditable]
     private bool downTrigger = false;
@@ -52,21 +52,27 @@ public class warpRope : MonoBehaviour
         {
             if (upTrigger)
             {
+                interactImageDown.gameObject.SetActive(true);
                 if (Input.GetMouseButtonDown(0) || ps4O)
                 {
-                    /*fadeinout.fadeout = true;
-                    player.position = downPosition.position;*/
                     anim.DownAnim();
                 }
             }
+            else
+            {
+                interactImageDown.gameObject.SetActive(false);
+            }
             if (downTrigger)
             {
+                interactImageUp.gameObject.SetActive(true);
                 if (Input.GetMouseButtonDown(0) || ps4O)
                 {
-                    /*fadeinout.fadeout = true;
-                    player.position = upPosition.position;*/
                     anim.UpAnim();
                 }
+            }
+            else
+            {
+                interactImageUp.gameObject.SetActive(false);
             }
         }
     }
@@ -77,7 +83,6 @@ public class warpRope : MonoBehaviour
         if (enable)
         {
             upTrigger = flg;
-            //interactImage.SetActive(flg);
         }
     }
 
@@ -86,7 +91,6 @@ public class warpRope : MonoBehaviour
         if (enable)
         {
             downTrigger = flg;
-            //interactImage.SetActive(flg);
         }
     }
 
