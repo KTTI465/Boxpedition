@@ -367,6 +367,12 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public Box GetBox()
+    {
+        if (connectingBox == null) return null;
+        else return connectingBox.GetComponent<Box>();
+    }
+
     public void StateTransition()
     {
 

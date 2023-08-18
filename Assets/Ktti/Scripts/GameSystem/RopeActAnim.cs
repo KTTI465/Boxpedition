@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using CharacterState;
 using ClimbState;
 
 public class RopeActAnim : MonoBehaviour
 {
     [SerializeField]
     Transform up_transform;
+    [SerializeField]
+    Transform up2_transform;
     [SerializeField]
     Transform down_transform;
 
@@ -23,6 +24,8 @@ public class RopeActAnim : MonoBehaviour
     GameObject player;
     CharacterController characterController;
     Rigidbody rb;
+    [SerializeField, NonEditable]
+    Box box;
 
     Fadeinout fadeinout;
 
@@ -40,20 +43,19 @@ public class RopeActAnim : MonoBehaviour
     bool climb1 = false;
     [SerializeField, NonEditable]
     bool climb2 = false;
+    [SerializeField, NonEditable]
+    bool climb3 = false;
     [SerializeField, NonEditable] 
     bool up = false;
     [SerializeField, NonEditable] 
     bool down = false;
 
     private string _preStateName;
-    private string _CpreStateName;
 
-    public CharacterStateProcessor CharacterStateProcessor { get; set; } = new CharacterStateProcessor();
-    public CharacterStateIdle CharacterStateIdle { get; set; } = new CharacterStateIdle();
-    public CharacterStateMove CharacterStateMove { get; set; } = new CharacterStateMove();
-    public ClimbStateProcessor ClimbStateProcessor { get; set; } = new ClimbStateProcessor();
-    public ClimbStateIdle ClimbStateIdle { get; set; } = new ClimbStateIdle();
-    public StateClimb StateClimb { get; set; } = new StateClimb();
+    public ClimbStateProcessor climbStateProcessor { get; set; } = new ClimbStateProcessor();
+    public ClimbStateIdle climbStateIdle { get; set; } = new ClimbStateIdle();
+    public ClimbStateMove climbStateMove { get; set; } = new ClimbStateMove();
+    public ClimbStateClimb climbStateClimb { get; set; } = new ClimbStateClimb();
 
     void Start()
     {
@@ -62,39 +64,52 @@ public class RopeActAnim : MonoBehaviour
         animator = player.GetComponent<Animator>();
         rb = player.GetComponent<Rigidbody>();
         fadeinout = warpRope.fadeinout;
-        //animatorBox = player.getBoxAnim();
 
-        CharacterStateIdle.ExecAction = Idle;
-        CharacterStateMove.ExecAction = Move;
-        CharacterStateProcessor.State = CharacterStateIdle;
-        ClimbStateIdle.ExecAction = ClimbIdle;
-        StateClimb.ExecAction = ClimbMove;
-        ClimbStateProcessor.State = ClimbStateIdle;
+        if (characterController.GetBox() != null)
+        {
+            box = characterController.GetBox();
+            animatorBox = box.GetAnim();
+        }
+
+        climbStateIdle.ExecAction = Idle;
+        climbStateMove.ExecAction = Move;
+        climbStateClimb.ExecAction = Climb;
+        climbStateProcessor.State = climbStateIdle;
     }
 
     void Update()
     {
+        if (characterController.GetBox() != null)
+        {
+            box = characterController.GetBox();
+            animatorBox = box.GetAnim();
+        }
+
         if (grabRope)
         {
             characterController.enabled = false;
             rb.isKinematic = true;
             warpRope.enable = false;
+            box.enabled = false;
 
             if (up)
             {
-                if (!climb1 && !climb2)
+                if (!climb1 && !climb2 && !climb3)
                 {
                     if (new Vector3(player.transform.position.x, 0f, player.transform.position.z) == new Vector3(down_transform.position.x, 0f, down_transform.position.z))
                     {
                         animator.SetBool("walk", false);
+                        animatorBox.SetBool("walk", false);
+                        player.transform.rotation = down_transform.rotation;
                         climb1 = true;
-                        CharacterStateProcessor.State = CharacterStateIdle;
+                        climbStateProcessor.State = climbStateIdle;
                     }
                     else
                     {
                         player.transform.position = Vector3.MoveTowards(player.transform.position, new Vector3(down_transform.position.x, player.transform.position.y, down_transform.position.z), moveSpeed * Time.deltaTime);
                         animator.SetBool("walk", true);
-                        CharacterStateProcessor.State = CharacterStateMove;
+                        animatorBox.SetBool("walk", true);
+                        climbStateProcessor.State = climbStateMove;
                     }
                 }
 
@@ -102,6 +117,8 @@ public class RopeActAnim : MonoBehaviour
                 {
                     animator.SetBool("climbStay", true);
                     animator.SetBool("climb", true);
+
+                    climbStateProcessor.State = climbStateClimb;
 
                     player.transform.position = Vector3.MoveTowards(player.transform.position, up_transform.position, climbSpeed * Time.deltaTime);
                     
@@ -122,12 +139,31 @@ public class RopeActAnim : MonoBehaviour
                     {
                         animator.SetBool("climbStay", false);
                         animator.SetBool("climb", false);
+                        animator.SetBool("walk", true);
+                        animatorBox.SetBool("walk", true);
                         climb2 = false;
+                        climb3 = true;
+
+                        climbStateProcessor.State = climbStateMove;
+                    }
+                }
+
+                if (climb3)
+                {
+                    player.transform.position = Vector3.MoveTowards(player.transform.position, up2_transform.position, climbSpeed * Time.deltaTime);
+
+                    if (player.transform.position == up2_transform.position)
+                    {
+                        animator.SetBool("walk", false);
+                        animatorBox.SetBool("walk", false);
+                        climb3 = false;
                         grabRope = false;
                         up = false;
 
                         warpRope.enable = true;
                         warpRope.SetRopeDown(false);
+
+                        climbStateProcessor.State = climbStateIdle;
                     }
                 }
             }
@@ -138,15 +174,17 @@ public class RopeActAnim : MonoBehaviour
                     if (new Vector3(player.transform.position.x, 0f, player.transform.position.z) == new Vector3(up_transform.position.x, 0f, up_transform.position.z))
                     {
                         animator.SetBool("walk", false);
+                        animatorBox.SetBool("walk", false);
                         player.transform.rotation = up_transform.rotation;
                         climb1 = true;
-                        CharacterStateProcessor.State = CharacterStateIdle;
+                        climbStateProcessor.State = climbStateIdle;
                     }
                     else
                     {
                         player.transform.position = Vector3.MoveTowards(player.transform.position, new Vector3(up_transform.position.x, player.transform.position.y, up_transform.position.z), moveSpeed * Time.deltaTime);
                         animator.SetBool("walk", true);
-                        CharacterStateProcessor.State = CharacterStateMove;
+                        animatorBox.SetBool("walk", true);
+                        climbStateProcessor.State = climbStateMove;
                     }
                 }
 
@@ -186,34 +224,26 @@ public class RopeActAnim : MonoBehaviour
             characterController.enabled = true;
             rb.isKinematic = false;
             warpRope.enable = true;
+            box.enabled = true;
         }
 
         //ステートの値が変更されたら実行処理を行う
-        if (CharacterStateProcessor.State.GetStateName() != _preStateName)
+        if (climbStateProcessor.State.GetStateName() != _preStateName)
         {
-            _preStateName = CharacterStateProcessor.State.GetStateName();
-            CharacterStateProcessor.Execute();
-        }
-        if (ClimbStateProcessor.State.GetStateName() != _CpreStateName)
-        {
-            _CpreStateName = CharacterStateProcessor.State.GetStateName();
-            CharacterStateProcessor.Execute();
+            _preStateName = climbStateProcessor.State.GetStateName();
+            climbStateProcessor.Execute();
         }
     }
 
     public void Idle()
     {
-        //Debug.Log("CharacterStateがIdleに状態遷移しました。");
+        //Debug.Log("ClimbStateがIdleに状態遷移しました。");
     }
     public void Move()
     {
-        //Debug.Log("CharacterStateがMoveに状態遷移しました。");
+        //Debug.Log("ClimbStateがMoveに状態遷移しました。");
     }
-    public void ClimbIdle()
-    {
-        //Debug.Log("ClimbStateがIdleに状態遷移しました。");
-    }
-    public void ClimbMove()
+    public void Climb()
     {
         //Debug.Log("ClimbStateがMoveに状態遷移しました。");
     }
@@ -230,5 +260,10 @@ public class RopeActAnim : MonoBehaviour
         down = true;
         grabRope = true;
         player.transform.LookAt(up_transform);
+    }
+
+    public bool ClimbChecker()
+    {
+        return up && (climb1 || climb2);
     }
 }
