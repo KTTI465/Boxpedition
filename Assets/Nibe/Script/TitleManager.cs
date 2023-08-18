@@ -19,12 +19,15 @@ public class TitleManager : MonoBehaviour
     [SerializeField] GameObject stagePanel;
     [SerializeField] GameObject resultPanel;
 
+    [SerializeField] GameObject creditPanel1;
+
     [SerializeField] GameObject rightImage;
     [SerializeField] GameObject leftImage;
 
     [SerializeField] Text startGameText;
     [SerializeField] Text openOptionText;
     [SerializeField] Text quitGameText;
+    [SerializeField] Text creditText;
     [SerializeField] Text bgmText;
     [SerializeField] Text seText;
     [SerializeField] Text sensiText;
@@ -44,6 +47,7 @@ public class TitleManager : MonoBehaviour
     private bool title = true;
     private bool option = false;
     private bool stage = false;
+    private bool credit = false;
 
     private int titleNum = 0;
     private int optionNum = 0;
@@ -115,7 +119,7 @@ public class TitleManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (titleNum == 2)
+                if (titleNum == 3)
                 {
                     down = false;
                 }
@@ -137,10 +141,16 @@ public class TitleManager : MonoBehaviour
                 else if (titleNum == 1)
                 {
                     OpenOptionButton();
+                    //Debug.Log("bbbbbbbb");
                 }
                 else if (titleNum == 2)
                 {
                     QuitGameButton();
+                }
+                else if (titleNum == 3)
+                {
+                    OpenCreditButton();
+                    //Debug.Log("aaaaaa");
                 }
             }
         }
@@ -248,6 +258,13 @@ public class TitleManager : MonoBehaviour
                 ExitGameButton();
             }
         }
+        else if(credit)
+        {
+            if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                ExitCreditButton();
+            }
+        }
 
 
         // Œ©‚½–Ú
@@ -256,20 +273,30 @@ public class TitleManager : MonoBehaviour
             startGameText.color = new Color(r2, g2, b2, a2);
             openOptionText.color = new Color(r1, g1, b1, a1);        
             quitGameText.color = new Color(r1, g1, b1, a1);
+            creditText.color = new Color(r1, g1, b1, a1);
         }
         else if (titleNum == 1)
         {
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r2, g2, b2, a2);
             quitGameText.color = new Color(r1, g1, b1, a1);
+            creditText.color = new Color(r1, g1, b1, a1);
         }
         else if (titleNum == 2)
         {
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r1, g1, b1, a1);
             quitGameText.color = new Color(r2, g2, b2, a2);
+            creditText.color = new Color(r1, g1, b1, a1);
         }
-        
+        else if(titleNum == 3)
+        {
+            startGameText.color = new Color(r1, g1, b1, a1);
+            openOptionText.color = new Color(r1, g1, b1, a1);
+            quitGameText.color = new Color(r1, g1, b1, a1);
+            creditText.color = new Color(r2, g2, b2, a2);
+        }
+
         if (optionNum == 0)
         {
             bgmText.color = new Color(r2, g2, b2, a2);
@@ -348,6 +375,22 @@ public class TitleManager : MonoBehaviour
         musicManager.PlaySE1();
     }
 
+    public void OpenCreditButton()
+    {
+        creditPanel1.SetActive(true);
+        titlePanel.SetActive(false);
+        credit = true;
+        title = false;
+        musicManager.PlaySE1();
+    }
+    public void ExitCreditButton()
+    {
+        titlePanel.SetActive(true);
+        creditPanel1.SetActive(false);
+        title = true;
+        credit = false;
+        musicManager.PlaySE1();
+    }
     public void QuitGameButton()
     {
         musicManager.PlaySE1();

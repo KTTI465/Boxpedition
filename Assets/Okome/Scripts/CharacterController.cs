@@ -11,7 +11,7 @@ public class CharacterController : MonoBehaviour
 {
     private Rigidbody rb;
     private float xMovement, zMovement;
-    private float movementSpeed = 0.1f;
+    public float movementSpeed = 0.15f;
     [SerializeField] private Camera playerCam;
     public GameObject cam;
     private Quaternion cameraRot, characterRot;
