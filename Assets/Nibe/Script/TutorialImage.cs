@@ -7,26 +7,51 @@ using static UnityEditor.PlayerSettings;
 
 public class TutorialImage : MonoBehaviour
 {
-    public GameObject imagePrefab;  // 画像用プレハブ
+    [SerializeField] TitleSlider titleSlider;
+
+    public GameObject imagePrefab;
+    bool ps4button = false;
+    bool triggerStay = false;
+    float seValue = 0.0f;
+    float sensiValue = 0.0f;
+
+
+    void Update()
+    {
+        if(triggerStay)  //範囲内にプレイヤーがいるとき
+        {
+            CheckPS4();
+
+            if (ps4button)  // 何かボタンを押したら
+            {
+                imagePrefab.SetActive(false);  // 画像を非表示にする
+                Time.timeScale = 1;
+
+                titleSlider.SetSE(seValue);
+
+                PlayerPrefs.SetFloat("Sensi", sensiValue);
+                PlayerPrefs.Save();
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))  // プレイヤーが範囲に入ったら
         {
-            imagePrefab.SetActive(true);  // 画像を表示する
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
             if (Gamepad.current != null)
             {
-                if (Gamepad.current.buttonEast.isPressed)  // 〇ボタンを押したら
-                {
-                    imagePrefab.SetActive(false);  // 画像を非表示にする
-                }
+                imagePrefab.SetActive(true);  // 画像を表示する
+                triggerStay = true;
+                Time.timeScale = 0;
+
+
+                seValue = PlayerPrefs.GetFloat("SE");
+                titleSlider.SetSE(0.0f);
+
+                sensiValue = PlayerPrefs.GetFloat("Sensi");
+                PlayerPrefs.SetFloat("Sensi", 0.0f);
+                PlayerPrefs.Save();
             }
         }
     }
@@ -36,6 +61,17 @@ public class TutorialImage : MonoBehaviour
         if (other.CompareTag("Player"))  // プレイヤーが範囲から出たら
         {
             imagePrefab.SetActive(false);  // 画像を非表示にする
+            triggerStay = false;
+            ps4button = false;
+        }
+    }
+
+    void CheckPS4()
+    {
+        if (Gamepad.current.buttonNorth.isPressed || Gamepad.current.buttonEast.isPressed || 
+            Gamepad.current.buttonWest.isPressed || Gamepad.current.buttonSouth.isPressed)  // 何かボタンを押したら
+        {
+            ps4button = true;
         }
     }
 }
