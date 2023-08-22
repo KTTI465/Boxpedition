@@ -14,6 +14,7 @@ TagManager:
   - ResTarget
   - book
   - glass
+  - arie
   layers:
   - Default
   - TransparentFX
