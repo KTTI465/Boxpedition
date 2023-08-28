@@ -433,7 +433,7 @@ public class TitleManager : MonoBehaviour
         }
         else if (stageNum == 2)
         {
-            SceneManager.LoadScene("titleScene");
+            SceneManager.LoadScene("Stage2");
         }
     }
 

@@ -27,7 +27,7 @@ public class SoundController : MonoBehaviour
     private CharacterController chara;
 
     [SerializeField]
-    private trampolineC tp;
+    private trampolineRemake tp;
 
     [SerializeField]
     private RopeActAnim ropeAct;
@@ -72,7 +72,7 @@ public class SoundController : MonoBehaviour
         chara = player.GetComponent<CharacterController>();
 
 
-        tp = GameObject.Find("trampArea").GetComponent<trampolineC>();
+        tp = GameObject.Find("boundArea").GetComponent<trampolineRemake>();
         trampolineStateProcessor = tp.StateProcessor;
 
         ropeAct = GameObject.Find("warpRopeManager").GetComponent<RopeActAnim>();
