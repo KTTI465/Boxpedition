@@ -44,9 +44,7 @@ public class stageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        musicManager.SetBGM();
-        musicManager.SetSE();
-        musicManager.PlayBGM2();
+
     }
 
     // Update is called once per frame
