@@ -6477,15 +6477,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 151.2
+      value: 42.5
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.9
+      value: 80.9
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -225
+      value: -293.3
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15103,12 +15103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40dffbb33b14462429dcdb7628f52354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _guideArrow: {fileID: 1910822368}
-  DVDShelf: {fileID: 1228539565}
-  buildingBlockObj: {fileID: 531771417}
-  detectionBuildingBlockAreaObj: {fileID: 1831201688}
+  guideArrowObj: {fileID: 0}
+  magnification: 0
+  detectionFirstShelf: {fileID: 0}
   ballOfWoolOnTV: {fileID: 1419163534}
-  drawer: {fileID: 267873952597513496}
   detectionScaffold: {fileID: 1016339028}
   goal: {fileID: 739103251}
   checkPointManager: {fileID: 1305643852}
@@ -15312,7 +15310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f67013db419404393cea799cf0ab14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1266171627}
 --- !u!65 &1016339030
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17677,11 +17674,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4237088684397915882, guid: 19a3b3e3a08d63243b4de01160d134d9, type: 3}
   m_PrefabInstance: {fileID: 1217865961}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1228539565 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 491705992927363556, guid: 6e9cfe66408958e4eb6309e6b35853a4, type: 3}
-  m_PrefabInstance: {fileID: 3705308014521004528}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1230727537
 GameObject:
@@ -29035,17 +29027,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aec71fa5d6ab24744bbfb3afb66de766, type: 3}
---- !u!114 &1910822368 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7517794401394311043, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
-  m_PrefabInstance: {fileID: 479407273}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93c932451521044886a260f1d448efb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1922906235
 GameObject:
   m_ObjectHideFlags: 0
