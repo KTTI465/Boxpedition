@@ -256,7 +256,7 @@ public class CharacterController : MonoBehaviour
         {
             //connectingBoxが無いときにPlayerが地面についているかを判定するRayの長さ
             //Playerの大きさ次第で調整が必要
-            jumpDistance = 0.7f;
+            jumpDistance = 1.5f;
 
             float radius = transform.lossyScale.x * 0.8f;
 
