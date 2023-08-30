@@ -7,37 +7,30 @@ public class stage1GuideArrowManager : MonoBehaviour
 {
     //プレイヤーの矢印を格納
     [SerializeField]
+    private GameObject guideArrowObj;
     private guideArrow _guideArrow;
+
+    [SerializeField]　//大きくするときの倍率
+    private float magnification;
 
     //矢印が向くオブジェクト
     private GameObject target;
 
-    [SerializeField]　//DVDの棚
-    private GameObject DVDShelf;
+    [SerializeField]　//最初の棚
+    private GameObject detectionFirstShelf;
 
-    [SerializeField]　//積み木
-    private GameObject buildingBlockObj;
-    private buildingBlock _buildingBlock; 
-
-    [SerializeField]
-    private GameObject detectionBuildingBlockAreaObj;
-    private detectionBuildingBlockArea _detectionBuildingBlockArea;
-
-    //[SerializeField]  //スリングショット
-    //private GameObject slingShot;
+    //最初の棚の上にきたのを判定する
+    private detectionPlayerOn isPlayerOnFirstShelf;
 
     [SerializeField]　//テレビの上の毛糸玉
     private GameObject ballOfWoolOnTV;
     private ballOfWool ballOfWoolEnabledAnimation;
 
-    [SerializeField]　//引き出し
-    private GameObject drawer;
-
-    [SerializeField]
+    [SerializeField]　//ぬいぐるみがある段のひとつ上の段の足場
     private GameObject detectionScaffold;
 
     //引き出し上の足場にきたのを判定する
-    private detectionPlayerOnScaffold playerOnScaffold;
+    private detectionPlayerOn isPlayerOnScaffold;
 
     [SerializeField]　//ゴール
     private GameObject goal;
@@ -45,19 +38,21 @@ public class stage1GuideArrowManager : MonoBehaviour
     [SerializeField]
     private CheckPointManager checkPointManager;
 
-    [SerializeField]
+    [SerializeField]　//大きな机の上のチェックポイント
     private GameObject checkPoint1;
 
-    [SerializeField]
+    [SerializeField]　//引き出しの前の足場
     private GameObject checkPoint2;
+
+
 
     private void Start()
     {
-        target = DVDShelf;
-        _buildingBlock = buildingBlockObj.GetComponent<buildingBlock>();
-        _detectionBuildingBlockArea = detectionBuildingBlockAreaObj.GetComponent<detectionBuildingBlockArea>();
+        _guideArrow = guideArrowObj.GetComponent<guideArrow>();
+        target = detectionFirstShelf;
         ballOfWoolEnabledAnimation = ballOfWoolOnTV.GetComponent<ballOfWool>();
-        playerOnScaffold = detectionScaffold.GetComponent<detectionPlayerOnScaffold>();
+        isPlayerOnFirstShelf = detectionFirstShelf.GetComponent<detectionPlayerOn>();
+        isPlayerOnScaffold = detectionScaffold.GetComponent<detectionPlayerOn>();
     }
     private void Update()
     {
@@ -66,30 +61,34 @@ public class stage1GuideArrowManager : MonoBehaviour
         if (_guideArrow.target != target.transform)
             _guideArrow.target = target.transform;
 
-        if (playerOnScaffold.playerOnScaffold)
+        if (isPlayerOnScaffold.isPlayerOn)
         {
             target = goal;
+            guideArrowObj.transform.localScale = _guideArrow.firstScale;
         }
-        else if(!ballOfWoolEnabledAnimation.enabledAnimation)
+        else if (checkPointManager.lastCheckPoint == checkPoint2.transform.position)
         {
-            target = drawer;
+            target = detectionScaffold;
+            guideArrowObj.transform.localScale = _guideArrow.firstScale * magnification;
         }
-        else if(_detectionBuildingBlockArea.onBlock)
+        else if (!ballOfWoolEnabledAnimation.enabledAnimation)
         {
-            target = ballOfWoolOnTV;
+            target = checkPoint2;
+            guideArrowObj.transform.localScale = _guideArrow.firstScale * magnification;
         }
-        else if(_buildingBlock.isGrabed)
-        {
-            target = detectionBuildingBlockAreaObj;
-        }
+        //大きな机にのった時
         else if (checkPointManager.lastCheckPoint == checkPoint1.transform.position)
         {
-            target = buildingBlockObj;
+            target = ballOfWoolOnTV;
+            guideArrowObj.transform.localScale = _guideArrow.firstScale * magnification;
+        }
+        else if (isPlayerOnFirstShelf.isPlayerOn)
+        {
+            target = checkPoint1;
         }
         else
         {
-            target = DVDShelf;
+            target = detectionFirstShelf;
         }
     }
 }
-

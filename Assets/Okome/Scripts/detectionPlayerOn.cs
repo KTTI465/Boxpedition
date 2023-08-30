@@ -3,23 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class detectionPlayerOnScaffold : MonoBehaviour
+public class detectionPlayerOn : MonoBehaviour
 {
-    [SerializeField]
     private GameObject player;
 
     [NonSerialized]
-    public bool playerOnScaffold;
+    public bool isPlayerOn;
 
     private void Start()
     {
-        playerOnScaffold = false;
+        player = GameObject.FindGameObjectWithTag("Player");
+        isPlayerOn = false;
     }
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject == player)
         {
-            playerOnScaffold = true;
+            isPlayerOn = true;
         }
     }
 }
