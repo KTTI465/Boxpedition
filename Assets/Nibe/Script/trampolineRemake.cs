@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using CharacterState;
 using TrampolineState;
-using static UnityEditor.PlayerSettings;
 
 public class trampolineRemake : MonoBehaviour
 {

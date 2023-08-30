@@ -164,6 +164,10 @@ public class RopeActAnim : MonoBehaviour
                         warpRope.SetRopeDown(false);
 
                         climbStateProcessor.State = climbStateIdle;
+                        characterController.enabled = true;
+                        rb.isKinematic = false;
+                        warpRope.enable = true;
+                        box.enabled = true;
                     }
                 }
             }
@@ -215,17 +219,16 @@ public class RopeActAnim : MonoBehaviour
 
                         warpRope.enable = true;
                         warpRope.SetRopeUp(false);
+
+                        characterController.enabled = true;
+                        rb.isKinematic = false;
+                        warpRope.enable = true;
+                        box.enabled = true;
                     }
                 }
             }
         }
-        else
-        {
-            characterController.enabled = true;
-            rb.isKinematic = false;
-            warpRope.enable = true;
-            box.enabled = true;
-        }
+
 
         //ステートの値が変更されたら実行処理を行う
         if (climbStateProcessor.State.GetStateName() != _preStateName)
