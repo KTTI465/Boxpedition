@@ -8,19 +8,33 @@ public class guideArrow : MonoBehaviour
     public Transform target;
 
     [SerializeField]
-    private GameObject player;
+    private GameObject cameraObj;
 
-    //プレイヤーと矢印の距離
-    public float meshOnLength = 2f;
+    [SerializeField]　//矢印の最大振幅
+    private float maxAmplitude;
 
-    //矢印の高さ
-    [SerializeField]
-    private float height;
+    [SerializeField]　//矢印の動きの速さ
+    private float arrowSpeed;
 
-    private MeshRenderer _meshRenderer;
+    [SerializeField]　//目標と矢印の最小振幅時の、最短距離
+    private float minDistArrowFromTarget;
+
+    [SerializeField]　//目標オブジェクトからの高さの座標
+    private float heightFromTarget;
+
+    //周期
+    private float period;
+
+    //直線と目標オブジェクトの垂線の足の座標
+    private Vector3 perpendicularCoordinates;
+
+    //矢印の最初の大きさ
+    [System.NonSerialized]
+    public Vector3 firstScale;
+
     private void Start()
     {
-        _meshRenderer = GetComponent<MeshRenderer>();
+        firstScale = transform.localScale;
     }
     private void Update()
     {
@@ -29,18 +43,22 @@ public class guideArrow : MonoBehaviour
             //矢印が目的のオブジェクトのほうを向くようにする
             transform.LookAt(target);
         }
+        //矢印の動きを設定
+        period = Mathf.PingPong(Time.time * arrowSpeed, maxAmplitude);
+        //（目標オブジェクトの上とカメラを結ぶ）直線と目標オブジェクトの垂線の足を求める
+        perpendicularCoordinates = PerpendicularFootPoint(cameraObj.transform.position,
+            target.position + (Vector3.up * heightFromTarget), target.position);
+        //矢印の座標を設定
+        transform.position = perpendicularCoordinates - (transform.forward
+            * (minDistArrowFromTarget + period));
 
-        //矢印の位置をプレイヤーの上に配置
-        transform.position = player.transform.position + new Vector3(0.0f, height, 0.0f);
 
-        //プレイヤーと目的のオブジェクトの距離が近くなったときに矢印を非表示にする
-        if (Vector3.Distance(player.transform.position, target.transform.position) <= meshOnLength || target == null)
-        {
-            _meshRenderer.enabled = false;
-        }
-        else if (_meshRenderer.enabled == false)
-        {
-            _meshRenderer.enabled = true;
-        }
+    }
+    Vector3 PerpendicularFootPoint(Vector3 a, Vector3 b, Vector3 p)
+    {
+        return a + Vector3.Project(p - a, b - a);
     }
 }
+
+
+

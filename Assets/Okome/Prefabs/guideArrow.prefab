@@ -116,5 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  player: {fileID: 0}
-  camera: {fileID: 0}
+  cameraObj: {fileID: 0}
+  maxAmplitude: 3
+  arrowSpeed: 2
+  minDistArrowFromTarget: 3
+  heightFromTarget: 1
+  firstScale: {x: 0, y: 0, z: 0}
