@@ -4409,6 +4409,10 @@ PrefabInstance:
       propertyPath: particlePlaySpeed
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: createBoxPosBias.y
+      value: 1.19
+      objectReference: {fileID: 0}
     - target: {fileID: 3548528941164848440, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -5972,6 +5976,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4701031636931387882, guid: 63bdf53faf3eff3429b8ba15d8d74e9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1224995
+      objectReference: {fileID: 0}
     - target: {fileID: 6626619079637360852, guid: 63bdf53faf3eff3429b8ba15d8d74e9c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -6039,6 +6047,14 @@ PrefabInstance:
     - target: {fileID: 6626619079637360858, guid: 63bdf53faf3eff3429b8ba15d8d74e9c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626619080312244059, guid: 63bdf53faf3eff3429b8ba15d8d74e9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4379097
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196441837254570248, guid: 63bdf53faf3eff3429b8ba15d8d74e9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1224995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63bdf53faf3eff3429b8ba15d8d74e9c, type: 3}
