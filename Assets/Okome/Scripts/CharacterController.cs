@@ -82,6 +82,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private PhysicMaterial physicMaterial;
 
+    [SerializeField]
+    private Vector3 createBoxPosBias = Vector3.zero;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -104,7 +107,7 @@ public class CharacterController : MonoBehaviour
         if (connectingBox == null)
         {
             //connectingBox としてboxをPlayerと同じ位置と向きで生成
-            connectingBox = Instantiate(box, new Vector3(transform.position.x, transform.position.y + 1.15f, transform.position.z), transform.rotation);
+            connectingBox = Instantiate(box, new Vector3(transform.position.x + createBoxPosBias.x, transform.position.y + createBoxPosBias.y, transform.position.z + createBoxPosBias.z), transform.rotation);
 
             //PlayerがconnectingBox の上に来るように移動
             transform.position = new Vector3(transform.position.x, transform.position.y + enterBoxMove, transform.position.z);
@@ -244,7 +247,7 @@ public class CharacterController : MonoBehaviour
             //connectingBoxがあることも加味してのPlayerが地面についているかを判定するRayの長さ　
             //値は変更する必要あり（今は埋め込みで実装できていないのでこの値）
             //箱とPlayerの大きさ次第でも調整が必要
-            jumpDistance = 0.7f;
+            jumpDistance = 1.4f;
 
             float radius = transform.lossyScale.x * 0.8f;
 
@@ -339,7 +342,7 @@ public class CharacterController : MonoBehaviour
             if (connectingBox == null)
             {
                 //connectingBoxとして新しくboxをPlayerと同じ位置と向きに生成
-                connectingBox = Instantiate(box, new Vector3(transform.position.x, transform.position.y + 1.15f, transform.position.z), transform.rotation);
+                connectingBox = Instantiate(box, new Vector3(transform.position.x + createBoxPosBias.x, transform.position.y + createBoxPosBias.y, transform.position.z + createBoxPosBias.z), transform.rotation);
 
                 //connectingBoxの上にPlayerがくるように位置を調整
                 transform.position = new Vector3(transform.position.x, transform.position.y + enterBoxMove, transform.position.z);

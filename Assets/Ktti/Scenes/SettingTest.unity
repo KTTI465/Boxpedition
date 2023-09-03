@@ -578,6 +578,10 @@ PrefabInstance:
       propertyPath: particlePlaySpeed
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: createBoxPosBias.y
+      value: 1.19
+      objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_RootOrder
       value: 7
