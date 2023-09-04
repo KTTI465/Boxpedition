@@ -276,7 +276,7 @@ public class rope: MonoBehaviour
             {
                 ps4X = true;
             }
-            else if (Gamepad.current.buttonSouth.isPressed)
+            else
             {
                 ps4X = false;
             }
