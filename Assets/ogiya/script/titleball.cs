@@ -21,7 +21,12 @@ public class titleball : MonoBehaviour
     {
         if (collision.gameObject.tag == "floor")
         {
-            Destroy(gameObject);
+            Invoke("restart", 8f);
         }
+    }
+
+    public void restart()
+    {
+        this.transform.position = new Vector3(-7, 4, -8);
     }
 }
