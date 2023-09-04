@@ -37,10 +37,14 @@ public class rope: MonoBehaviour
     public float angleX;
     public float angleY;
     public float angleZ;
+    public bool panelOn = false;
+    public bool button = false;
 
     //プレイヤーのrigidbody格納用変数
     new Rigidbody rigidbody;
     GameObject player;
+    public GameObject panel1;
+    public GameObject panel2;
 
     [SerializeField] Transform target;
     private float speed = 5.0f;
@@ -54,6 +58,8 @@ public class rope: MonoBehaviour
 
     // ×ボタンが押されているかどうかを取得する
     bool ps4X = false;
+    // 〇ボタンが押されているかどうかを取得する
+    bool ps40 = false;
 
     Vector3 pivot;
     Vector3 FromVector;
@@ -79,6 +85,15 @@ public class rope: MonoBehaviour
         Vector3 setpos = pointobj.transform.position;
         Vector3 ropepos = ropeobj.transform.position;
         float arie = Vector3.Distance(setpos, ropepos);
+        float Parie = Vector3.Distance(playerpos, ropepos);
+        if(Parie <= 8f)
+        {
+            panel1.SetActive(true);
+        }
+        else if(Parie > 8f || panelOn == true)
+        {
+            panel1.SetActive(false);
+        }
         //座標指定用オブジェクトと一定の距離になったら条件を満たす
         if (arie < 10f)
         {
@@ -88,10 +103,27 @@ public class rope: MonoBehaviour
         {
             Ysafepoint =false;
         }
-
-        GetPS4X();
-        if (moveOn == true && (Input.GetKey(KeyCode.Space) || ps4X))  //動く
+        if(panelOn == true)
         {
+            panel2.SetActive(true);
+        }
+        else
+        {
+            panel2.SetActive(false);
+        }
+
+        GetPS40();
+        GetPS4X();
+
+        //Xボタンを押したら〇ボタンを打ち消す
+        if(ps4X)
+        {
+            ps40 = false;
+        }
+
+        if (moveOn == true && (Input.GetKey(KeyCode.Space) || ps40))  //動く
+        {
+            panelOn = true;
             //　経過時間に合わせた割合を計算
             float t = (Time.time - startTime) / duration;
 
@@ -102,11 +134,13 @@ public class rope: MonoBehaviour
             player.transform.position = Vector3.MoveTowards(player.transform.position, target.position, speed * Time.deltaTime);
 
             //CharacterMovement();  //相殺
+
         }
         else  //止まる
         {
             if (moveOn == true)
             {
+                panelOn = false;
                 moveOn = false;
 
                 //重力を復活させる
@@ -191,9 +225,10 @@ public class rope: MonoBehaviour
     {
         if (col.tag == "Player")
         {
+            GetPS40();
             GetPS4X();
 
-            if (Input.GetKey(KeyCode.Space) || ps4X)
+            if (Input.GetKey(KeyCode.Space) || ps40)
             {
                 moveOn = true;
 
@@ -219,6 +254,20 @@ public class rope: MonoBehaviour
         player.transform.Translate(-xMovement, 0, -zMovement);  //相殺するために逆向きに力加える
     }
 
+    void GetPS40()
+    {
+        if (Gamepad.current != null)
+        {
+            if (ps40 == false && Gamepad.current.buttonEast.isPressed)
+            {
+                ps40 = true;
+            }
+            else if (ps40 == true && Gamepad.current.buttonEast.isPressed)
+            {
+                ps40 = false;
+            }
+        }
+    }
     void GetPS4X()
     {
         if (Gamepad.current != null)
@@ -227,7 +276,7 @@ public class rope: MonoBehaviour
             {
                 ps4X = true;
             }
-            else
+            else if (Gamepad.current.buttonSouth.isPressed)
             {
                 ps4X = false;
             }
