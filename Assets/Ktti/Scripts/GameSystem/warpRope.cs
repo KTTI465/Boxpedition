@@ -29,6 +29,11 @@ public class warpRope : MonoBehaviour
     private GameObject interactImageDown;
 
     [SerializeField]
+    private GameObject interactImageUpEnglish;
+    [SerializeField]
+    private GameObject interactImageDownEnglish;
+
+    [SerializeField]
     RopeActAnim anim;
 
     // ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ðŽæ“¾‚·‚é
@@ -41,6 +46,12 @@ public class warpRope : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if (PlayerPrefs.GetString("Language") == "English")
+        {
+            interactImageUp = interactImageUpEnglish;
+            interactImageDown = interactImageDownEnglish;
+        }
     }
 
     // Update is called once per frame

@@ -81,6 +81,9 @@ public class moveRopeB : MonoBehaviour
     [SerializeField]//パッド操作のときのインタラクトの画像
     private GameObject interactImageGamepad;
 
+    [SerializeField]//英語のときのインタラクトの画像
+    private GameObject interactImageEnglish;
+
     private GameObject interactImage;
 
     [SerializeField]//キーボードマウス操作のときの上るの画像
@@ -89,6 +92,9 @@ public class moveRopeB : MonoBehaviour
     [SerializeField]//パッド操作のときの上るの画像
     private GameObject climbUpImageGamepad;
 
+    [SerializeField]//英語のときの上るの画像
+    private GameObject climbUpImageEnglish;
+
     private GameObject climbUpImage;
 
     [SerializeField]//キーボードマウス操作のときの下りるの画像
@@ -96,6 +102,9 @@ public class moveRopeB : MonoBehaviour
 
     [SerializeField]//パッド操作のときの下りるの画像
     private GameObject climbDownImageGamepad;
+
+    [SerializeField]//英語のときの下りるの画像
+    private GameObject climbDownImageEnglish;
 
     private GameObject climbDownImage;
 
@@ -137,6 +146,14 @@ public class moveRopeB : MonoBehaviour
 
         //レイヤ―の変更
         gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
+
+
+        if (PlayerPrefs.GetString("Language") == "English")
+        {
+            interactImageGamepad = interactImageEnglish;
+            climbUpImageGamepad = climbUpImageEnglish;
+            climbDownImageGamepad = climbDownImageEnglish;
+        }
     }
 
     void ImageChange()

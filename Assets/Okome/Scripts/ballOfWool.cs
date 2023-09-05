@@ -40,6 +40,9 @@ public class ballOfWool : MonoBehaviour
     [SerializeField]//パッド操作のときのインタラクトの画像
     private GameObject interactImageGamepad;
 
+    [SerializeField]//英語のときのインタラクトの画像
+    private GameObject interactImageEnglish;
+
     private GameObject interactImage;
 
     private string _preStateName;
@@ -54,6 +57,11 @@ public class ballOfWool : MonoBehaviour
         StateProcessor.State = StateIdle;
         StateIdle.ExecAction = Idle;
         StateAnimation.ExecAction = Animation;
+
+        if (PlayerPrefs.GetString("Language") == "English")
+        {
+            interactImageGamepad = interactImageEnglish;
+        }
     }
 
     void Update()

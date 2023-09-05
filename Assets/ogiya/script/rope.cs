@@ -45,6 +45,8 @@ public class rope: MonoBehaviour
     GameObject player;
     public GameObject panel1;
     public GameObject panel2;
+    public GameObject panel1English;
+    public GameObject panel2English;
 
     [SerializeField] Transform target;
     private float speed = 5.0f;
@@ -76,6 +78,12 @@ public class rope: MonoBehaviour
         //ƒvƒŒƒCƒ„[‚ğŒ©‚Â‚¯‚é
         player = GameObject.FindGameObjectWithTag("Player");
         rigidbody = player.gameObject.GetComponent<Rigidbody>();
+
+        if (PlayerPrefs.GetString("Language") == "English")
+        {
+            panel1 = panel1English;
+            panel2 = panel2English;
+        }
     }
 
     // Update is called once per frame
