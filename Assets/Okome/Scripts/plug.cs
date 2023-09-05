@@ -32,6 +32,9 @@ public class plug : MonoBehaviour
     [SerializeField]//インタラクトの画像を格納
     private GameObject interactImage;
 
+    [SerializeField]//英語のインタラクトの画像を格納
+    private GameObject interactImageEnglish;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +62,12 @@ public class plug : MonoBehaviour
         plugRopeIndex = 6;
         //物理演算をとめるためのコルーチン（n秒後,）
         StartCoroutine(StopPhysics(10.0f, plugRope));
+
+
+        if (PlayerPrefs.GetString("Language") == "English")
+        {
+            interactImage = interactImageEnglish;
+        }
     }
 
     // Update is called once per frame

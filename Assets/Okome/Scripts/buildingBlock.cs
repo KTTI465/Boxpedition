@@ -28,6 +28,9 @@ public class buildingBlock : MonoBehaviour
     [SerializeField]//パッド操作のときのインタラクトの画像
     private GameObject interactImageGamepad;
 
+    [SerializeField]//英語のときのインタラクトの画像
+    private GameObject interactImageEnglish;
+
     private GameObject interactImage;
 
     //コリダー内に入っているときの判定
@@ -53,6 +56,11 @@ public class buildingBlock : MonoBehaviour
         _characterController = player.GetComponent<CharacterController>();
 
         interactImage = interactImageGamepad;
+
+        if (PlayerPrefs.GetString("Language") == "English")
+        {
+            interactImageGamepad = interactImageEnglish;
+        }
     }
 
     private void Update()

@@ -27,6 +27,9 @@ public class drawer : MonoBehaviour
     [SerializeField]//パッド操作のときのインタラクトの画像
     private GameObject interactImageGamepad;
 
+    [SerializeField]//英語のときのインタラクトの画像
+    private GameObject interactImageEnglish;
+
     private GameObject interactImage;
 
     //マウスのボタンが押されたことを判別する
@@ -37,6 +40,11 @@ public class drawer : MonoBehaviour
     private void Start()
     {
         isGrab = false;
+
+        if(PlayerPrefs.GetString("Language") == "English")
+        {
+            interactImageGamepad = interactImageEnglish;
+        }
     }
     private void Update()
     {

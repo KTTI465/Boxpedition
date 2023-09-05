@@ -27,7 +27,9 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Text startGameText;
     [SerializeField] Text openOptionText;
     [SerializeField] Text quitGameText;
+    [SerializeField] Text languageText;
     [SerializeField] Text creditText;
+
     [SerializeField] Text bgmText;
     [SerializeField] Text seText;
     [SerializeField] Text sensiText;
@@ -43,16 +45,23 @@ public class TitleManager : MonoBehaviour
     [SerializeField] UnityEngine.UI.Slider seSlider;
     [SerializeField] UnityEngine.UI.Slider sensiSlider;
 
+    [SerializeField] GameObject japaneseButton;
+    [SerializeField] GameObject englishButton;
+    [SerializeField] Text japaneseText;
+    [SerializeField] Text englishText;
+
 
     private bool title = true;
     private bool option = false;
     private bool stage = false;
+    private bool language = false;
     private bool credit = false;
 
     private int titleNum = 0;
     private int optionNum = 0;
     private int selectNum = 0;
     private int stageNum = 0;
+    private int languageNum = 0;
 
     private bool right = false;
     private bool left = false;
@@ -81,6 +90,9 @@ public class TitleManager : MonoBehaviour
         PlayerPrefs.Save();
 
         PlayerPrefs.SetFloat("Sensi", 1.0f);
+        PlayerPrefs.Save();
+
+        PlayerPrefs.SetString("Language", "Japanese");
         PlayerPrefs.Save();
     }
 
@@ -119,7 +131,7 @@ public class TitleManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (titleNum == 3)
+                if (titleNum == 4)
                 {
                     down = false;
                 }
@@ -141,7 +153,6 @@ public class TitleManager : MonoBehaviour
                 else if (titleNum == 1)
                 {
                     OpenOptionButton();
-                    //Debug.Log("bbbbbbbb");
                 }
                 else if (titleNum == 2)
                 {
@@ -149,8 +160,11 @@ public class TitleManager : MonoBehaviour
                 }
                 else if (titleNum == 3)
                 {
+                    OpenLanguageButton();
+                }
+                else if (titleNum == 4)
+                {
                     OpenCreditButton();
-                    //Debug.Log("aaaaaa");
                 }
             }
         }
@@ -258,6 +272,24 @@ public class TitleManager : MonoBehaviour
                 ExitGameButton();
             }
         }
+        else if (language)
+        {
+            if (up == true) //“ú–{Œê
+            {
+                languageNum = 0;
+                up = false;
+            }
+            else if (down == true)  //‰pŒê
+            {
+                languageNum = 1;
+                down = false;
+            }
+
+            if (Gamepad.current.buttonEast.wasPressedThisFrame)
+            {
+                ExitLanguageButton();
+            }
+        }
         else if(credit)
         {
             if (Gamepad.current.buttonSouth.wasPressedThisFrame)
@@ -273,6 +305,7 @@ public class TitleManager : MonoBehaviour
             startGameText.color = new Color(r2, g2, b2, a2);
             openOptionText.color = new Color(r1, g1, b1, a1);        
             quitGameText.color = new Color(r1, g1, b1, a1);
+            languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r1, g1, b1, a1);
         }
         else if (titleNum == 1)
@@ -280,6 +313,7 @@ public class TitleManager : MonoBehaviour
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r2, g2, b2, a2);
             quitGameText.color = new Color(r1, g1, b1, a1);
+            languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r1, g1, b1, a1);
         }
         else if (titleNum == 2)
@@ -287,6 +321,7 @@ public class TitleManager : MonoBehaviour
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r1, g1, b1, a1);
             quitGameText.color = new Color(r2, g2, b2, a2);
+            languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r1, g1, b1, a1);
         }
         else if(titleNum == 3)
@@ -294,6 +329,15 @@ public class TitleManager : MonoBehaviour
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r1, g1, b1, a1);
             quitGameText.color = new Color(r1, g1, b1, a1);
+            languageText.color = new Color(r2, g2, b2, a2);
+            creditText.color = new Color(r1, g1, b1, a1);
+        }
+        else if (titleNum == 4)
+        {
+            startGameText.color = new Color(r1, g1, b1, a1);
+            openOptionText.color = new Color(r1, g1, b1, a1);
+            quitGameText.color = new Color(r1, g1, b1, a1);
+            languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r2, g2, b2, a2);
         }
 
@@ -336,6 +380,17 @@ public class TitleManager : MonoBehaviour
             stageSelectText.color = new Color(r1, g1, b1, a1);
             startStageText.color = new Color(r2, g2, b2, a2);
         }
+
+        if (languageNum == 0)
+        {
+            japaneseText.color = new Color(r2, g2, b2, a2);
+            englishText.color = new Color(r1, g1, b1, a1);
+        }
+        else if (languageNum == 1)
+        {
+            japaneseText.color = new Color(r1, g1, b1, a1);
+            englishText.color = new Color(r2, g2, b2, a2);
+        }
     }
 
 
@@ -373,6 +428,47 @@ public class TitleManager : MonoBehaviour
         title = true;
         option = false;
         musicManager.PlaySE1();
+    }
+
+    public void OpenLanguageButton()
+    {
+        japaneseButton.SetActive(true);
+        englishButton.SetActive(true);
+        language = true;
+        title = false;
+        musicManager.PlaySE1();
+    }
+    public void ExitLanguageButton()
+    {
+        japaneseButton.SetActive(false);
+        englishButton.SetActive(false);
+
+        language = false;
+        title = true;
+        musicManager.PlaySE1();
+
+        if(languageNum == 0)
+        {
+            PlayerPrefs.SetString("Language", "Japanese");
+            PlayerPrefs.Save();
+        }
+        else if (languageNum == 1)
+        {
+            PlayerPrefs.SetString("Language", "English");
+            PlayerPrefs.Save();
+        }
+    }
+
+    public void SaveJapaneseButton()
+    {
+        languageNum = 0;
+        ExitLanguageButton();
+    }
+
+    public void SaveEngulishButton()
+    {
+        languageNum = 1;
+        ExitLanguageButton();
     }
 
     public void OpenCreditButton()
