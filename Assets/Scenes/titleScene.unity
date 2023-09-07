@@ -4855,6 +4855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1354580108}
   - component: {fileID: 1354580109}
+  - component: {fileID: 1354580110}
   m_Layer: 0
   m_Name: TitleManager
   m_TagString: Untagged
@@ -4920,6 +4921,20 @@ MonoBehaviour:
   englishButton: {fileID: 165686391}
   japaneseText: {fileID: 1178320592}
   englishText: {fileID: 1860406726}
+--- !u!114 &1354580110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354580107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed9c7bc5dbc88547b08c60abc0b33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrollBarjap: {fileID: 0}
+  ScrollBareng: {fileID: 0}
 --- !u!1 &1389990975
 GameObject:
   m_ObjectHideFlags: 0
