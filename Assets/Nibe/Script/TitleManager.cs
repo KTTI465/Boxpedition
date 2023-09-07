@@ -20,6 +20,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField] GameObject resultPanel;
 
     [SerializeField] GameObject creditPanel1;
+    [SerializeField] GameObject creditPanel2;
 
     [SerializeField] GameObject rightImage;
     [SerializeField] GameObject leftImage;
@@ -82,18 +83,24 @@ public class TitleManager : MonoBehaviour
 
     void Awake()
     {
-        // 保存
-        PlayerPrefs.SetFloat("BGM", 1.0f);
-        PlayerPrefs.Save();
+        if(PlayerPrefs.GetFloat("First") != 1.0f)
+        {
+            // 保存
+            PlayerPrefs.SetFloat("BGM", 1.0f);
+            PlayerPrefs.Save();
 
-        PlayerPrefs.SetFloat("SE", 1.0f);
-        PlayerPrefs.Save();
+            PlayerPrefs.SetFloat("SE", 1.0f);
+            PlayerPrefs.Save();
 
-        PlayerPrefs.SetFloat("Sensi", 1.0f);
-        PlayerPrefs.Save();
+            PlayerPrefs.SetFloat("Sensi", 1.0f);
+            PlayerPrefs.Save();
 
-        PlayerPrefs.SetString("Language", "Japanese");
-        PlayerPrefs.Save();
+            PlayerPrefs.SetString("Language", "Japanese");
+            PlayerPrefs.Save();
+
+            PlayerPrefs.SetFloat("First", 1.0f);
+            PlayerPrefs.Save();
+        }
     }
 
 
@@ -108,6 +115,14 @@ public class TitleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Gamepad.current == null && credit)
+        {
+            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
+            {
+                ExitCreditButton();
+            }
+        }
+
         // ゲームパッドが接続されていないとnullになる。
         if (Gamepad.current == null) return;
 
@@ -185,7 +200,7 @@ public class TitleManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (optionNum == 3)
+                if (optionNum == 2)
                 {
                     down = false;
                 }
@@ -209,7 +224,7 @@ public class TitleManager : MonoBehaviour
                 }
                 else if (optionNum == 2)
                 {
-                    titleSlider.upSensi();
+                    //titleSlider.upSensi();
                 }
 
                 right = false;
@@ -226,7 +241,7 @@ public class TitleManager : MonoBehaviour
                 }
                 else if (optionNum == 2)
                 {
-                    titleSlider.downSensi();
+                    //titleSlider.downSensi();
                 }
 
                 left = false;
@@ -234,7 +249,7 @@ public class TitleManager : MonoBehaviour
 
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
-                if (optionNum == 3)
+                if (optionNum == 2)
                 {
                     optionNum = 0;
                     ExitOptionButton();
@@ -292,6 +307,11 @@ public class TitleManager : MonoBehaviour
         }
         else if(credit)
         {
+            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
+            {
+                ExitCreditButton();
+            }
+
             if (Gamepad.current.buttonSouth.wasPressedThisFrame)
             {
                 ExitCreditButton();
@@ -345,28 +365,21 @@ public class TitleManager : MonoBehaviour
         {
             bgmText.color = new Color(r2, g2, b2, a2);
             seText.color = new Color(r1, g1, b1, a1);
-            sensiText.color = new Color(r1, g1, b1, a1);
+            //sensiText.color = new Color(r1, g1, b1, a1);
             exitOptionText.color = new Color(r1, g1, b1, a1);
         }
         else if (optionNum == 1)
         {
             bgmText.color = new Color(r1, g1, b1, a1);
             seText.color = new Color(r2, g2, b2, a2);
-            sensiText.color = new Color(r1, g1, b1, a1);
+            //sensiText.color = new Color(r1, g1, b1, a1);
             exitOptionText.color = new Color(r1, g1, b1, a1);
         }
         else if (optionNum == 2)
         {
             bgmText.color = new Color(r1, g1, b1, a1);
             seText.color = new Color(r1, g1, b1, a1);
-            sensiText.color = new Color(r2, g2, b2, a2);
-            exitOptionText.color = new Color(r1, g1, b1, a1);
-        }
-        else if (optionNum == 3)
-        {
-            bgmText.color = new Color(r1, g1, b1, a1);
-            seText.color = new Color(r1, g1, b1, a1);
-            sensiText.color = new Color(r1, g1, b1, a1);
+            //sensiText.color = new Color(r2, g2, b2, a2);
             exitOptionText.color = new Color(r2, g2, b2, a2);
         }
 
@@ -473,7 +486,15 @@ public class TitleManager : MonoBehaviour
 
     public void OpenCreditButton()
     {
-        creditPanel1.SetActive(true);
+        if(PlayerPrefs.GetString("Language") == "Japanese")
+        {
+            creditPanel1.SetActive(true);
+        }
+        else
+        {
+            creditPanel2.SetActive(true);
+        }
+
         titlePanel.SetActive(false);
         credit = true;
         title = false;
@@ -482,7 +503,16 @@ public class TitleManager : MonoBehaviour
     public void ExitCreditButton()
     {
         titlePanel.SetActive(true);
-        creditPanel1.SetActive(false);
+
+        if (PlayerPrefs.GetString("Language") == "Japanese")
+        {
+            creditPanel1.SetActive(false);
+        }
+        else
+        {
+            creditPanel2.SetActive(false);
+        }
+
         title = true;
         credit = false;
         musicManager.PlaySE1();

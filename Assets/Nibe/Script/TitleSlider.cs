@@ -33,15 +33,15 @@ public class TitleSlider : MonoBehaviour
         seSlider.onValueChanged.AddListener(SetSE);
 
         //感度スライダーを動かした時の処理を登録
-        sensiSlider.onValueChanged.AddListener(SetSensi);
+        //sensiSlider.onValueChanged.AddListener(SetSensi);
 
 
-        //bgmSlider.value = (PlayerPrefs.GetFloat("BGM") + 80f) / 80f;
-        //seSlider.value = (PlayerPrefs.GetFloat("SE") + 80f) / 80f;
+        bgmSlider.value = PlayerPrefs.GetFloat("BGM");
+        seSlider.value = PlayerPrefs.GetFloat("SE");
 
-        bgmSlider.value = 1.0f;
-        seSlider.value = 1.0f;
-        sensiSlider.value = 1.0f;
+        //bgmSlider.value = 1.0f;
+        //seSlider.value = 1.0f;
+        //sensiSlider.value = 1.0f;
     }
 
 
@@ -67,12 +67,12 @@ public class TitleSlider : MonoBehaviour
 
     public void upSensi()
     {
-        sensiSlider.value += 0.2f; ;
+        //sensiSlider.value += 0.2f; ;
     }
 
     public void downSensi()
     {
-        sensiSlider.value -= 0.2f; ;
+        //sensiSlider.value -= 0.2f; ;
     }
 
     public void SetBGM(float value)
@@ -94,7 +94,15 @@ public class TitleSlider : MonoBehaviour
         PlayerPrefs.SetFloat("BGM", bgmValue);
         PlayerPrefs.Save();
 
-        soundcontroller.SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
+
+        try
+        {
+            soundcontroller.SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
+        }
+        catch
+        {
+
+        }
 
         bgm = PlayerPrefs.GetFloat("BGM");
     }
@@ -118,7 +126,14 @@ public class TitleSlider : MonoBehaviour
         PlayerPrefs.SetFloat("SE", seValue);
         PlayerPrefs.Save();
 
-        soundcontroller.SettingSFXVolume(PlayerPrefs.GetFloat("SE"));
+        try
+        {
+            soundcontroller.SettingSFXVolume(PlayerPrefs.GetFloat("SE"));
+        }
+        catch
+        {
+
+        }
 
         se = PlayerPrefs.GetFloat("SE");
     }

@@ -3675,7 +3675,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 40}
+  m_AnchoredPosition: {x: -300, y: 30}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &236926959
@@ -8915,6 +8915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicManager: {fileID: 616021698}
   titleSlider: {fileID: 1979134112}
+  soundcontroller: {fileID: 57279709}
   optionPanel: {fileID: 1979134108}
   TitleButton: {fileID: 134405247}
   bgmText: {fileID: 236926960}
@@ -14481,7 +14482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: 40}
+  m_AnchoredPosition: {x: 40, y: 30}
   m_SizeDelta: {x: 500, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &796364279
@@ -15856,7 +15857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -30.000034}
+  m_AnchoredPosition: {x: -300, y: -80}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &871548481
@@ -22866,7 +22867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1270783475
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29053,7 +29054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1602471795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34278,7 +34279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -30}
+  m_AnchoredPosition: {x: 40, y: -80}
   m_SizeDelta: {x: 500, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1803010419
@@ -37434,7 +37435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 511846479}
   musicManager: {fileID: 616021698}
-  soundcontroller: {fileID: 0}
+  soundcontroller: {fileID: 57279709}
   bgmSlider: {fileID: 796364279}
   seSlider: {fileID: 1803010419}
   sensiSlider: {fileID: 1602471795}
@@ -38466,7 +38467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2030437314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38616,6 +38617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicManager: {fileID: 0}
   titleSlider: {fileID: 0}
+  soundcontroller: {fileID: 0}
   optionPanel: {fileID: 0}
   TitleButton: {fileID: 0}
   bgmText: {fileID: 0}

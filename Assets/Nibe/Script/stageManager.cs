@@ -12,6 +12,7 @@ public class stageManager : MonoBehaviour
 {
     [SerializeField] MusicManager musicManager;
     [SerializeField] TitleSlider titleSlider;
+    [SerializeField] SoundController soundcontroller;
 
     [SerializeField] GameObject optionPanel;
     [SerializeField] GameObject TitleButton;
@@ -44,7 +45,11 @@ public class stageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soundcontroller.SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
+        soundcontroller.SettingSFXVolume(PlayerPrefs.GetFloat("SE"));
 
+        PlayerPrefs.SetFloat("Sensi", 1.0f);
+        PlayerPrefs.Save();
     }
 
     // Update is called once per frame
@@ -72,7 +77,7 @@ public class stageManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (optionNum == 3)
+                if (optionNum == 2)
                 {
                     down = false;
                 }
@@ -96,7 +101,7 @@ public class stageManager : MonoBehaviour
                 }
                 else if (optionNum == 2)
                 {
-                    titleSlider.upSensi();
+                    //titleSlider.upSensi();
                 }
 
                 right = false;
@@ -113,14 +118,14 @@ public class stageManager : MonoBehaviour
                 }
                 else if (optionNum == 2)
                 {
-                    titleSlider.downSensi();
+                    //titleSlider.downSensi();
                 }
                 left = false;
             }
 
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
-                if (optionNum == 3)
+                if (optionNum == 2)
                 {
                     openOption = false;
                     Time.timeScale = 1;
@@ -143,28 +148,21 @@ public class stageManager : MonoBehaviour
             {
                 bgmText.color = new Color(r2, g2, b2, a2);
                 seText.color = new Color(r1, g1, b1, a1);
-                sensiText.color = new Color(r1, g1, b1, a1);
+                //sensiText.color = new Color(r1, g1, b1, a1);
                 titleText.color = new Color(r1, g1, b1, a1);
             }
             else if (optionNum == 1)
             {
                 bgmText.color = new Color(r1, g1, b1, a1);
                 seText.color = new Color(r2, g2, b2, a2);
-                sensiText.color = new Color(r1, g1, b1, a1);
+                //sensiText.color = new Color(r1, g1, b1, a1);
                 titleText.color = new Color(r1, g1, b1, a1);
             }
             else if (optionNum == 2)
             {
                 bgmText.color = new Color(r1, g1, b1, a1);
                 seText.color = new Color(r1, g1, b1, a1);
-                sensiText.color = new Color(r2, g2, b2, a2);
-                titleText.color = new Color(r1, g1, b1, a1);
-            }
-            else if (optionNum == 3)
-            {
-                bgmText.color = new Color(r1, g1, b1, a1);
-                seText.color = new Color(r1, g1, b1, a1);
-                sensiText.color = new Color(r1, g1, b1, a1);
+                //sensiText.color = new Color(r2, g2, b2, a2);
                 titleText.color = new Color(r2, g2, b2, a2);
             }
         }
