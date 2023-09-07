@@ -132,6 +132,8 @@ public class plug : MonoBehaviour
                     {
                         characterController.enabled = true;
                     }
+
+                    plugRopeIndex = 0;
                 }
                 //次の子オブジェクトの数字にする
                 plugRopeIndex++;

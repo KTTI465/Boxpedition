@@ -42,6 +42,10 @@ public class CharacterController : MonoBehaviour
     //二段ジャンプをしたかを判定する
     public bool doubleJumped = false;
 
+    public bool infinityJump = false;
+    public bool jumpInterval = false;
+
+
     //connectingBoxの上にPlayerがくるよう位置を調整するための変数
     //connectingBoxとPlayerの大きさで次第で調整が必要
     private float enterBoxMove = 0.1f;
@@ -163,6 +167,27 @@ public class CharacterController : MonoBehaviour
         main1.simulationSpeed = particlePlaySpeed;
         var main2 = particle2.main;
         main2.simulationSpeed = particlePlaySpeed;
+
+        CheatMode();
+
+        if(infinityJump)
+        {
+            //connectingBoxが無いとき
+            if (connectingBox == null)
+            {
+                //connectingBoxとして新しくboxをPlayerと同じ位置と向きに生成
+                connectingBox = Instantiate(box, new Vector3(transform.position.x + createBoxPosBias.x, transform.position.y + createBoxPosBias.y, transform.position.z + createBoxPosBias.z), transform.rotation);
+
+                //connectingBoxの上にPlayerがくるように位置を調整
+                transform.position = new Vector3(transform.position.x, transform.position.y + enterBoxMove, transform.position.z);
+
+                //connectingBoxの親オブジェクトにこのオブジェクトを指定
+                connectingBox.transform.parent = gameObject.transform;
+
+            }
+            //二段ジャンプした判定をfalseにする
+            doubleJumped = false;
+        }
     }
 
     private void FixedUpdate()
@@ -379,6 +404,56 @@ public class CharacterController : MonoBehaviour
     public void StateTransition()
     {
 
+    }
+
+    public void CheatMode()
+    {
+        if(Gamepad.current.rightShoulder.isPressed && Gamepad.current.leftShoulder.isPressed
+            && Gamepad.current.rightTrigger.isPressed && Gamepad.current.leftTrigger.isPressed
+            && jumpInterval == false)
+        {
+            if(infinityJump == true)
+            {
+                infinityJump = false;
+                jumpInterval = true;
+                Invoke("JumpInterval", 1.0f);
+            }
+            else
+            {
+                infinityJump = true;  //無限ジャンプ
+                jumpInterval = true;
+                Invoke("JumpInterval", 1.0f);
+            }
+        }
+
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))  //ワープ
+        {
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                this.gameObject.transform.position = new Vector3(2.79f, -7.9f, 37.12f);
+            }
+            else if (Input.GetKey(KeyCode.Alpha2))
+            {
+                this.gameObject.transform.position = new Vector3(-2.9f, 18.5f, -64.5f);
+            }
+            else if (Input.GetKey(KeyCode.Alpha3))
+            {
+                this.gameObject.transform.position = new Vector3(-2.9f, 51.3f, -131.7f);
+            }
+            else if (Input.GetKey(KeyCode.Alpha4))
+            {
+                this.gameObject.transform.position = new Vector3(10.2f, 39.2f, -220.3f);
+            }
+            else if (Input.GetKey(KeyCode.Alpha5))
+            {
+                this.gameObject.transform.position = new Vector3(44.8f, 77.1f, -275.1f);
+            }
+        }
+    }
+
+    void JumpInterval()
+    {
+        jumpInterval = false;
     }
 
     public void Idle()
