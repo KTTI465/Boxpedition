@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,8 +11,11 @@ public class TutorialImage : MonoBehaviour
     [SerializeField] TitleSlider titleSlider;
 
     public GameObject imagePrefab;
+
     bool ps4button = false;
     bool triggerStay = false;
+
+    int interval = 0;
     float seValue = 0.0f;
     float sensiValue = 0.0f;
 
@@ -20,17 +24,21 @@ public class TutorialImage : MonoBehaviour
     {
         if(triggerStay)  //範囲内にプレイヤーがいるとき
         {
+            interval++;
             CheckPS4();
 
-            if (ps4button)  // 何かボタンを押したら
+            if (ps4button == true && interval >= 100)  // 何かボタンを押したら
             {
                 imagePrefab.SetActive(false);  // 画像を非表示にする
+
                 Time.timeScale = 1;
 
                 titleSlider.SetSE(seValue);
 
                 PlayerPrefs.SetFloat("Sensi", sensiValue);
                 PlayerPrefs.Save();
+
+                Destroy(this.gameObject);  //エリアを削除
             }
         }
     }
@@ -44,7 +52,7 @@ public class TutorialImage : MonoBehaviour
                 imagePrefab.SetActive(true);  // 画像を表示する
                 triggerStay = true;
                 Time.timeScale = 0;
-
+                interval = 0;
 
                 seValue = PlayerPrefs.GetFloat("SE");
                 titleSlider.SetSE(0.0f);
@@ -58,12 +66,14 @@ public class TutorialImage : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        /*
         if (other.CompareTag("Player"))  // プレイヤーが範囲から出たら
         {
             imagePrefab.SetActive(false);  // 画像を非表示にする
             triggerStay = false;
             ps4button = false;
         }
+        */
     }
 
     void CheckPS4()
@@ -72,6 +82,10 @@ public class TutorialImage : MonoBehaviour
             Gamepad.current.buttonWest.isPressed || Gamepad.current.buttonSouth.isPressed)  // 何かボタンを押したら
         {
             ps4button = true;
+        }
+        else
+        {
+            ps4button = false;
         }
     }
 }
