@@ -12,9 +12,18 @@ public class blockWayMonster : MonoBehaviour
 
     Animator monstersAnimator;
 
+    //プレイヤーがおびえて下がっているとき
     bool isPlayerStepBack;
+
+    //イベントが発生中か
     bool isEvent;
 
+    //道を開けたか
+    bool hasOpenedWay;
+    //赤ヒーローがいるか
+    public bool existRedHero;
+
+    //イベント発生中のプレイヤーの位置
     Vector3 inEventPlayerPosition;
     Vector3 stepBackPosition;
 
@@ -22,28 +31,41 @@ public class blockWayMonster : MonoBehaviour
     AudioSource audioSource;
     void Start()
     {
+        //プレイヤーとモンスターのコンポーネントの取得
         characterController = player.GetComponent<CharacterController>();
         playerAnimator = player.GetComponent<Animator>();
         monstersAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        //カメラを非有効に
         eventCamera.SetActive(false);
     }
 
     void Update()
     {
+        //イベント中
         if (isEvent == true)
         {
+            //おびえて下がっているとき
             if (isPlayerStepBack == true)
             {
-                //キャラクターの向きの設定
+                //プレイヤーの向きの設定と移動
                 player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, Quaternion.Euler(0f, 180f, 0f), 900f * Time.deltaTime);
                 player.transform.position = Vector3.MoveTowards(player.transform.position, stepBackPosition, 10f * Time.deltaTime);
+                //プレイヤーに歩きアニメーションをさせる
+                playerAnimator.SetBool("walk", true);
             }
-            playerAnimator.SetBool("walk", false);
+            else 
+            {
+                //イベント中に歩いていない時に歩きアニメーションをしないようにする
+                playerAnimator.SetBool("walk", false);
+            }
+
         }
     }
+    
     public void StartEvent()
     {
+        //イベントが始まるときにプレイヤーの移動を不可にして、位置や向きを固定してカメラを切り替える
         isEvent = true;
         characterController.enabled = false;
         //キャラクターの向きの設定
@@ -69,17 +91,35 @@ public class blockWayMonster : MonoBehaviour
 
     public void EndEvent()
     {
+        //イベントが終わった時にカメラを切り替え、移動ができるようにする
         isEvent = false;
         characterController.enabled = true;
         eventCamera.SetActive(false);
         isPlayerStepBack = false;
     }
 
+    public void OpenWay()
+    {
+        hasOpenedWay = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player.gameObject)
+        //道を開けていない時
+        if (hasOpenedWay == false)
         {
-            monstersAnimator.SetTrigger("threaten");
+            if (other.gameObject == player.gameObject)
+            {
+                //赤ヒーローがいないなら
+                if (existRedHero == false)
+                {
+                    monstersAnimator.SetTrigger("threaten");
+                }
+                else
+                {
+                    monstersAnimator.SetTrigger("openWay");
+                }
+            }
         }
     }
 }
