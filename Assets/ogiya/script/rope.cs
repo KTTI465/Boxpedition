@@ -156,8 +156,11 @@ public class rope: MonoBehaviour
 
                 //親子関係を解除
                 player.gameObject.transform.parent = null;
+
+                player.transform.rotation = new Quaternion(0,0,0,0);
+                player.transform.Rotate(0,270,0);
                 //プレイヤーを発射
-                if(Ysafepoint == true)
+                if (Ysafepoint == true)
                 {
                     Throw = true;
                 }
@@ -229,19 +232,14 @@ public class rope: MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.tag == "Player")
         {
             GetPS40();
-            GetPS4X();
-
-            if (Input.GetKey(KeyCode.Space) || ps40)
+            if (ps40 ||Input.GetKey(KeyCode.Space))
             {
                 moveOn = true;
-
-                startTime = Time.time;
-
                 //Rigidbodyを停止
                 rigidbody.velocity = Vector3.zero;
 
@@ -266,13 +264,9 @@ public class rope: MonoBehaviour
     {
         if (Gamepad.current != null)
         {
-            if (ps40 == false && Gamepad.current.buttonEast.isPressed)
+            if (Gamepad.current.buttonEast.isPressed)
             {
                 ps40 = true;
-            }
-            else if (ps40 == true && Gamepad.current.buttonEast.isPressed)
-            {
-                ps40 = false;
             }
         }
     }

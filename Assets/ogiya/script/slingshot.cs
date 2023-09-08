@@ -20,10 +20,10 @@ public class slingshot : MonoBehaviour
 
     private bool IsSet = false;
     private bool IsPosition = false;
+
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
