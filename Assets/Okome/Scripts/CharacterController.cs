@@ -45,6 +45,7 @@ public class CharacterController : MonoBehaviour
     public bool infinityJump = false;
     public bool jumpInterval = false;
 
+    public bool Switch;
 
     //connectingBoxの上にPlayerがくるよう位置を調整するための変数
     //connectingBoxとPlayerの大きさで次第で調整が必要
@@ -202,9 +203,16 @@ public class CharacterController : MonoBehaviour
         //zMovement = Input.GetAxisRaw("Vertical") * movementSpeed;
         //transform.Translate(xMovement, 0, zMovement);
 
-        xMovement = Input.GetAxisRaw("Horizontal");
-        zMovement = Input.GetAxisRaw("Vertical");
-
+        if(Switch== false) //特定条件下では移動できないように設定した(荻谷
+        {
+            xMovement = Input.GetAxisRaw("Horizontal");
+            zMovement = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            xMovement = 0;
+            zMovement = 0;
+        }
         if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
             charaAnimator.SetBool("walk", false); // アニメーション切り替え
@@ -487,5 +495,14 @@ public class CharacterController : MonoBehaviour
     public void TrampBig()
     {
         UnityEngine.Debug.Log("CharacterStateがTrampBigに状態遷移しました。");
+    }
+
+    public void SwitchON()
+    {
+        Switch = true;
+    }
+    public void SwitchOFF()
+    {
+        Switch = false;
     }
 }
