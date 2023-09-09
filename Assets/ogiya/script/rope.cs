@@ -131,6 +131,7 @@ public class rope: MonoBehaviour
 
         if (moveOn == true && (Input.GetKey(KeyCode.Space) || ps40))  //動く
         {
+            player.SendMessage("SwitchON");
             panelOn = true;
             //　経過時間に合わせた割合を計算
             float t = (Time.time - startTime) / duration;
@@ -140,7 +141,6 @@ public class rope: MonoBehaviour
 
             //ロープの下のほうに移動する
             player.transform.position = Vector3.MoveTowards(player.transform.position, target.position, speed * Time.deltaTime);
-
             //CharacterMovement();  //相殺
 
         }
@@ -148,6 +148,7 @@ public class rope: MonoBehaviour
         {
             if (moveOn == true)
             {
+                player.SendMessage("SwitchOFF");
                 panelOn = false;
                 moveOn = false;
 
