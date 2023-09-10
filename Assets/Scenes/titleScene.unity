@@ -1052,6 +1052,7 @@ GameObject:
   - component: {fileID: 111449855}
   - component: {fileID: 111449854}
   - component: {fileID: 111449853}
+  - component: {fileID: 111449856}
   m_Layer: 5
   m_Name: Scroll ViewEng
   m_TagString: Untagged
@@ -1149,6 +1150,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111449851}
   m_CullTransparentMesh: 1
+--- !u!114 &111449856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111449851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed9c7bc5dbc88547b08c60abc0b33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrollBar: {fileID: 2010949589}
 --- !u!1 &111707961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,6 +2626,7 @@ GameObject:
   - component: {fileID: 447359617}
   - component: {fileID: 447359616}
   - component: {fileID: 447359615}
+  - component: {fileID: 447359618}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -2709,6 +2724,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447359613}
   m_CullTransparentMesh: 1
+--- !u!114 &447359618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447359613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed9c7bc5dbc88547b08c60abc0b33b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrollBar: {fileID: 1658518220}
 --- !u!1 &448841131
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,7 +4883,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1354580108}
   - component: {fileID: 1354580109}
-  - component: {fileID: 1354580110}
   m_Layer: 0
   m_Name: TitleManager
   m_TagString: Untagged
@@ -4921,20 +4948,6 @@ MonoBehaviour:
   englishButton: {fileID: 165686391}
   japaneseText: {fileID: 1178320592}
   englishText: {fileID: 1860406726}
---- !u!114 &1354580110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354580107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eed9c7bc5dbc88547b08c60abc0b33b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScrollBarjap: {fileID: 0}
-  ScrollBareng: {fileID: 0}
 --- !u!1 &1389990975
 GameObject:
   m_ObjectHideFlags: 0
