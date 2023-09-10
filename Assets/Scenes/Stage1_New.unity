@@ -4624,7 +4624,7 @@ PrefabInstance:
       objectReference: {fileID: 6608648632651095903, guid: 3d7b851c0fbbf95488ff5f2c4eb3ca4c, type: 3}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: movementSpeed
-      value: 0.2
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: firstJumpPower
@@ -7261,6 +7261,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 80
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &732985054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cab3dfe97022584db47db4019b70df9, type: 3}
+  m_PrefabInstance: {fileID: 1510487238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &732985055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732985054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1f638a668e9e64f9744a34b4f5a2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &738427716
 GameObject:
   m_ObjectHideFlags: 0
@@ -10680,7 +10697,7 @@ MonoBehaviour:
   detectionFirstShelf: {fileID: 96151052}
   ballOfWoolOnTV: {fileID: 1419163534}
   detectionScaffold: {fileID: 1016339028}
-  goal: {fileID: 739103251}
+  goal: {fileID: 0}
   checkPointManager: {fileID: 1305643852}
   checkPoint1: {fileID: 1359955552}
   checkPoint2: {fileID: 457442639}
@@ -11163,6 +11180,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6430678388176144936, guid: 3521fbdcc51a5f441a14a79542d0c524, type: 3}
   m_PrefabInstance: {fileID: 1048814944}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1050659596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5931372751300003811, guid: 0cab3dfe97022584db47db4019b70df9, type: 3}
+  m_PrefabInstance: {fileID: 1510487238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1050659600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050659596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1f638a668e9e64f9744a34b4f5a2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1059520870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16323,6 +16357,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579974539}
   m_CullTransparentMesh: 1
+--- !u!1 &1585494610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3216801498260132207, guid: 0cab3dfe97022584db47db4019b70df9, type: 3}
+  m_PrefabInstance: {fileID: 1510487238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1585494614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585494610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1f638a668e9e64f9744a34b4f5a2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1602471794
 GameObject:
   m_ObjectHideFlags: 0
@@ -21634,6 +21685,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988772227}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1991127514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3996110647418995180, guid: 0cab3dfe97022584db47db4019b70df9, type: 3}
+  m_PrefabInstance: {fileID: 1510487238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1991127518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991127514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1f638a668e9e64f9744a34b4f5a2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1992741514
 PrefabInstance:
   m_ObjectHideFlags: 0
