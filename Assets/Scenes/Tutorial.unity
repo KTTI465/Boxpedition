@@ -2632,7 +2632,7 @@ PrefabInstance:
       objectReference: {fileID: 6608648632651095903, guid: 3d7b851c0fbbf95488ff5f2c4eb3ca4c, type: 3}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: movementSpeed
-      value: 0.2
+      value: 0.135
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: firstJumpPower
@@ -3475,6 +3475,8 @@ MonoBehaviour:
   sensiSlider: {fileID: 1602471795}
   guideOnButton: {fileID: 8988743765218627110}
   guideOffButton: {fileID: 7484118603989183684}
+  guideArrow: {fileID: 0}
+  offScreenGuideArrow: {fileID: 0}
   openOption: 0
 --- !u!222 &511846480
 CanvasRenderer:
@@ -10293,6 +10295,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.0005
       objectReference: {fileID: 0}
+    - target: {fileID: 2989247637827967345, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601807676631009582, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601807676631009582, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Center.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601807676631009582, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Center.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640090407674921136, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6122534295358144398, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: charaAnimator
       value: 
@@ -10315,11 +10337,19 @@ PrefabInstance:
       objectReference: {fileID: 273571336}
     - target: {fileID: 6122534295358144399, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: m_Size.x
-      value: 0.09
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122534295358144399, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6122534295358144399, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: m_Center.x
-      value: -0.01
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122534295358144399, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Center.y
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 7879704136595739852, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: charaAnimator
@@ -12733,6 +12763,8 @@ MonoBehaviour:
   sensiSlider: {fileID: 0}
   guideOnButton: {fileID: 0}
   guideOffButton: {fileID: 0}
+  guideArrow: {fileID: 0}
+  offScreenGuideArrow: {fileID: 0}
   openOption: 0
 --- !u!1001 &2033225950
 PrefabInstance:
@@ -23922,7 +23954,7 @@ MonoBehaviour:
   upPosition: {fileID: 8196441837238379701}
   downPosition: {fileID: 6626619080295928550}
   fadeinout: {fileID: 929779887}
-  upTrigger: 1
+  upTrigger: 0
   downTrigger: 0
   player: {fileID: 0}
   interactImageUp: {fileID: 2067979427}

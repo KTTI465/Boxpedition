@@ -2324,7 +2324,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -375, y: 228}
-  m_SizeDelta: {x: 750, y: 2264.2947}
+  m_SizeDelta: {x: 750, y: 2327.136}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &331604230
 MonoBehaviour:
@@ -3898,7 +3898,7 @@ RectTransform:
   m_Father: {fileID: 1845758754}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7970817}
+  m_AnchorMin: {x: 0, y: 0.8025612}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -6335,8 +6335,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 792526870}
   m_HandleRect: {fileID: 792526869}
   m_Direction: 2
-  m_Value: 1.0009605
-  m_Size: 0.2029183
+  m_Value: 1.0009282
+  m_Size: 0.19743878
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8181,6 +8181,8 @@ MonoBehaviour:
   sensiSlider: {fileID: 0}
   guideOnButton: {fileID: 0}
   guideOffButton: {fileID: 0}
+  guideArrow: {fileID: 0}
+  offScreenGuideArrow: {fileID: 0}
   openOption: 0
 --- !u!1001 &2100200159
 PrefabInstance:
