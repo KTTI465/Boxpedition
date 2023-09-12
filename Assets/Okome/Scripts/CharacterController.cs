@@ -91,6 +91,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private Vector3 createBoxPosBias = Vector3.zero;
 
+    private Vector3 movevel;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -217,6 +219,9 @@ public class CharacterController : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
             charaAnimator.SetBool("walk", false); // アニメーション切り替え
+
+            movevel = new Vector3(transform.forward.x, 0, transform.forward.z).normalized * 0;
+            rb.velocity = new Vector3(movevel.x, rb.velocity.y, movevel.z);
         }
         else
         {
@@ -232,7 +237,10 @@ public class CharacterController : MonoBehaviour
 
                 transform.Rotate(new Vector3(0, cam.transform.localEulerAngles.y, 0)); //カメラの角度を足す
 
-                transform.Translate(0, 0, movementSpeed);
+                //transform.Translate(0, 0, movementSpeed);
+                movevel = new Vector3(transform.forward.x, 0, transform.forward.z).normalized * movementSpeed * 100;
+                rb.velocity = new Vector3(movevel.x, rb.velocity.y, movevel.z);
+
                 charaAnimator.SetBool("walk", true); // アニメーション切り替え
             }
         }
