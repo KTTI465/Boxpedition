@@ -34,6 +34,9 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Text bgmText;
     [SerializeField] Text seText;
     [SerializeField] Text sensiText;
+    [SerializeField] Text guideText;
+    [SerializeField] Text guideOnText;
+    [SerializeField] Text guideOffText;
     [SerializeField] Text exitOptionText;
     [SerializeField] Text stageSelectText;
     [SerializeField] Text startStageText;
@@ -45,6 +48,9 @@ public class TitleManager : MonoBehaviour
     [SerializeField] UnityEngine.UI.Slider bgmSlider;
     [SerializeField] UnityEngine.UI.Slider seSlider;
     [SerializeField] UnityEngine.UI.Slider sensiSlider;
+
+    [SerializeField] Button guideOnButton;
+    [SerializeField] Button guideOffButton;
 
     [SerializeField] GameObject japaneseButton;
     [SerializeField] GameObject englishButton;
@@ -83,7 +89,7 @@ public class TitleManager : MonoBehaviour
 
     void Awake()
     {
-        if(PlayerPrefs.GetFloat("First") != 1.0f)
+        if(PlayerPrefs.GetString("First") != "false")
         {
             // 保存
             PlayerPrefs.SetFloat("BGM", 1.0f);
@@ -98,7 +104,10 @@ public class TitleManager : MonoBehaviour
             PlayerPrefs.SetString("Language", "Japanese");
             PlayerPrefs.Save();
 
-            PlayerPrefs.SetFloat("First", 1.0f);
+            PlayerPrefs.SetString("Guide", "true");
+            PlayerPrefs.Save();
+
+            PlayerPrefs.SetString("First", "false");
             PlayerPrefs.Save();
         }
     }
@@ -200,7 +209,7 @@ public class TitleManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (optionNum == 2)
+                if (optionNum == 3)
                 {
                     down = false;
                 }
@@ -224,7 +233,7 @@ public class TitleManager : MonoBehaviour
                 }
                 else if (optionNum == 2)
                 {
-                    //titleSlider.upSensi();
+                    GuideOffButton();
                 }
 
                 right = false;
@@ -241,7 +250,7 @@ public class TitleManager : MonoBehaviour
                 }
                 else if (optionNum == 2)
                 {
-                    //titleSlider.downSensi();
+                    GuideOnButton();
                 }
 
                 left = false;
@@ -249,7 +258,7 @@ public class TitleManager : MonoBehaviour
 
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
-                if (optionNum == 2)
+                if (optionNum == 3)
                 {
                     optionNum = 0;
                     ExitOptionButton();
@@ -366,6 +375,7 @@ public class TitleManager : MonoBehaviour
             bgmText.color = new Color(r2, g2, b2, a2);
             seText.color = new Color(r1, g1, b1, a1);
             //sensiText.color = new Color(r1, g1, b1, a1);
+            guideText.color = new Color(r1, g1, b1, a1);
             exitOptionText.color = new Color(r1, g1, b1, a1);
         }
         else if (optionNum == 1)
@@ -373,6 +383,7 @@ public class TitleManager : MonoBehaviour
             bgmText.color = new Color(r1, g1, b1, a1);
             seText.color = new Color(r2, g2, b2, a2);
             //sensiText.color = new Color(r1, g1, b1, a1);
+            guideText.color = new Color(r1, g1, b1, a1);
             exitOptionText.color = new Color(r1, g1, b1, a1);
         }
         else if (optionNum == 2)
@@ -380,6 +391,15 @@ public class TitleManager : MonoBehaviour
             bgmText.color = new Color(r1, g1, b1, a1);
             seText.color = new Color(r1, g1, b1, a1);
             //sensiText.color = new Color(r2, g2, b2, a2);
+            guideText.color = new Color(r2, g2, b2, a2);
+            seText.color = new Color(r1, g1, b1, a1);
+        }
+        else if (optionNum == 3)
+        {
+            bgmText.color = new Color(r1, g1, b1, a1);
+            seText.color = new Color(r1, g1, b1, a1);
+            //sensiText.color = new Color(r2, g2, b2, a2);
+            guideText.color = new Color(r1, g1, b1, a1);
             exitOptionText.color = new Color(r2, g2, b2, a2);
         }
 
@@ -403,6 +423,50 @@ public class TitleManager : MonoBehaviour
         {
             japaneseText.color = new Color(r1, g1, b1, a1);
             englishText.color = new Color(r2, g2, b2, a2);
+        }
+
+        if(optionNum == 2)
+        {
+            if(PlayerPrefs.GetString("Guide") == "true")
+            {
+                guideOnText.color = new Color(r2, g2, b2, a2);
+                guideOffText.color = new Color(r1, g1, b1, a1);
+            }
+            else if (PlayerPrefs.GetString("Guide") == "false")
+            {
+                guideOnText.color = new Color(r1, g1, b1, a1);
+                guideOffText.color = new Color(r2, g2, b2, a2);
+            }
+        }
+        else
+        {
+            guideOnText.color = new Color(r1, g1, b1, a1);
+            guideOffText.color = new Color(r1, g1, b1, a1);
+        }
+
+        if(option)
+        {
+            Image guideOnImage = guideOnButton.GetComponent<Image>();
+            Image guideOffImage = guideOffButton.GetComponent<Image>();
+
+            Color guideOnColor = guideOffImage.color;
+            Color guideOffColor = guideOffImage.color;
+
+            if (PlayerPrefs.GetString("Guide") == "true")
+            {
+                // aは透明度を表す
+                guideOnColor.a = 1.0f;
+                guideOffColor.a = 0.3f;
+            }
+            else if (PlayerPrefs.GetString("Guide") == "false")
+            {
+                // aは透明度を表す
+                guideOnColor.a = 0.3f;
+                guideOffColor.a = 1.0f;
+            }
+
+            guideOnImage.color = guideOnColor;
+            guideOffImage.color = guideOffColor;
         }
     }
 
@@ -482,6 +546,18 @@ public class TitleManager : MonoBehaviour
     {
         languageNum = 1;
         ExitLanguageButton();
+    }
+
+    public void GuideOnButton()
+    {
+        PlayerPrefs.SetString("Guide", "true");
+        PlayerPrefs.Save();
+    }
+
+    public void GuideOffButton()
+    {
+        PlayerPrefs.SetString("Guide", "false");
+        PlayerPrefs.Save();
     }
 
     public void OpenCreditButton()

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using CharacterState;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour
 {
@@ -436,25 +437,51 @@ public class CharacterController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))  //ワープ
         {
-            if (Input.GetKey(KeyCode.Alpha1))
+            if(SceneManager.GetActiveScene().name == "Stage1_New")
             {
-                this.gameObject.transform.position = new Vector3(2.79f, -7.9f, 37.12f);
+                if (Input.GetKey(KeyCode.Alpha1))
+                {
+                    this.gameObject.transform.position = new Vector3(2.79f, -7.9f, 37.12f);
+                }
+                else if (Input.GetKey(KeyCode.Alpha2))
+                {
+                    this.gameObject.transform.position = new Vector3(-2.9f, 18.5f, -64.5f);
+                }
+                else if (Input.GetKey(KeyCode.Alpha3))
+                {
+                    this.gameObject.transform.position = new Vector3(-2.9f, 51.3f, -131.7f);
+                }
+                else if (Input.GetKey(KeyCode.Alpha4))
+                {
+                    this.gameObject.transform.position = new Vector3(10.2f, 39.2f, -220.3f);
+                }
+                else if (Input.GetKey(KeyCode.Alpha5))
+                {
+                    this.gameObject.transform.position = new Vector3(44.8f, 77.1f, -275.1f);
+                }
             }
-            else if (Input.GetKey(KeyCode.Alpha2))
+            else if(SceneManager.GetActiveScene().name == "Stage2")
             {
-                this.gameObject.transform.position = new Vector3(-2.9f, 18.5f, -64.5f);
-            }
-            else if (Input.GetKey(KeyCode.Alpha3))
-            {
-                this.gameObject.transform.position = new Vector3(-2.9f, 51.3f, -131.7f);
-            }
-            else if (Input.GetKey(KeyCode.Alpha4))
-            {
-                this.gameObject.transform.position = new Vector3(10.2f, 39.2f, -220.3f);
-            }
-            else if (Input.GetKey(KeyCode.Alpha5))
-            {
-                this.gameObject.transform.position = new Vector3(44.8f, 77.1f, -275.1f);
+                if (Input.GetKey(KeyCode.Alpha1))
+                {
+                    this.gameObject.transform.position = new Vector3(26.3f, 77.29f, -289f);
+                }
+                else if (Input.GetKey(KeyCode.Alpha2))
+                {
+                    this.gameObject.transform.position = new Vector3(113.4f, -43.5f, -301.6f);
+                }
+                else if (Input.GetKey(KeyCode.Alpha3))
+                {
+                    this.gameObject.transform.position = new Vector3(144.7f, -20.7f, -226.5f);
+                }
+                else if (Input.GetKey(KeyCode.Alpha4))
+                {
+                    this.gameObject.transform.position = new Vector3(253f, 14.5f, -275.7f);
+                }
+                else if (Input.GetKey(KeyCode.Alpha5))
+                {
+                    this.gameObject.transform.position = new Vector3(148.3f, -22f, -141.9f);
+                }
             }
         }
     }
