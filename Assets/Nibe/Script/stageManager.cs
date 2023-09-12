@@ -20,9 +20,18 @@ public class stageManager : MonoBehaviour
     [SerializeField] Text bgmText;
     [SerializeField] Text seText;
     [SerializeField] Text sensiText;
+    [SerializeField] Text guideText;
+    [SerializeField] Text guideOnText;
+    [SerializeField] Text guideOffText;
     [SerializeField] Text titleText;
 
     [SerializeField] UnityEngine.UI.Slider sensiSlider;
+
+    [SerializeField] Button guideOnButton;
+    [SerializeField] Button guideOffButton;
+
+    [SerializeField] GameObject guideArrow;
+    [SerializeField] GameObject offScreenGuideArrow;
 
     public bool openOption = false;
     private int optionNum = 0;
@@ -55,6 +64,15 @@ public class stageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        try
+        {
+            GuideArrow();
+        }
+        catch
+        {
+
+        }
+
         // ゲームパッドが接続されていないとnullになる。
         if (Gamepad.current == null) return;
 
@@ -77,7 +95,7 @@ public class stageManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (optionNum == 2)
+                if (optionNum == 3)
                 {
                     down = false;
                 }
@@ -101,7 +119,7 @@ public class stageManager : MonoBehaviour
                 }
                 else if (optionNum == 2)
                 {
-                    //titleSlider.upSensi();
+                    GuideOffButton();
                 }
 
                 right = false;
@@ -118,14 +136,15 @@ public class stageManager : MonoBehaviour
                 }
                 else if (optionNum == 2)
                 {
-                    //titleSlider.downSensi();
+                    GuideOnButton();
                 }
+
                 left = false;
             }
 
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
-                if (optionNum == 2)
+                if (optionNum == 3)
                 {
                     openOption = false;
                     Time.timeScale = 1;
@@ -149,6 +168,7 @@ public class stageManager : MonoBehaviour
                 bgmText.color = new Color(r2, g2, b2, a2);
                 seText.color = new Color(r1, g1, b1, a1);
                 //sensiText.color = new Color(r1, g1, b1, a1);
+                guideText.color = new Color(r1, g1, b1, a1);
                 titleText.color = new Color(r1, g1, b1, a1);
             }
             else if (optionNum == 1)
@@ -156,6 +176,7 @@ public class stageManager : MonoBehaviour
                 bgmText.color = new Color(r1, g1, b1, a1);
                 seText.color = new Color(r2, g2, b2, a2);
                 //sensiText.color = new Color(r1, g1, b1, a1);
+                guideText.color = new Color(r1, g1, b1, a1);
                 titleText.color = new Color(r1, g1, b1, a1);
             }
             else if (optionNum == 2)
@@ -163,8 +184,59 @@ public class stageManager : MonoBehaviour
                 bgmText.color = new Color(r1, g1, b1, a1);
                 seText.color = new Color(r1, g1, b1, a1);
                 //sensiText.color = new Color(r2, g2, b2, a2);
+                guideText.color = new Color(r2, g2, b2, a2);
+                titleText.color = new Color(r1, g1, b1, a1);
+            }
+            else if (optionNum == 3)
+            {
+                bgmText.color = new Color(r1, g1, b1, a1);
+                seText.color = new Color(r1, g1, b1, a1);
+                //sensiText.color = new Color(r2, g2, b2, a2);
+                guideText.color = new Color(r1, g1, b1, a1);
                 titleText.color = new Color(r2, g2, b2, a2);
             }
+
+            if (optionNum == 2)
+            {
+                if (PlayerPrefs.GetString("Guide") == "true")
+                {
+                    guideOnText.color = new Color(r2, g2, b2, a2);
+                    guideOffText.color = new Color(r1, g1, b1, a1);
+                }
+                else if (PlayerPrefs.GetString("Guide") == "false")
+                {
+                    guideOnText.color = new Color(r1, g1, b1, a1);
+                    guideOffText.color = new Color(r2, g2, b2, a2);
+                }
+            }
+            else
+            {
+                guideOnText.color = new Color(r1, g1, b1, a1);
+                guideOffText.color = new Color(r1, g1, b1, a1);
+            }
+
+
+            Image guideOnImage = guideOnButton.GetComponent<Image>();
+            Image guideOffImage = guideOffButton.GetComponent<Image>();
+
+            Color guideOnColor = guideOffImage.color;
+            Color guideOffColor = guideOffImage.color;
+
+            if (PlayerPrefs.GetString("Guide") == "true")
+            {
+                // aは透明度を表す
+                guideOnColor.a = 1.0f;
+                guideOffColor.a = 0.3f;
+            }
+            else if (PlayerPrefs.GetString("Guide") == "false")
+            {
+                // aは透明度を表す
+                guideOnColor.a = 0.3f;
+                guideOffColor.a = 1.0f;
+            }
+
+            guideOnImage.color = guideOnColor;
+            guideOffImage.color = guideOffColor;
         }
     }
 
@@ -190,6 +262,32 @@ public class stageManager : MonoBehaviour
         }
 
         musicManager.PlaySE1();
+    }
+
+    public void GuideOnButton()
+    {
+        PlayerPrefs.SetString("Guide", "true");
+        PlayerPrefs.Save();
+    }
+
+    public void GuideOffButton()
+    {
+        PlayerPrefs.SetString("Guide", "false");
+        PlayerPrefs.Save();
+    }
+
+    public void GuideArrow()
+    {
+        if (PlayerPrefs.GetString("Guide") == "true")
+        {
+            guideArrow.SetActive(true);
+            offScreenGuideArrow.SetActive(true);
+        }
+        else if (PlayerPrefs.GetString("Guide") == "false")
+        {
+            guideArrow.SetActive(false);
+            offScreenGuideArrow.SetActive(false);
+        }
     }
 
     void getPS4()
