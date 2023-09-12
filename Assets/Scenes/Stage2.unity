@@ -6717,7 +6717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6526184997810210037, guid: aec71fa5d6ab24744bbfb3afb66de766, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.9946556
+      value: 5.005
       objectReference: {fileID: 0}
     - target: {fileID: 6526184997810210037, guid: aec71fa5d6ab24744bbfb3afb66de766, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7290,7 +7290,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7296751938604968508, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
 --- !u!1 &474508540
 GameObject:
@@ -7592,7 +7593,7 @@ PrefabInstance:
       objectReference: {fileID: 6608648632651095903, guid: 3d7b851c0fbbf95488ff5f2c4eb3ca4c, type: 3}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: movementSpeed
-      value: 0.15
+      value: 0.1365
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: firstJumpPower
@@ -14416,7 +14417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677605369431854, guid: 28dd981650691bf4b998a5570c7f03a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.4
+      value: 48.160877
       objectReference: {fileID: 0}
     - target: {fileID: 4677605369431854, guid: 28dd981650691bf4b998a5570c7f03a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24168,7 +24169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1266171627}
   eventCamera: {fileID: 1733151654}
-  existRedHero: 1
+  existRedHero: 0
   monstersSound: {fileID: 8300000, guid: 552f2500ca752794589f3d7e6155f0d2, type: 3}
 --- !u!95 &1348162873
 Animator:
@@ -28168,7 +28169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4237088684397915882, guid: 19a3b3e3a08d63243b4de01160d134d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.2
+      value: -22.439125
       objectReference: {fileID: 0}
     - target: {fileID: 4237088684397915882, guid: 19a3b3e3a08d63243b4de01160d134d9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -34335,6 +34336,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822466265}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1826888104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2170178008488602006, guid: e9a47cdb5968d66499f6b4ee53467cd4, type: 3}
+  m_PrefabInstance: {fileID: 472823247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1826888105
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826888104}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31816182, y: 3.085209, z: 1.6834532}
+  m_Center: {x: -1.2443129, y: 1.5426044, z: -0.00000011920932}
 --- !u!114 &1827021907 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5385930587830682994, guid: 39b9af782e2318a4cbe543d345f233ea, type: 3}
