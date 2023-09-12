@@ -220,19 +220,21 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            Vector3 position = new Vector3(transform.position.x + xMovement, transform.position.y, transform.position.z + zMovement);
-            Vector3 diff = position - transform.position;
-
-            //ベクトルの大きさが0.01以上の時に向きを変える処理をする
-            if (diff.magnitude > 0.01f)
+            if(Switch == false)
             {
-                transform.rotation = Quaternion.LookRotation(diff); //向きを変更する
+                Vector3 position = new Vector3(transform.position.x + xMovement, transform.position.y, transform.position.z + zMovement);
+                Vector3 diff = position - transform.position;
+                //ベクトルの大きさが0.01以上の時に向きを変える処理をする
+                if (diff.magnitude > 0.01f)
+                {
+                    transform.rotation = Quaternion.LookRotation(diff); //向きを変更する
+                }
+
+                transform.Rotate(new Vector3(0, cam.transform.localEulerAngles.y, 0)); //カメラの角度を足す
+
+                transform.Translate(0, 0, movementSpeed);
+                charaAnimator.SetBool("walk", true); // アニメーション切り替え
             }
-
-            transform.Rotate(new Vector3(0, cam.transform.localEulerAngles.y, 0)); //カメラの角度を足す
-
-            transform.Translate(0, 0, movementSpeed);
-            charaAnimator.SetBool("walk", true); // アニメーション切り替え
         }
     }
 
