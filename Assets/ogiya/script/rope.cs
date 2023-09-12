@@ -71,6 +71,8 @@ public class rope: MonoBehaviour
     public GameObject pointobj;
     public GameObject ropeobj;
 
+    public GameObject cam;
+
     void Start()
     {
         startTime = Time.time;
@@ -133,6 +135,8 @@ public class rope: MonoBehaviour
         {
             player.SendMessage("SwitchON");
             panelOn = true;
+
+            cam.transform.position = new Vector3(playerpos.x + 12, playerpos.y + 7, playerpos.z);
             //@Œo‰ßŠÔ‚É‡‚í‚¹‚½Š„‡‚ğŒvZ
             float t = (Time.time - startTime) / duration;
 

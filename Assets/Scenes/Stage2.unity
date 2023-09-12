@@ -7614,6 +7614,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3548528941164848441, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: nearestCameraPosition
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3712279822184732707, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -8827,6 +8831,8 @@ MonoBehaviour:
   sensiSlider: {fileID: 1602471795}
   guideOnButton: {fileID: 2920687180902336140}
   guideOffButton: {fileID: 8735290512242414437}
+  guideArrow: {fileID: 0}
+  offScreenGuideArrow: {fileID: 0}
   openOption: 0
 --- !u!222 &511846480
 CanvasRenderer:
@@ -11886,6 +11892,7 @@ MonoBehaviour:
   arcAngle: 60
   pointobj: {fileID: 1238640133}
   ropeobj: {fileID: 1043754007}
+  cam: {fileID: 479407276}
 --- !u!1 &680332013
 GameObject:
   m_ObjectHideFlags: 0
@@ -38247,6 +38254,8 @@ MonoBehaviour:
   sensiSlider: {fileID: 0}
   guideOnButton: {fileID: 0}
   guideOffButton: {fileID: 0}
+  guideArrow: {fileID: 0}
+  offScreenGuideArrow: {fileID: 0}
   openOption: 0
 --- !u!1001 &2033225950
 PrefabInstance:
