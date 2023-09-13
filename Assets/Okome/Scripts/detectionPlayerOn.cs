@@ -24,4 +24,12 @@ public class detectionPlayerOn : MonoBehaviour
             isPlayerOn = true;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == player)
+        {
+            isPlayerOn = true;
+        }
+    }
 }
