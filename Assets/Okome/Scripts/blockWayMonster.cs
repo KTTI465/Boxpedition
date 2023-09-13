@@ -19,13 +19,16 @@ public class blockWayMonster : MonoBehaviour
     bool isEvent;
 
     //道を開けたか
-    bool hasOpenedWay;
+    public bool hasOpenedWay;
     //赤ヒーローがいるか
     public bool existRedHero;
 
     //イベント発生中のプレイヤーの位置
     Vector3 inEventPlayerPosition;
     Vector3 stepBackPosition;
+
+    [System.NonSerialized]
+    public bool firstThreaten = false;
 
     [SerializeField] AudioClip monstersSound;
     AudioSource audioSource;
@@ -54,7 +57,7 @@ public class blockWayMonster : MonoBehaviour
                 //プレイヤーに歩きアニメーションをさせる
                 playerAnimator.SetBool("walk", true);
             }
-            else 
+            else
             {
                 //イベント中に歩いていない時に歩きアニメーションをしないようにする
                 playerAnimator.SetBool("walk", false);
@@ -62,7 +65,7 @@ public class blockWayMonster : MonoBehaviour
 
         }
     }
-    
+
     public void StartEvent()
     {
         //イベントが始まるときにプレイヤーの移動を不可にして、位置や向きを固定してカメラを切り替える
@@ -114,6 +117,10 @@ public class blockWayMonster : MonoBehaviour
                 if (existRedHero == false)
                 {
                     monstersAnimator.SetTrigger("threaten");
+                    if (firstThreaten == false)
+                    {
+                        firstThreaten = true;
+                    }
                 }
                 else
                 {
@@ -123,3 +130,4 @@ public class blockWayMonster : MonoBehaviour
         }
     }
 }
+

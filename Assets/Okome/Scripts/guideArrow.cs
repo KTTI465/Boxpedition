@@ -5,6 +5,7 @@ using UnityEngine;
 public class guideArrow : MonoBehaviour
 {
     //目的のオブジェクトを格納
+    [System.NonSerialized]
     public Transform target;
 
     [SerializeField]
@@ -42,17 +43,17 @@ public class guideArrow : MonoBehaviour
         {
             //矢印が目的のオブジェクトのほうを向くようにする
             transform.LookAt(target);
+
+            //矢印の動きを設定
+            period = Mathf.PingPong(Time.time * arrowSpeed, maxAmplitude);
+            //（目標オブジェクトの上とカメラを結ぶ）直線と目標オブジェクトの垂線の足を求める
+            perpendicularCoordinates = PerpendicularFootPoint(cameraObj.transform.position,
+                target.position + (Vector3.up * heightFromTarget), target.position);
+            //矢印の座標を設定
+            transform.position = perpendicularCoordinates - (transform.forward
+                * (minDistArrowFromTarget + period));
+
         }
-        //矢印の動きを設定
-        period = Mathf.PingPong(Time.time * arrowSpeed, maxAmplitude);
-        //（目標オブジェクトの上とカメラを結ぶ）直線と目標オブジェクトの垂線の足を求める
-        perpendicularCoordinates = PerpendicularFootPoint(cameraObj.transform.position,
-            target.position + (Vector3.up * heightFromTarget), target.position);
-        //矢印の座標を設定
-        transform.position = perpendicularCoordinates - (transform.forward
-            * (minDistArrowFromTarget + period));
-
-
     }
     Vector3 PerpendicularFootPoint(Vector3 a, Vector3 b, Vector3 p)
     {
