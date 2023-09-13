@@ -5861,6 +5861,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb56579941e1abf468a8206d1e9af0ba, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8080470f44430ab459b5dd2d82aa49a1, type: 2}
     - target: {fileID: 919132149155446097, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
       propertyPath: m_Name
       value: Boxpedition_book (15)
@@ -9058,8 +9066,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Color: {r: 0.88113207, g: 0.96603775, b: 1, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9098,7 +9106,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -12574,6 +12582,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb56579941e1abf468a8206d1e9af0ba, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8080470f44430ab459b5dd2d82aa49a1, type: 2}
     - target: {fileID: 919132149155446097, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
       propertyPath: m_Name
       value: Boxpedition_book (16)
@@ -14794,6 +14810,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb56579941e1abf468a8206d1e9af0ba, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8080470f44430ab459b5dd2d82aa49a1, type: 2}
     - target: {fileID: 919132149155446097, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
       propertyPath: m_Name
       value: Boxpedition_book (13)
@@ -15486,6 +15510,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb56579941e1abf468a8206d1e9af0ba, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8080470f44430ab459b5dd2d82aa49a1, type: 2}
     - target: {fileID: 919132149155446097, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
       propertyPath: m_Name
       value: Boxpedition_book (12)
@@ -17956,6 +17988,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 22.84
       objectReference: {fileID: 0}
+    - target: {fileID: 267873951332480695, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.41
+      objectReference: {fileID: 0}
     - target: {fileID: 267873952005854412, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: m_Name
       value: Drawer 1
@@ -20338,6 +20374,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb56579941e1abf468a8206d1e9af0ba, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8080470f44430ab459b5dd2d82aa49a1, type: 2}
     - target: {fileID: 919132149155446097, guid: 0c5d9b52cbbfac147ae97b0bd5fb55e8, type: 3}
       propertyPath: m_Name
       value: Boxpedition_book (14)
