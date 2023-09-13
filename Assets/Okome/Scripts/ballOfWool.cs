@@ -118,6 +118,7 @@ public class ballOfWool : MonoBehaviour
     public void StartAnimation()
     {
         StateProcessor.State = StateAnimation;
+        player.GetComponent<Rigidbody>().isKinematic = true;
         player.GetComponent<CharacterController>().enabled = false;
         sphereCollider.isTrigger = true;
         animationCamara.GetComponent<Camera>().depth = 1;
@@ -131,6 +132,7 @@ public class ballOfWool : MonoBehaviour
     {
         StateProcessor.State = StateIdle;
         player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<Rigidbody>().isKinematic = false;
         sphereCollider.isTrigger = false;
         Destroy(animationCamara);
         gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");

@@ -7,6 +7,7 @@ public class blockWayMonster : MonoBehaviour
     [SerializeField] GameObject player;
     CharacterController characterController;
     Animator playerAnimator;
+    Rigidbody playerRb;
 
     [SerializeField] GameObject eventCamera;
 
@@ -39,6 +40,7 @@ public class blockWayMonster : MonoBehaviour
         playerAnimator = player.GetComponent<Animator>();
         monstersAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        playerRb = player.GetComponent<Rigidbody>();
         //カメラを非有効に
         eventCamera.SetActive(false);
     }
@@ -70,6 +72,7 @@ public class blockWayMonster : MonoBehaviour
     {
         //イベントが始まるときにプレイヤーの移動を不可にして、位置や向きを固定してカメラを切り替える
         isEvent = true;
+        playerRb.isKinematic = true;
         characterController.enabled = false;
         //キャラクターの向きの設定
         player.transform.eulerAngles = transform.up;
@@ -99,6 +102,7 @@ public class blockWayMonster : MonoBehaviour
         characterController.enabled = true;
         eventCamera.SetActive(false);
         isPlayerStepBack = false;
+        playerRb.isKinematic = false;
     }
 
     public void OpenWay()
