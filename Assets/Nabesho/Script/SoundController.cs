@@ -5,10 +5,11 @@ using UnityEngine;
 using BoxState;
 using CharacterState;
 using TrampolineState;
+using DrawerState;
 using CriWare;
 using System;
 using System.Runtime.CompilerServices;
-using System.Diagnostics;
+//using System.Diagnostics;
 using ClimbState;
 //using System.Media;
 
@@ -32,6 +33,9 @@ public class SoundController : MonoBehaviour
     [SerializeField]
     private RopeActAnim ropeAct;
 
+    [SerializeField]
+    private List<drawer> drawers;
+
     private SoundControllerBase SEPlayer;
     private SoundControllerBase BGMPlayer;
     private SoundControllerBase WalkPlayer;
@@ -43,9 +47,10 @@ public class SoundController : MonoBehaviour
     public BoxStateProcessor boxStateProcessor = new BoxStateProcessor();
     public CharacterStateProcessor charactorStateProcessor = new CharacterStateProcessor();
     public TrampolineStateProcessor trampolineStateProcessor = new TrampolineStateProcessor();
+    public DrawerStateProcessor drawerStateProcessor = new DrawerStateProcessor();
     public ClimbStateProcessor climbStateProcessor = new ClimbStateProcessor();
 
-    private String BeforeStateName, BeforeStateName2, BeforeStateName3, BeforeSateName4;
+    private String BeforeStateName, BeforeStateName2, BeforeStateName3, BeforeSateName4, BeforeStateName5;
     private bool StartFlag = false;
     private bool MoveFlag = false;
     private bool MoveFlag2 = false;
@@ -168,6 +173,27 @@ public class SoundController : MonoBehaviour
             }
         }
 
+        foreach (var drawer in drawers)
+        {
+            drawerStateProcessor = drawer.StateProcessor;
+
+            var statename = drawerStateProcessor.State.GetStateName();
+
+            if (statename == "State:DrawerPull")
+                break;
+        }
+
+        if (drawerStateProcessor.State.GetStateName() != BeforeStateName5)
+        {
+            BeforeStateName5 = drawerStateProcessor.State.GetStateName();
+
+            if (BeforeStateName5 == "State:DrawerPull")
+            {
+                Debug.Log("SoundController:Jump");
+                SEPlayer.SetCueName("Jump");
+                SEPlayer.Play();
+            }
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -193,9 +219,9 @@ public class SoundController : MonoBehaviour
                 WalkPlayer.Play();
                 MoveFlag = true;
             }
-            else if (charactorStateProcessor.State.GetStateName() == "State:MoveBook")
+            else if (charactorStateProcessor.State.GetStateName() == "State:MoveMat")
             {
-                UnityEngine.Debug.Log("SoundController:MoveBook");
+                UnityEngine.Debug.Log("SoundController:MoveMat");
                 WalkPlayer.SetCueName("Walk_Book");
                 WalkPlayer.Play();
                 MoveFlag = true;
@@ -208,8 +234,7 @@ public class SoundController : MonoBehaviour
         }
 
 
-        if (climbStateProcessor.State.GetStateName() != BeforeSateName4 &&
-            MoveFlag2)
+        if (climbStateProcessor.State.GetStateName() != BeforeSateName4 && MoveFlag2)
         {
             MoveFlag2 = false;
             ClimbPlayer.Stop();
@@ -253,7 +278,7 @@ public class SoundController : MonoBehaviour
         {
             return true;
         }
-        else if (charactorStateProcessor.State.GetStateName() == "State:MoveBook")
+        else if (charactorStateProcessor.State.GetStateName() == "State:MoveMat")
         {
             return true;
         }

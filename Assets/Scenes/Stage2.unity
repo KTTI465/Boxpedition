@@ -10417,12 +10417,13 @@ MonoBehaviour:
   targetY: -22
   targetZ: -227
   limitAngle: 80
-  duration: 25
+  duration: 30
   angleX: 0
   angleY: 0
   angleZ: 1
   panelOn: 0
   button: 0
+  A1: 0
   panel1: {fileID: 1933133155}
   panel2: {fileID: 1590261883}
   panel1English: {fileID: 1330168825}
@@ -13383,6 +13384,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bca99f9702568db41a38de75f0f7c1a0, type: 3}
       propertyPath: m_Name
       value: puzzlemat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bca99f9702568db41a38de75f0f7c1a0, type: 3}
+      propertyPath: m_TagString
+      value: Mat
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bca99f9702568db41a38de75f0f7c1a0, type: 3}
       propertyPath: m_StaticEditorFlags

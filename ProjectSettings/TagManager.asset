@@ -15,6 +15,7 @@ TagManager:
   - book
   - glass
   - arie
+  - Mat
   layers:
   - Default
   - TransparentFX

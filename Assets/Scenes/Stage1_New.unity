@@ -744,6 +744,9 @@ MonoBehaviour:
   chara: {fileID: 0}
   tp: {fileID: 0}
   ropeAct: {fileID: 857658859}
+  drawers:
+  - {fileID: 1011391045}
+  - {fileID: 1353256547}
   BGMSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
 --- !u!1 &60502998 stripped
@@ -13505,6 +13508,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aec71fa5d6ab24744bbfb3afb66de766, type: 3}
+--- !u!114 &1011391045 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6122534295358144398, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+  m_PrefabInstance: {fileID: 1690567124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3ec6daa99602b4eabb9ccf8be08059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1016339028
 GameObject:
   m_ObjectHideFlags: 0
@@ -14068,6 +14082,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bca99f9702568db41a38de75f0f7c1a0, type: 3}
       propertyPath: m_Name
       value: puzzlemat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bca99f9702568db41a38de75f0f7c1a0, type: 3}
+      propertyPath: m_TagString
+      value: Mat
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bca99f9702568db41a38de75f0f7c1a0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14857,6 +14875,7 @@ MonoBehaviour:
   eventCamera: {fileID: 0}
   hasOpenedWay: 0
   existRedHero: 0
+  offScreenArrow: {fileID: 0}
   monstersSound: {fileID: 8300000, guid: 552f2500ca752794589f3d7e6155f0d2, type: 3}
 --- !u!95 &1114588706
 Animator:
@@ -17454,6 +17473,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4494273541730656342, guid: 36ef35d8ddff6244e9c01e583a7d9f63, type: 3}
   m_PrefabInstance: {fileID: 1336026545}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1353256547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7879704136595739852, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+  m_PrefabInstance: {fileID: 1690567124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3ec6daa99602b4eabb9ccf8be08059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1359955552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6619100295947604979, guid: 0d7a19745ba01444a9fda12640b22d7a, type: 3}
@@ -18459,6 +18489,7 @@ MonoBehaviour:
   angleZ: 1
   panelOn: 0
   button: 0
+  A1: 0
   panel1: {fileID: 0}
   panel2: {fileID: 0}
   panel1English: {fileID: 0}
@@ -22031,9 +22062,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.018
       objectReference: {fileID: 0}
+    - target: {fileID: 267873953086673214, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Name
+      value: HandleB
+      objectReference: {fileID: 0}
     - target: {fileID: 267873953086673215, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267873953254772421, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: m_Name
+      value: HandleT
       objectReference: {fileID: 0}
     - target: {fileID: 267873953254772422, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22248,6 +22287,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 479407274}
     - target: {fileID: 6122534295358144398, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: DrawerMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122534295358144398, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: interactImageEnglish
       value: 
       objectReference: {fileID: 1089128966}
@@ -22307,6 +22350,10 @@ PrefabInstance:
       propertyPath: charaAnimator
       value: 
       objectReference: {fileID: 479407274}
+    - target: {fileID: 7879704136595739852, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+      propertyPath: DrawerMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7879704136595739852, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: interactImageEnglish
       value: 

@@ -65,11 +65,11 @@ namespace CharacterState
         }
     }
 
-    public class CharacterStateMoveBook : CharacterState
+    public class CharacterStateMoveMat : CharacterState
     {
         public override string GetStateName()
         {
-            return "State:MoveBook";
+            return "State:MoveMat";
         }
     }
 

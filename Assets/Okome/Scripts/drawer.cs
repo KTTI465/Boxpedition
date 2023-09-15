@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using DrawerState;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Processors;
 
 public class drawer : MonoBehaviour
 {
@@ -37,14 +39,19 @@ public class drawer : MonoBehaviour
 
     // Zƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
     bool ps4O = false;
+    //State•Ï”
+    public DrawerStateProcessor StateProcessor { get; set; } = new DrawerStateProcessor();
+    public DrawerStateIdle StateIdle { get; set; } = new DrawerStateIdle();
+    public DrawerStatePull StatePull { get; set; } = new DrawerStatePull();
     private void Start()
     {
         isGrab = false;
 
-        if(PlayerPrefs.GetString("Language") == "English")
+        if (PlayerPrefs.GetString("Language") == "English")
         {
             interactImageGamepad = interactImageEnglish;
         }
+        StateProcessor.State = StateIdle;
     }
     private void Update()
     {
@@ -54,7 +61,7 @@ public class drawer : MonoBehaviour
         {
             if (Gamepad.current.buttonEast.wasPressedThisFrame && ps4O == false)
             {
-                if(isGrab == false)
+                if (isGrab == false)
                 {
                     ps4O = true;
                     Invoke("ResetPS4O", 0.5f);
@@ -121,7 +128,7 @@ public class drawer : MonoBehaviour
             if (_interactGameObjectsList != null && _interactGameObjectsList.Contains(gameObject))
             {
                 interactImage.SetActive(true);
-                
+
                 if ((Input.GetMouseButtonDown(0) || ps4O) && isPressedMouseButton0 == false)
                 {
                     if (isGrab == false)
@@ -152,6 +159,15 @@ public class drawer : MonoBehaviour
                 {
                     float zMovement = Input.GetAxisRaw("Vertical") / 80 * DrawerMoveSpeed;
 
+                    //ˆø‚­‰¹‚ğ–Â‚ç‚·
+                    if (Input.GetAxisRaw("Vertical") != 0)
+                    {
+                        StateProcessor.State = StatePull;
+                    }
+                    else
+                    {
+                        StateProcessor.State = StateIdle;
+                    }
                     //ˆø‚«o‚µ‚ªˆÚ“®‚µ‚·‚¬‚È‚¢‚æ‚¤‚É
                     if (Drawer.transform.localPosition.x <= 0.41 && zMovement > 0)
                     {
@@ -191,6 +207,8 @@ public class drawer : MonoBehaviour
             interactImage.SetActive(false);
 
             isPressedMouseButton0 = false;
+
+            StateProcessor.State = StateIdle;
         }
     }
 
