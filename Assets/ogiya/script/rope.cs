@@ -39,6 +39,7 @@ public class rope: MonoBehaviour
     public float angleZ;
     public bool panelOn = false;
     public bool button = false;
+    public bool A1 = false;
 
     //プレイヤーのrigidbody格納用変数
     new Rigidbody rigidbody;
@@ -241,6 +242,7 @@ public class rope: MonoBehaviour
     {
         if (col.tag == "Player")
         {
+            A1 = true;
             GetPS40();
             if (ps40 ||Input.GetKey(KeyCode.Space))
             {
@@ -256,7 +258,13 @@ public class rope: MonoBehaviour
             }
         }
     }
-
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.tag == "Player")
+        {
+            A1 = false;
+        }
+    }
     private void CharacterMovement()
     {
         xMovement = Input.GetAxisRaw("Horizontal") * movementSpeed;
@@ -269,9 +277,12 @@ public class rope: MonoBehaviour
     {
         if (Gamepad.current != null)
         {
-            if (Gamepad.current.buttonEast.isPressed)
+            if (A1 == true)
             {
-                ps40 = true;
+                if (Gamepad.current.buttonEast.isPressed)
+                {
+                    ps40 = true;
+                }
             }
         }
     }
