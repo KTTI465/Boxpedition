@@ -31,6 +31,9 @@ public class blockWayMonster : MonoBehaviour
     [System.NonSerialized]
     public bool firstThreaten = false;
 
+    [SerializeField]
+    private GameObject offScreenArrow;
+
     [SerializeField] AudioClip monstersSound;
     AudioSource audioSource;
     void Start()
@@ -50,6 +53,7 @@ public class blockWayMonster : MonoBehaviour
         //イベント中
         if (isEvent == true)
         {
+            offScreenArrow.SetActive(false);
             //おびえて下がっているとき
             if (isPlayerStepBack == true)
             {
@@ -68,19 +72,23 @@ public class blockWayMonster : MonoBehaviour
         }
     }
 
+    //イベントが始まるときに呼ぶ関数
     public void StartEvent()
     {
-        //イベントが始まるときにプレイヤーの移動を不可にして、位置や向きを固定してカメラを切り替える
         isEvent = true;
         playerRb.velocity = Vector3.zero;
-        characterController.enabled = false;
+        //プレイヤーの操作を不可にする
+        characterController.Switch = true;
+
         //キャラクターの向きの設定
         player.transform.eulerAngles = transform.up;
         inEventPlayerPosition = new Vector3(transform.position.x - 3f, player.transform.position.y, transform.position.z - 40f);
         stepBackPosition = inEventPlayerPosition - new Vector3(0f, 0f, 10f);
         player.transform.position = inEventPlayerPosition;
+
         characterController.StateProcessor.State = characterController.StateIdle;
         playerAnimator.SetBool("walk", false);
+        offScreenArrow.SetActive(false);
         eventCamera.SetActive(true);
     }
 
@@ -95,11 +103,14 @@ public class blockWayMonster : MonoBehaviour
         isPlayerStepBack = true;
     }
 
+    //イベントが終わるときに呼ぶ関数
     public void EndEvent()
     {
-        //イベントが終わった時にカメラを切り替え、移動ができるようにする
         isEvent = false;
-        characterController.enabled = true;
+        //キャラクターを操作可能にする
+        characterController.Switch = false;
+
+        offScreenArrow.SetActive(true);
         eventCamera.SetActive(false);
         isPlayerStepBack = false;
     }
