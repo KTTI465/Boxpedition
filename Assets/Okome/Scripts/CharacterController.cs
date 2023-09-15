@@ -65,7 +65,7 @@ public class CharacterController : MonoBehaviour
     public CharacterStateIdle StateIdle { get; set; } = new CharacterStateIdle();
     public CharacterStateMove StateMove { get; set; } = new CharacterStateMove();
     public CharacterStateMoveGlass StateMoveGlass { get; set; } = new CharacterStateMoveGlass();
-    public CharacterStateMoveBook StateMoveBook { get; set; } = new CharacterStateMoveBook();
+    public CharacterStateMoveMat StateMoveMat { get; set; } = new CharacterStateMoveMat();
     public CharacterStateJump1 StateJump1 { get; set; } = new CharacterStateJump1();
     public CharacterStateJump2 StateJump2 { get; set; } = new CharacterStateJump2();
     public CharacterStateTrampolineSmallJump StateTrampSmall { get; set; } = new CharacterStateTrampolineSmallJump();
@@ -104,7 +104,7 @@ public class CharacterController : MonoBehaviour
         StateIdle.ExecAction = Idle;
         StateMove.ExecAction = Move;
         StateMoveGlass.ExecAction = MoveGlass;
-        StateMoveBook.ExecAction = MoveBook;
+        StateMoveMat.ExecAction = MoveMat;
         StateJump1.ExecAction = Jump1;
         StateJump2.ExecAction = Jump2;
         StateTrampSmall.ExecAction = TrampSmall;
@@ -145,7 +145,7 @@ public class CharacterController : MonoBehaviour
                     }
                     else if (comparetarget == "book")
                     {
-                        StateProcessor.State = StateMoveBook;
+                        StateProcessor.State = StateMoveMat;   
                     }
                     else if (comparetarget == "Untagged")
                     {
@@ -518,9 +518,9 @@ public class CharacterController : MonoBehaviour
     {
         //Debug.Log("CharacterStateがMoveGlassに状態遷移しました。");
     }
-    public void MoveBook()
+    public void MoveMat()
     {
-        //Debug.Log("CharacterStateがMoveBookに状態遷移しました。");
+        //Debug.Log("CharacterStateがMoveMatに状態遷移しました。");
     }
     public void Jump1()
     {
