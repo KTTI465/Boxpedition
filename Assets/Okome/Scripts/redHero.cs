@@ -27,6 +27,9 @@ public class redHero : MonoBehaviour
     [SerializeField]
     private blockWayMonster monsters;
 
+    [SerializeField]
+    private GameObject rope;
+
     private GameObject interactImage;
 
     [SerializeField]//パッド操作のときのインタラクトの画像
@@ -44,7 +47,6 @@ public class redHero : MonoBehaviour
         characterController = player.GetComponent<CharacterController>();
         playerAnimator = player.GetComponent<Animator>();
 
-
         playerEventPos = transform.position + transform.right * -6f + transform.up * 1.3f + transform.forward * 10f;
 
         //言語が英語だった時、掴むの画像を英語版に変更する
@@ -53,6 +55,7 @@ public class redHero : MonoBehaviour
             interactImageGamepad = interactImageEnglish;
         }
 
+        rope.SetActive(false);
         eventCamera.SetActive(false);
     }
 
@@ -116,9 +119,21 @@ public class redHero : MonoBehaviour
         eventCamera.SetActive(true);
     }
 
+
+
     public void PlayerJump()
     {
         playerRb.velocity = Vector3.up * 30f;
+    }
+
+    public void ropeSwingStart()
+    {
+        rope.SetActive(true);
+    }
+
+    public void ropeSwingEnd()
+    {
+        rope.SetActive(false);
     }
 
     public void EndEvent()
