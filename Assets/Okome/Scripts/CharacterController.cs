@@ -342,40 +342,45 @@ public class CharacterController : MonoBehaviour
         //スペースキー（×ボタン）を押したときにジャンプする
         if (Input.GetKeyDown(KeyCode.Space) || ps4X)
         {
-            //地面についていた時
-            if (isGround == true && jumped == false)
+            if (Switch == false)
             {
-                rb.velocity = Vector3.up * firstJumpPower;
-                StateProcessor.State = StateJump1;
-                jumped = true;
-            }
-            //空中にいるときかつ二段ジャンプをしていない時
-            else if (isGround == false && doubleJumped == false && jumped == true)
-            {
-                rb.velocity = Vector3.up * secondJumpPower;
+                //地面についていた時
+                if (isGround == true && jumped == false)
+                {
 
-                //boxについているスクリプトのコルーチンを使い、１秒後に箱が消えるようにする
-                IEnumerator destroyTimer = connectingBox.GetComponent<Box>().DestroyBox();
-                StartCoroutine(destroyTimer);
+                    rb.velocity = Vector3.up * firstJumpPower;
+                    StateProcessor.State = StateJump1;
+                    jumped = true;
 
-                //boxには親に追従させるためにRigidbodyがついていないので下に落ちるようにRigidbodyをつける
-                connectingBox.AddComponent<Rigidbody>();
+                }
+                //空中にいるときかつ二段ジャンプをしていない時
+                else if (isGround == false && doubleJumped == false && jumped == true)
+                {
+                    rb.velocity = Vector3.up * secondJumpPower;
 
-                //connectingBoxが下に落ちるようにこのオブジェクトの子からはずす
-                connectingBox.transform.parent = null;
+                    //boxについているスクリプトのコルーチンを使い、１秒後に箱が消えるようにする
+                    IEnumerator destroyTimer = connectingBox.GetComponent<Box>().DestroyBox();
+                    StartCoroutine(destroyTimer);
 
-                //connectingBoxの座標にエフェクトを生成する
-                Instantiate(particle1.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
-                Instantiate(particle2.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
+                    //boxには親に追従させるためにRigidbodyがついていないので下に落ちるようにRigidbodyをつける
+                    connectingBox.AddComponent<Rigidbody>();
 
-                //格納されているconnectingBoxをはずす
-                connectingBox = null;
+                    //connectingBoxが下に落ちるようにこのオブジェクトの子からはずす
+                    connectingBox.transform.parent = null;
 
-                charaAnimator.SetBool("jump2", true); // アニメーション切り替え
+                    //connectingBoxの座標にエフェクトを生成する
+                    Instantiate(particle1.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
+                    Instantiate(particle2.gameObject, connectingBox.transform.position, Quaternion.Euler(-90, 0, 0));
 
-                //二段ジャンプした判定をtrueにする
-                StateProcessor.State = StateJump2;
-                doubleJumped = true;
+                    //格納されているconnectingBoxをはずす
+                    connectingBox = null;
+
+                    charaAnimator.SetBool("jump2", true); // アニメーション切り替え
+
+                    //二段ジャンプした判定をtrueにする
+                    StateProcessor.State = StateJump2;
+                    doubleJumped = true;
+                }
             }
         }
 
