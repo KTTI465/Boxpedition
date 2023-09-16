@@ -9,7 +9,7 @@ using DrawerState;
 using CriWare;
 using System;
 using System.Runtime.CompilerServices;
-//using System.Diagnostics;
+using System.Diagnostics;
 using ClimbState;
 //using System.Media;
 
@@ -173,25 +173,28 @@ public class SoundController : MonoBehaviour
             }
         }
 
-        foreach (var drawer in drawers)
+        if (drawers.Count > 0)
         {
-            drawerStateProcessor = drawer.StateProcessor;
-
-            var statename = drawerStateProcessor.State.GetStateName();
-
-            if (statename == "State:DrawerPull")
-                break;
-        }
-
-        if (drawerStateProcessor.State.GetStateName() != BeforeStateName5)
-        {
-            BeforeStateName5 = drawerStateProcessor.State.GetStateName();
-
-            if (BeforeStateName5 == "State:DrawerPull")
+            foreach (var drawer in drawers)
             {
-                Debug.Log("SoundController:Jump");
-                SEPlayer.SetCueName("Jump");
-                SEPlayer.Play();
+                drawerStateProcessor = drawer.StateProcessor;
+
+                var statename = drawerStateProcessor.State.GetStateName();
+
+                if (statename == "State:DrawerPull")
+                    break;
+            }
+
+            if (drawerStateProcessor.State.GetStateName() != BeforeStateName5)
+            {
+                BeforeStateName5 = drawerStateProcessor.State.GetStateName();
+
+                if (BeforeStateName5 == "State:DrawerPull")
+                {
+                    UnityEngine.Debug.Log("SoundController:Jump");
+                    SEPlayer.SetCueName("Jump");
+                    SEPlayer.Play();
+                }
             }
         }
 
