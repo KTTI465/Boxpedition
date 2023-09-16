@@ -111,7 +111,10 @@ public class redHero : MonoBehaviour
         isEvent = true;
         playerRb.velocity = Vector3.zero;
         player.transform.position = playerEventPos;
+        //プレイヤーの操作を不可にする
         characterController.Switch = true;
+        characterController.canJump = false;
+
         offScreenArrow.SetActive(false);
         interactImage.SetActive(false);
         characterController.StateProcessor.State = characterController.StateIdle;
@@ -139,7 +142,10 @@ public class redHero : MonoBehaviour
     public void EndEvent()
     {
         isEvent = false;
+        //キャラクターを操作可能にする
         characterController.Switch = false;
+        characterController.canJump = true;
+
         offScreenArrow.SetActive(true);
         eventCamera.SetActive(false);
         monsters.existRedHero = true;

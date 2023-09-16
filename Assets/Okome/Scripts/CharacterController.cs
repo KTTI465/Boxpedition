@@ -46,6 +46,12 @@ public class CharacterController : MonoBehaviour
     public bool infinityJump = false;
     public bool jumpInterval = false;
 
+    private bool isFalling;
+    private float prePlayerPosY;
+    public float firstJumpHeight;
+    public float secondJumpHeight;
+
+    public bool canJump = true;
     public bool Switch;
 
     //connectingBoxの上にPlayerがくるよう位置を調整するための変数
@@ -198,6 +204,35 @@ public class CharacterController : MonoBehaviour
     {
         CharacterMovement();
         //CharacterRotate();
+
+        //落ちていない
+        if (isFalling == false)
+        {
+            //重力を追加する
+            if (doubleJumped == true)
+            {
+                rb.AddForce(-(Physics.gravity + ((Mathf.Pow(secondJumpPower, 2) / (2 * secondJumpHeight)) * Vector3.up)), ForceMode.Force);
+            }
+            else if (jumped == true && doubleJumped == false)
+            {
+                rb.AddForce(-(Physics.gravity + ((Mathf.Pow(firstJumpPower, 2) / (2 * firstJumpHeight)) * Vector3.up)), ForceMode.Force);
+            }
+
+            //落ちているとき
+            if (transform.position.y < prePlayerPosY)
+            {
+                isFalling = true;
+            }
+        }
+        else
+        {
+            //落ちていないとき
+            if (isGround == true || transform.position.y >= prePlayerPosY)
+            {
+                isFalling = false;
+            }
+        }
+        prePlayerPosY = transform.position.y;
     }
 
     private void CharacterMovement()
@@ -342,7 +377,7 @@ public class CharacterController : MonoBehaviour
         //スペースキー（×ボタン）を押したときにジャンプする
         if (Input.GetKeyDown(KeyCode.Space) || ps4X)
         {
-            if (Switch == false)
+            if (canJump == true)
             {
                 //地面についていた時
                 if (isGround == true && jumped == false)

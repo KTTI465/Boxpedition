@@ -4399,7 +4399,7 @@ GameObject:
   - component: {fileID: 333866791}
   - component: {fileID: 333866790}
   - component: {fileID: 333866789}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detectionSlideDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4417,7 +4417,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 200, y: 10, z: 300}
+  m_Size: {x: 20, y: 20, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &333866790
 MonoBehaviour:
@@ -4439,7 +4439,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333866788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 71, y: -15.2, z: -313.3}
+  m_LocalPosition: {x: 8.1, y: -9.6, z: -444.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6747,11 +6747,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: firstJumpPower
-      value: 15
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: firstJumpHeight
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: secondJumpPower
-      value: 18
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: secondJumpHeight
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: particlePlaySpeed
@@ -15988,7 +15996,7 @@ GameObject:
   - component: {fileID: 1016339031}
   - component: {fileID: 1016339030}
   - component: {fileID: 1016339029}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: detectionScoffold
   m_TagString: Untagged
   m_Icon: {fileID: 0}

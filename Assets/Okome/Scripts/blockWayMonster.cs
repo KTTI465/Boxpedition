@@ -79,6 +79,7 @@ public class blockWayMonster : MonoBehaviour
         playerRb.velocity = Vector3.zero;
         //プレイヤーの操作を不可にする
         characterController.Switch = true;
+        characterController.canJump = false;
 
         //キャラクターの向きの設定
         player.transform.eulerAngles = transform.up;
