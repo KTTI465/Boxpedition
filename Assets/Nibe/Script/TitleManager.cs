@@ -89,7 +89,7 @@ public class TitleManager : MonoBehaviour
 
     void Awake()
     {
-        if(PlayerPrefs.GetString("First") != "false")
+        if (PlayerPrefs.GetString("First") != "false")
         {
             // ï€ë∂
             PlayerPrefs.SetFloat("BGM", 1.0f);
@@ -150,7 +150,7 @@ public class TitleManager : MonoBehaviour
                 {
                     titleNum--;
                     up = false;
-                    musicManager.PlaySE1();
+                    PlaySelectSE();
                 }
             }
             else if (down == true)
@@ -163,7 +163,7 @@ public class TitleManager : MonoBehaviour
                 {
                     titleNum++;
                     down = false;
-                    musicManager.PlaySE1();
+                    PlaySelectSE();
                 }
             }
 
@@ -204,7 +204,7 @@ public class TitleManager : MonoBehaviour
                 {
                     optionNum--;
                     up = false;
-                    musicManager.PlaySE1();
+                    PlaySelectSE();
                 }
             }
             else if (down == true)
@@ -217,7 +217,7 @@ public class TitleManager : MonoBehaviour
                 {
                     optionNum++;
                     down = false;
-                    musicManager.PlaySE1();
+                    PlaySelectSE();
                 }
             }
 
@@ -234,6 +234,7 @@ public class TitleManager : MonoBehaviour
                 else if (optionNum == 2)
                 {
                     GuideOffButton();
+                    PlaySelectSE();
                 }
 
                 right = false;
@@ -251,6 +252,7 @@ public class TitleManager : MonoBehaviour
                 else if (optionNum == 2)
                 {
                     GuideOnButton();
+                    PlaySelectSE();
                 }
 
                 left = false;
@@ -283,7 +285,7 @@ public class TitleManager : MonoBehaviour
                 StageLeftButton();
 
                 left = false;
-            }           
+            }
 
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
@@ -302,11 +304,13 @@ public class TitleManager : MonoBehaviour
             {
                 languageNum = 0;
                 up = false;
+                PlaySelectSE();
             }
             else if (down == true)  //âpåÍ
             {
                 languageNum = 1;
                 down = false;
+                PlaySelectSE();
             }
 
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
@@ -314,7 +318,7 @@ public class TitleManager : MonoBehaviour
                 ExitLanguageButton();
             }
         }
-        else if(credit)
+        else if (credit)
         {
             if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
             {
@@ -332,7 +336,7 @@ public class TitleManager : MonoBehaviour
         if (titleNum == 0)
         {
             startGameText.color = new Color(r2, g2, b2, a2);
-            openOptionText.color = new Color(r1, g1, b1, a1);        
+            openOptionText.color = new Color(r1, g1, b1, a1);
             quitGameText.color = new Color(r1, g1, b1, a1);
             languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r1, g1, b1, a1);
@@ -353,7 +357,7 @@ public class TitleManager : MonoBehaviour
             languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r1, g1, b1, a1);
         }
-        else if(titleNum == 3)
+        else if (titleNum == 3)
         {
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r1, g1, b1, a1);
@@ -425,9 +429,9 @@ public class TitleManager : MonoBehaviour
             englishText.color = new Color(r2, g2, b2, a2);
         }
 
-        if(optionNum == 2)
+        if (optionNum == 2)
         {
-            if(PlayerPrefs.GetString("Guide") == "true")
+            if (PlayerPrefs.GetString("Guide") == "true")
             {
                 guideOnText.color = new Color(r2, g2, b2, a2);
                 guideOffText.color = new Color(r1, g1, b1, a1);
@@ -444,7 +448,7 @@ public class TitleManager : MonoBehaviour
             guideOffText.color = new Color(r1, g1, b1, a1);
         }
 
-        if(option)
+        if (option)
         {
             Image guideOnImage = guideOnButton.GetComponent<Image>();
             Image guideOffImage = guideOffButton.GetComponent<Image>();
@@ -524,7 +528,7 @@ public class TitleManager : MonoBehaviour
         title = true;
         musicManager.PlaySE1();
 
-        if(languageNum == 0)
+        if (languageNum == 0)
         {
             PlayerPrefs.SetString("Language", "Japanese");
             PlayerPrefs.Save();
@@ -562,7 +566,7 @@ public class TitleManager : MonoBehaviour
 
     public void OpenCreditButton()
     {
-        if(PlayerPrefs.GetString("Language") == "Japanese")
+        if (PlayerPrefs.GetString("Language") == "Japanese")
         {
             creditPanel1.SetActive(true);
         }
@@ -604,7 +608,7 @@ public class TitleManager : MonoBehaviour
         if (stageNum != 2)
         {
             stageNum++;
-            musicManager.PlaySE1();
+            PlaySelectSE();
         }
 
         HideStage();
@@ -615,7 +619,7 @@ public class TitleManager : MonoBehaviour
         if (stageNum != 0)
         {
             stageNum--;
-            musicManager.PlaySE1();
+            PlaySelectSE();
         }
 
         HideStage();
@@ -702,5 +706,11 @@ public class TitleManager : MonoBehaviour
         }
 
         ps4Count++;
+    }
+
+
+    public void PlaySelectSE()
+    {
+        //Ç±Ç±Ç…âπÇ™ñ¬ÇÈèàóùÇèëÇ≠
     }
 }

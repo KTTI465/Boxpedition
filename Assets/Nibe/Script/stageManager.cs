@@ -90,7 +90,7 @@ public class stageManager : MonoBehaviour
                 {
                     optionNum--;
                     up = false;
-                    musicManager.PlaySE1();
+                    PlaySelectSE();
                 }
             }
             else if (down == true)
@@ -103,7 +103,7 @@ public class stageManager : MonoBehaviour
                 {
                     optionNum++;
                     down = false;
-                    musicManager.PlaySE1();
+                    PlaySelectSE();
                 }
             }
 
@@ -120,6 +120,7 @@ public class stageManager : MonoBehaviour
                 else if (optionNum == 2)
                 {
                     GuideOffButton();
+                    PlaySelectSE();
                 }
 
                 right = false;
@@ -137,6 +138,7 @@ public class stageManager : MonoBehaviour
                 else if (optionNum == 2)
                 {
                     GuideOnButton();
+                    PlaySelectSE();
                 }
 
                 left = false;
@@ -325,5 +327,11 @@ public class stageManager : MonoBehaviour
         }
 
         ps4Count++;
+    }
+
+
+    public void PlaySelectSE()
+    {
+        //Ç±Ç±Ç…âπÇ™ñ¬ÇÈèàóùÇèëÇ≠
     }
 }
