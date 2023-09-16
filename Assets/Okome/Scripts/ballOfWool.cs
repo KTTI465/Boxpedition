@@ -135,7 +135,7 @@ public class ballOfWool : MonoBehaviour
         player.GetComponent<Rigidbody>().isKinematic = false;
         sphereCollider.isTrigger = false;
         Destroy(animationCamara);
-        gameObject.layer = LayerMask.NameToLayer("IgnoreCameraRay");
+        gameObject.layer = LayerMask.NameToLayer("keito");
         charaAnimator.SetBool("grab", false); // アニメーション切り替え
 
         rope.SetActive(true);
