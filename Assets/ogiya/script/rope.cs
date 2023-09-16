@@ -40,6 +40,7 @@ public class rope: MonoBehaviour
     public bool panelOn = false;
     public bool button = false;
     public bool A1 = false;
+    public bool tutorial = false;
 
     //プレイヤーのrigidbody格納用変数
     new Rigidbody rigidbody;
@@ -136,8 +137,14 @@ public class rope: MonoBehaviour
         {
             player.SendMessage("SwitchON");
             panelOn = true;
-
-            cam.transform.position = new Vector3(playerpos.x + 12, playerpos.y + 7, playerpos.z);
+            if(tutorial == false)
+            {
+                cam.transform.position = new Vector3(playerpos.x + 12, playerpos.y + 7, playerpos.z);
+            }
+            else
+            {
+                cam.transform.position = new Vector3(playerpos.x, playerpos.y + 7, playerpos.z +12);
+            }
             //　経過時間に合わせた割合を計算
             float t = (Time.time - startTime) / duration;
 
