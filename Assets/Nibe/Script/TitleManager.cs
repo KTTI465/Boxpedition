@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using CriWare;
+using static CriWare.CriProfiler;
 
 
 public class TitleManager : MonoBehaviour
@@ -57,6 +59,9 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Text japaneseText;
     [SerializeField] Text englishText;
 
+    [SerializeField]
+    private AtomLoader atomLoader;
+
 
     private bool title = true;
     private bool option = false;
@@ -86,6 +91,37 @@ public class TitleManager : MonoBehaviour
 
     private int ps4Count = 25;
 
+    private CriAtomExAcb acb;
+    private string cueName;
+    private CriAtomExPlayer Player;
+
+    public void SetAcb(CriAtomExAcb acb)
+    {
+        /* (14) ACB の保存 */
+        this.acb = acb;
+    }
+
+    public void SetCueName(string name)
+    {
+        /* (17) キュー名の保存 */
+        cueName = name;
+    }
+    public void Play()
+    {
+        /* (18) キュー情報をプレーヤー設定*/
+        Player.SetCue(acb, cueName);
+
+        if (Player.IsPaused())
+        {
+            Player.Pause(false);
+        }
+        else
+        {
+            /* (7) プレーヤーの再生 */
+            Player.Start();
+        }
+
+    }
 
     void Awake()
     {
@@ -124,7 +160,9 @@ public class TitleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Gamepad.current == null && credit)
+        Debug.Log(SceneManager.GetActiveScene().name);
+
+            if (Gamepad.current == null && credit)
         {
             if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
             {
@@ -136,8 +174,6 @@ public class TitleManager : MonoBehaviour
         if (Gamepad.current == null) return;
 
         getPS4();
-
-
         if (title)
         {
             if (up == true)
@@ -148,9 +184,9 @@ public class TitleManager : MonoBehaviour
                 }
                 else
                 {
+                    PlaySelectSE();
                     titleNum--;
                     up = false;
-                    PlaySelectSE();
                 }
             }
             else if (down == true)
@@ -161,9 +197,9 @@ public class TitleManager : MonoBehaviour
                 }
                 else
                 {
-                    titleNum++;
-                    down = false;
                     PlaySelectSE();
+                    titleNum++;
+                    down = false;                   
                 }
             }
 
@@ -712,5 +748,9 @@ public class TitleManager : MonoBehaviour
     public void PlaySelectSE()
     {
         //ここに音が鳴る処理を書く
+
+        SetAcb(atomLoader.acbAssets[0].Handle);
+        SetCueName("Click");
+        Play();
     }
 }

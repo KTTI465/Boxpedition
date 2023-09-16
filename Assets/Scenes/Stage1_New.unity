@@ -702,7 +702,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57279705}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc7d26fa476898a49945e397832b9a2c, type: 3}
   m_Name: 
@@ -747,8 +747,8 @@ MonoBehaviour:
   drawers:
   - {fileID: 1011391045}
   - {fileID: 1353256547}
-  BGMSlider: {fileID: 0}
-  SFXSlider: {fileID: 0}
+  BGMSlider: {fileID: 796364279}
+  SFXSlider: {fileID: 1803010419}
 --- !u!1 &60502998 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6526184997809920213, guid: aec71fa5d6ab24744bbfb3afb66de766, type: 3}
@@ -18490,6 +18490,7 @@ MonoBehaviour:
   panelOn: 0
   button: 0
   A1: 0
+  tutorial: 0
   panel1: {fileID: 0}
   panel2: {fileID: 0}
   panel1English: {fileID: 0}
