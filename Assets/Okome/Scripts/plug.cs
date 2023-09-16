@@ -1,7 +1,9 @@
+using DrawerState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using RopeState;
 
 public class plug : MonoBehaviour
 {
@@ -34,6 +36,10 @@ public class plug : MonoBehaviour
 
     [SerializeField]//‰pŒê‚ÌƒCƒ“ƒ^ƒ‰ƒNƒg‚Ì‰æ‘œ‚ðŠi”[
     private GameObject interactImageEnglish;
+
+    public RopeStateProcessor StateProcessor { get; set; } = new RopeStateProcessor();
+    public RopeStateIdle StateIdle { get; set; } = new RopeStateIdle();
+    public RopeStateSlide StateSlide { get; set; } = new RopeStateSlide();
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +94,8 @@ public class plug : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) || ps4O)
             {
+                StateProcessor.State = StateSlide;
+
                 isSlideDown = true;
                 interactImage.SetActive(false);
                 playerRb.isKinematic = true;
@@ -104,6 +112,12 @@ public class plug : MonoBehaviour
                     characterController.enabled = false;
                 }
             }
+            else
+            {
+                StateProcessor.State = StateIdle;
+            }
+
+
         }
         //ŠŠ‚Á‚Ä‚¢‚é‚Æ‚«
         if (isSlideDown == true)

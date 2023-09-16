@@ -11,6 +11,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using ClimbState;
+using RopeState;
 //using System.Media;
 
 public class SoundController : MonoBehaviour
@@ -49,8 +50,9 @@ public class SoundController : MonoBehaviour
     public TrampolineStateProcessor trampolineStateProcessor = new TrampolineStateProcessor();
     public DrawerStateProcessor drawerStateProcessor = new DrawerStateProcessor();
     public ClimbStateProcessor climbStateProcessor = new ClimbStateProcessor();
+    public RopeStateProcessor ropeStateProcessor = new RopeStateProcessor();
 
-    private String BeforeStateName, BeforeStateName2, BeforeStateName3, BeforeSateName4, BeforeStateName5;
+    private String BeforeStateName, BeforeStateName2, BeforeStateName3, BeforeSateName4, BeforeStateName5, BeforeStateName6;
     private bool StartFlag = false;
     private bool MoveFlag = false;
     private bool MoveFlag2 = false;
@@ -243,6 +245,26 @@ public class SoundController : MonoBehaviour
             //例外無視
         }
 
+        try
+        {
+            if (ropeStateProcessor.State.GetStateName() != BeforeStateName6)
+            {
+                BeforeStateName6 = ropeStateProcessor.State.GetStateName();
+
+                if (BeforeStateName6 == "State:Slide")
+                {
+                    UnityEngine.Debug.Log("SoundController:Slide");
+                    SEPlayer.SetCueName("Slide");
+                    SEPlayer.Play();
+                }
+
+            }
+        }
+        catch
+        {
+            //例外無視
+        }
+
         if (drawers.Count > 0)
         {
             foreach (var drawer in drawers)
@@ -261,8 +283,8 @@ public class SoundController : MonoBehaviour
 
                 if (BeforeStateName5 == "State:DrawerPull")
                 {
-                    UnityEngine.Debug.Log("SoundController:Jump");
-                    SEPlayer.SetCueName("Jump");
+                    UnityEngine.Debug.Log("SoundController:Pull");
+                    SEPlayer.SetCueName("Pull");
                     SEPlayer.Play();
                 }
             }

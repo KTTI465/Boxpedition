@@ -5,6 +5,7 @@ using BoxState;
 using CriWare;
 using System;
 using System.Runtime.CompilerServices;
+using UnityEngine.SceneManagement;
 //using System.Diagnostics;
 
 
@@ -173,5 +174,16 @@ public class SoundPlayer : MonoBehaviour
 
         /* (22) パラメーターの更新 */
         Player.UpdateAll();
+    }
+    
+    //タイトルシーンのみクリック音を鳴らす処理
+    public void TitleSceneSound()
+    {
+        if (SceneManager.GetActiveScene().name == "titleScene")
+        {
+            SetAcb(atomLoader.acbAssets[0].Handle);
+            SetCueName("Click");
+            Play();
+        }
     }
 }

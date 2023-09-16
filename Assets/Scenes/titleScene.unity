@@ -5262,6 +5262,7 @@ MonoBehaviour:
   englishButton: {fileID: 165686391}
   japaneseText: {fileID: 1178320592}
   englishText: {fileID: 1860406726}
+  atomLoader: {fileID: 0}
 --- !u!1 &1389990975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5919,8 +5920,8 @@ MonoBehaviour:
   tp: {fileID: 0}
   ropeAct: {fileID: 0}
   drawers: []
-  BGMSlider: {fileID: 0}
-  SFXSlider: {fileID: 0}
+  BGMSlider: {fileID: 2867739769323469411}
+  SFXSlider: {fileID: 117833032921474474}
 --- !u!114 &1572828662
 MonoBehaviour:
   m_ObjectHideFlags: 0
