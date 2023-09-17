@@ -88,7 +88,7 @@ public class TitleManager : MonoBehaviour
     private int ps4Count = 25;
 
     [SerializeField]
-    private SoundController soundController;
+    private Titleplayer soundController;
 
     void Awake()
     {
@@ -701,6 +701,6 @@ public class TitleManager : MonoBehaviour
     {
         //‚±‚±‚É‰¹‚ª–Â‚éˆ—‚ğ‘‚­
 
-        soundController.Click();
+        soundController.ClickPlay();
     }
 }
