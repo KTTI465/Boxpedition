@@ -29,7 +29,7 @@ TagManager:
   - IgnoreCameraRay
   - PostProcessing
   - keito
-  - 
+  - NoShadow
   - 
   - 
   - 
