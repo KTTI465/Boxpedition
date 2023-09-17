@@ -5487,6 +5487,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1266171627}
+  playerRotInSlide: 180
+  playerGrabFirstPos: 6
   interactImage: {fileID: 344646181}
   interactImageEnglish: {fileID: 1709060520}
 --- !u!120 &420176949
