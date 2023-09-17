@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using CriWare;
-using static CriWare.CriProfiler;
 
 
 public class TitleManager : MonoBehaviour

@@ -6009,8 +6009,16 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: firstJumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: secondJumpPower
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: secondJumpHeight
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: particlePlaySpeed
