@@ -9,6 +9,7 @@ using CriWare.Assets;
 using System;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using UnityEngine.UI;
 //using System.Media;
 
 public class Titleplayer : MonoBehaviour
@@ -48,6 +49,9 @@ public class Titleplayer : MonoBehaviour
 
         Click = new CriAtomExPlayer();
         Click.SetCue(acb2.Handle, "Click");
+
+        SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
+        SettingSFXVolume(PlayerPrefs.GetFloat("SE"));
     }
 
     void Update()
@@ -56,11 +60,22 @@ public class Titleplayer : MonoBehaviour
         {
             Click.Start();
         }
- 
+
     }
-    
+
     public void ClickPlay()
     {
         Click.Start();
+    }
+
+
+    public void SettingBGMVolume(float vol)
+    {
+        TitleBGM.SetVolume(vol); TitleBGM.UpdateAll();
+    }
+
+    public void SettingSFXVolume(float vol)
+    {
+        Click.SetVolume(vol); Click.UpdateAll();
     }
 }
