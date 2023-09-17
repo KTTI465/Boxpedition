@@ -45,6 +45,9 @@ public class ballOfWool : MonoBehaviour
 
     private GameObject interactImage;
 
+    [SerializeField]
+    private SoundController soundController;
+
     private string _preStateName;
     public ballOfWoolStateProcessor StateProcessor { get; set; } = new ballOfWoolStateProcessor();
     public ballOfWoolStateIdle StateIdle { get; set; } = new ballOfWoolStateIdle();
@@ -67,11 +70,11 @@ public class ballOfWool : MonoBehaviour
     void Update()
     {
         //ステートの値が変更されたら実行処理を行う
-        if (StateProcessor.State.GetStateName() != _preStateName)
+        /*if (StateProcessor.State.GetStateName() != _preStateName)
         {
             _preStateName = StateProcessor.State.GetStateName();
             StateProcessor.Execute();
-        }
+        }*/
         ImageChange();
     }
 
@@ -117,7 +120,7 @@ public class ballOfWool : MonoBehaviour
 
     public void StartAnimation()
     {
-        StateProcessor.State = StateAnimation;
+        //StateProcessor.State = StateAnimation;
         player.GetComponent<Rigidbody>().isKinematic = true;
         player.GetComponent<CharacterController>().enabled = false;
         sphereCollider.isTrigger = true;
@@ -139,6 +142,11 @@ public class ballOfWool : MonoBehaviour
         charaAnimator.SetBool("grab", false); // アニメーション切り替え
 
         rope.SetActive(true);
+    }
+
+    public void SoundPlay()
+    {
+        soundController.KeitoPlay();
     }
 
     void GetPS4O()

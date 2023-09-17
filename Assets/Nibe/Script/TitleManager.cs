@@ -59,10 +59,6 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Text japaneseText;
     [SerializeField] Text englishText;
 
-    [SerializeField]
-    private AtomLoader atomLoader;
-
-
     private bool title = true;
     private bool option = false;
     private bool stage = false;
@@ -91,37 +87,8 @@ public class TitleManager : MonoBehaviour
 
     private int ps4Count = 25;
 
-    private CriAtomExAcb acb;
-    private string cueName;
-    private CriAtomExPlayer Player;
-
-    public void SetAcb(CriAtomExAcb acb)
-    {
-        /* (14) ACB の保存 */
-        this.acb = acb;
-    }
-
-    public void SetCueName(string name)
-    {
-        /* (17) キュー名の保存 */
-        cueName = name;
-    }
-    public void Play()
-    {
-        /* (18) キュー情報をプレーヤー設定*/
-        Player.SetCue(acb, cueName);
-
-        if (Player.IsPaused())
-        {
-            Player.Pause(false);
-        }
-        else
-        {
-            /* (7) プレーヤーの再生 */
-            Player.Start();
-        }
-
-    }
+    [SerializeField]
+    private SoundController soundController;
 
     void Awake()
     {
@@ -152,9 +119,7 @@ public class TitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        musicManager.SetBGM();
-        musicManager.SetSE();
-        musicManager.PlayBGM1();
+
     }
 
     // Update is called once per frame
@@ -517,7 +482,6 @@ public class TitleManager : MonoBehaviour
         titlePanel.SetActive(false);
         stage = true;
         title = false;
-        musicManager.PlaySE1();
     }
 
     public void ExitGameButton()
@@ -526,7 +490,6 @@ public class TitleManager : MonoBehaviour
         stagePanel.SetActive(false);
         title = true;
         stage = false;
-        musicManager.PlaySE1();
     }
 
     public void OpenOptionButton()
@@ -535,7 +498,6 @@ public class TitleManager : MonoBehaviour
         titlePanel.SetActive(false);
         option = true;
         title = false;
-        musicManager.PlaySE1();
     }
 
     public void ExitOptionButton()
@@ -544,7 +506,6 @@ public class TitleManager : MonoBehaviour
         optionPanel.SetActive(false);
         title = true;
         option = false;
-        musicManager.PlaySE1();
     }
 
     public void OpenLanguageButton()
@@ -553,7 +514,6 @@ public class TitleManager : MonoBehaviour
         englishButton.SetActive(true);
         language = true;
         title = false;
-        musicManager.PlaySE1();
     }
     public void ExitLanguageButton()
     {
@@ -562,7 +522,6 @@ public class TitleManager : MonoBehaviour
 
         language = false;
         title = true;
-        musicManager.PlaySE1();
 
         if (languageNum == 0)
         {
@@ -614,7 +573,6 @@ public class TitleManager : MonoBehaviour
         titlePanel.SetActive(false);
         credit = true;
         title = false;
-        musicManager.PlaySE1();
     }
     public void ExitCreditButton()
     {
@@ -631,11 +589,9 @@ public class TitleManager : MonoBehaviour
 
         title = true;
         credit = false;
-        musicManager.PlaySE1();
     }
     public void QuitGameButton()
     {
-        musicManager.PlaySE1();
         Application.Quit();
     }
 
@@ -644,7 +600,6 @@ public class TitleManager : MonoBehaviour
         if (stageNum != 2)
         {
             stageNum++;
-            PlaySelectSE();
         }
 
         HideStage();
@@ -655,7 +610,6 @@ public class TitleManager : MonoBehaviour
         if (stageNum != 0)
         {
             stageNum--;
-            PlaySelectSE();
         }
 
         HideStage();
@@ -663,8 +617,6 @@ public class TitleManager : MonoBehaviour
 
     public void StartStageButton()
     {
-        musicManager.PlaySE1();
-
         if (stageNum == 0)
         {
             SceneManager.LoadScene("Tutorial");
@@ -749,8 +701,6 @@ public class TitleManager : MonoBehaviour
     {
         //ここに音が鳴る処理を書く
 
-        SetAcb(atomLoader.acbAssets[0].Handle);
-        SetCueName("Click");
-        Play();
+        soundController.Click();
     }
 }

@@ -37,6 +37,10 @@ public class SoundController : MonoBehaviour
     [SerializeField]
     private List<drawer> drawers;
 
+    [SerializeField]
+    private plug plug;
+
+
     private SoundControllerBase SEPlayer;
     private SoundControllerBase BGMPlayer;
     private SoundControllerBase WalkPlayer;
@@ -101,6 +105,15 @@ public class SoundController : MonoBehaviour
             UnityEngine.Debug.LogWarning("'warpRopeManager' is not found");
         }
 
+        try
+        {
+            ropeStateProcessor = plug.StateProcessor;
+        }
+        catch 
+        {
+            UnityEngine.Debug.LogWarning("'plug' is not found");
+        }
+
         //here 
         BGMSlider.maxValue = SFXSlider.maxValue = 1.0f;
         BGMSlider.minValue = SFXSlider.minValue = 0.0f;
@@ -116,49 +129,56 @@ public class SoundController : MonoBehaviour
 
     void Update()
     {
-        if (player != null)
+        try
         {
-            if (box == null)
+            if (player != null)
             {
-                //Debug.Log("SoundplayerReturn:State=null");
-                box = player.transform.Find("Box(Clone)").gameObject.GetComponent<Box>();
-
-
-                boxStateProcessor = box.StateProcessor;
-
-            }
-
-            charactorStateProcessor = chara.StateProcessor;
-
-            if (!MoveFlag)
-            {
-                if (charactorStateProcessor.State.GetStateName() == "State:Move")
+                if (box == null)
                 {
-                    UnityEngine.Debug.Log("SoundController:Move");
-                    WalkPlayer.SetCueName("Walk");
-                    WalkPlayer.Play();
-                    MoveFlag = true;
+                    //Debug.Log("SoundplayerReturn:State=null");
+                    box = player.transform.Find("Box(Clone)").gameObject.GetComponent<Box>();
+
+
+                    boxStateProcessor = box.StateProcessor;
+
                 }
-                else if (charactorStateProcessor.State.GetStateName() == "State:MoveGlass")
+
+                charactorStateProcessor = chara.StateProcessor;
+
+                if (!MoveFlag)
                 {
-                    UnityEngine.Debug.Log("SoundController:MoveGlass");
-                    WalkPlayer.SetCueName("Walk_Glass");
-                    WalkPlayer.Play();
-                    MoveFlag = true;
+                    if (charactorStateProcessor.State.GetStateName() == "State:Move")
+                    {
+                        UnityEngine.Debug.Log("SoundController:Move");
+                        WalkPlayer.SetCueName("Walk");
+                        WalkPlayer.Play();
+                        MoveFlag = true;
+                    }
+                    else if (charactorStateProcessor.State.GetStateName() == "State:MoveGlass")
+                    {
+                        UnityEngine.Debug.Log("SoundController:MoveGlass");
+                        WalkPlayer.SetCueName("Walk_Glass");
+                        WalkPlayer.Play();
+                        MoveFlag = true;
+                    }
+                    else if (charactorStateProcessor.State.GetStateName() == "State:MoveMat")
+                    {
+                        UnityEngine.Debug.Log("SoundController:MoveMat");
+                        WalkPlayer.SetCueName("Walk_Book");
+                        WalkPlayer.Play();
+                        MoveFlag = true;
+                    }
                 }
-                else if (charactorStateProcessor.State.GetStateName() == "State:MoveMat")
+                if (MoveStateCheck() == false || !chara.isGround && MoveFlag)
                 {
-                    UnityEngine.Debug.Log("SoundController:MoveMat");
-                    WalkPlayer.SetCueName("Walk_Book");
-                    WalkPlayer.Play();
-                    MoveFlag = true;
+                    WalkPlayer.Stop();
+                    MoveFlag = false;
                 }
             }
-            if (MoveStateCheck() == false || !chara.isGround && MoveFlag)
-            {
-                WalkPlayer.Stop();
-                MoveFlag = false;
-            }
+        }
+        catch
+        {
+            //例外虫
         }
 
         try
@@ -368,6 +388,18 @@ public class SoundController : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void KeitoPlay()
+    {
+        SEPlayer.SetCueName("Keito");
+        SEPlayer.Play();
+    }
+
+    public void Click()
+    {
+        SEPlayer.SetCueName("Click");
+        SEPlayer.Play();
     }
 
     //aaaa

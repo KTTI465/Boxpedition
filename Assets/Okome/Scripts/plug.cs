@@ -74,6 +74,8 @@ public class plug : MonoBehaviour
         {
             interactImage = interactImageEnglish;
         }
+
+        StateProcessor.State = StateIdle;
     }
 
     // Update is called once per frame
@@ -94,8 +96,6 @@ public class plug : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) || ps4O)
             {
-                StateProcessor.State = StateSlide;
-
                 isSlideDown = true;
                 interactImage.SetActive(false);
                 playerRb.isKinematic = true;
@@ -112,12 +112,6 @@ public class plug : MonoBehaviour
                     characterController.enabled = false;
                 }
             }
-            else
-            {
-                StateProcessor.State = StateIdle;
-            }
-
-
         }
         //滑っているとき
         if (isSlideDown == true)
@@ -135,6 +129,7 @@ public class plug : MonoBehaviour
             //目的の子オブジェクトに到達したとき
             if (player.transform.position == nextPos)
             {
+                StateProcessor.State = StateSlide;
                 //最後の子オブジェクトに到達したとき
                 if (plugRopeIndex == plugRopeCount - 1)
                 {
@@ -145,6 +140,7 @@ public class plug : MonoBehaviour
                     if (characterController.enabled == false)
                     {
                         characterController.enabled = true;
+                        StateProcessor.State = StateIdle;
                     }
 
                     plugRopeIndex = 0;

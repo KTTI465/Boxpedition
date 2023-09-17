@@ -894,6 +894,7 @@ MonoBehaviour:
   tp: {fileID: 0}
   ropeAct: {fileID: 0}
   drawers: []
+  plug: {fileID: 420176948}
   BGMSlider: {fileID: 796364279}
   SFXSlider: {fileID: 1803010419}
 --- !u!1 &60502998 stripped
