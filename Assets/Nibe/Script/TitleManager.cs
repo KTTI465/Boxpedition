@@ -38,6 +38,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField] Text guideText;
     [SerializeField] Text guideOnText;
     [SerializeField] Text guideOffText;
+    [SerializeField] Text operationText;
     [SerializeField] Text exitOptionText;
     [SerializeField] Text stageSelectText;
     [SerializeField] Text startStageText;
@@ -45,6 +46,9 @@ public class TitleManager : MonoBehaviour
     [SerializeField] GameObject stage1Image;
     [SerializeField] GameObject stage2Image;
     [SerializeField] GameObject stage3Image;
+
+    [SerializeField] GameObject OperationImage;
+    [SerializeField] GameObject OperationEnglishImage;
 
     [SerializeField] UnityEngine.UI.Slider bgmSlider;
     [SerializeField] UnityEngine.UI.Slider seSlider;
@@ -60,6 +64,7 @@ public class TitleManager : MonoBehaviour
 
     private bool title = true;
     private bool option = false;
+    private bool operation = false;
     private bool stage = false;
     private bool language = false;
     private bool credit = false;
@@ -84,7 +89,8 @@ public class TitleManager : MonoBehaviour
     private float b2 = 0.0f;
     private float a2 = 1.0f;
 
-    private int ps4Count = 25;
+    private int ps4Count = 0;
+    public int buttonIntervalTime = 50;
 
     [SerializeField]
     private Titleplayer soundController;
@@ -124,13 +130,24 @@ public class TitleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (Gamepad.current == null && credit)
+        if (Gamepad.current == null)
         {
-            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
+            if(credit)
             {
-                ExitCreditButton();
+                if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
+                {
+                    ExitCreditButton();
+                }
+            }
+            else if (operation)
+            {
+                if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
+                {
+                    ExitOperationButton();
+                }
             }
         }
+
 
         // ゲームパッドが接続されていないとnullになる。
         if (Gamepad.current == null) return;
@@ -153,7 +170,7 @@ public class TitleManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (titleNum == 4)
+                if (titleNum == 5)
                 {
                     down = false;
                 }
@@ -178,13 +195,17 @@ public class TitleManager : MonoBehaviour
                 }
                 else if (titleNum == 2)
                 {
-                    QuitGameButton();
+                    OpenOperationButton();
                 }
                 else if (titleNum == 3)
                 {
-                    OpenLanguageButton();
+                    QuitGameButton();
                 }
                 else if (titleNum == 4)
+                {
+                    OpenLanguageButton();
+                }
+                else if (titleNum == 5)
                 {
                     OpenCreditButton();
                 }
@@ -328,6 +349,18 @@ public class TitleManager : MonoBehaviour
                 ExitCreditButton();
             }
         }
+        else if (operation)
+        {
+            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
+            {
+                ExitOperationButton();
+            }
+
+            if (Gamepad.current.buttonEast.wasPressedThisFrame || Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                ExitOperationButton();
+            }
+        }
 
 
         // 見た目
@@ -335,6 +368,7 @@ public class TitleManager : MonoBehaviour
         {
             startGameText.color = new Color(r2, g2, b2, a2);
             openOptionText.color = new Color(r1, g1, b1, a1);
+            operationText.color = new Color(r1, g1, b1, a1);
             quitGameText.color = new Color(r1, g1, b1, a1);
             languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r1, g1, b1, a1);
@@ -343,6 +377,7 @@ public class TitleManager : MonoBehaviour
         {
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r2, g2, b2, a2);
+            operationText.color = new Color(r1, g1, b1, a1);
             quitGameText.color = new Color(r1, g1, b1, a1);
             languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r1, g1, b1, a1);
@@ -351,7 +386,8 @@ public class TitleManager : MonoBehaviour
         {
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r1, g1, b1, a1);
-            quitGameText.color = new Color(r2, g2, b2, a2);
+            operationText.color = new Color(r2, g2, b2, a2);
+            quitGameText.color = new Color(r1, g1, b1, a1);
             languageText.color = new Color(r1, g1, b1, a1);
             creditText.color = new Color(r1, g1, b1, a1);
         }
@@ -359,11 +395,20 @@ public class TitleManager : MonoBehaviour
         {
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r1, g1, b1, a1);
+            operationText.color = new Color(r1, g1, b1, a1);
+            quitGameText.color = new Color(r2, g2, b2, a2);
+            languageText.color = new Color(r1, g1, b1, a1);
+            creditText.color = new Color(r1, g1, b1, a1);
+        }
+        else if (titleNum == 4)
+        {
+            startGameText.color = new Color(r1, g1, b1, a1);
+            openOptionText.color = new Color(r1, g1, b1, a1);
             quitGameText.color = new Color(r1, g1, b1, a1);
             languageText.color = new Color(r2, g2, b2, a2);
             creditText.color = new Color(r1, g1, b1, a1);
         }
-        else if (titleNum == 4)
+        else if (titleNum == 5)
         {
             startGameText.color = new Color(r1, g1, b1, a1);
             openOptionText.color = new Color(r1, g1, b1, a1);
@@ -587,6 +632,36 @@ public class TitleManager : MonoBehaviour
         title = true;
         credit = false;
     }
+
+    public void OpenOperationButton()
+    {
+        if (PlayerPrefs.GetString("Language") == "Japanese")
+        {
+            OperationImage.SetActive(true);
+        }
+        else
+        {
+            OperationEnglishImage.SetActive(true);
+        }
+
+        title = false;
+        operation = true;
+    }
+    public void ExitOperationButton()
+    {
+        if (PlayerPrefs.GetString("Language") == "Japanese")
+        {
+            OperationImage.SetActive(false);
+        }
+        else
+        {
+            OperationEnglishImage.SetActive(false);
+        }
+
+        title = true;
+        operation = false;
+    }
+
     public void QuitGameButton()
     {
         Application.Quit();
@@ -666,7 +741,7 @@ public class TitleManager : MonoBehaviour
         // スティックの入力を受け取る
         var v = Gamepad.current.leftStick.ReadValue();
 
-        if (ps4Count >= 25)
+        if (ps4Count >= buttonIntervalTime)
         {
             if (v.x >= 0.75)
             {
