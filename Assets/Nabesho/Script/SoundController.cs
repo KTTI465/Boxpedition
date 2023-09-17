@@ -70,15 +70,14 @@ public class SoundController : MonoBehaviour
         JumpPlayer = new SoundControllerBase();
         ClimbPlayer = new SoundControllerBase();
 
-        SEPlayer.SetAcb(atomLoader.acbAssets[0].Handle);
-
-
-
+        /*SEPlayer.SetAcb(atomLoader.acbAssets[0].Handle);
         BGMPlayer.SetAcb(atomLoader.acbAssets[1].Handle);
         WalkPlayer.SetCueName("Walk");
 
         BGMPlayer.SetCueName("BGM_Roop");
-        BGMPlayer.Play();
+        BGMPlayer.Play();*/
+
+        StartCoroutine(Loader());
 
         if (player != null)
         {
@@ -113,6 +112,22 @@ public class SoundController : MonoBehaviour
         {
             UnityEngine.Debug.LogWarning("'plug' is not found");
         }
+    }
+
+    IEnumerator Loader()
+    {
+        while (!atomLoader.isLoaded) yield return null;
+
+        while (atomLoader.acbAssets[0].Handle == null) yield return null;
+
+        while (atomLoader.acbAssets[1].Handle == null) yield return null;
+
+        SEPlayer.SetAcb(atomLoader.acbAssets[0].Handle);
+        BGMPlayer.SetAcb(atomLoader.acbAssets[1].Handle);
+        WalkPlayer.SetCueName("Walk");
+
+        BGMPlayer.SetCueName("BGM_Roop");
+        BGMPlayer.Play();
 
         //here 
         BGMSlider.maxValue = SFXSlider.maxValue = 1.0f;

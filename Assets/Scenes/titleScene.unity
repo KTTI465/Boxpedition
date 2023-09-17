@@ -5262,7 +5262,7 @@ MonoBehaviour:
   englishButton: {fileID: 165686391}
   japaneseText: {fileID: 1178320592}
   englishText: {fileID: 1860406726}
-  soundController: {fileID: 1572828661}
+  soundController: {fileID: 1572828665}
 --- !u!1 &1389990975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5894,6 +5894,7 @@ GameObject:
   - component: {fileID: 1572828663}
   - component: {fileID: 1572828662}
   - component: {fileID: 1572828661}
+  - component: {fileID: 1572828665}
   m_Layer: 0
   m_Name: SoundPlayer
   m_TagString: Untagged
@@ -5908,7 +5909,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572828660}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b839c43b8a49b5f408309225074c1ee1, type: 3}
   m_Name: 
@@ -5969,6 +5970,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1572828665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572828660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1b6ae19c2015d4aa47e9c440caa0d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acf: {fileID: -6750239444755058063, guid: 7150abc9f7c4e6c4197479321d4be942, type: 3}
+  acb1: {fileID: -6750239444755058063, guid: b7dce562189c0c046b8fbdb48a02aacd, type: 3}
+  acb2: {fileID: -6750239444755058063, guid: f2b11b813161ac140a2066c231d5945f, type: 3}
 --- !u!1 &1578124177
 GameObject:
   m_ObjectHideFlags: 0
@@ -8110,7 +8126,7 @@ MonoBehaviour:
     numberOfDecoders: 8
     numberOfMaxEntries: 4
   dontInitializeOnAwake: 0
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
 --- !u!4 &2017446073
 Transform:
   m_ObjectHideFlags: 0
