@@ -21,6 +21,12 @@ public class plug : MonoBehaviour
     Rigidbody playerRb;
     Animator playerAnimator;
 
+    [SerializeField]
+    private float playerRotInSlide;
+
+    [SerializeField]
+    private int playerGrabFirstPos;
+
     //掴めるかの判定
     bool canGrab;
     //滑っているときの判定
@@ -64,8 +70,8 @@ public class plug : MonoBehaviour
             plugRope[plugRopeIndex++] = rope.gameObject;
             rope.GetComponent<MeshRenderer>().enabled = false;
         }
-        //ロープを掴んだ時に移動する子オブジェクト（6番目のところから滑り始めるようになっている）
-        plugRopeIndex = 6;
+        //ロープを掴んだ時に移動する子オブジェクト
+        plugRopeIndex = playerGrabFirstPos;
         //物理演算をとめるためのコルーチン（n秒後,）
         StartCoroutine(StopPhysics(10.0f, plugRope));
 
@@ -122,7 +128,7 @@ public class plug : MonoBehaviour
             playerAnimator.SetBool("climbStay", true);
 
             //キャラクターの向きの設定
-            player.transform.eulerAngles = transform.up * 180f;
+            player.transform.eulerAngles = transform.up * playerRotInSlide;
             //目的の子オブジェクトの位置を設定してその位置に向かって滑っていく
             Vector3 nextPos = plugRope[plugRopeIndex].transform.position - new Vector3(0.0f, 3.0f, 0.0f);
             player.transform.position = Vector3.MoveTowards(player.transform.position, nextPos, speed * Time.deltaTime);
@@ -156,6 +162,7 @@ public class plug : MonoBehaviour
         if (other.gameObject == player)
         {
             //掴むことができるようにして、インタラクトの画像を表示する
+            Debug.Log("Aaa");
             canGrab = true;
             interactImage.SetActive(true);
         }
