@@ -124,8 +124,6 @@ public class TitleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(SceneManager.GetActiveScene().name);
-
             if (Gamepad.current == null && credit)
         {
             if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
