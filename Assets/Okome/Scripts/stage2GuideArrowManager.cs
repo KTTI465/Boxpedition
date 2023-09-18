@@ -31,6 +31,11 @@ public class stage2GuideArrowManager : MonoBehaviour
     private GameObject monsterArrowPos;
     private blockWayMonster blockWayMonster;
 
+    [SerializeField]
+    private GameObject squirrel;
+    //リスの判定エリア
+    private detectionPlayerOn isPlayerOnSquirrel;
+
     [SerializeField] //赤ヒーロー
     private GameObject redHero;
 
@@ -48,6 +53,7 @@ public class stage2GuideArrowManager : MonoBehaviour
         isPlayerOnBuildingBlock = firstBuildingBlock.GetComponent<detectionPlayerOn>();
         blockWayMonster = monster.GetComponent<blockWayMonster>();
         hasSlideDown = detectionSlideDown.GetComponent<detectionPlayerOn>();
+        isPlayerOnSquirrel = squirrel.GetComponent<detectionPlayerOn>();
     }
 
     private void Update()
@@ -65,9 +71,14 @@ public class stage2GuideArrowManager : MonoBehaviour
             target = desklight;
             guideArrowObj.transform.localScale = _guideArrow.firstScale;
         }
-        else if (blockWayMonster.firstThreaten == true)
+        else if(isPlayerOnSquirrel.isPlayerOn)
         {
             target = redHero;
+            guideArrowObj.transform.localScale = _guideArrow.firstScale;
+        }
+        else if (blockWayMonster.firstThreaten == true)
+        {
+            target = squirrel;
             guideArrowObj.transform.localScale = _guideArrow.firstScale * magnification;
         }
         else if (isPlayerOnBuildingBlock.isPlayerOn)
