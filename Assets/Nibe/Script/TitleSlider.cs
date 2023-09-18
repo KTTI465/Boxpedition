@@ -10,7 +10,9 @@ public class TitleSlider : MonoBehaviour
 {
     [SerializeField] stageManager stageManager;
     [SerializeField] MusicManager musicManager;
-    [SerializeField] Titleplayer soundcontroller;
+    [SerializeField] Titleplayer titlePlayer;
+    [SerializeField] SoundController soundcontroller;
+
 
     [SerializeField] UnityEngine.UI.Slider bgmSlider;
     [SerializeField] UnityEngine.UI.Slider seSlider;
@@ -91,11 +93,11 @@ public class TitleSlider : MonoBehaviour
 
         try
         {
-            soundcontroller.SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
+            titlePlayer.SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
         }
         catch
         {
-
+            soundcontroller.SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
         }
 
         bgm = PlayerPrefs.GetFloat("BGM");
@@ -119,11 +121,11 @@ public class TitleSlider : MonoBehaviour
 
         try
         {
-            soundcontroller.SettingSFXVolume(PlayerPrefs.GetFloat("SE"));
+            titlePlayer.SettingSFXVolume(PlayerPrefs.GetFloat("SE"));
         }
         catch
         {
-
+            soundcontroller.SettingSFXVolume(PlayerPrefs.GetFloat("SE"));
         }
 
         se = PlayerPrefs.GetFloat("SE");

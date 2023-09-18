@@ -22606,6 +22606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
   musicManager: {fileID: 0}
+  titlePlayer: {fileID: 0}
   soundcontroller: {fileID: 0}
   bgmSlider: {fileID: 1780648312}
   seSlider: {fileID: 268653248}
@@ -30689,7 +30690,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 511846479}
   musicManager: {fileID: 616021698}
-  soundcontroller: {fileID: 0}
+  titlePlayer: {fileID: 0}
+  soundcontroller: {fileID: 57279709}
   bgmSlider: {fileID: 796364279}
   seSlider: {fileID: 1803010419}
   sensiSlider: {fileID: 1602471795}
