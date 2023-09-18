@@ -50,6 +50,8 @@ public class CharacterController : MonoBehaviour
     private float prePlayerPosY;
     public float firstJumpHeight;
     public float secondJumpHeight;
+    private float originFirstJumpPower;
+    private float originSecondJumpPower;
 
     public bool canJump = true;
     public bool Switch;
@@ -99,6 +101,8 @@ public class CharacterController : MonoBehaviour
 
     private Vector3 movevel;
 
+    [System.NonSerialized]
+    public bool isUsingJumpGravity = true;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -106,6 +110,8 @@ public class CharacterController : MonoBehaviour
         characterRot = transform.localRotation;
         cameraRot = Quaternion.Euler(0, 0, 0);
 
+        originFirstJumpPower = firstJumpPower;
+        originSecondJumpPower = secondJumpPower;
 
         StateIdle.ExecAction = Idle;
         StateMove.ExecAction = Move;
@@ -151,7 +157,7 @@ public class CharacterController : MonoBehaviour
                     }
                     else if (comparetarget == "book")
                     {
-                        StateProcessor.State = StateMoveMat;   
+                        StateProcessor.State = StateMoveMat;
                     }
                     else if (comparetarget == "Untagged")
                     {
@@ -180,7 +186,7 @@ public class CharacterController : MonoBehaviour
 
         CheatMode();
 
-        if(infinityJump)
+        if (infinityJump)
         {
             //connectingBoxが無いとき
             if (connectingBox == null)
@@ -204,33 +210,42 @@ public class CharacterController : MonoBehaviour
     {
         CharacterMovement();
         //CharacterRotate();
-
-        //落ちていない
-        if (isFalling == false)
+        if (isUsingJumpGravity == true)
         {
-            //重力を追加する
-            if (doubleJumped == true)
+            firstJumpPower = originFirstJumpPower;
+            secondJumpPower = originSecondJumpPower;
+            //落ちていない
+            if (isFalling == false)
             {
-                rb.AddForce(-(Physics.gravity + ((Mathf.Pow(secondJumpPower, 2) / (2 * secondJumpHeight)) * Vector3.up)), ForceMode.Force);
-            }
-            else if (jumped == true && doubleJumped == false)
-            {
-                rb.AddForce(-(Physics.gravity + ((Mathf.Pow(firstJumpPower, 2) / (2 * firstJumpHeight)) * Vector3.up)), ForceMode.Force);
-            }
+                //重力を追加する
+                if (doubleJumped == true)
+                {
+                    rb.AddForce(-(Physics.gravity + ((Mathf.Pow(secondJumpPower, 2) / (2 * secondJumpHeight)) * Vector3.up)), ForceMode.Force);
+                }
+                else if (jumped == true && doubleJumped == false)
+                {
+                    rb.AddForce(-(Physics.gravity + ((Mathf.Pow(firstJumpPower, 2) / (2 * firstJumpHeight)) * Vector3.up)), ForceMode.Force);
+                }
 
-            //落ちているとき
-            if (transform.position.y < prePlayerPosY)
+                //落ちているとき
+                if (transform.position.y < prePlayerPosY)
+                {
+                    isFalling = true;
+                }
+            }
+            else
             {
-                isFalling = true;
+                //落ちていないとき
+                if (isGround == true || transform.position.y >= prePlayerPosY)
+                {
+                    isFalling = false;
+                }
             }
         }
         else
         {
-            //落ちていないとき
-            if (isGround == true || transform.position.y >= prePlayerPosY)
-            {
-                isFalling = false;
-            }
+            firstJumpPower = 16f;
+            secondJumpPower = 20f;
         }
         prePlayerPosY = transform.position.y;
     }
@@ -241,7 +256,7 @@ public class CharacterController : MonoBehaviour
         //zMovement = Input.GetAxisRaw("Vertical") * movementSpeed;
         //transform.Translate(xMovement, 0, zMovement);
 
-        if(Switch== false) //特定条件下では移動できないように設定した(荻谷
+        if (Switch == false) //特定条件下では移動できないように設定した(荻谷
         {
             xMovement = Input.GetAxisRaw("Horizontal");
             zMovement = Input.GetAxisRaw("Vertical");
@@ -260,7 +275,7 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            if(Switch == false)
+            if (Switch == false)
             {
                 Vector3 position = new Vector3(transform.position.x + xMovement, transform.position.y, transform.position.z + zMovement);
                 Vector3 diff = position - transform.position;
@@ -331,7 +346,7 @@ public class CharacterController : MonoBehaviour
             float radius = transform.lossyScale.x * 0.8f;
 
             isGround = Physics.SphereCast(transform.position, radius, Vector3.up * -1f, out var hits, jumpDistance, layerMask);
-            
+
             //isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
         }
         else
@@ -467,11 +482,11 @@ public class CharacterController : MonoBehaviour
 
     public void CheatMode()
     {
-        if(Gamepad.current.rightShoulder.isPressed && Gamepad.current.leftShoulder.isPressed
+        if (Gamepad.current.rightShoulder.isPressed && Gamepad.current.leftShoulder.isPressed
             && Gamepad.current.rightTrigger.isPressed && Gamepad.current.leftTrigger.isPressed
             && jumpInterval == false)
         {
-            if(infinityJump == true)
+            if (infinityJump == true)
             {
                 infinityJump = false;
                 jumpInterval = true;
@@ -485,9 +500,9 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))  //ワープ
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))  //ワープ
         {
-            if(SceneManager.GetActiveScene().name == "Stage1_New")
+            if (SceneManager.GetActiveScene().name == "Stage1_New")
             {
                 if (Input.GetKey(KeyCode.Alpha1))
                 {
@@ -510,7 +525,7 @@ public class CharacterController : MonoBehaviour
                     this.gameObject.transform.position = new Vector3(44.8f, 77.1f, -275.1f);
                 }
             }
-            else if(SceneManager.GetActiveScene().name == "Stage2")
+            else if (SceneManager.GetActiveScene().name == "Stage2")
             {
                 if (Input.GetKey(KeyCode.Alpha1))
                 {

@@ -162,7 +162,6 @@ public class plug : MonoBehaviour
         if (other.gameObject == player)
         {
             //掴むことができるようにして、インタラクトの画像を表示する
-            Debug.Log("Aaa");
             canGrab = true;
             interactImage.SetActive(true);
         }
