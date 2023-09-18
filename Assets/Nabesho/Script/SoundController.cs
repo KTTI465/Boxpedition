@@ -10,6 +10,7 @@ using CriWare;
 using System;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using UnityEngine.SceneManagement;
 using ClimbState;
 using RopeState;
 using RopeSwingState;
@@ -154,7 +155,14 @@ public class SoundController : MonoBehaviour
         BGMPlayer.SetAcb(atomLoader.acbAssets[1].Handle);
         WalkPlayer.SetCueName("Walk");
 
-        BGMPlayer.SetCueName("BGM_Roop");
+        if (SceneManager.GetActiveScene().name == "Stage1_New")
+        {
+            BGMPlayer.SetCueName("Stage1");
+        }
+        else
+        {
+            BGMPlayer.SetCueName("BGM_Roop");
+        }
         BGMPlayer.Play();
 
         //here 
