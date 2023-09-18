@@ -843,6 +843,7 @@ MonoBehaviour:
   drawers: []
   plug: {fileID: 420176948}
   rope: {fileID: 668017860}
+  monster: {fileID: 1348162872}
   BGMSlider: {fileID: 796364279}
   SFXSlider: {fileID: 1803010419}
 --- !u!1 &60502998 stripped

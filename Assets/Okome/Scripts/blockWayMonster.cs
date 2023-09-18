@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MonsterState;
 
 public class blockWayMonster : MonoBehaviour
 {
@@ -35,17 +36,23 @@ public class blockWayMonster : MonoBehaviour
     private GameObject offScreenArrow;
 
     [SerializeField] AudioClip monstersSound;
-    AudioSource audioSource;
+
+    public MonsterStateProcessor MonsterStateProcessor = new();
+    public MonsterStateIdle MonsterStateIdle = new();
+    public MonsterStateRun MonsterStateRun = new();
+    public MonsterStateJump MonsterStateJump = new();
+
     void Start()
     {
         //プレイヤーとモンスターのコンポーネントの取得
         characterController = player.GetComponent<CharacterController>();
         playerAnimator = player.GetComponent<Animator>();
         monstersAnimator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
         playerRb = player.GetComponent<Rigidbody>();
         //カメラを非有効に
         eventCamera.SetActive(false);
+
+        MonsterStateProcessor.State = MonsterStateIdle;
     }
 
     void Update()
@@ -95,8 +102,14 @@ public class blockWayMonster : MonoBehaviour
 
     public void MonstersSound()
     {
-        Debug.Log("sound");
-        audioSource.PlayOneShot(monstersSound);
+        if (existRedHero == false)
+        {
+            MonsterStateProcessor.State = MonsterStateJump;
+        }
+        else
+        {
+            MonsterStateProcessor.State = MonsterStateRun;
+        }
     }
 
     public void PlayerStepBack()
@@ -115,6 +128,8 @@ public class blockWayMonster : MonoBehaviour
         offScreenArrow.SetActive(true);
         eventCamera.SetActive(false);
         isPlayerStepBack = false;
+
+        MonsterStateProcessor.State = MonsterStateIdle;
     }
 
     public void OpenWay()
