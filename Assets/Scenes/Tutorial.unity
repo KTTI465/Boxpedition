@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645233, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -647,6 +647,7 @@ MonoBehaviour:
   drawers: []
   plug: {fileID: 0}
   rope: {fileID: 0}
+  monster: {fileID: 0}
   BGMSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
 --- !u!1 &63756328
@@ -4982,35 +4983,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.9
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47.2
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -190
+      value: -231
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.79351276
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.6085536
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3941864875870192376, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -74.97
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3991759130957470112, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10875,7 +10876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8c7f29f9cf6eb7441bc37f6532f4050f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e04521648b39ed84d8cb623addb4cf56, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16790,7 +16791,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2156831ca21281449a445bdd885ab59c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e04521648b39ed84d8cb623addb4cf56, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

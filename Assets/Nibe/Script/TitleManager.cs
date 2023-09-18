@@ -644,6 +644,7 @@ public class TitleManager : MonoBehaviour
             OperationEnglishImage.SetActive(true);
         }
 
+        titlePanel.SetActive(false);
         title = false;
         operation = true;
     }
@@ -658,6 +659,7 @@ public class TitleManager : MonoBehaviour
             OperationEnglishImage.SetActive(false);
         }
 
+        titlePanel.SetActive(true);
         title = true;
         operation = false;
     }

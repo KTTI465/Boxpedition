@@ -43,52 +43,62 @@ public class GoalManager : MonoBehaviour
         getPS4();
 
 
-        if (up == true)
+        if(SceneManager.GetActiveScene().name == "GoalScene") //ステージ1のゴールシーンだけ別の処理
         {
-            if (buttonNum == 0) //ステージ2
+            if (up == true)
             {
-                up = false;
+                if (buttonNum == 0) //ステージ2
+                {
+                    up = false;
+                }
+                else
+                {
+                    buttonNum--;
+                    up = false;
+                }
             }
-            else
+            else if (down == true)
             {
-                buttonNum--;
-                up = false;
+                if (buttonNum == 1) //タイトル
+                {
+                    down = false;
+                }
+                else
+                {
+                    buttonNum++;
+                    down = false;
+                }
             }
-        }
-        else if (down == true)
-        {
-            if (buttonNum == 1) //タイトル
-            {
-                down = false;
-            }
-            else
-            {
-                buttonNum++;
-                down = false;
-            }
-        }
 
 
-        // 見た目
-        if (buttonNum == 0)
-        {
-            stage2Text.color = new Color(r2, g2, b2, a2);
-            titleText.color = new Color(r1, g1, b1, a1);
-        }
-        else if (buttonNum == 1)
-        {
-            stage2Text.color = new Color(r1, g1, b1, a1);
-            titleText.color = new Color(r2, g2, b2, a2);
-        }
-
-
-        if (Gamepad.current.buttonEast.wasPressedThisFrame)
-        {
+            // 見た目
             if (buttonNum == 0)
             {
-                Stage2Button();
+                stage2Text.color = new Color(r2, g2, b2, a2);
+                titleText.color = new Color(r1, g1, b1, a1);
             }
             else if (buttonNum == 1)
+            {
+                stage2Text.color = new Color(r1, g1, b1, a1);
+                titleText.color = new Color(r2, g2, b2, a2);
+            }
+
+
+            if (Gamepad.current.buttonEast.wasPressedThisFrame)
+            {
+                if (buttonNum == 0)
+                {
+                    Stage2Button();
+                }
+                else if (buttonNum == 1)
+                {
+                    TitleButton();
+                }
+            }
+        }
+        else
+        {
+            if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 TitleButton();
             }
