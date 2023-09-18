@@ -155,7 +155,7 @@ public class CharacterController : MonoBehaviour
                     {
                         StateProcessor.State = StateMoveGlass;
                     }
-                    else if (comparetarget == "book")
+                    else if (comparetarget == "Mat")
                     {
                         StateProcessor.State = StateMoveMat;
                     }

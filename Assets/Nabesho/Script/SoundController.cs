@@ -215,7 +215,7 @@ public class SoundController : MonoBehaviour
                     else if (charactorStateProcessor.State.GetStateName() == "State:MoveMat")
                     {
                         UnityEngine.Debug.Log("SoundController:MoveMat");
-                        WalkPlayer.SetCueName("Walk_Book");
+                        WalkPlayer.SetCueName("Walk_Mat");
                         WalkPlayer.Play();
                         MoveFlag = true;
                     }

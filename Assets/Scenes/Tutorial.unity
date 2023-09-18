@@ -643,10 +643,12 @@ MonoBehaviour:
   box: {fileID: 0}
   chara: {fileID: 0}
   tp: {fileID: 0}
-  ropeAct: {fileID: 0}
-  drawers: []
-  plug: {fileID: 0}
-  rope: {fileID: 0}
+  ropeAct: {fileID: 972016642}
+  drawers:
+  - {fileID: 1690567126}
+  - {fileID: 1690567125}
+  plug: {fileID: 1432931789}
+  rope: {fileID: 1657483963}
   monster: {fileID: 0}
   BGMSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
@@ -18719,6 +18721,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+--- !u!114 &1690567125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7879704136595739852, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+  m_PrefabInstance: {fileID: 1690567124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3ec6daa99602b4eabb9ccf8be08059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1690567126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6122534295358144398, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
+  m_PrefabInstance: {fileID: 1690567124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3ec6daa99602b4eabb9ccf8be08059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1693897511
 GameObject:
   m_ObjectHideFlags: 0
