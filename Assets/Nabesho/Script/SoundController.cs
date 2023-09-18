@@ -13,7 +13,7 @@ using System.Diagnostics;
 using ClimbState;
 using RopeState;
 using RopeSwingState;
-//using System.Media;
+using MonsterState;
 
 public class SoundController : MonoBehaviour
 {
@@ -44,6 +44,9 @@ public class SoundController : MonoBehaviour
     [SerializeField]
     private rope rope;
 
+    [SerializeField]
+    private blockWayMonster monster;
+
 
     private SoundControllerBase SEPlayer;
     private SoundControllerBase BGMPlayer;
@@ -60,9 +63,10 @@ public class SoundController : MonoBehaviour
     public ClimbStateProcessor climbStateProcessor = new ClimbStateProcessor();
     public RopeStateProcessor ropeStateProcessor = new RopeStateProcessor();
     public RopeSwingStateProcessor RopeSwingStateProcessor = new RopeSwingStateProcessor();
+    public MonsterStateProcessor MonsterStateProcessor = new MonsterStateProcessor();
 
     private String BeforeStateName, BeforeStateName2, BeforeStateName3, BeforeSateName4, BeforeStateName5, 
-        BeforeStateName6, BeforeStateName7;
+        BeforeStateName6, BeforeStateName7, BeforeStateName8;
     private bool StartFlag = false;
     private bool MoveFlag = false;
     private bool MoveFlag2 = false;
@@ -126,6 +130,15 @@ public class SoundController : MonoBehaviour
         catch
         {
             UnityEngine.Debug.LogWarning("'rope' is not found");
+        }
+
+        try
+        {
+            MonsterStateProcessor = monster.MonsterStateProcessor;
+        }
+        catch
+        {
+            UnityEngine.Debug.LogWarning("'blockWayMonster' is not found");
         }
     }
 
@@ -400,6 +413,32 @@ public class SoundController : MonoBehaviour
                 {
                     UnityEngine.Debug.Log("SoundController:RopeSwingJump");
                     SEPlayer.SetCueName("Ropejump");
+                    SEPlayer.Play();
+                }
+            }
+        }
+        catch
+        {
+            //例外無視
+        }
+
+        try
+        {
+            if (MonsterStateProcessor.State.GetStateName() != BeforeStateName8)
+            {
+                BeforeStateName8 = MonsterStateProcessor.State.GetStateName();
+
+                if (BeforeStateName8 == "State:MonsterRun")
+                {
+                    UnityEngine.Debug.Log("SoundController:MonsterRun");
+                    SEPlayer.SetCueName("Monsrun");
+                    SEPlayer.Play();
+                }
+
+                if (BeforeStateName8 == "State:MonsterJump")
+                {
+                    UnityEngine.Debug.Log("SoundController:MonsterJump");
+                    SEPlayer.SetCueName("Monsjump");
                     SEPlayer.Play();
                 }
             }
