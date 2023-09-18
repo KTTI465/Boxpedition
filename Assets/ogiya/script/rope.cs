@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
-
+using RopeSwingState;
 
 // ターザン用のロープ
 
@@ -75,6 +75,11 @@ public class rope: MonoBehaviour
 
     public GameObject cam;
 
+    public RopeSwingStateProcessor RopeSwingStateProcessor = new();
+    public RopeSwingStateIdle RopeSwingStateIdle = new();
+    public RopeSwingStateSwing RopeSwingStateSwing = new();
+    public RopeSwingStateJump RopeSwingStateJump = new();
+
     void Start()
     {
         startTime = Time.time;
@@ -88,6 +93,8 @@ public class rope: MonoBehaviour
             panel1 = panel1English;
             panel2 = panel2English;
         }
+
+        RopeSwingStateProcessor.State = RopeSwingStateIdle;
     }
 
     // Update is called once per frame
@@ -177,6 +184,8 @@ public class rope: MonoBehaviour
                 {
                     Throw = true;
                 }
+
+                RopeSwingStateProcessor.State = RopeSwingStateIdle;
             }
             if (angle >= -1f && angle <= 1f)
             {
@@ -203,6 +212,15 @@ public class rope: MonoBehaviour
         {
             direction *= -1;
             startTime = Time.time;
+
+            if (direction > 0)
+            {
+                RopeSwingStateProcessor.State = RopeSwingStateSwing;
+            }
+            else
+            {
+                RopeSwingStateProcessor.State = RopeSwingStateJump;
+            }
         }
 
         if (Throw == true)

@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using ClimbState;
 using RopeState;
+using RopeSwingState;
 //using System.Media;
 
 public class SoundController : MonoBehaviour
@@ -40,6 +41,9 @@ public class SoundController : MonoBehaviour
     [SerializeField]
     private plug plug;
 
+    [SerializeField]
+    private rope rope;
+
 
     private SoundControllerBase SEPlayer;
     private SoundControllerBase BGMPlayer;
@@ -55,8 +59,10 @@ public class SoundController : MonoBehaviour
     public DrawerStateProcessor drawerStateProcessor = new DrawerStateProcessor();
     public ClimbStateProcessor climbStateProcessor = new ClimbStateProcessor();
     public RopeStateProcessor ropeStateProcessor = new RopeStateProcessor();
+    public RopeSwingStateProcessor RopeSwingStateProcessor = new RopeSwingStateProcessor();
 
-    private String BeforeStateName, BeforeStateName2, BeforeStateName3, BeforeSateName4, BeforeStateName5, BeforeStateName6;
+    private String BeforeStateName, BeforeStateName2, BeforeStateName3, BeforeSateName4, BeforeStateName5, 
+        BeforeStateName6, BeforeStateName7;
     private bool StartFlag = false;
     private bool MoveFlag = false;
     private bool MoveFlag2 = false;
@@ -111,6 +117,15 @@ public class SoundController : MonoBehaviour
         catch 
         {
             UnityEngine.Debug.LogWarning("'plug' is not found");
+        }
+
+        try
+        {
+            RopeSwingStateProcessor = rope.RopeSwingStateProcessor;
+        }
+        catch
+        {
+            UnityEngine.Debug.LogWarning("'rope' is not found");
         }
     }
 
@@ -368,6 +383,32 @@ public class SoundController : MonoBehaviour
             //例外無視
         }
 
+        try
+        {
+            if (RopeSwingStateProcessor.State.GetStateName() != BeforeStateName7)
+            {
+                BeforeStateName7 = RopeSwingStateProcessor.State.GetStateName();
+
+                if (BeforeStateName7 == "State:RopeSwingSwing")
+                {
+                    UnityEngine.Debug.Log("SoundController:RopeSwingSwing");
+                    SEPlayer.SetCueName("Ropeswing");
+                    SEPlayer.Play();
+                }
+
+                if (BeforeStateName7 == "State:RopeSwingJump")
+                {
+                    UnityEngine.Debug.Log("SoundController:RopeSwingJump");
+                    SEPlayer.SetCueName("Ropejump");
+                    SEPlayer.Play();
+                }
+            }
+        }
+        catch
+        {
+            //例外無視
+        }
+
         //cueName = Bound_Small
 
         //cueName = Bound_Big
@@ -398,6 +439,16 @@ public class SoundController : MonoBehaviour
     bool ClimbMoveStateCheck(string state)
     {
         if (state == "State:Idle")
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    bool SwingStateChecker(string state)
+    {
+        if (state == "State:RopeSwingIdle")
         {
             return false;
         }
