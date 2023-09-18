@@ -20,6 +20,9 @@ public class redHero : MonoBehaviour
     private GameObject eventCamera;
 
     [SerializeField]
+    private GameObject guideArrow;
+
+    [SerializeField]
     private GameObject offScreenArrow;
 
     private bool isEvent = false;
@@ -62,20 +65,23 @@ public class redHero : MonoBehaviour
     private void Update()
     {
         ImageChange();
-        if (canTalk == true && isEvent == false)
+        if (monsters.existRedHero == false)
         {
-            if (characterController.InteractGameObjectsList != null &&
-                characterController.InteractGameObjectsList.Contains(gameObject))
+            if (canTalk == true && isEvent == false)
             {
-                interactImage.SetActive(true);
-                if (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame)
+                if (characterController.InteractGameObjectsList != null &&
+                    characterController.InteractGameObjectsList.Contains(gameObject))
                 {
-                    animator.SetTrigger("talk");
+                    interactImage.SetActive(true);
+                    if (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame)
+                    {
+                        animator.SetTrigger("talk");
+                    }
                 }
-            }
-            else
-            {
-                interactImage.SetActive(false);
+                else
+                {
+                    interactImage.SetActive(false);
+                }
             }
         }
     }
@@ -115,6 +121,7 @@ public class redHero : MonoBehaviour
         characterController.Switch = true;
         characterController.canJump = false;
 
+        guideArrow.SetActive(false);
         offScreenArrow.SetActive(false);
         interactImage.SetActive(false);
         characterController.StateProcessor.State = characterController.StateIdle;
@@ -146,6 +153,7 @@ public class redHero : MonoBehaviour
         characterController.Switch = false;
         characterController.canJump = true;
 
+        guideArrow.SetActive(true);
         offScreenArrow.SetActive(true);
         eventCamera.SetActive(false);
         monsters.existRedHero = true;

@@ -84,7 +84,7 @@ public class blockWayMonster : MonoBehaviour
         //キャラクターの向きの設定
         player.transform.eulerAngles = transform.up;
         inEventPlayerPosition = new Vector3(transform.position.x - 3f, player.transform.position.y, transform.position.z - 40f);
-        stepBackPosition = inEventPlayerPosition - new Vector3(0f, 0f, 10f);
+        stepBackPosition = inEventPlayerPosition - new Vector3(0f, 0f, 15f);
         player.transform.position = inEventPlayerPosition;
 
         characterController.StateProcessor.State = characterController.StateIdle;
@@ -110,6 +110,7 @@ public class blockWayMonster : MonoBehaviour
         isEvent = false;
         //キャラクターを操作可能にする
         characterController.Switch = false;
+        characterController.canJump = true;
 
         offScreenArrow.SetActive(true);
         eventCamera.SetActive(false);

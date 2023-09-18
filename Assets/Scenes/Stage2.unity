@@ -13983,6 +13983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hero_part1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7208cc3a53900b845bbe98aa8c77979d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7208cc3a53900b845bbe98aa8c77979d, type: 3}
 --- !u!1 &924934287 stripped
@@ -14004,6 +14008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1266171627}
   eventCamera: {fileID: 222830429}
+  guideArrow: {fileID: 1850734282}
   offScreenArrow: {fileID: 592339440}
   monsters: {fileID: 1348162872}
   rope: {fileID: 1394519589}
