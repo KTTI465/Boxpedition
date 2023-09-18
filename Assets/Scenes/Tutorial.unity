@@ -2207,12 +2207,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6518746379718759465, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -6518746379718759465, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -340065108673594722, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -340065108673594722, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2223,8 +2235,16 @@ PrefabInstance:
       value: block_H (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044119286141245564, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2044119286141245564, guid: 629378e2703586d45a02319bf335f6a3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4541,11 +4561,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430940225}
   m_CullTransparentMesh: 1
---- !u!1 &457442639 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6619100295947604979, guid: 0d7a19745ba01444a9fda12640b22d7a, type: 3}
-  m_PrefabInstance: {fileID: 1243985285}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &461678824
 GameObject:
   m_ObjectHideFlags: 0
@@ -4907,6 +4922,10 @@ PrefabInstance:
     - target: {fileID: 3042023980035301336, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067468890035343168, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3067468890035343168, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: bookMarkBool
@@ -10657,12 +10676,11 @@ MonoBehaviour:
   guideArrowObj: {fileID: 0}
   magnification: 0
   detectionFirstShelf: {fileID: 0}
+  detectionCheckPoint1: {fileID: 0}
   ballOfWoolOnTV: {fileID: 1419163534}
+  detectionCheckPoint2: {fileID: 0}
   detectionScaffold: {fileID: 0}
   goal: {fileID: 0}
-  checkPointManager: {fileID: 1305643852}
-  checkPoint1: {fileID: 1359955552}
-  checkPoint2: {fileID: 457442639}
 --- !u!4 &1006295286
 Transform:
   m_ObjectHideFlags: 0
@@ -13910,17 +13928,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1305643852 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4731122079048572387, guid: 8cf770d53a1ab4e4a9187d3a5077e9b4, type: 3}
-  m_PrefabInstance: {fileID: 1061801167}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e15d6036f266a74aa685ad415fe83c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1311878232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14387,11 +14394,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aec71fa5d6ab24744bbfb3afb66de766, type: 3}
---- !u!1 &1359955552 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6619100295947604979, guid: 0d7a19745ba01444a9fda12640b22d7a, type: 3}
-  m_PrefabInstance: {fileID: 1978731667}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1369540436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17222,12 +17224,11 @@ MonoBehaviour:
   guideArrowObj: {fileID: 0}
   magnification: 0
   detectionFirstShelf: {fileID: 0}
+  detectionCheckPoint1: {fileID: 0}
   ballOfWoolOnTV: {fileID: 0}
+  detectionCheckPoint2: {fileID: 0}
   detectionScaffold: {fileID: 1740702979}
   goal: {fileID: 0}
-  checkPointManager: {fileID: 0}
-  checkPoint1: {fileID: 0}
-  checkPoint2: {fileID: 0}
 --- !u!4 &1573793627
 Transform:
   m_ObjectHideFlags: 0
