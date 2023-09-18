@@ -4966,7 +4966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: firstJumpPower
-      value: 30
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: firstJumpHeight
@@ -4974,7 +4974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: secondJumpPower
-      value: 36
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3548528940399394077, guid: fba22d79cd0dd86439c9b999091bd759, type: 3}
       propertyPath: secondJumpHeight
@@ -23313,6 +23313,10 @@ PrefabInstance:
     - target: {fileID: 1277680767752912541, guid: 94b4d5bb0b134c04eb56a321238c32c1, type: 3}
       propertyPath: m_Name
       value: disableJumpGravityArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277680767752912541, guid: 94b4d5bb0b134c04eb56a321238c32c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1277680768329890166, guid: 94b4d5bb0b134c04eb56a321238c32c1, type: 3}
       propertyPath: m_Size.y
