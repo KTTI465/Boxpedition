@@ -22,9 +22,17 @@ public class stage1GuideArrowManager : MonoBehaviour
     //最初の棚の上にきたのを判定する
     private detectionPlayerOn isPlayerOnFirstShelf;
 
+    [SerializeField] //大きな机の上のチェックポイント
+    private GameObject detectionCheckPoint1;
+    private detectionPlayerOn isPlayerOnCheckPoint1;
+
     [SerializeField]　//テレビの上の毛糸玉
     private GameObject ballOfWoolOnTV;
     private ballOfWool ballOfWoolEnabledAnimation;
+
+    [SerializeField]　//引き出しの前の足場
+    private GameObject detectionCheckPoint2;
+    private detectionPlayerOn isPlayerOnCheckPoint2;
 
     [SerializeField]　//ぬいぐるみがある段のひとつ上の段の足場
     private GameObject detectionScaffold;
@@ -35,17 +43,6 @@ public class stage1GuideArrowManager : MonoBehaviour
     [SerializeField]　//ゴール
     private GameObject goal;
 
-    [SerializeField]
-    private CheckPointManager checkPointManager;
-
-    [SerializeField]　//大きな机の上のチェックポイント
-    private GameObject checkPoint1;
-
-    [SerializeField]　//引き出しの前の足場
-    private GameObject checkPoint2;
-
-
-
     private void Start()
     {
         _guideArrow = guideArrowObj.GetComponent<guideArrow>();
@@ -53,6 +50,8 @@ public class stage1GuideArrowManager : MonoBehaviour
         ballOfWoolEnabledAnimation = ballOfWoolOnTV.GetComponent<ballOfWool>();
         isPlayerOnFirstShelf = detectionFirstShelf.GetComponent<detectionPlayerOn>();
         isPlayerOnScaffold = detectionScaffold.GetComponent<detectionPlayerOn>();
+        isPlayerOnCheckPoint1 = detectionCheckPoint1.GetComponent<detectionPlayerOn>();
+        isPlayerOnCheckPoint2 = detectionCheckPoint2.GetComponent<detectionPlayerOn>();
     }
     private void Update()
     {
@@ -66,25 +65,25 @@ public class stage1GuideArrowManager : MonoBehaviour
             target = goal;
             guideArrowObj.transform.localScale = _guideArrow.firstScale;
         }
-        else if (checkPointManager.lastCheckPoint == checkPoint2.transform.position)
+        else if (isPlayerOnCheckPoint2.isPlayerOn)
         {
             target = detectionScaffold;
             guideArrowObj.transform.localScale = _guideArrow.firstScale * magnification;
         }
         else if (!ballOfWoolEnabledAnimation.enabledAnimation)
         {
-            target = checkPoint2;
+            target = detectionCheckPoint2;
             guideArrowObj.transform.localScale = _guideArrow.firstScale * magnification;
         }
         //大きな机にのった時
-        else if (checkPointManager.lastCheckPoint == checkPoint1.transform.position)
+        else if (isPlayerOnCheckPoint1.isPlayerOn)
         {
             target = ballOfWoolOnTV;
             guideArrowObj.transform.localScale = _guideArrow.firstScale * magnification;
         }
         else if (isPlayerOnFirstShelf.isPlayerOn)
         {
-            target = checkPoint1;
+            target = detectionCheckPoint1;
         }
         else
         {
