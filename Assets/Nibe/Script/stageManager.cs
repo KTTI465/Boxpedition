@@ -35,8 +35,10 @@ public class stageManager : MonoBehaviour
 
     public bool openOption = false;
     private int optionNum = 0;
-    private int ps4Count = 0;
-    public int buttonIntervalTime = 50;
+    //private int ps4Count = 0;
+    //public int buttonIntervalTime = 5;
+    private float timer = 0f;
+    private float interval = 0.3f;  //0.3秒ごとに呼び出す
 
     private float r1 = 1.0f;
     private float g1 = 1.0f;
@@ -62,9 +64,12 @@ public class stageManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+
     // Update is called once per frame
     void Update()
     {
+        timer += Time.unscaledDeltaTime;
+
         try
         {
             GuideArrow();
@@ -303,31 +308,29 @@ public class stageManager : MonoBehaviour
         // スティックの入力を受け取る
         var v = Gamepad.current.leftStick.ReadValue();
 
-        if (ps4Count >= buttonIntervalTime)
+        if (timer >= interval)
         {
             if (v.x >= 0.75)
             {
                 right = true;
-                ps4Count = 0;
+                timer = 0f;
             }
             else if (v.x <= -0.75)
             {
                 left = true;
-                ps4Count = 0;
+                timer = 0f;
             }
             else if (v.y >= 0.75)
             {
                 up = true;
-                ps4Count = 0;
+                timer = 0f;
             }
             else if (v.y <= -0.75)
             {
                 down = true;
-                ps4Count = 0;
+                timer = 0f;
             }
         }
-
-        ps4Count++;
     }
 
 
