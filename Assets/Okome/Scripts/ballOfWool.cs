@@ -49,6 +49,9 @@ public class ballOfWool : MonoBehaviour
     private SoundController soundController;
 
     private string _preStateName;
+
+    [SerializeField]
+    private GameObject OffScreenArrow;
     public ballOfWoolStateProcessor StateProcessor { get; set; } = new ballOfWoolStateProcessor();
     public ballOfWoolStateIdle StateIdle { get; set; } = new ballOfWoolStateIdle();
     public ballOfWoolStateAnimation StateAnimation { get; set; } = new ballOfWoolStateAnimation();
@@ -124,6 +127,11 @@ public class ballOfWool : MonoBehaviour
         player.GetComponent<Rigidbody>().isKinematic = true;
         player.GetComponent<CharacterController>().enabled = false;
         sphereCollider.isTrigger = true;
+        if (OffScreenArrow == null)
+        { 
+            OffScreenArrow.SetActive(false); 
+        }
+
         animationCamara.GetComponent<Camera>().depth = 1;
     }
     public void SetRopePos()
@@ -138,6 +146,10 @@ public class ballOfWool : MonoBehaviour
         player.GetComponent<Rigidbody>().isKinematic = false;
         sphereCollider.isTrigger = false;
         Destroy(animationCamara);
+        if (OffScreenArrow == null)
+        {
+            OffScreenArrow.SetActive(true);
+        }
         gameObject.layer = LayerMask.NameToLayer("keito");
         charaAnimator.SetBool("grab", false); // アニメーション切り替え
 

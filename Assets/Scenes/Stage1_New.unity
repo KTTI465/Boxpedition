@@ -16672,6 +16672,7 @@ MonoBehaviour:
   interactImageGamepad: {fileID: 766833095}
   interactImageEnglish: {fileID: 1694412830}
   soundController: {fileID: 57279709}
+  OffScreenArrow: {fileID: 791681565}
 --- !u!135 &1419163536
 SphereCollider:
   m_ObjectHideFlags: 0
