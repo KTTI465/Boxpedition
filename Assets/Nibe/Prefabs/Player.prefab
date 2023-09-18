@@ -1666,6 +1666,9 @@ MonoBehaviour:
   doubleJumped: 0
   infinityJump: 0
   jumpInterval: 0
+  firstJumpHeight: 0
+  secondJumpHeight: 0
+  canJump: 1
   Switch: 0
   InteractGameObjectsList: []
   isInteracting: 0
@@ -3577,6 +3580,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3941864875870192376}
     m_Modifications:
+    - target: {fileID: -7228489671839463872, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7228489671839463872, guid: 3c10622f5e1dd414ab588255df6ac0a8, type: 3}
       propertyPath: charaAnimator
       value: 
