@@ -753,7 +753,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2
-    functionName: SetRopePos
+    functionName: SoundPlay
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.7333333
+    functionName: SoundPlay
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
