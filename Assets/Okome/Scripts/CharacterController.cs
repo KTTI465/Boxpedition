@@ -210,7 +210,7 @@ public class CharacterController : MonoBehaviour
     {
         CharacterMovement();
         //CharacterRotate();
-        if (isUsingJumpGravity == true)
+      /* if (isUsingJumpGravity == true)
         {
             firstJumpPower = originFirstJumpPower;
             secondJumpPower = originSecondJumpPower;
@@ -247,7 +247,7 @@ public class CharacterController : MonoBehaviour
             firstJumpPower = 16f;
             secondJumpPower = 20f;
         }
-        prePlayerPosY = transform.position.y;
+        prePlayerPosY = transform.position.y;*/
     }
 
     private void CharacterMovement()
