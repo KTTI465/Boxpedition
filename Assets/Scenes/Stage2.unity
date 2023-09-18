@@ -8091,8 +8091,8 @@ MonoBehaviour:
   sensiSlider: {fileID: 1602471795}
   guideOnButton: {fileID: 2920687180902336140}
   guideOffButton: {fileID: 8735290512242414437}
-  guideArrow: {fileID: 0}
-  offScreenGuideArrow: {fileID: 0}
+  guideArrow: {fileID: 1850734282}
+  offScreenGuideArrow: {fileID: 592339440}
   openOption: 0
   buttonIntervalTime: 50
 --- !u!222 &511846480
