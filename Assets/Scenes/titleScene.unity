@@ -6176,6 +6176,8 @@ MonoBehaviour:
   ropeAct: {fileID: 0}
   drawers: []
   plug: {fileID: 0}
+  rope: {fileID: 0}
+  monster: {fileID: 0}
   BGMSlider: {fileID: 2867739769323469411}
   SFXSlider: {fileID: 117833032921474474}
 --- !u!114 &1572828662
