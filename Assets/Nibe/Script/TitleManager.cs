@@ -439,7 +439,7 @@ public class TitleManager : MonoBehaviour
             seText.color = new Color(r1, g1, b1, a1);
             //sensiText.color = new Color(r2, g2, b2, a2);
             guideText.color = new Color(r2, g2, b2, a2);
-            seText.color = new Color(r1, g1, b1, a1);
+            exitOptionText.color = new Color(r1, g1, b1, a1);
         }
         else if (optionNum == 3)
         {
