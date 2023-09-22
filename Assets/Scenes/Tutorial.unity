@@ -5912,7 +5912,6 @@ MonoBehaviour:
   guideArrow: {fileID: 0}
   offScreenGuideArrow: {fileID: 0}
   openOption: 0
-  buttonIntervalTime: 50
 --- !u!222 &511846480
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18613,7 +18612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 267873952043831630, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.41
+      value: 0.992
       objectReference: {fileID: 0}
     - target: {fileID: 267873952043831630, guid: 6ca4f0caf9aaeed4c8d14af1c2a3465c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22205,7 +22204,6 @@ MonoBehaviour:
   guideArrow: {fileID: 0}
   offScreenGuideArrow: {fileID: 0}
   openOption: 0
-  buttonIntervalTime: 50
 --- !u!1001 &2033225950
 PrefabInstance:
   m_ObjectHideFlags: 0
