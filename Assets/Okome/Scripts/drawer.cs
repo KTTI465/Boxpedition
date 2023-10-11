@@ -68,6 +68,7 @@ public class drawer : MonoBehaviour
                 }
                 else
                 {
+                    ps4O = false;
                     isGrab = false;
 
                     //プレイヤーの移動スクリプトを有効にする
@@ -129,7 +130,7 @@ public class drawer : MonoBehaviour
             {
                 interactImage.SetActive(true);
 
-                if ((Input.GetMouseButtonDown(0) || ps4O) && isPressedMouseButton0 == false)
+                if ((Input.GetMouseButtonDown(0) || ps4O))
                 {
                     if (isGrab == false)
                     {
@@ -197,14 +198,14 @@ public class drawer : MonoBehaviour
         //一定の範囲からプレイヤーが出た時
         if (other.gameObject.CompareTag("Player"))
         {
+            interactImage.SetActive(false);
+
             isGrab = false;
 
             //プレイヤーの移動スクリプトを有効にする
             Player.GetComponent<CharacterController>().enabled = true;
 
             charaAnimator.SetBool("pull", false); // アニメーション切り替え
-
-            interactImage.SetActive(false);
 
             isPressedMouseButton0 = false;
 
