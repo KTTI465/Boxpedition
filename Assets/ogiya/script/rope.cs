@@ -146,11 +146,11 @@ public class rope: MonoBehaviour
             panelOn = true;
             if(tutorial == false)
             {
-                cam.transform.position = new Vector3(playerpos.x + 12, playerpos.y + 7, playerpos.z);
+                cam.transform.position = new Vector3(ropepos.x + 12, ropepos.y + 7, ropepos.z);
             }
             else
             {
-                cam.transform.position = new Vector3(playerpos.x, playerpos.y + 7, playerpos.z +12);
+                cam.transform.position = new Vector3(ropepos.x, ropepos.y + 7, ropepos.z +12);
             }
             //Å@åoâﬂéûä‘Ç…çáÇÌÇπÇΩäÑçáÇåvéZ
             float t = (Time.time - startTime) / duration;
