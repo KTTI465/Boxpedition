@@ -84,19 +84,8 @@ public class plug : MonoBehaviour
         StateProcessor.State = StateIdle;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        GetPS4O();
-
-        //線を表示する
-        int idx = 0;
-        foreach (GameObject rope in plugRope)
-        {
-            line.SetPosition(idx, rope.transform.position);
-            idx++;
-        }
-
         //掴めるときにボタンを押すと掴む
         if (canGrab == true)
         {
@@ -154,6 +143,20 @@ public class plug : MonoBehaviour
                 //次の子オブジェクトの数字にする
                 plugRopeIndex++;
             }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        GetPS4O();
+
+        //線を表示する
+        int idx = 0;
+        foreach (GameObject rope in plugRope)
+        {
+            line.SetPosition(idx, rope.transform.position);
+            idx++;
         }
     }
 
