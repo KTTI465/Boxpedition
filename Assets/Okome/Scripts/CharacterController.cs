@@ -397,16 +397,14 @@ public class CharacterController : MonoBehaviour
                 //地面についていた時
                 if (isGround == true && jumped == false)
                 {
-
-                    rb.velocity = Vector3.up * firstJumpPower;
+                    rb.velocity += Vector3.up * firstJumpPower;
                     StateProcessor.State = StateJump1;
                     jumped = true;
-
                 }
                 //空中にいるときかつ二段ジャンプをしていない時
                 else if (isGround == false && doubleJumped == false && jumped == true)
                 {
-                    rb.velocity = Vector3.up * secondJumpPower;
+                    rb.velocity += Vector3.up * secondJumpPower;
 
                     //boxについているスクリプトのコルーチンを使い、１秒後に箱が消えるようにする
                     IEnumerator destroyTimer = connectingBox.GetComponent<Box>().DestroyBox();
