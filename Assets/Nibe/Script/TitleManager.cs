@@ -136,22 +136,79 @@ public class TitleManager : MonoBehaviour
     {
         timer += Time.unscaledDeltaTime;
 
-        if (Gamepad.current == null)
+        // マウス処理
+        if (credit)
         {
-            if(credit)
+            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
             {
-                if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
-                {
-                    ExitCreditButton();
-                }
+                ExitCreditButton();
             }
-            else if (operation)
+        }
+        else if (operation)
+        {
+            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
             {
-                if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
-                {
-                    ExitOperationButton();
-                }
+                ExitOperationButton();
             }
+        }
+        else if (stage)
+        {
+            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
+            {
+                ExitGameButton();
+            }
+        }
+
+        // 透明化
+        if (language)
+        {
+            Image japaneseImage = japaneseButton.GetComponent<Image>();
+            Image englishImage = englishButton.GetComponent<Image>();
+
+            Color japaneseColor = japaneseImage.color;
+            Color englishColor = englishImage.color;
+
+            if (PlayerPrefs.GetString("Language") == "Japanese")
+            {
+                // aは透明度を表す
+                japaneseColor.a = 1.0f;
+                englishColor.a = 0.3f;
+            }
+            else if (PlayerPrefs.GetString("Language") == "English")
+            {
+                // aは透明度を表す
+                japaneseColor.a = 0.3f;
+                englishColor.a = 1.0f;
+            }
+
+            japaneseImage.color = japaneseColor;
+            englishImage.color = englishColor;
+        }
+
+        // 透明化
+        if (option)
+        {
+            Image guideOnImage = guideOnButton.GetComponent<Image>();
+            Image guideOffImage = guideOffButton.GetComponent<Image>();
+
+            Color guideOnColor = guideOffImage.color;
+            Color guideOffColor = guideOffImage.color;
+
+            if (PlayerPrefs.GetString("Guide") == "true")
+            {
+                // aは透明度を表す
+                guideOnColor.a = 1.0f;
+                guideOffColor.a = 0.3f;
+            }
+            else if (PlayerPrefs.GetString("Guide") == "false")
+            {
+                // aは透明度を表す
+                guideOnColor.a = 0.3f;
+                guideOffColor.a = 1.0f;
+            }
+
+            guideOnImage.color = guideOnColor;
+            guideOffImage.color = guideOffColor;
         }
 
 
@@ -318,8 +375,6 @@ public class TitleManager : MonoBehaviour
             }
             else if (Gamepad.current.buttonSouth.wasPressedThisFrame)
             {
-                stageNum = 0;
-                HideStage();
                 ExitGameButton();
             }
         }
@@ -496,31 +551,6 @@ public class TitleManager : MonoBehaviour
             guideOnText.color = new Color(r1, g1, b1, a1);
             guideOffText.color = new Color(r1, g1, b1, a1);
         }
-
-        if (option)
-        {
-            Image guideOnImage = guideOnButton.GetComponent<Image>();
-            Image guideOffImage = guideOffButton.GetComponent<Image>();
-
-            Color guideOnColor = guideOffImage.color;
-            Color guideOffColor = guideOffImage.color;
-
-            if (PlayerPrefs.GetString("Guide") == "true")
-            {
-                // aは透明度を表す
-                guideOnColor.a = 1.0f;
-                guideOffColor.a = 0.3f;
-            }
-            else if (PlayerPrefs.GetString("Guide") == "false")
-            {
-                // aは透明度を表す
-                guideOnColor.a = 0.3f;
-                guideOffColor.a = 1.0f;
-            }
-
-            guideOnImage.color = guideOnColor;
-            guideOffImage.color = guideOffColor;
-        }
     }
 
 
@@ -534,6 +564,9 @@ public class TitleManager : MonoBehaviour
 
     public void ExitGameButton()
     {
+        stageNum = 0;
+        HideStage();
+
         titlePanel.SetActive(true);
         stagePanel.SetActive(false);
         title = true;
@@ -720,6 +753,7 @@ public class TitleManager : MonoBehaviour
             stage1Image.SetActive(true);
             stage2Image.SetActive(false);
 
+            rightImage.SetActive(true);
             leftImage.SetActive(false);
         }
         else if (stageNum == 1)
@@ -741,6 +775,7 @@ public class TitleManager : MonoBehaviour
             stage2Image.SetActive(false);
 
             rightImage.SetActive(false);
+            leftImage.SetActive(true);
         }
     }
 
