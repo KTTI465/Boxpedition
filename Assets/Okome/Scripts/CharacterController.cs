@@ -210,44 +210,44 @@ public class CharacterController : MonoBehaviour
     {
         CharacterMovement();
         //CharacterRotate();
-      /* if (isUsingJumpGravity == true)
-        {
-            firstJumpPower = originFirstJumpPower;
-            secondJumpPower = originSecondJumpPower;
-            //落ちていない
-            if (isFalling == false)
-            {
-                //重力を追加する
-                if (doubleJumped == true)
-                {
-                    rb.AddForce(-(Physics.gravity + ((Mathf.Pow(secondJumpPower, 2) / (2 * secondJumpHeight)) * Vector3.up)), ForceMode.Force);
-                }
-                else if (jumped == true && doubleJumped == false)
-                {
-                    rb.AddForce(-(Physics.gravity + ((Mathf.Pow(firstJumpPower, 2) / (2 * firstJumpHeight)) * Vector3.up)), ForceMode.Force);
-                }
+        /* if (isUsingJumpGravity == true)
+          {
+              firstJumpPower = originFirstJumpPower;
+              secondJumpPower = originSecondJumpPower;
+              //落ちていない
+              if (isFalling == false)
+              {
+                  //重力を追加する
+                  if (doubleJumped == true)
+                  {
+                      rb.AddForce(-(Physics.gravity + ((Mathf.Pow(secondJumpPower, 2) / (2 * secondJumpHeight)) * Vector3.up)), ForceMode.Force);
+                  }
+                  else if (jumped == true && doubleJumped == false)
+                  {
+                      rb.AddForce(-(Physics.gravity + ((Mathf.Pow(firstJumpPower, 2) / (2 * firstJumpHeight)) * Vector3.up)), ForceMode.Force);
+                  }
 
-                //落ちているとき
-                if (transform.position.y < prePlayerPosY)
-                {
-                    isFalling = true;
-                }
-            }
-            else
-            {
-                //落ちていないとき
-                if (isGround == true || transform.position.y >= prePlayerPosY)
-                {
-                    isFalling = false;
-                }
-            }
-        }
-        else
-        {
-            firstJumpPower = 16f;
-            secondJumpPower = 20f;
-        }
-        prePlayerPosY = transform.position.y;*/
+                  //落ちているとき
+                  if (transform.position.y < prePlayerPosY)
+                  {
+                      isFalling = true;
+                  }
+              }
+              else
+              {
+                  //落ちていないとき
+                  if (isGround == true || transform.position.y >= prePlayerPosY)
+                  {
+                      isFalling = false;
+                  }
+              }
+          }
+          else
+          {
+              firstJumpPower = 16f;
+              secondJumpPower = 20f;
+          }
+          prePlayerPosY = transform.position.y;*/
     }
 
     private void CharacterMovement()
@@ -397,14 +397,30 @@ public class CharacterController : MonoBehaviour
                 //地面についていた時
                 if (isGround == true && jumped == false)
                 {
-                    rb.velocity += Vector3.up * firstJumpPower;
+                    //ジャンプ力を落下中とそうでない時で変更するようにした。
+                    if (rb.velocity.y > 0)
+                    {
+                        rb.velocity += Vector3.up * firstJumpPower;
+                    }
+                    else if (rb.velocity.y <= 0)
+                    {
+                        rb.velocity = Vector3.up * firstJumpPower;
+                    }
                     StateProcessor.State = StateJump1;
                     jumped = true;
                 }
                 //空中にいるときかつ二段ジャンプをしていない時
                 else if (isGround == false && doubleJumped == false && jumped == true)
                 {
-                    rb.velocity += Vector3.up * secondJumpPower;
+                    //ジャンプ力を落下中とそうでない時で変更するようにした。
+                    if (rb.velocity.y > 0)
+                    {
+                        rb.velocity += Vector3.up * secondJumpPower;
+                    }
+                    else if (rb.velocity.y <= 0)
+                    {
+                        rb.velocity = Vector3.up * secondJumpPower;
+                    }
 
                     //boxについているスクリプトのコルーチンを使い、１秒後に箱が消えるようにする
                     IEnumerator destroyTimer = connectingBox.GetComponent<Box>().DestroyBox();
