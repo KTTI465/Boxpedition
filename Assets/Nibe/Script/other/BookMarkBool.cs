@@ -7,20 +7,19 @@ public class BookMarkBool : MonoBehaviour
 {
     public pullBookmark pullBookMark;
 
-    //真ん中を掴んでいるかどうかの判定フラグ
+    // 真ん中を掴んでいるかどうかの判定フラグ
     public bool grabMiddle;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
+
 
     void OnTriggerEnter(Collider other)
     {

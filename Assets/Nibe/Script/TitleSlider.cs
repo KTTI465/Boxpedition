@@ -13,14 +13,13 @@ public class TitleSlider : MonoBehaviour
     [SerializeField] Titleplayer titlePlayer;
     [SerializeField] SoundController soundcontroller;
 
-
     [SerializeField] UnityEngine.UI.Slider bgmSlider;
     [SerializeField] UnityEngine.UI.Slider seSlider;
     [SerializeField] UnityEngine.UI.Slider sensiSlider;
 
-    public float bgmValue;
-    public float seValue;
-    public float sensiValue;
+    public float bgmValue;  // bgmの音量の値
+    public float seValue;  // seの音量の値
+    public float sensiValue;  // マウス感度の値
 
     [SerializeField] float bgm;
     [SerializeField] float se;
@@ -29,11 +28,8 @@ public class TitleSlider : MonoBehaviour
     void Start()
     {
         bgmSlider.onValueChanged.AddListener(SetBGM);
-
         seSlider.onValueChanged.AddListener(SetSE);
-
         //sensiSlider.onValueChanged.AddListener(SetSensi);
-
 
         bgmSlider.value = PlayerPrefs.GetFloat("BGM");
         seSlider.value = PlayerPrefs.GetFloat("SE");
@@ -89,7 +85,6 @@ public class TitleSlider : MonoBehaviour
 
         PlayerPrefs.SetFloat("BGM", bgmValue);
         PlayerPrefs.Save();
-
 
         try
         {

@@ -13,8 +13,9 @@ public class GoalManager : MonoBehaviour
     [SerializeField] Text stage2Text;
     [SerializeField] Text titleText;
 
-    private int buttonNum = 0;
-    private int ps4Count = 25;
+    private int buttonNum = 0;  // 現在のボタン選択位置を表す変数
+    private int ps4Count = 25;  // 入力のインターバルを管理する変数
+
     private bool up = false;
     private bool down = false;
 
@@ -28,13 +29,11 @@ public class GoalManager : MonoBehaviour
     private float a2 = 1.0f;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         // ゲームパッドが接続されていないとnullになる。
@@ -42,12 +41,11 @@ public class GoalManager : MonoBehaviour
 
         getPS4();
 
-
-        if(SceneManager.GetActiveScene().name == "GoalScene") //ステージ1のゴールシーンだけ別の処理
+        if(SceneManager.GetActiveScene().name == "GoalScene") //ステージ1のゴールシーンの処理
         {
             if (up == true)
             {
-                if (buttonNum == 0) //ステージ2
+                if (buttonNum == 0) // ステージ2に進む
                 {
                     up = false;
                 }
@@ -59,7 +57,7 @@ public class GoalManager : MonoBehaviour
             }
             else if (down == true)
             {
-                if (buttonNum == 1) //タイトル
+                if (buttonNum == 1) // タイトルに戻る
                 {
                     down = false;
                 }
@@ -71,7 +69,7 @@ public class GoalManager : MonoBehaviour
             }
 
 
-            // 見た目
+            // UI文字の見た目の処理
             if (buttonNum == 0)
             {
                 stage2Text.color = new Color(r2, g2, b2, a2);
@@ -83,7 +81,7 @@ public class GoalManager : MonoBehaviour
                 titleText.color = new Color(r2, g2, b2, a2);
             }
 
-
+            // 〇ボタン（決定ボタン）を押したとき
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 if (buttonNum == 0)
@@ -96,8 +94,9 @@ public class GoalManager : MonoBehaviour
                 }
             }
         }
-        else
+        else  // チュートリアルとステージ2のゴールシーンの処理
         {
+            // 〇ボタン（決定ボタン）を押したとき
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 TitleButton();

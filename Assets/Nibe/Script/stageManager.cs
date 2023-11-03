@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 
+// チュートリアル～ステージ2のプレイ中の処理全般
+
 public class stageManager : MonoBehaviour
 {
     [SerializeField] MusicManager musicManager;
@@ -34,10 +36,10 @@ public class stageManager : MonoBehaviour
     [SerializeField] GameObject offScreenGuideArrow;
 
     public bool openOption = false;
-    private int optionNum = 0;
     //private int ps4Count = 0;
     //public int buttonIntervalTime = 5;
     private float timer = 0f;
+    private int optionNum = 0;  // オプション画面のボタン選択位置を表す変数
     private float interval = 0.3f;  //0.3秒ごとに呼び出す
 
     private float r1 = 1.0f;
@@ -54,7 +56,7 @@ public class stageManager : MonoBehaviour
     private bool up = false;
     private bool down = false;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         soundcontroller.SettingBGMVolume(PlayerPrefs.GetFloat("BGM"));
@@ -64,8 +66,6 @@ public class stageManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         timer += Time.unscaledDeltaTime;
@@ -84,6 +84,7 @@ public class stageManager : MonoBehaviour
 
         getPS4();
 
+        // オプション画面を開いているとき
         if (openOption)
         {
             if (up == true)
@@ -150,6 +151,7 @@ public class stageManager : MonoBehaviour
                 left = false;
             }
 
+            // 〇ボタン（決定ボタン）を押したとき
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 if (optionNum == 3)
@@ -168,9 +170,9 @@ public class stageManager : MonoBehaviour
         }
 
 
-        // 見た目
         if(openOption)
         {
+            // UI文字の見た目の処理
             if (optionNum == 0)
             {
                 bgmText.color = new Color(r2, g2, b2, a2);
@@ -224,6 +226,7 @@ public class stageManager : MonoBehaviour
             }
 
 
+            // UI画像の透明化の処理
             Image guideOnImage = guideOnButton.GetComponent<Image>();
             Image guideOffImage = guideOffButton.GetComponent<Image>();
 
@@ -300,6 +303,7 @@ public class stageManager : MonoBehaviour
 
     void getPS4()
     {
+        // オプションボタン（スタートボタン）を押したとき
         if (Gamepad.current.startButton.wasPressedThisFrame)
         {
             OptionButton();

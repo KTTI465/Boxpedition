@@ -5,37 +5,33 @@ using UnityEngine;
 
 public class Grab_Area_Script : MonoBehaviour
 {
-    //掴んでいるかの判定フラグ
+    // 掴んでいるかの判定フラグ
     public bool grabFlg = false;
 
-    //投げた後に掴む判定にならないようにするフラグ
+    // 投げた後に掴む判定にならないようにするフラグ
     bool firstFlg = false;
 
-    //掴んだオブジェクトのrigidbody格納用変数
+    // 掴んだオブジェクトのrigidbody格納用変数
     new Rigidbody rigidbody;
 
-    //投げる力
+    // 投げる力
     public float power = 10f;
 
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
+
         }
         else
         {
-            //たまに判定バグで親子関係解除されないため、強制敵に親子関係解除する
-            //(この場合重力は復活しないかも？)
+            //強制的に親子関係解除する
             this.gameObject.transform.DetachChildren();
-
-            //強制的に判定をtrueにする
             grabFlg = false;
         }
 
@@ -48,9 +44,8 @@ public class Grab_Area_Script : MonoBehaviour
             rigidbody.isKinematic = false;
             //投げる方向にaddforce
             rigidbody.AddForce(vec.normalized * power, ForceMode.VelocityChange);
-            //フラグリセット
-            grabFlg = false;
 
+            grabFlg = false;
             firstFlg = true;
         }
     }
@@ -78,7 +73,6 @@ public class Grab_Area_Script : MonoBehaviour
                     //親子関係にする
                     collision.gameObject.transform.parent = this.gameObject.transform;
 
-                    //判定をtrueにする
                     grabFlg = true;
                 }
                 else
@@ -97,10 +91,7 @@ public class Grab_Area_Script : MonoBehaviour
                 //親子関係を解除
                 collision.gameObject.transform.parent = null;
 
-                //掴む判定をfalseにする
                 grabFlg = false;
-
-                //投げる判定をfalseにする
                 firstFlg = false;
             }
         }
