@@ -75,10 +75,10 @@ public class TitleManager : MonoBehaviour
     private int stageNum = 0;
     private int languageNum = 0;
 
-    private bool right = false;
-    private bool left = false;
-    private bool up = false;
-    private bool down = false;
+    private bool right = false;  // スティック右入力
+    private bool left = false;  // スティック左入力
+    private bool up = false;  // スティック上入力
+    private bool down = false;  // スティック下入力
 
     private float r1 = 1.0f;
     private float g1 = 1.0f;
@@ -124,19 +124,17 @@ public class TitleManager : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         timer += Time.unscaledDeltaTime;
 
-        // マウス処理
+        // マウス用の処理
         if (credit)
         {
             if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
@@ -159,7 +157,7 @@ public class TitleManager : MonoBehaviour
             }
         }
 
-        // 透明化
+        // 言語選択画像の透明化
         if (language)
         {
             Image japaneseImage = japaneseButton.GetComponent<Image>();
@@ -185,7 +183,7 @@ public class TitleManager : MonoBehaviour
             englishImage.color = englishColor;
         }
 
-        // 透明化
+        // ガイド選択画像の透明化
         if (option)
         {
             Image guideOnImage = guideOnButton.GetComponent<Image>();
@@ -212,11 +210,13 @@ public class TitleManager : MonoBehaviour
         }
 
 
+
         // ゲームパッドが接続されていないとnullになる。
         if (Gamepad.current == null) return;
 
         getPS4();
-        if (title)
+
+        if (title)  // タイトル画面
         {
             if (up == true)
             {
@@ -245,6 +245,7 @@ public class TitleManager : MonoBehaviour
                 }
             }
 
+            // 〇ボタン（決定ボタン）を押したとき
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 if (titleNum == 0)
@@ -274,7 +275,7 @@ public class TitleManager : MonoBehaviour
                 }
             }
         }
-        else if (option)
+        else if (option)  // オプション画面
         {
             if (up == true)
             {
@@ -340,6 +341,7 @@ public class TitleManager : MonoBehaviour
                 left = false;
             }
 
+            // 〇ボタン（決定ボタン）を押したとき
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 if (optionNum == 3)
@@ -354,7 +356,7 @@ public class TitleManager : MonoBehaviour
                 ExitOptionButton();
             }
         }
-        else if (stage)
+        else if (stage)  // ステージ選択画面
         {
             if (right == true)
             {
@@ -369,6 +371,7 @@ public class TitleManager : MonoBehaviour
                 left = false;
             }
 
+            // ボタンを押したときの処理
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 StartStageButton();
@@ -378,7 +381,7 @@ public class TitleManager : MonoBehaviour
                 ExitGameButton();
             }
         }
-        else if (language)
+        else if (language)  // 言語選択画面
         {
             if (up == true) //日本語
             {
@@ -393,30 +396,21 @@ public class TitleManager : MonoBehaviour
                 PlaySelectSE();
             }
 
+            // 〇ボタン（決定ボタン）を押したとき
             if (Gamepad.current.buttonEast.wasPressedThisFrame)
             {
                 ExitLanguageButton();
             }
         }
-        else if (credit)
+        else if (credit)  // クレジット画面
         {
-            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
-            {
-                ExitCreditButton();
-            }
-
-            if (Gamepad.current.buttonSouth.wasPressedThisFrame)
+            if (Gamepad.current.buttonEast.wasPressedThisFrame || Gamepad.current.buttonSouth.wasPressedThisFrame)
             {
                 ExitCreditButton();
             }
         }
-        else if (operation)
+        else if (operation)  // 操作説明画面
         {
-            if (Input.GetMouseButtonDown(1) || Input.GetKey(KeyCode.Escape))
-            {
-                ExitOperationButton();
-            }
-
             if (Gamepad.current.buttonEast.wasPressedThisFrame || Gamepad.current.buttonSouth.wasPressedThisFrame)
             {
                 ExitOperationButton();
@@ -424,7 +418,8 @@ public class TitleManager : MonoBehaviour
         }
 
 
-        // 見た目
+
+        // UI文字の見た目の処理
         if (titleNum == 0)
         {
             startGameText.color = new Color(r2, g2, b2, a2);
@@ -596,6 +591,7 @@ public class TitleManager : MonoBehaviour
         language = true;
         title = false;
     }
+
     public void ExitLanguageButton()
     {
         japaneseButton.SetActive(false);
@@ -622,7 +618,7 @@ public class TitleManager : MonoBehaviour
         ExitLanguageButton();
     }
 
-    public void SaveEngulishButton()
+    public void SaveEnglishButton()
     {
         languageNum = 1;
         ExitLanguageButton();
@@ -655,6 +651,7 @@ public class TitleManager : MonoBehaviour
         credit = true;
         title = false;
     }
+
     public void ExitCreditButton()
     {
         titlePanel.SetActive(true);
@@ -687,6 +684,7 @@ public class TitleManager : MonoBehaviour
         title = false;
         operation = true;
     }
+
     public void ExitOperationButton()
     {
         if (PlayerPrefs.GetString("Language") == "Japanese")
@@ -807,14 +805,10 @@ public class TitleManager : MonoBehaviour
                 timer = 0f;
             }
         }
-
     }
-
 
     public void PlaySelectSE()
     {
-        //ここに音が鳴る処理を書く
-
         soundController.ClickPlay();
     }
 }

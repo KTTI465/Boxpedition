@@ -11,23 +11,23 @@ using Unity.VisualScripting;
 public class moveRopeA : MonoBehaviour
 {
     private float xMovement, zMovement;
-    private float movementSpeed = 0.1f;  //相殺用
+    private float movementSpeed = 0.1f;  // 相殺用
 
-    //　軸の角度
+    // 軸の角度
     private float angle = 0f;
-    //　動き始める時の時間
+    // 動き始める時の時間
     private float startTime;
-    //　振り子をする角度
+    // 振り子をする角度
     [SerializeField]
     private float limitAngle = 90f;
 
-    //　進んでいる方向
+    // 進んでいる方向
     private int direction = 1;
 
-    //　ロープが動くかどうかの判定
+    // ロープが動くかどうかの判定
     private bool moveOn = false;
 
-    //　補間間隔
+    // 補間間隔
     [SerializeField]
     private float duration = 5f;
 
@@ -35,7 +35,7 @@ public class moveRopeA : MonoBehaviour
     public float angleY;
     public float angleZ;
 
-    //プレイヤーのrigidbody格納用変数
+    // プレイヤーのrigidbody格納用変数
     new Rigidbody rigidbody;
     GameObject player;
 
@@ -55,20 +55,19 @@ public class moveRopeA : MonoBehaviour
         rigidbody = player.gameObject.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         GetPS4X();
 
         if (moveOn == true && (Input.GetKey(KeyCode.Space) || ps4X))  //動く
         {
-            //　経過時間に合わせた割合を計算
+            // 経過時間に合わせた割合を計算
             float t = (Time.time - startTime) / duration;
 
-            //　スムーズに角度を計算
+            // スムーズに角度を計算
             angle = Mathf.SmoothStep(angle, direction * limitAngle, t);
 
-            //ロープの下のほうに移動する
+            // ロープの下のほうに移動する
             player.transform.position = Vector3.MoveTowards(player.transform.position, target.position, speed * Time.deltaTime);
 
             //CharacterMovement();  //相殺

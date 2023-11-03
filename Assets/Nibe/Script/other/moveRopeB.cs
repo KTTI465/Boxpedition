@@ -228,7 +228,6 @@ public class moveRopeB : MonoBehaviour
             charaAnimator.SetBool("climb", false); // アニメーション切り替え
 
 
-
             //上の制限位置より下にいるとき
             if (player.transform.position.y < transform.position.y + positionCorrection)
             {
@@ -251,7 +250,7 @@ public class moveRopeB : MonoBehaviour
                     climbUpImage.SetActive(false);
                 }
             }
-            //上の制限位置より上にいるとき上っていかないようにした
+            //上の制限位置より上にいるとき上っていかない
             else if (player.transform.position.y >= transform.position.y + positionCorrection)
             {
                 climbPos = player.transform.position;
@@ -281,7 +280,7 @@ public class moveRopeB : MonoBehaviour
                     climbDownImage.SetActive(false);
                 }
             }
-            //下の制限位置より下にいるときは下りていかないようにした
+            //下の制限位置より下にいるときは下りていかない
             else if (player.transform.position.y <= underPosition.y + positionCorrection &&
                 climbingDown == true)
             {

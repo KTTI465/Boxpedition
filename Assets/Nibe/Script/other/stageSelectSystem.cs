@@ -15,12 +15,11 @@ public class stageSelectSystem : MonoBehaviour
     public GameObject rightButton;
     public GameObject leftButton;
 
-
     public bool DontDestroyEnabled = true;
 
+    int stageNum = 1;  // 選択しているステージ番号を示す変数
+    int moveCount = 0;  // スティック入力のインターバルを管理する変数
 
-    int stageNum = 1;
-    int moveCount = 0;
     bool moveLeft = false;
     bool moveRight = false;
 
@@ -37,6 +36,7 @@ public class stageSelectSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // スティック左入力
         if (moveLeft == true)
         {
             if (moveCount <= 100)
@@ -63,6 +63,7 @@ public class stageSelectSystem : MonoBehaviour
             }
         }
 
+        // スティック右入力
         if (moveRight == true)
         {
             if (moveCount <= 100)
@@ -103,13 +104,6 @@ public class stageSelectSystem : MonoBehaviour
             leftButton.SetActive(true);
         }
 
-        /*
-        if ()
-        {
-            StartGame();  //ゲームスタート
-        }
-        */
-
         if (left)
         {
             StageLeft();  //左側のステージに移る
@@ -135,7 +129,7 @@ public class stageSelectSystem : MonoBehaviour
         {
             if (stageNum == 1)
             {
-                //SceneManager.LoadScene("Stage1_Image");
+
             }
             else if (stageNum == 2)
             {

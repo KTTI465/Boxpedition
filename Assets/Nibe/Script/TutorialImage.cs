@@ -22,7 +22,7 @@ public class TutorialImage : MonoBehaviour
 
     void Update()
     {
-        if(triggerStay)  //範囲内にプレイヤーがいるとき
+        if(triggerStay)  // 範囲内にプレイヤーがいるとき
         {
             interval++;
             CheckPS4();
@@ -38,7 +38,7 @@ public class TutorialImage : MonoBehaviour
                 PlayerPrefs.SetFloat("Sensi", sensiValue);
                 PlayerPrefs.Save();
 
-                Destroy(this.gameObject);  //エリアを削除
+                Destroy(this.gameObject);  // エリアを削除
             }
         }
     }

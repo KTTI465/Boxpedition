@@ -16,7 +16,6 @@ public class trampolineRemake : MonoBehaviour
     private new Collider collider;
     private new Rigidbody rigidbody;
 
-
     Rigidbody rigidBody;
     Rigidbody playerRigidBody;
     GameObject player;
@@ -32,7 +31,6 @@ public class trampolineRemake : MonoBehaviour
     public float smallJumpPower;  //小ジャンプ
 
 
-    // Start is called before the first frame update
     void Start()
     {
         this.collider = this.GetComponent<Collider>();
@@ -46,15 +44,16 @@ public class trampolineRemake : MonoBehaviour
 
         this.collider.sharedMaterial = newMaterial;
 
-
-
         rigidBody = GetComponent<Rigidbody>();
 
+
+        // 音関連の設定
         StateSmallJump.ExecAction = SmallJump;
         StateBigJump.ExecAction = BigJump;
         StateIdle.ExecAction = Idle;
 
         StateProcessor.State = StateIdle;
+
 
         //プレイヤーをタグで検索し、Rigidbodyを取得
         player = GameObject.FindGameObjectWithTag("Player");
@@ -63,7 +62,7 @@ public class trampolineRemake : MonoBehaviour
 
     void Update()
     {
-        //ステートの値が変更されたら実行処理を行う
+        // ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
         {
             _preStateName = StateProcessor.State.GetStateName();
@@ -73,7 +72,7 @@ public class trampolineRemake : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        //　衝突したゲームオブジェクトのタグがPlayerのとき処理を行う
+        // 衝突したゲームオブジェクトのタグがPlayerのとき処理を行う
         if (other.gameObject.tag == "Player")
         {
             StateProcessor.State = StateSmallJump;
@@ -82,7 +81,7 @@ public class trampolineRemake : MonoBehaviour
 
     void OnCollisionExit(Collision other)
     {
-        //　衝突したゲームオブジェクトのタグがPlayerのとき処理を行う
+        // 衝突したゲームオブジェクトのタグがPlayerのとき処理を行う
         if (other.gameObject.tag == "Player")
         {
             StateProcessor.State = StateIdle;

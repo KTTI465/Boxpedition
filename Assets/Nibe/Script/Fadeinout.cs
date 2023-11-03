@@ -6,36 +6,34 @@ using UnityEngine.SceneManagement;
 
 public class Fadeinout : MonoBehaviour
 {
-    public GameObject FadePanel;   //フェードパネルの取得
+    public GameObject FadePanel;  // フェードパネルの取得
 
-    Image fadealpha;               //フェードパネルのイメージ取得変数
+    Image fadealpha;  // フェードパネルのイメージ取得変数
 
-    private float alpha;           //パネルのalpha値取得変数
+    private float alpha;  // パネルのalpha値取得変数
 
-    public bool fadeout = false;          //フェードアウトのフラグ変数
-    public bool fadein = false;          //フェードインのフラグ変数
+    public bool fadeout = false;  // フェードアウトのフラグ変数
+    public bool fadein = false; // フェードインのフラグ変数
 
 
-    // Use this for initialization
     void Start()
     {
-        fadealpha = FadePanel.GetComponent<Image>(); //パネルのイメージ取得
-        alpha = fadealpha.color.a;                 //パネルのalpha値を取得
+        fadealpha = FadePanel.GetComponent<Image>();  // パネルのイメージ取得
+        alpha = fadealpha.color.a;  // パネルのalpha値を取得
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (fadeout == true)
         {
             FadeOut();
         }
-
-        if (fadein == true)
+        else if (fadein == true)
         {
             FadeIn();
         }
     }
+
 
     void FadeOut()
     {

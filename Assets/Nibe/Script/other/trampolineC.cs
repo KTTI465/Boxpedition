@@ -31,6 +31,7 @@ public class trampolineC : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
 
+        // 音関連の設定
         StateSmallJump.ExecAction = SmallJump;
         StateBigJump.ExecAction = BigJump;
         StateIdle.ExecAction = Idle;
@@ -44,7 +45,6 @@ public class trampolineC : MonoBehaviour
 
     void Update()
     {
-
         //ステートの値が変更されたら実行処理を行う
         if (StateProcessor.State.GetStateName() != _preStateName)
         {
@@ -62,13 +62,11 @@ public class trampolineC : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space) || ps4X)  //スペースキーが押してあるとき
             {
-                //Debug.Log("大");
                 StateProcessor.State = StateBigJump;
                 playerRigidBody.AddForce(Vector3.up * bigJumpPower, ForceMode.Impulse);  //大ジャンプ
             }
             else
             {
-                //Debug.Log("小");
                 StateProcessor.State = StateSmallJump;
                 playerRigidBody.AddForce(Vector3.up * smallJumpPower, ForceMode.Impulse);  //小ジャンプ
             }

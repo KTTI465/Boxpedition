@@ -21,14 +21,14 @@ public class controllerscroll : MonoBehaviour
         {
             if (ScrollBar.value <= 1.0)
             {
-                ScrollBar.value = ScrollBar.value + 0.001f;
+                ScrollBar.value = ScrollBar.value + 0.002f;
             }
         }
         if (Input.GetAxisRaw("Vertical") < 0)
         {
             if (ScrollBar.value >= 0.0)
             {
-                ScrollBar.value = ScrollBar.value - 0.001f;
+                ScrollBar.value = ScrollBar.value - 0.002f;
             }
         }
 
