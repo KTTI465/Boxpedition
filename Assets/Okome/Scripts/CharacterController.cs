@@ -345,7 +345,7 @@ public class CharacterController : MonoBehaviour
 
             float radius = transform.lossyScale.x * 0.8f;
 
-            isGround = Physics.SphereCast(transform.position, radius, Vector3.up * -1f, out var hits, jumpDistance, layerMask);
+            isGround = Physics.SphereCast(transform.position, radius, Vector3.up * -1f, out var hits, jumpDistance, layerMask, QueryTriggerInteraction.Ignore);
 
             //isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
         }
@@ -357,7 +357,7 @@ public class CharacterController : MonoBehaviour
 
             float radius = transform.lossyScale.x * 0.8f;
 
-            isGround = Physics.SphereCast(transform.position, radius, Vector3.up * -1f, out var hits, jumpDistance, layerMask);
+            isGround = Physics.SphereCast(transform.position, radius, Vector3.up * -1f, out var hits, jumpDistance, layerMask, QueryTriggerInteraction.Ignore);
             //isGround = Physics.Raycast(transform.position, Vector3.up * -1f, jumpDistance, layerMask);
         }
 
