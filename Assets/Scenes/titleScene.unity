@@ -1404,7 +1404,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1354580109}
         m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
-        m_MethodName: SaveEngulishButton
+        m_MethodName: SaveEnglishButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5435,7 +5435,6 @@ MonoBehaviour:
   englishButton: {fileID: 165686391}
   japaneseText: {fileID: 1178320592}
   englishText: {fileID: 1860406726}
-  buttonIntervalTime: 50
   soundController: {fileID: 1572828665}
 --- !u!1 &1363334708
 GameObject:
@@ -8870,7 +8869,6 @@ MonoBehaviour:
   guideArrow: {fileID: 0}
   offScreenGuideArrow: {fileID: 0}
   openOption: 0
-  buttonIntervalTime: 50
 --- !u!1 &2086100758
 GameObject:
   m_ObjectHideFlags: 0
