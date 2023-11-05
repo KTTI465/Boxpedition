@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 46758507}
   - component: {fileID: 46758506}
   m_Layer: 5
-  m_Name: interactRopeJumpImageGamepad
+  m_Name: RopeJumpImageGamepadeGamepad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -648,7 +648,7 @@ MonoBehaviour:
   - {fileID: 1690567126}
   - {fileID: 1690567125}
   plug: {fileID: 1432931789}
-  rope: {fileID: 1657483963}
+  rope: {fileID: 0}
   monster: {fileID: 0}
   BGMSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
@@ -18211,7 +18211,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8455783699910860272, guid: 35f491ce0601e74468841da18027152c, type: 3}
   m_PrefabInstance: {fileID: 1959910490}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1657483963
+--- !u!114 &1657483964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
