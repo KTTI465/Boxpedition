@@ -146,6 +146,7 @@ public class rope: MonoBehaviour
             panelOn = true;
             if(tutorial == false)
             {
+                // ƒJƒƒ‰ŠÖŒW
                 cam.transform.position = new Vector3(ropepos.x + 12, ropepos.y + 7, ropepos.z);
             }
             else
