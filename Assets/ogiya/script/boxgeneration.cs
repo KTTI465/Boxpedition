@@ -17,6 +17,8 @@ public class boxgeneration : MonoBehaviour
     void Update()
     {
         Transform floor = this.transform;
+
+        // ì¡íËÇÃè∞Ç…êGÇÍÇΩéû
         Vector3 gimmickfloor = floor.transform.position;
         Vector3 Main = main.transform.position;
         Vector3 cubepos = new Vector3(Main.x, Main.y, Main.z);

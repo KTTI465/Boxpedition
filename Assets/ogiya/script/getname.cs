@@ -18,6 +18,7 @@ public class getname : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        //接触したオブジェクトの名前を取得
         obj1 = collision.gameObject.name;
         Debug.Log(obj1);
     }

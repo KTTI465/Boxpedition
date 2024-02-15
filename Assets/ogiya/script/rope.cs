@@ -147,7 +147,7 @@ public class rope: MonoBehaviour
             if(tutorial == false)
             {
                 // ÉJÉÅÉâä÷åW
-                cam.transform.position = new Vector3(ropepos.x + 12, ropepos.y + 7, ropepos.z);
+                cam.transform.position = new Vector3(ropepos.x + 12, ropepos.y + 3, ropepos.z);
             }
             else
             {

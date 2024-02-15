@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class slingshot : MonoBehaviour
 {
+    //スクリプトから設定できるターゲットのポジション
     public int targetX;
     public int targetY;
     public int targetZ;
+
+    //発射速度
     public float speed = 100;
     [SerializeField] private Transform obj;
     [SerializeField] private Transform sling;

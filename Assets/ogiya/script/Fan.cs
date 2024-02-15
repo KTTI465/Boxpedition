@@ -1,58 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Fan : MonoBehaviour
 {
-    public GameObject main;
+    [SerializeField]
+    public GameObject player;
     public GameObject fan;
-    public GameObject botan;
+    public GameObject button;
 
-    private bool FanAction　= false;
-    private bool OnOff = true;
+    public bool FanAction　= false;
+    public bool OnOff = true;
+    public bool ps40 = false;
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-}
-
-
 
     // Update is called once per frame
     void Update()
     {
         Vector3 FanA = fan.transform.position;
-        Vector3 player = main.transform.position;
-        Vector3 Off = botan.transform.position;
+        Vector3 P = player.transform.position;
+        Vector3 Off = button.transform.position;
         Vector3 On = new Vector3(Off.x,Off.y,Off.z + 0.3f);
 
-        float arie = Vector3.Distance(FanA, player);
+        float arie = Vector3.Distance(FanA, P);
 
-        if (arie < 10.0f && Input.GetKey(KeyCode.R))
+        //スイッチのオンオフ判定
+        if (arie < 10.0f && ps40 == true)
         {
             FanAction = true;
         }
-        if(FanAction == true && OnOff == true)
+        if (FanAction == true && OnOff == true)
         {
-            botan.transform.position = new Vector3(On.x,On.y,On.z);
+            //スイッチがオンの時にスイッチの位置を移動
+            button.transform.position = new Vector3(On.x,On.y,On.z);
             OnOff = false;
         }
         if(FanAction == false)
         {
-            botan.transform.position = new Vector3(Off.x, Off.y, Off.z);
+            button.transform.position = new Vector3(Off.x, Off.y, Off.z);
         }
 
 
     }
     void OnTriggerStay(Collider other)
     {
+        //吹き飛ばし判定
         if (other.CompareTag("Player") && FanAction == true)
         {
-            Vector3 capsule = main.transform.position;
-            main.transform.position = new Vector3(capsule.x, capsule.y + 0.1f, capsule.z - 1.0f);
+            //プレイヤーの位置を後ろへ更新し続ける
+            Vector3 newpos = player.transform.position;
+            player.transform.position = new Vector3(newpos.x, newpos.y + 0.1f, newpos.z - 1.0f);
         }
     }
 
+    void GetPS40()
+    {
+        //コントローラーのボタンを認識
+        if (Gamepad.current != null)
+        {
+            if (Gamepad.current.buttonEast.isPressed)
+            {
+                //〇ボタンを押した時
+                ps40 = true;
+            }
+            else
+            {
+                //そうでなければ判定なし
+                ps40 = false;
+            }
+        }
+    }
 }
